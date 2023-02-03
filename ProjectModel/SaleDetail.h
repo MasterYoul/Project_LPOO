@@ -8,7 +8,7 @@
 
 using namespace System;
 
-namespace Model_Project {
+namespace ProjectModel {
     public ref class SaleDetail {
     public:
         property int Id;

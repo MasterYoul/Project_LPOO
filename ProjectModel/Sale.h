@@ -9,10 +9,10 @@
 
 using namespace System;
 
-namespace Model_Project {
+namespace ProjectModel {
     public ref class Sale {
     public:
-        property int ID;
+        property int Id;
         property String^ TxtDate;
         property char Status;
         property double Total;

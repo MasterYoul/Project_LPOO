@@ -8,12 +8,12 @@
 
 using namespace System;
 
-namespace Model_Project {
+namespace ProjectModel {
     public ref class Ingredients {
     public:
         property int Id;
         property String^ Name;
-        property String^ Descripcion;
+        property String^ Description;
         property int Stock;
         property array<Byte>^ Photo;
         

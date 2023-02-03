@@ -6,7 +6,7 @@
 #pragma once
 using namespace System;
 
-namespace Model_Project {
+namespace ProjectModel {
     public ref class User {
     public:
         property int Id;

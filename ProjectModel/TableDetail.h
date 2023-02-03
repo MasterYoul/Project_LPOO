@@ -1,19 +1,24 @@
 /**
- * Project Untitled
+ * Clase que modela el estado de una mesa entre todas las existentes
  */
 
 
-#ifndef _TABLEDETAIL_H
-#define _TABLEDETAIL_H
+#pragma once
+#include "User.h"
 
-class TableDetail {
-public: 
-    int Id;
-    int Floor;
-    int TableCapacity;
-    bool Disponibility;
-    bool Reserverd;
-    String^ TimeReserv;
-};
+using namespace System;
 
-#endif //_TABLEDETAIL_H
+namespace Model_Project {
+    public ref class TableDetail {
+    public:
+        property int Id;
+        property int Floor;
+        property int TableCapacity;
+        property bool Disponibility;
+        property bool Reserved;
+        property String^ TimeReserv;
+        property User^ User;
+    };
+
+
+}

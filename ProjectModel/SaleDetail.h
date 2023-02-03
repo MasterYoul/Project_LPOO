@@ -1,17 +1,20 @@
 /**
- * Project Untitled
+ * Clase que intercede entre Sale y Meals, para saber informacion de cada venta unitaria
  */
 
 
-#ifndef _SALEDETAIL_H
-#define _SALEDETAIL_H
+#pragma once
+#include "Meals.h"
 
-class SaleDetail {
-public: 
-    int Id;
-    int Quantity;
-    double Subtotal;
-    double UnitPrice;
-};
+using namespace System;
 
-#endif //_SALEDETAIL_H
+namespace Model_Project {
+    public ref class SaleDetail {
+    public:
+        property int Id;
+        property int Quantity;
+        property double Subtotal;
+        property Double UnitPrice;
+        property Meals^ Meals;
+    };
+}

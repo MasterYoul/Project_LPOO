@@ -1,27 +1,27 @@
 /**
- * Project Untitled
+ * Clase que simula un usuario y su relacion con la interfaz del sistema
  */
 
 
-#ifndef _USER_H
-#define _USER_H
+#pragma once
+using namespace System;
 
-class User {
-public: 
-    int Id;
-    String^ DocNumer;
-    String^ Name;
-    String^ Address;
-    String^ PhoneNumer;
-    String^ Email;
-    char Status;
-    String^ LastName;
-    double Salary;
-    String^ Username;
-    String^ Password;
-    char Gender;
-    String^ Birthday;
-    String^ Type;
-};
-
-#endif //_USER_H
+namespace Model_Project {
+    public ref class User {
+    public:
+        property int Id;
+        property String^ DocNumber;
+        property String^ Name;
+        property String^ Adress;
+        property String^ PhoneNumber;
+        property String^ Email;
+        property char Status;
+        property String^ LastName;
+        property double Salary;
+        property String^ Username;
+        property String^ Password;
+        property char Gender;
+        property String^ Birthday;
+        property String^ Type;
+    };
+}

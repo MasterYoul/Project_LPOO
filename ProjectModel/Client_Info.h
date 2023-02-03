@@ -4,8 +4,6 @@
 
 
 #pragma once
-#include "User.h"
-
 
 using namespace System;
 namespace Model_Project {
@@ -21,7 +19,9 @@ namespace Model_Project {
         property String^ RucNumber;
         property int Rate;
         property String^ TxtOpin;
-        property User^ User;
+       
     };
 }
+
+
 

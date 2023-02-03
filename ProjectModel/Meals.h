@@ -1,20 +1,22 @@
 /**
- * Project Untitled
+ * Clase que modela los diferente platos del menu
  */
 
 
-#ifndef _MEALS_H
-#define _MEALS_H
+#pragma once
 
-class Meals {
-public: 
-    int Id;
-    String^ Name;
-    String^ Description;
-    double Price;
-    int Stock;
-    char Status;
-    array<Byte> Photo;
-};
 
-#endif //_MEALS_H
+using namespace System;
+
+namespace Model_Project {
+    public ref class Meals {
+    public:
+        property int Id;
+        property String^ Name;
+        property String^ Desripcion;
+        property Double Price;
+        property int Stock;
+        property char Status;
+        property array<Byte>^ Photo;
+    };
+}

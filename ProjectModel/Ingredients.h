@@ -1,18 +1,24 @@
 /**
- * Project Untitled
+ * Clase que alamcena y modifica la informacion de los ingredientes disponibles
  */
 
 
-#ifndef _INGREDIENTS_H
-#define _INGREDIENTS_H
+#pragma once
 
-class Ingredients {
-public: 
-    int Id;
-    String^ Name;
-    String^ Description;
-    int Stock;
-    array<Byte> Photo;
-};
 
-#endif //_INGREDIENTS_H
+using namespace System;
+
+namespace Model_Project {
+    public ref class Ingredients {
+    public:
+        property int Id;
+        property String^ Name;
+        property String^ Descripcion;
+        property int Stock;
+        property array<Byte>^ Photo;
+        
+    };
+
+
+
+}

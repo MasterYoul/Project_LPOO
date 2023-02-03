@@ -1,17 +1,23 @@
 /**
- * Project Untitled
+ * Clase que almacena informacion de la venta, asi como la dsitribuye al resto de clases
  */
 
 
-#ifndef _SALE_H
-#define _SALE_H
+#pragma once
+#include "User.h"
+#include "Client_Info.h"
 
-class Sale {
-public: 
-    int Id;
-    String^ TxtDate;
-    char Status;
-    double Total;
-};
+using namespace System;
 
-#endif //_SALE_H
+namespace Model_Project {
+    public ref class Sale {
+    public:
+        property int ID;
+        property String^ TxtDate;
+        property char Status;
+        property double Total;
+        property User^ User;
+        property Client_Info^ Client_Info;
+    };
+
+}

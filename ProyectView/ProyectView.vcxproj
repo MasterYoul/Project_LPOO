@@ -168,6 +168,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MealsForm.resx">
+      <DependentUpon>MealsForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProyectMainForm.resx">
       <DependentUpon>ProyectMainForm.h</DependentUpon>
     </EmbeddedResource>

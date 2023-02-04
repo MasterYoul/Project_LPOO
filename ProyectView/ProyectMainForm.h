@@ -1,4 +1,5 @@
 #pragma once
+#include "MealsForm.h";
 
 namespace ProyectView {
 
@@ -62,15 +63,15 @@ namespace ProyectView {
 		{
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->archivoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->mantenimientoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->operacionesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->reportesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->ayudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->platosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->clientesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->empleadosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->operacionesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->realizarVentasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->salirToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->reportesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ayudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -94,6 +95,13 @@ namespace ProyectView {
 			this->archivoToolStripMenuItem->Size = System::Drawing::Size(73, 24);
 			this->archivoToolStripMenuItem->Text = L"Archivo";
 			// 
+			// salirToolStripMenuItem
+			// 
+			this->salirToolStripMenuItem->Name = L"salirToolStripMenuItem";
+			this->salirToolStripMenuItem->Size = System::Drawing::Size(121, 26);
+			this->salirToolStripMenuItem->Text = L"Salir";
+			this->salirToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::salirToolStripMenuItem_Click);
+			// 
 			// mantenimientoToolStripMenuItem
 			// 
 			this->mantenimientoToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
@@ -104,12 +112,38 @@ namespace ProyectView {
 			this->mantenimientoToolStripMenuItem->Size = System::Drawing::Size(124, 24);
 			this->mantenimientoToolStripMenuItem->Text = L"Mantenimiento";
 			// 
+			// platosToolStripMenuItem
+			// 
+			this->platosToolStripMenuItem->Name = L"platosToolStripMenuItem";
+			this->platosToolStripMenuItem->Size = System::Drawing::Size(228, 26);
+			this->platosToolStripMenuItem->Text = L"Platos";
+			this->platosToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::platosToolStripMenuItem_Click);
+			// 
+			// clientesToolStripMenuItem
+			// 
+			this->clientesToolStripMenuItem->Name = L"clientesToolStripMenuItem";
+			this->clientesToolStripMenuItem->Size = System::Drawing::Size(228, 26);
+			this->clientesToolStripMenuItem->Text = L"Informacion Clientes";
+			this->clientesToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::clientesToolStripMenuItem_Click);
+			// 
+			// empleadosToolStripMenuItem
+			// 
+			this->empleadosToolStripMenuItem->Name = L"empleadosToolStripMenuItem";
+			this->empleadosToolStripMenuItem->Size = System::Drawing::Size(228, 26);
+			this->empleadosToolStripMenuItem->Text = L"Empleados";
+			// 
 			// operacionesToolStripMenuItem
 			// 
 			this->operacionesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->realizarVentasToolStripMenuItem });
 			this->operacionesToolStripMenuItem->Name = L"operacionesToolStripMenuItem";
 			this->operacionesToolStripMenuItem->Size = System::Drawing::Size(106, 24);
 			this->operacionesToolStripMenuItem->Text = L"Operaciones";
+			// 
+			// realizarVentasToolStripMenuItem
+			// 
+			this->realizarVentasToolStripMenuItem->Name = L"realizarVentasToolStripMenuItem";
+			this->realizarVentasToolStripMenuItem->Size = System::Drawing::Size(192, 26);
+			this->realizarVentasToolStripMenuItem->Text = L"Realizar Ventas";
 			// 
 			// reportesToolStripMenuItem
 			// 
@@ -122,38 +156,6 @@ namespace ProyectView {
 			this->ayudaToolStripMenuItem->Name = L"ayudaToolStripMenuItem";
 			this->ayudaToolStripMenuItem->Size = System::Drawing::Size(65, 24);
 			this->ayudaToolStripMenuItem->Text = L"Ayuda";
-			// 
-			// platosToolStripMenuItem
-			// 
-			this->platosToolStripMenuItem->Name = L"platosToolStripMenuItem";
-			this->platosToolStripMenuItem->Size = System::Drawing::Size(224, 26);
-			this->platosToolStripMenuItem->Text = L"Platos";
-			// 
-			// clientesToolStripMenuItem
-			// 
-			this->clientesToolStripMenuItem->Name = L"clientesToolStripMenuItem";
-			this->clientesToolStripMenuItem->Size = System::Drawing::Size(228, 26);
-			this->clientesToolStripMenuItem->Text = L"Informacion Clientes";
-			this->clientesToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::clientesToolStripMenuItem_Click);
-			// 
-			// empleadosToolStripMenuItem
-			// 
-			this->empleadosToolStripMenuItem->Name = L"empleadosToolStripMenuItem";
-			this->empleadosToolStripMenuItem->Size = System::Drawing::Size(224, 26);
-			this->empleadosToolStripMenuItem->Text = L"Empleados";
-			// 
-			// realizarVentasToolStripMenuItem
-			// 
-			this->realizarVentasToolStripMenuItem->Name = L"realizarVentasToolStripMenuItem";
-			this->realizarVentasToolStripMenuItem->Size = System::Drawing::Size(224, 26);
-			this->realizarVentasToolStripMenuItem->Text = L"Realizar Ventas";
-			// 
-			// salirToolStripMenuItem
-			// 
-			this->salirToolStripMenuItem->Name = L"salirToolStripMenuItem";
-			this->salirToolStripMenuItem->Size = System::Drawing::Size(224, 26);
-			this->salirToolStripMenuItem->Text = L"Salir";
-			this->salirToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::salirToolStripMenuItem_Click);
 			// 
 			// ProyectMainForm
 			// 
@@ -176,6 +178,11 @@ namespace ProyectView {
 	}
 private: System::Void salirToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
+}
+private: System::Void platosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	MealsForm^ mealsForm = gcnew MealsForm();
+	mealsForm-> MdiParent = this;
+	mealsForm->Show();
 }
 };
 }

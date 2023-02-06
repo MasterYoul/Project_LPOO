@@ -74,6 +74,8 @@ namespace ProyectView {
 
 
 
+
+
 	protected:
 
 	private:
@@ -123,7 +125,6 @@ namespace ProyectView {
 			this->label1->Size = System::Drawing::Size(23, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"ID:";
-			this->label1->Click += gcnew System::EventHandler(this, &MealsForm::label1_Click);
 			// 
 			// label2
 			// 
@@ -204,7 +205,6 @@ namespace ProyectView {
 			this->textMealsStock->Name = L"textMealsStock";
 			this->textMealsStock->Size = System::Drawing::Size(100, 22);
 			this->textMealsStock->TabIndex = 10;
-			this->textMealsStock->TextChanged += gcnew System::EventHandler(this, &MealsForm::textBox5_TextChanged);
 			// 
 			// pictureMeals
 			// 
@@ -214,7 +214,6 @@ namespace ProyectView {
 			this->pictureMeals->Size = System::Drawing::Size(257, 152);
 			this->pictureMeals->TabIndex = 11;
 			this->pictureMeals->TabStop = false;
-			this->pictureMeals->Click += gcnew System::EventHandler(this, &MealsForm::pictureMeals_Click);
 			// 
 			// buttonAdd
 			// 
@@ -259,7 +258,8 @@ namespace ProyectView {
 			this->dataGridMeals->RowTemplate->Height = 24;
 			this->dataGridMeals->Size = System::Drawing::Size(1281, 197);
 			this->dataGridMeals->TabIndex = 15;
-			this->dataGridMeals->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MealsForm::dataGridMeals_CellContentClick);
+			this->dataGridMeals->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MealsForm::dataGridMeals_CellClick);
+			
 			// 
 			// MealsId
 			// 
@@ -329,6 +329,7 @@ namespace ProyectView {
 			this->Controls->Add(this->label1);
 			this->Name = L"MealsForm";
 			this->Text = L"MealsForm";
+			this->Load += gcnew System::EventHandler(this, &MealsForm::MealsForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureMeals))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridMeals))->EndInit();
 			this->ResumeLayout(false);
@@ -336,10 +337,7 @@ namespace ProyectView {
 
 		}
 #pragma endregion
-	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void textBox5_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
+
 private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 	Meals^ meals = gcnew Meals();
 	//Meals->setId(Convert::ToInt32(txtMealsId->Text));
@@ -386,8 +384,8 @@ private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^
 		   textMealsStock->Clear();
 		   pictureMeals->Image = nullptr;
 	   }
-private: System::Void dataGridMeals_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-}
+
+
 private: System::Void buttonModify_Click(System::Object^ sender, System::EventArgs^ e) {
 	Meals^ meals = gcnew Meals();
 	//meals->setId(Convert::ToInt32(txtMealsId->Text));
@@ -397,6 +395,8 @@ private: System::Void buttonModify_Click(System::Object^ sender, System::EventAr
 	meals->Price = Convert::ToDouble(textMealsPrice->Text);
 	meals->Stock = Convert::ToInt32(textMealsStock->Text);
 	meals->Status = 'A';
+	buttonModify->Enabled = false;
+	
 	if (pictureMeals != nullptr && pictureMeals->Image != nullptr) {
 		System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
 		pictureMeals->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
@@ -410,13 +410,41 @@ private: System::Void buttonModify_Click(System::Object^ sender, System::EventAr
 private: System::Void buttonDelate_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (txtMealsId->Text->Trim() == "") {
 		MessageBox::Show("Debe seleccionar un plato");
+
 		return;
+	}
+	else
+	{
+		MessageBox::Show("texto", "titulo", MessageBoxButtons::YesNoCancel, MessageBoxIcon::Exclamation);
 	}
 	Controller::DeleteMeals(Convert::ToInt32(txtMealsId->Text->Trim()));
 	CleanControls();
 	ShowMeals();
 }
-private: System::Void pictureMeals_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
+
+
+private: System::Void dataGridMeals_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	int selectedRowIndex = dataGridMeals->SelectedCells[0]->RowIndex;
+	int MealsId = Convert::ToInt32(dataGridMeals->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
+	Meals^ p = Controller::QueryMealstById(MealsId);
+	txtMealsId->Text = "" + p->Id;
+	textMealsName->Text = p->Name;
+	textMealsDescription->Text = p->Description;
+	textMealsPrice->Text = "" + p->Price;
+	textMealsStock->Text = "" + p->Stock;
+	if (p->Photo != nullptr) {
+		System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream(p->Photo);
+		pictureMeals->Image = Image::FromStream(ms);
+	}
+	else {
+		pictureMeals->Image = nullptr;
+		pictureMeals->Invalidate();
+	}
 }
+	   private: System::Void MealsForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		   ShowMeals();
+	   }
 };
 }

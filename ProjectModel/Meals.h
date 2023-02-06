@@ -10,6 +10,8 @@ using namespace System;
 
 namespace ProjectModel {
     public ref class Meals {
+    
+        
     public:
         property int Id;
         property String^ Name;
@@ -18,5 +20,7 @@ namespace ProjectModel {
         property int Stock;
         property char Status;
         property array<Byte>^ Photo;
+
+        
     };
 }

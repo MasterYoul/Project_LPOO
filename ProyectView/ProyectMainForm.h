@@ -1,6 +1,7 @@
 #pragma once
 #include "MealsForm.h";
 #include "UserForm.h";
+#include "LoginForm.h";
 
 namespace ProyectView {
 
@@ -11,12 +12,14 @@ namespace ProyectView {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+
 	/// <summary>
 	/// Resumen de ProyectMainForm
 	/// </summary>
 	public ref class ProyectMainForm : public System::Windows::Forms::Form
 	{
 	public:
+		static User^ user;
 		ProyectMainForm(void)
 		{
 			InitializeComponent();
@@ -112,6 +115,7 @@ namespace ProyectView {
 			this->mantenimientoToolStripMenuItem->Name = L"mantenimientoToolStripMenuItem";
 			this->mantenimientoToolStripMenuItem->Size = System::Drawing::Size(124, 24);
 			this->mantenimientoToolStripMenuItem->Text = L"Mantenimiento";
+			this->mantenimientoToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::mantenimientoToolStripMenuItem_Click);
 			// 
 			// platosToolStripMenuItem
 			// 
@@ -168,7 +172,7 @@ namespace ProyectView {
 			this->IsMdiContainer = true;
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"ProyectMainForm";
-			this->Text = L"ProyectMainForm";
+			this->Text = L"Sistema de ventas de Menu";
 			this->Load += gcnew System::EventHandler(this, &ProyectMainForm::ProyectMainForm_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
@@ -188,12 +192,16 @@ private: System::Void platosToolStripMenuItem_Click(System::Object^ sender, Syst
 	mealsForm->Show();
 }
 private: System::Void ProyectMainForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	LoginForm^ loginForm = gcnew LoginForm();
+	loginForm->ShowDialog();
 }
 private: System::Void empleadosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	UserForm^ productForm = gcnew UserForm();
 	productForm->MdiParent = this;
 	productForm->Show();
 
+}
+private: System::Void mantenimientoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

@@ -188,6 +188,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MealsForm.resx">
       <DependentUpon>MealsForm.h</DependentUpon>
     </EmbeddedResource>

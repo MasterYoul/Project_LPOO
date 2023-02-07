@@ -60,5 +60,9 @@ namespace ProjectController {
 		static int UpdateUser(User^ User);
 		static int DeleteUser(int UserId);
 		static List<User^>^ QueryUserByNameOrLastName(String^ nameDesc);
+
+
+
+		static User^ Login(String^ username, String^ password);
 	};
 }

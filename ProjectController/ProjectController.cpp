@@ -292,3 +292,17 @@ List<User^>^ ProjectController::Controller::QueryUserByNameOrLastName(String^ va
     }
     return newProductList;
 }
+
+User^ ProjectController::Controller::Login(String^ username, String^ password)
+{
+    User^ user;
+    if (username == "usuario" && password == "usuario") {
+        user = gcnew User();
+        user->Id = 1;
+        user->Name = "usuario";
+        user->LastName = "usuario";
+        user->Salary = 4500;
+        user->Username = "usuario";
+    }
+    return user;
+}

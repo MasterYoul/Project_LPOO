@@ -100,6 +100,8 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ User_LastName;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Usuario;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Salario;
+	private: System::Windows::Forms::TextBox^ textUserType;
+	private: System::Windows::Forms::TextBox^ textUserStatus;
 
 
 
@@ -162,6 +164,8 @@ namespace ProyectView {
 			this->buttonModifyUser = (gcnew System::Windows::Forms::Button());
 			this->buttonDeleteUser = (gcnew System::Windows::Forms::Button());
 			this->gBoxGender = (gcnew System::Windows::Forms::GroupBox());
+			this->textUserType = (gcnew System::Windows::Forms::TextBox());
+			this->textUserStatus = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewUser))->BeginInit();
 			this->gBoxGender->SuspendLayout();
 			this->SuspendLayout();
@@ -223,7 +227,7 @@ namespace ProyectView {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(160, 290);
+			this->label7->Location = System::Drawing::Point(655, 347);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(57, 16);
 			this->label7->TabIndex = 6;
@@ -268,7 +272,7 @@ namespace ProyectView {
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(641, 286);
+			this->label12->Location = System::Drawing::Point(152, 256);
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(65, 16);
 			this->label12->TabIndex = 11;
@@ -286,7 +290,7 @@ namespace ProyectView {
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(169, 256);
+			this->label14->Location = System::Drawing::Point(169, 347);
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(48, 16);
 			this->label14->TabIndex = 13;
@@ -398,7 +402,7 @@ namespace ProyectView {
 				this->User_Id,
 					this->User_Name, this->User_LastName, this->Usuario, this->Salario
 			});
-			this->dataGridViewUser->Location = System::Drawing::Point(74, 418);
+			this->dataGridViewUser->Location = System::Drawing::Point(74, 529);
 			this->dataGridViewUser->Name = L"dataGridViewUser";
 			this->dataGridViewUser->RowHeadersWidth = 51;
 			this->dataGridViewUser->RowTemplate->Height = 24;
@@ -445,7 +449,7 @@ namespace ProyectView {
 			// 
 			this->UserType->FormattingEnabled = true;
 			this->UserType->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"Mesero", L"Cocinero", L"Cajero", L"Administrador" });
-			this->UserType->Location = System::Drawing::Point(236, 248);
+			this->UserType->Location = System::Drawing::Point(236, 309);
 			this->UserType->Name = L"UserType";
 			this->UserType->Size = System::Drawing::Size(289, 24);
 			this->UserType->TabIndex = 30;
@@ -454,14 +458,14 @@ namespace ProyectView {
 			// 
 			this->UserStatus->FormattingEnabled = true;
 			this->UserStatus->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Activo", L"Inactivo" });
-			this->UserStatus->Location = System::Drawing::Point(236, 282);
+			this->UserStatus->Location = System::Drawing::Point(727, 309);
 			this->UserStatus->Name = L"UserStatus";
 			this->UserStatus->Size = System::Drawing::Size(289, 24);
 			this->UserStatus->TabIndex = 31;
 			// 
 			// buttonAddUser
 			// 
-			this->buttonAddUser->Location = System::Drawing::Point(189, 347);
+			this->buttonAddUser->Location = System::Drawing::Point(189, 439);
 			this->buttonAddUser->Name = L"buttonAddUser";
 			this->buttonAddUser->Size = System::Drawing::Size(159, 41);
 			this->buttonAddUser->TabIndex = 32;
@@ -471,7 +475,7 @@ namespace ProyectView {
 			// 
 			// buttonModifyUser
 			// 
-			this->buttonModifyUser->Location = System::Drawing::Point(514, 347);
+			this->buttonModifyUser->Location = System::Drawing::Point(480, 439);
 			this->buttonModifyUser->Name = L"buttonModifyUser";
 			this->buttonModifyUser->Size = System::Drawing::Size(146, 41);
 			this->buttonModifyUser->TabIndex = 33;
@@ -481,7 +485,7 @@ namespace ProyectView {
 			// 
 			// buttonDeleteUser
 			// 
-			this->buttonDeleteUser->Location = System::Drawing::Point(827, 347);
+			this->buttonDeleteUser->Location = System::Drawing::Point(807, 439);
 			this->buttonDeleteUser->Name = L"buttonDeleteUser";
 			this->buttonDeleteUser->Size = System::Drawing::Size(129, 41);
 			this->buttonDeleteUser->TabIndex = 34;
@@ -493,17 +497,33 @@ namespace ProyectView {
 			// 
 			this->gBoxGender->Controls->Add(this->UserFemale);
 			this->gBoxGender->Controls->Add(this->UserMale);
-			this->gBoxGender->Location = System::Drawing::Point(727, 269);
+			this->gBoxGender->Location = System::Drawing::Point(238, 239);
 			this->gBoxGender->Name = L"gBoxGender";
 			this->gBoxGender->Size = System::Drawing::Size(317, 48);
 			this->gBoxGender->TabIndex = 35;
 			this->gBoxGender->TabStop = false;
 			// 
+			// textUserType
+			// 
+			this->textUserType->Location = System::Drawing::Point(236, 340);
+			this->textUserType->Name = L"textUserType";
+			this->textUserType->Size = System::Drawing::Size(289, 22);
+			this->textUserType->TabIndex = 36;
+			// 
+			// textUserStatus
+			// 
+			this->textUserStatus->Location = System::Drawing::Point(727, 340);
+			this->textUserStatus->Name = L"textUserStatus";
+			this->textUserStatus->Size = System::Drawing::Size(289, 22);
+			this->textUserStatus->TabIndex = 37;
+			// 
 			// UserForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1107, 654);
+			this->ClientSize = System::Drawing::Size(1107, 771);
+			this->Controls->Add(this->textUserStatus);
+			this->Controls->Add(this->textUserType);
 			this->Controls->Add(this->gBoxGender);
 			this->Controls->Add(this->buttonDeleteUser);
 			this->Controls->Add(this->buttonModifyUser);

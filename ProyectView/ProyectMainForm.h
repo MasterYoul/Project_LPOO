@@ -2,6 +2,7 @@
 #include "MealsForm.h";
 #include "UserForm.h";
 #include "LoginForm.h";
+#include "Client_InfoForm.h";
 
 namespace ProyectView {
 
@@ -115,7 +116,7 @@ namespace ProyectView {
 			this->mantenimientoToolStripMenuItem->Name = L"mantenimientoToolStripMenuItem";
 			this->mantenimientoToolStripMenuItem->Size = System::Drawing::Size(124, 24);
 			this->mantenimientoToolStripMenuItem->Text = L"Mantenimiento";
-			this->mantenimientoToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::mantenimientoToolStripMenuItem_Click);
+
 			// 
 			// platosToolStripMenuItem
 			// 
@@ -181,8 +182,9 @@ namespace ProyectView {
 
 		}
 #pragma endregion
-	private: System::Void clientesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+private: System::Void clientesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	Client_Info^ client_Info = gcnew Client_Info();
+}
 private: System::Void salirToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
 }
@@ -201,7 +203,6 @@ private: System::Void empleadosToolStripMenuItem_Click(System::Object^ sender, S
 	productForm->Show();
 
 }
-private: System::Void mantenimientoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+
 };
 }

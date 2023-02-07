@@ -1,5 +1,6 @@
 #pragma once
 #include "MealsForm.h";
+#include "UserForm.h";
 
 namespace ProyectView {
 
@@ -131,6 +132,7 @@ namespace ProyectView {
 			this->empleadosToolStripMenuItem->Name = L"empleadosToolStripMenuItem";
 			this->empleadosToolStripMenuItem->Size = System::Drawing::Size(228, 26);
 			this->empleadosToolStripMenuItem->Text = L"Empleados";
+			this->empleadosToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::empleadosToolStripMenuItem_Click);
 			// 
 			// operacionesToolStripMenuItem
 			// 
@@ -167,6 +169,7 @@ namespace ProyectView {
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"ProyectMainForm";
 			this->Text = L"ProyectMainForm";
+			this->Load += gcnew System::EventHandler(this, &ProyectMainForm::ProyectMainForm_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -183,6 +186,14 @@ private: System::Void platosToolStripMenuItem_Click(System::Object^ sender, Syst
 	MealsForm^ mealsForm = gcnew MealsForm();
 	mealsForm-> MdiParent = this;
 	mealsForm->Show();
+}
+private: System::Void ProyectMainForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void empleadosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	UserForm^ productForm = gcnew UserForm();
+	productForm->MdiParent = this;
+	productForm->Show();
+
 }
 };
 }

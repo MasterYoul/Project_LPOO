@@ -194,7 +194,7 @@ namespace ProyectView {
 			// 
 			// textMealsPrice
 			// 
-			this->textMealsPrice->Location = System::Drawing::Point(159, 282);
+			this->textMealsPrice->Location = System::Drawing::Point(159, 279);
 			this->textMealsPrice->Name = L"textMealsPrice";
 			this->textMealsPrice->Size = System::Drawing::Size(125, 22);
 			this->textMealsPrice->TabIndex = 9;
@@ -259,7 +259,6 @@ namespace ProyectView {
 			this->dataGridMeals->Size = System::Drawing::Size(1281, 197);
 			this->dataGridMeals->TabIndex = 15;
 			this->dataGridMeals->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MealsForm::dataGridMeals_CellClick);
-			
 			// 
 			// MealsId
 			// 
@@ -328,7 +327,7 @@ namespace ProyectView {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"MealsForm";
-			this->Text = L"MealsForm";
+			this->Text = L"Formulario de Comida";
 			this->Load += gcnew System::EventHandler(this, &MealsForm::MealsForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureMeals))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridMeals))->EndInit();

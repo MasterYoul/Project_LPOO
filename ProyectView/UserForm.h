@@ -100,8 +100,8 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ User_LastName;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Usuario;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Salario;
-	private: System::Windows::Forms::TextBox^ textUserType;
-	private: System::Windows::Forms::TextBox^ textUserStatus;
+
+
 
 
 
@@ -164,8 +164,6 @@ namespace ProyectView {
 			this->buttonModifyUser = (gcnew System::Windows::Forms::Button());
 			this->buttonDeleteUser = (gcnew System::Windows::Forms::Button());
 			this->gBoxGender = (gcnew System::Windows::Forms::GroupBox());
-			this->textUserType = (gcnew System::Windows::Forms::TextBox());
-			this->textUserStatus = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewUser))->BeginInit();
 			this->gBoxGender->SuspendLayout();
 			this->SuspendLayout();
@@ -449,7 +447,7 @@ namespace ProyectView {
 			// 
 			this->UserType->FormattingEnabled = true;
 			this->UserType->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"Mesero", L"Cocinero", L"Cajero", L"Administrador" });
-			this->UserType->Location = System::Drawing::Point(236, 309);
+			this->UserType->Location = System::Drawing::Point(238, 339);
 			this->UserType->Name = L"UserType";
 			this->UserType->Size = System::Drawing::Size(289, 24);
 			this->UserType->TabIndex = 30;
@@ -458,7 +456,7 @@ namespace ProyectView {
 			// 
 			this->UserStatus->FormattingEnabled = true;
 			this->UserStatus->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Activo", L"Inactivo" });
-			this->UserStatus->Location = System::Drawing::Point(727, 309);
+			this->UserStatus->Location = System::Drawing::Point(727, 339);
 			this->UserStatus->Name = L"UserStatus";
 			this->UserStatus->Size = System::Drawing::Size(289, 24);
 			this->UserStatus->TabIndex = 31;
@@ -503,27 +501,11 @@ namespace ProyectView {
 			this->gBoxGender->TabIndex = 35;
 			this->gBoxGender->TabStop = false;
 			// 
-			// textUserType
-			// 
-			this->textUserType->Location = System::Drawing::Point(236, 340);
-			this->textUserType->Name = L"textUserType";
-			this->textUserType->Size = System::Drawing::Size(289, 22);
-			this->textUserType->TabIndex = 36;
-			// 
-			// textUserStatus
-			// 
-			this->textUserStatus->Location = System::Drawing::Point(727, 340);
-			this->textUserStatus->Name = L"textUserStatus";
-			this->textUserStatus->Size = System::Drawing::Size(289, 22);
-			this->textUserStatus->TabIndex = 37;
-			// 
 			// UserForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1107, 771);
-			this->Controls->Add(this->textUserStatus);
-			this->Controls->Add(this->textUserType);
 			this->Controls->Add(this->gBoxGender);
 			this->Controls->Add(this->buttonDeleteUser);
 			this->Controls->Add(this->buttonModifyUser);
@@ -628,10 +610,10 @@ private: System::Void buttonAddUser_Click(System::Object^ sender, System::EventA
 		user->Username = UserUsuario->Text;
 		user->Password = UserPassword->Text;
 		user->Name = UserName->Text;
-		//user->Status = UserStatus->Text;
+		user->Status = UserStatus->Text;
 		user->LastName = UserLastName->Text;
 		user->Salary = Double::Parse(UserSalary->Text);
-		//user->Type = UserType->Text;
+		user->Type = UserType->Text;
 		user->Gender = UserFemale->Checked ? 'F' : 'M';
 		user->Adress = UserDirection->Text;
 		user->PhoneNumber = UserNumber->Text;

@@ -79,7 +79,6 @@ namespace ProyectView {
 			this->label1->Size = System::Drawing::Size(54, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Usuario";
-			//this->label1->Click += gcnew System::EventHandler(this, &LoginForm::label1_Click);
 			// 
 			// label2
 			// 
@@ -139,6 +138,7 @@ namespace ProyectView {
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(482, 207);
+			this->ControlBox = false;
 			this->Controls->Add(this->txtPassword);
 			this->Controls->Add(this->txtUsername);
 			this->Controls->Add(this->butRecover);

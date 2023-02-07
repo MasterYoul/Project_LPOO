@@ -414,7 +414,7 @@ private: System::Void buttonDelate_Click(System::Object^ sender, System::EventAr
 	}
 	else
 	{
-		MessageBox::Show("texto", "titulo", MessageBoxButtons::YesNoCancel, MessageBoxIcon::Exclamation);
+		MessageBox::Show("¿Está seguro que desea eliminar la informacion del cliente?", "Confirmación", MessageBoxButtons::YesNoCancel, MessageBoxIcon::Exclamation);
 	}
 	Controller::DeleteMeals(Convert::ToInt32(txtMealsId->Text->Trim()));
 	CleanControls();
@@ -442,8 +442,9 @@ private: System::Void dataGridMeals_CellClick(System::Object^ sender, System::Wi
 		pictureMeals->Invalidate();
 	}
 }
-	   private: System::Void MealsForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		   ShowMeals();
-	   }
+ private: System::Void MealsForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	 ShowMeals();
+	 
+}
 };
 }

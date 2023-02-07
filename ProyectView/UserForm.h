@@ -151,17 +151,17 @@ namespace ProyectView {
 			this->UserFemale = (gcnew System::Windows::Forms::RadioButton());
 			this->UserMale = (gcnew System::Windows::Forms::RadioButton());
 			this->dataGridViewUser = (gcnew System::Windows::Forms::DataGridView());
+			this->User_Id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->User_Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->User_LastName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Usuario = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Salario = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->UserType = (gcnew System::Windows::Forms::ComboBox());
 			this->UserStatus = (gcnew System::Windows::Forms::ComboBox());
 			this->buttonAddUser = (gcnew System::Windows::Forms::Button());
 			this->buttonModifyUser = (gcnew System::Windows::Forms::Button());
 			this->buttonDeleteUser = (gcnew System::Windows::Forms::Button());
 			this->gBoxGender = (gcnew System::Windows::Forms::GroupBox());
-			this->User_Id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->User_Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->User_LastName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Usuario = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Salario = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewUser))->BeginInit();
 			this->gBoxGender->SuspendLayout();
 			this->SuspendLayout();
@@ -174,7 +174,6 @@ namespace ProyectView {
 			this->label1->Size = System::Drawing::Size(31, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Id(*)";
-			//this->label1->Click += gcnew System::EventHandler(this, &UserForm::label1_Click);
 			// 
 			// label2
 			// 
@@ -380,7 +379,6 @@ namespace ProyectView {
 			this->UserFemale->TabStop = true;
 			this->UserFemale->Text = L"Femenino";
 			this->UserFemale->UseVisualStyleBackColor = true;
-			this->UserFemale->CheckedChanged += gcnew System::EventHandler(this, &UserForm::radioButton1_CheckedChanged);
 			// 
 			// UserMale
 			// 
@@ -406,60 +404,7 @@ namespace ProyectView {
 			this->dataGridViewUser->RowTemplate->Height = 24;
 			this->dataGridViewUser->Size = System::Drawing::Size(970, 213);
 			this->dataGridViewUser->TabIndex = 29;
-			// 
-			// UserType
-			// 
-			this->UserType->FormattingEnabled = true;
-			this->UserType->Location = System::Drawing::Point(236, 248);
-			this->UserType->Name = L"UserType";
-			this->UserType->Size = System::Drawing::Size(289, 24);
-			this->UserType->TabIndex = 30;
-			// 
-			// UserStatus
-			// 
-			this->UserStatus->FormattingEnabled = true;
-			this->UserStatus->Location = System::Drawing::Point(236, 282);
-			this->UserStatus->Name = L"UserStatus";
-			this->UserStatus->Size = System::Drawing::Size(289, 24);
-			this->UserStatus->TabIndex = 31;
-			// 
-			// buttonAddUser
-			// 
-			this->buttonAddUser->Location = System::Drawing::Point(189, 347);
-			this->buttonAddUser->Name = L"buttonAddUser";
-			this->buttonAddUser->Size = System::Drawing::Size(159, 41);
-			this->buttonAddUser->TabIndex = 32;
-			this->buttonAddUser->Text = L"AGREGAR";
-			this->buttonAddUser->UseVisualStyleBackColor = true;
-			this->buttonAddUser->Click += gcnew System::EventHandler(this, &UserForm::buttonAddUser_Click);
-			// 
-			// buttonModifyUser
-			// 
-			this->buttonModifyUser->Location = System::Drawing::Point(514, 347);
-			this->buttonModifyUser->Name = L"buttonModifyUser";
-			this->buttonModifyUser->Size = System::Drawing::Size(146, 41);
-			this->buttonModifyUser->TabIndex = 33;
-			this->buttonModifyUser->Text = L"MODIFICAR";
-			this->buttonModifyUser->UseVisualStyleBackColor = true;
-			// 
-			// buttonDeleteUser
-			// 
-			this->buttonDeleteUser->Location = System::Drawing::Point(827, 347);
-			this->buttonDeleteUser->Name = L"buttonDeleteUser";
-			this->buttonDeleteUser->Size = System::Drawing::Size(129, 41);
-			this->buttonDeleteUser->TabIndex = 34;
-			this->buttonDeleteUser->Text = L"Eliminar";
-			this->buttonDeleteUser->UseVisualStyleBackColor = true;
-			// 
-			// gBoxGender
-			// 
-			this->gBoxGender->Controls->Add(this->UserFemale);
-			this->gBoxGender->Controls->Add(this->UserMale);
-			this->gBoxGender->Location = System::Drawing::Point(727, 269);
-			this->gBoxGender->Name = L"gBoxGender";
-			this->gBoxGender->Size = System::Drawing::Size(317, 48);
-			this->gBoxGender->TabIndex = 35;
-			this->gBoxGender->TabStop = false;
+			this->dataGridViewUser->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &UserForm::dataGridViewUser_CellClick);
 			// 
 			// User_Id
 			// 
@@ -495,6 +440,64 @@ namespace ProyectView {
 			this->Salario->MinimumWidth = 6;
 			this->Salario->Name = L"Salario";
 			this->Salario->Width = 125;
+			// 
+			// UserType
+			// 
+			this->UserType->FormattingEnabled = true;
+			this->UserType->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"Mesero", L"Cocinero", L"Cajero", L"Administrador" });
+			this->UserType->Location = System::Drawing::Point(236, 248);
+			this->UserType->Name = L"UserType";
+			this->UserType->Size = System::Drawing::Size(289, 24);
+			this->UserType->TabIndex = 30;
+			// 
+			// UserStatus
+			// 
+			this->UserStatus->FormattingEnabled = true;
+			this->UserStatus->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Activo", L"Inactivo" });
+			this->UserStatus->Location = System::Drawing::Point(236, 282);
+			this->UserStatus->Name = L"UserStatus";
+			this->UserStatus->Size = System::Drawing::Size(289, 24);
+			this->UserStatus->TabIndex = 31;
+			// 
+			// buttonAddUser
+			// 
+			this->buttonAddUser->Location = System::Drawing::Point(189, 347);
+			this->buttonAddUser->Name = L"buttonAddUser";
+			this->buttonAddUser->Size = System::Drawing::Size(159, 41);
+			this->buttonAddUser->TabIndex = 32;
+			this->buttonAddUser->Text = L"AGREGAR";
+			this->buttonAddUser->UseVisualStyleBackColor = true;
+			this->buttonAddUser->Click += gcnew System::EventHandler(this, &UserForm::buttonAddUser_Click);
+			// 
+			// buttonModifyUser
+			// 
+			this->buttonModifyUser->Location = System::Drawing::Point(514, 347);
+			this->buttonModifyUser->Name = L"buttonModifyUser";
+			this->buttonModifyUser->Size = System::Drawing::Size(146, 41);
+			this->buttonModifyUser->TabIndex = 33;
+			this->buttonModifyUser->Text = L"MODIFICAR";
+			this->buttonModifyUser->UseVisualStyleBackColor = true;
+			this->buttonModifyUser->Click += gcnew System::EventHandler(this, &UserForm::btnUpdate_Click);
+			// 
+			// buttonDeleteUser
+			// 
+			this->buttonDeleteUser->Location = System::Drawing::Point(827, 347);
+			this->buttonDeleteUser->Name = L"buttonDeleteUser";
+			this->buttonDeleteUser->Size = System::Drawing::Size(129, 41);
+			this->buttonDeleteUser->TabIndex = 34;
+			this->buttonDeleteUser->Text = L"Eliminar";
+			this->buttonDeleteUser->UseVisualStyleBackColor = true;
+			this->buttonDeleteUser->Click += gcnew System::EventHandler(this, &UserForm::btnDelete_Click);
+			// 
+			// gBoxGender
+			// 
+			this->gBoxGender->Controls->Add(this->UserFemale);
+			this->gBoxGender->Controls->Add(this->UserMale);
+			this->gBoxGender->Location = System::Drawing::Point(727, 269);
+			this->gBoxGender->Name = L"gBoxGender";
+			this->gBoxGender->Size = System::Drawing::Size(317, 48);
+			this->gBoxGender->TabIndex = 35;
+			this->gBoxGender->TabStop = false;
 			// 
 			// UserForm
 			// 
@@ -546,8 +549,7 @@ namespace ProyectView {
 	private: System::Void salirToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
-private: System::Void radioButton1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-}
+
 private: System::Void buttonAddUser_Click(System::Object^ sender, System::EventArgs^ e) {
 	User^ user = gcnew User();
 	//Client_Info->setId(Convert::ToInt32(txtMealsId->Text));
@@ -621,6 +623,7 @@ private: System::Void buttonAddUser_Click(System::Object^ sender, System::EventA
 		RefreshdataGridViewUser();
 		buttonAddUser->Enabled = true;
 		ClearControls();
+		
 	}
 	catch (Exception^ ex) {
 		MessageBox::Show(ex->ToString(), "Envíe el error al área de TI.");
@@ -671,15 +674,34 @@ private: System::Void buttonAddUser_Click(System::Object^ sender, System::EventA
 				  UserName->Text = "";
 				  UserLastName->Text = "";
 				  UserPassword->Text = "";
-				  //txtQuota->Text = "";
 				  UserSalary->Text = "";
 				  UserUsuario->Text = "";
 				  UserDirection->Text = "";
 				  UserNumber->Text = "";
 				  UserEmail->Text = "";
 				  UserDNI->Text = "";
+				  UserType->Text = "";
+				  UserStatus->Text = "";
+				  UserFemale->Checked = "";
+
 			  }
-/*
+
+
+			  void ShowUser() {
+				  List<User^>^ UserList = Controller::QueryAllUser();
+
+				  dataGridViewUser->Rows->Clear();
+				  for (int i = 0; i < UserList->Count; i++) {
+					  dataGridViewUser->Rows->Add(gcnew array<String^>{
+						  "" + UserList[i]->Id,
+							  UserList[i]->Name,
+							  "" + UserList[i]->LastName,
+							  "" + UserList[i]->Username,
+							  "" + UserList[i]->Salary,
+					  });
+				  }
+			  }
+	/*
 private: System::Void nuevoToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	EnableControls();
 	btnUpdate->Enabled = false;
@@ -721,7 +743,7 @@ private: System::Void dgvSalesmen_CellClick(System::Object^ sender, System::Wind
 		txtId->Text = "" + s->Id;
 		txtUsername->Text = s->Username;
 
-		/*
+		
 		for (int i = 0; i < cmbStore->Items->Count; i++) {
 			ComboBoxItem^ cmbi = ((ComboBoxItem^)cmbStore->Items[i]);
 			if (cmbi->Value == s->Store->Id) {
@@ -729,8 +751,8 @@ private: System::Void dgvSalesmen_CellClick(System::Object^ sender, System::Wind
 				break;
 			}
 		}
-		*/
-			  /*
+		
+			  
 		rbtnMale->Checked = s->Gender == 'M';
 		rbtFemale->Checked = s->Gender == 'F';
 		txtFirstName->Text = s->Name;
@@ -745,90 +767,133 @@ private: System::Void dgvSalesmen_CellClick(System::Object^ sender, System::Wind
 		dtpBirthday->Value = DateTime::Parse(s->Birthday);
 	}
 }
+
+*/
+
+
+
 private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (txtId->Text->Trim()->Equals(""))
+	if (UserId->Text->Trim()->Equals(""))
 		MessageBox::Show("Debe seleccionar un vendedor.");
-	else
-		Controller::DeleteSalesman(Int32::Parse(txtId->Text));
-	RefreshDGVSalesmen();
+	else {
+		MessageBox::Show("¿Está seguro que desea eliminar la informacion del usuario?", "Confirmación", MessageBoxButtons::YesNoCancel, MessageBoxIcon::Exclamation);
+	}
+	Controller::DeleteUser(Int32::Parse(UserId->Text));
+	ClearControls();
+	ShowUser();
 }
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (dgvSalesmen->CurrentCell != nullptr &&
-		dgvSalesmen->CurrentCell->Value != nullptr &&
-		dgvSalesmen->CurrentCell->Value->ToString() != "" &&
-		!txtId->Text->Trim()->Equals("")) {
+	if (dataGridViewUser->CurrentCell != nullptr &&
+		dataGridViewUser->CurrentCell->Value != nullptr &&
+		dataGridViewUser->CurrentCell->Value->ToString() != "" &&
+		!UserId->Text->Trim()->Equals("")) {
 
-		Salesman^ s = gcnew Salesman();
+		User^ user = gcnew User();
 		try {
-			if (txtUsername->Text->Trim() == "") {
+			if (UserId->Text->Trim() == "") {
+				MessageBox::Show("El ID del usuario no debe estar vacío.");
+				return;
+			}
+			if (UserName->Text->Trim() == "") {
 				MessageBox::Show("El nombre del usuario no debe estar vacío.");
 				return;
 			}
-			if (txtPassword->Text->Trim() == "") {
+			if (UserPassword->Text->Trim() == "") {
 				MessageBox::Show("El password del usuario no debe estar vacío.");
 				return;
 			}
-			if (txtUsername->Text->Trim() == "") {
-				MessageBox::Show("El nombre del usuario no debe estar vacío.");
+			if (UserUsuario->Text->Trim() == "") {
+				MessageBox::Show("El user del usuario no debe estar vacío.");
 				return;
 			}
-			if (txtLastName->Text->Trim() == "") {
+			if (UserLastName->Text->Trim() == "") {
 				MessageBox::Show("El apellido del vendedor no debe estar vacío.");
 				return;
 			}
-			if (txtSalary->Text->Trim() == "") {
+			if (UserSalary->Text->Trim() == "") {
 				MessageBox::Show("El salario del vendedor no debe estar vacío.");
 				return;
 			}
-			if (txtQuota->Text->Trim() == "") {
-				MessageBox::Show("La meta de ventas del vendedor no debe estar vacío.");
+			if (UserType->Text->Trim() == "") {
+				MessageBox::Show("El tipo de usuario no debe estar vacío.");
 				return;
 			}
-			if (txtAddress->Text->Trim() == "") {
-				MessageBox::Show("La dirección del vendedor no debe estar vacío.");
+			if (UserDirection->Text->Trim() == "") {
+				MessageBox::Show("La dirección del usuario no debe estar vacío.");
 				return;
 			}
-			if (txtPhoneNumber->Text->Trim() == "") {
-				MessageBox::Show("El teléfono del vendedor no debe estar vacío.");
+			if (UserNumber->Text->Trim() == "") {
+				MessageBox::Show("El teléfono del usuario no debe estar vacío.");
 				return;
 			}
-			if (txtEmail->Text->Trim() == "") {
-				MessageBox::Show("La correo del vendedor no debe estar vacío.");
+			if (UserEmail->Text->Trim() == "") {
+				MessageBox::Show("La correo del usuario no debe estar vacío.");
 				return;
 			}
-			if (txtDNI->Text->Trim() == "") {
-				MessageBox::Show("El DNI del vendedor no debe estar vacío.");
+			if (UserDNI->Text->Trim() == "") {
+				MessageBox::Show("El DNI del usuario no debe estar vacío.");
 				return;
 			}
-			if (cmbStore->SelectedIndex < 0) {
-				MessageBox::Show("Una tienda debe estar seleccionada.");
+			if (UserStatus->Text->Trim() == "") {
+				MessageBox::Show("El status del usuario no debe estar vacío.");
 				return;
 			}
+			buttonModifyUser->Enabled = false;
 
-			s->Id = Int32::Parse(txtId->Text);
-			s->Username = txtUsername->Text;
-			s->Password = txtPassword->Text;
-			s->Name = txtFirstName->Text;
-			s->LastName = txtLastName->Text;
-			s->Salary = Double::Parse(txtSalary->Text);
-			s->Quota = Double::Parse(txtQuota->Text);
-			s->Gender = rbtnMale->Checked ? 'M' : 'F';
-			s->Address = txtAddress->Text;
-			s->PhoneNumber = txtPhoneNumber->Text;
-			s->Birthday = dtpBirthday->Value.ToString("yyyy-MM-dd");
-			s->Email = txtEmail->Text;
-			s->DocNumber = txtDNI->Text;
-			//s->Store = ((ComboBoxItem^)cmbStore->Items[cmbStore->SelectedIndex])->Name;
-			s->Store = (String^)cmbStore->Items[cmbStore->SelectedIndex];
-			Controller::UpdateSalesman(s);
-			RefreshDGVSalesmen();
+			user->Id = Int32::Parse(UserId->Text);
+			user->Username = UserUsuario->Text;
+			user->Password = UserPassword->Text;
+			user->Name = UserName->Text;
+			user->Status = UserStatus->Text;
+			user->LastName = UserLastName->Text;
+			user->Salary = Double::Parse(UserSalary->Text);
+			user->Type = UserType->Text;
+			user->Gender = UserFemale->Checked ? 'F' : 'M';
+			user->Adress = UserDirection->Text;
+			user->PhoneNumber = UserNumber->Text;
+			user->Birthday = UserDateTimeBirthday->Value.ToString("yyyy-MM-dd");
+			user->Email = UserEmail->Text;
+			user->DocNumber = UserDNI->Text;
+			//s->Store = Controller::QueryStoreById(((ComboBoxItem^)cmbStore->Items[cmbStore->SelectedIndex])->Value);
+			Controller::UpdateUser(user);
+			RefreshdataGridViewUser();
+			buttonModifyUser->Enabled = true;
+			ClearControls();
 		}
 		catch (Exception^ ex) {
-			MessageBox::Show(ex->ToString(), "No se guardó la tienda por error en los datos.");
+			MessageBox::Show(ex->ToString(), "Envíe el error al área de TI.");
 			return;
 		}
 	}
 }
-	   */
+	 
+private: System::Void dataGridViewUser_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	int selectedRowIndex = dataGridViewUser->SelectedCells[0]->RowIndex;
+	int userId = Convert::ToInt32(dataGridViewUser->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
+	User^ p = Controller::QueryUsertById(userId);
+
+	UserId->Text = "" + p->Id;
+	UserDNI->Text = "" + p->DocNumber;
+	UserName->Text = p->Name;
+	UserNumber->Text = p->PhoneNumber;
+	UserDirection->Text = p->Adress;
+	UserEmail->Text = p->Email;
+	UserType->Text = p->Type;
+	UserStatus->Text = p->Status;
+	UserUsuario->Text = "" + p->Username;
+	UserPassword->Text = "" + p->Password;
+
+	UserLastName->Text = p->LastName;
+	UserSalary->Text = "" + p->Salary;
+	UserMale->Checked = p->Gender == 'M';
+	UserFemale->Checked = p->Gender == 'F';
+	UserDateTimeBirthday->Value = DateTime::Parse(p->Birthday);
+}
+
+
+ private: System::Void MealsForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	 ShowUser();
+
+ }
 };
 }

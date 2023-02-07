@@ -183,8 +183,9 @@ namespace ProyectView {
 		}
 #pragma endregion
 private: System::Void clientesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	Client_Info^ client_Info = gcnew Client_Info();
-	//client_Info->MdiParent = this;
+	Client_InfoForm^ client_Info = gcnew Client_InfoForm();
+	client_Info->MdiParent = this;
+	client_Info->Show();
 
 }
 private: System::Void salirToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {

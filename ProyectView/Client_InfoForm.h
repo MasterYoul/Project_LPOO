@@ -74,6 +74,10 @@ namespace ProyectView {
 
 	private: System::Windows::Forms::ToolTip^ toolTip1;
 	private: System::Windows::Forms::ComboBox^ comboBoxRatioClient;
+	private: System::Windows::Forms::DataGridView^ dataGridViewClient;
+
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NameClient;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ DNIClient;
 
 
 
@@ -126,7 +130,11 @@ namespace ProyectView {
 			this->butDELETE = (gcnew System::Windows::Forms::Button());
 			this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->comboBoxRatioClient = (gcnew System::Windows::Forms::ComboBox());
+			this->dataGridViewClient = (gcnew System::Windows::Forms::DataGridView());
+			this->NameClient = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->DNIClient = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDownVisitsClient))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewClient))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -290,7 +298,7 @@ namespace ProyectView {
 			this->butADD->TabIndex = 19;
 			this->butADD->Text = L"Agregar";
 			this->butADD->UseVisualStyleBackColor = true;
-			this->butADD->Click += gcnew System::EventHandler(this, &Client_InfoForm::buttonADD_Click);
+			this->butADD->Click += gcnew System::EventHandler(this, &Client_InfoForm::butADD_Click);
 			// 
 			// butActualizar
 			// 
@@ -309,7 +317,6 @@ namespace ProyectView {
 			this->butDELETE->TabIndex = 21;
 			this->butDELETE->Text = L"Eliminar";
 			this->butDELETE->UseVisualStyleBackColor = true;
-
 			// 
 			// comboBoxRatioClient
 			// 
@@ -319,11 +326,40 @@ namespace ProyectView {
 			this->comboBoxRatioClient->Size = System::Drawing::Size(169, 24);
 			this->comboBoxRatioClient->TabIndex = 22;
 			// 
+			// dataGridViewClient
+			// 
+			this->dataGridViewClient->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewClient->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+				this->NameClient,
+					this->DNIClient
+			});
+			this->dataGridViewClient->Location = System::Drawing::Point(105, 504);
+			this->dataGridViewClient->Name = L"dataGridViewClient";
+			this->dataGridViewClient->RowHeadersWidth = 51;
+			this->dataGridViewClient->RowTemplate->Height = 24;
+			this->dataGridViewClient->Size = System::Drawing::Size(633, 213);
+			this->dataGridViewClient->TabIndex = 23;
+			// 
+			// NameClient
+			// 
+			this->NameClient->HeaderText = L"Nombre";
+			this->NameClient->MinimumWidth = 6;
+			this->NameClient->Name = L"NameClient";
+			this->NameClient->Width = 125;
+			// 
+			// DNIClient
+			// 
+			this->DNIClient->HeaderText = L"DNI";
+			this->DNIClient->MinimumWidth = 6;
+			this->DNIClient->Name = L"DNIClient";
+			this->DNIClient->Width = 125;
+			// 
 			// Client_InfoForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(808, 641);
+			this->ClientSize = System::Drawing::Size(812, 729);
+			this->Controls->Add(this->dataGridViewClient);
 			this->Controls->Add(this->comboBoxRatioClient);
 			this->Controls->Add(this->butDELETE);
 			this->Controls->Add(this->butActualizar);
@@ -349,26 +385,244 @@ namespace ProyectView {
 			this->Name = L"Client_InfoForm";
 			this->Text = L"Client_InfoForm";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDownVisitsClient))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewClient))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 
-private: System::Void buttonADD_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void salirToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+	}
+
+
+private: System::Void butADD_Click(System::Object ^ sender, System::EventArgs ^ e) {
 	Client_Info^ client_Info = gcnew Client_Info();
-	client_Info->Name = textNameClient->Text;
-	client_Info->LastName = textLastNameClient->Text;
-	client_Info->DocNumber = textDniClient->Text;
-	client_Info->PhoneNumber = textNumberClient->Text;
-	client_Info->VisitQuantity = Convert::ToInt32(numericUpDownVisitsClient->Text);
-	client_Info->Type = 'A';
-	client_Info->RucNumber = textRucClient->Text;
-	client_Info->Rate = Convert::ToInt32(comboBoxRatioClient->Text);
-	client_Info->TxtOpin = textOpinionClient->Text;
+	//Client_Info->setId(Convert::ToInt32(txtMealsId->Text));
 
-	Controller::AddClient_Info(client_Info);
+	try {
+		if (textNameClient->Text->Trim() == "") {
+			MessageBox::Show("El user del usuario no debe estar vacío.");
+			return;
+		}
+		if (textLastNameClient->Text->Trim() == "") {
+			MessageBox::Show("El apellido del vendedor no debe estar vacío.");
+			return;
+		}
+		if (numericUpDownVisitsClient->Text->Trim() == "") {
+			MessageBox::Show("El tipo de usuario no debe estar vacío.");
+			return;
+		}
+		if (textOpinionClient->Text->Trim() == "") {
+			MessageBox::Show("La dirección del usuario no debe estar vacío.");
+			return;
+		}
+		client_Info->Name = textNameClient->Text;
+		client_Info->LastName = textLastNameClient->Text;
+		client_Info->TxtOpin = textOpinionClient->Text;
+		client_Info->Type = radioButtonPersonClient->Checked ? 'P' : 'E';
+		client_Info->VisitQuantity= Convert::ToInt32(numericUpDownVisitsClient->Text);
+		client_Info->Rate = Convert::ToInt32(comboBoxRatioClient->Text);
+		client_Info->RucNumber = textRucClient->Text;
+		client_Info->PhoneNumber = textNumberClient->Text;
+		client_Info->DocNumber = textDniClient->Text;
+		//s->Store = Controller::QueryStoreById(((ComboBoxItem^)cmbStore->Items[cmbStore->SelectedIndex])->Value);
+		Controller::AddClient_Info(client_Info);
+		RefreshdataGridViewClient();
+		butADD->Enabled = true;
+		ClearControls();
 
+	}
+	catch (Exception^ ex) {
+		MessageBox::Show(ex->ToString(), "Envíe el error al área de TI.");
+		return;
+	}
 }
+	   private: System::Void consultasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		   DisableControls();
+	   }
+			  Void DisableControls() {
+				  textNameClient->ReadOnly = true;
+				  textLastNameClient->ReadOnly = true;
+				  butADD->Enabled = false;
+				  butActualizar->Enabled = false;
+				  butDELETE->Enabled = false;
+			  }
+			  Void EnableControls() {
+
+				  textNameClient->ReadOnly = false;
+				  textLastNameClient->ReadOnly = false;
+				  butADD->Enabled = true;
+				  butActualizar->Enabled = true;
+				  butDELETE->Enabled = true;
+			  }
+
+			  Void RefreshdataGridViewClient() {
+				  List <Client_Info^>^ Client_InfoList = Controller::QueryAllClient_Info();
+				  dataGridViewClient->Rows->Clear();
+				  if (Client_InfoList != nullptr)
+					  for (int i = 0; i < Client_InfoList->Count; i++) {
+						  dataGridViewClient->Rows->Add(gcnew array<String^> {
+							  "" +
+								  Client_InfoList[i]->Name,
+								  
+								  
+								  "" + Client_InfoList[i]->LastName,
+						  });
+					  }
+			  }
+
+			  void ClearControls() {
+				  textNameClient->Text = "";
+				  textLastNameClient->Text = "";
+				  textOpinionClient->Text = "";
+				  comboBoxRatioClient->Text = "";
+				  textRucClient->Text = "";
+				  textNumberClient->Text = "";
+				  textDniClient->Text = "";
+				  numericUpDownVisitsClient->Text = "";
+				  radioButtonPersonClient->Checked = "";
+
+			  }
+
+
+			  void ShowUser() {
+				  List<Client_Info^>^ Client_InfoList = Controller::QueryAllClient_Info();
+
+				  dataGridViewClient->Rows->Clear();
+				  for (int i = 0; i < Client_InfoList->Count; i++) {
+					  dataGridViewClient->Rows->Add(gcnew array<String^>{
+						  "" + 
+							  Client_InfoList[i]->Name,
+							  "" + Client_InfoList[i]->LastName,
+					  });
+				  }
+			  }
+/*
+private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (UserId->Text->Trim()->Equals(""))
+		MessageBox::Show("Debe seleccionar un vendedor.");
+	else {
+		MessageBox::Show("¿Está seguro que desea eliminar la informacion del usuario?", "Confirmación", MessageBoxButtons::YesNoCancel, MessageBoxIcon::Exclamation);
+	}
+	Controller::DeleteUser(Int32::Parse(UserId->Text));
+	ClearControls();
+	ShowUser();
+}
+private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (dataGridViewUser->CurrentCell != nullptr &&
+		dataGridViewUser->CurrentCell->Value != nullptr &&
+		dataGridViewUser->CurrentCell->Value->ToString() != "" &&
+		!UserId->Text->Trim()->Equals("")) {
+
+		User^ user = gcnew User();
+		try {
+			if (UserId->Text->Trim() == "") {
+				MessageBox::Show("El ID del usuario no debe estar vacío.");
+				return;
+			}
+			if (UserName->Text->Trim() == "") {
+				MessageBox::Show("El nombre del usuario no debe estar vacío.");
+				return;
+			}
+			if (UserPassword->Text->Trim() == "") {
+				MessageBox::Show("El password del usuario no debe estar vacío.");
+				return;
+			}
+			if (UserUsuario->Text->Trim() == "") {
+				MessageBox::Show("El user del usuario no debe estar vacío.");
+				return;
+			}
+			if (UserLastName->Text->Trim() == "") {
+				MessageBox::Show("El apellido del vendedor no debe estar vacío.");
+				return;
+			}
+			if (UserSalary->Text->Trim() == "") {
+				MessageBox::Show("El salario del vendedor no debe estar vacío.");
+				return;
+			}
+			if (UserType->Text->Trim() == "") {
+				MessageBox::Show("El tipo de usuario no debe estar vacío.");
+				return;
+			}
+			if (UserDirection->Text->Trim() == "") {
+				MessageBox::Show("La dirección del usuario no debe estar vacío.");
+				return;
+			}
+			if (UserNumber->Text->Trim() == "") {
+				MessageBox::Show("El teléfono del usuario no debe estar vacío.");
+				return;
+			}
+			if (UserEmail->Text->Trim() == "") {
+				MessageBox::Show("La correo del usuario no debe estar vacío.");
+				return;
+			}
+			if (UserDNI->Text->Trim() == "") {
+				MessageBox::Show("El DNI del usuario no debe estar vacío.");
+				return;
+			}
+			if (UserStatus->Text->Trim() == "") {
+				MessageBox::Show("El status del usuario no debe estar vacío.");
+				return;
+			}
+			buttonModifyUser->Enabled = false;
+
+			user->Id = Int32::Parse(UserId->Text);
+			user->Username = UserUsuario->Text;
+			user->Password = UserPassword->Text;
+			user->Name = UserName->Text;
+			user->Status = UserStatus->Text;
+			user->LastName = UserLastName->Text;
+			user->Salary = Double::Parse(UserSalary->Text);
+			user->Type = UserType->Text;
+			user->Gender = UserFemale->Checked ? 'F' : 'M';
+			user->Adress = UserDirection->Text;
+			user->PhoneNumber = UserNumber->Text;
+			user->Birthday = UserDateTimeBirthday->Value.ToString("yyyy-MM-dd");
+			user->Email = UserEmail->Text;
+			user->DocNumber = UserDNI->Text;
+			//s->Store = Controller::QueryStoreById(((ComboBoxItem^)cmbStore->Items[cmbStore->SelectedIndex])->Value);
+			Controller::UpdateUser(user);
+			RefreshdataGridViewUser();
+			buttonModifyUser->Enabled = true;
+			ClearControls();
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->ToString(), "Envíe el error al área de TI.");
+			return;
+		}
+	}
+}
+
+private: System::Void dataGridViewUser_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	int selectedRowIndex = dataGridViewUser->SelectedCells[0]->RowIndex;
+	int userId = Convert::ToInt32(dataGridViewUser->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
+	User^ p = Controller::QueryUsertById(userId);
+
+	UserId->Text = "" + p->Id;
+	UserDNI->Text = "" + p->DocNumber;
+	UserName->Text = p->Name;
+	UserNumber->Text = p->PhoneNumber;
+	UserDirection->Text = p->Adress;
+	UserEmail->Text = p->Email;
+	UserType->Text = p->Type;
+	UserStatus->Text = p->Status;
+	UserUsuario->Text = "" + p->Username;
+	UserPassword->Text = "" + p->Password;
+
+	UserLastName->Text = p->LastName;
+	UserSalary->Text = "" + p->Salary;
+	UserMale->Checked = p->Gender == 'M';
+	UserFemale->Checked = p->Gender == 'F';
+	UserDateTimeBirthday->Value = DateTime::Parse(p->Birthday);
+}
+
+
+ private: System::Void MealsForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	 ShowUser();
+
+ }
+ */
 };
 }

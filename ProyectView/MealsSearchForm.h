@@ -127,6 +127,7 @@ namespace ProyectView {
 			this->btnCancel->TabIndex = 5;
 			this->btnCancel->Text = L"CANCELAR";
 			this->btnCancel->UseVisualStyleBackColor = true;
+
 			// 
 			// dgvMeals
 			// 
@@ -212,5 +213,6 @@ namespace ProyectView {
 
 	}
 private: System::Void dgvMeals_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+
 };
 }

@@ -3,6 +3,7 @@
 #include "UserForm.h";
 #include "LoginForm.h";
 #include "Client_InfoForm.h";
+#include "SaleForm.h";
 
 namespace ProyectView {
 
@@ -116,7 +117,6 @@ namespace ProyectView {
 			this->mantenimientoToolStripMenuItem->Name = L"mantenimientoToolStripMenuItem";
 			this->mantenimientoToolStripMenuItem->Size = System::Drawing::Size(124, 24);
 			this->mantenimientoToolStripMenuItem->Text = L"Mantenimiento";
-
 			// 
 			// platosToolStripMenuItem
 			// 
@@ -149,8 +149,9 @@ namespace ProyectView {
 			// realizarVentasToolStripMenuItem
 			// 
 			this->realizarVentasToolStripMenuItem->Name = L"realizarVentasToolStripMenuItem";
-			this->realizarVentasToolStripMenuItem->Size = System::Drawing::Size(192, 26);
+			this->realizarVentasToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->realizarVentasToolStripMenuItem->Text = L"Realizar Ventas";
+			this->realizarVentasToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::realizarVentasToolStripMenuItem_Click);
 			// 
 			// reportesToolStripMenuItem
 			// 
@@ -207,5 +208,10 @@ private: System::Void empleadosToolStripMenuItem_Click(System::Object^ sender, S
 
 }
 
+private: System::Void realizarVentasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	SaleForm^ saleForm = gcnew SaleForm();
+	saleForm->MdiParent = this;
+	saleForm->Show();
+}
 };
 }

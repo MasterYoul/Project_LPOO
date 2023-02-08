@@ -197,8 +197,14 @@
     <EmbeddedResource Include="MealsForm.resx">
       <DependentUpon>MealsForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MealsSearchForm.resx">
+      <DependentUpon>MealsSearchForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProyectMainForm.resx">
       <DependentUpon>ProyectMainForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaleForm.resx">
+      <DependentUpon>SaleForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.h</DependentUpon>

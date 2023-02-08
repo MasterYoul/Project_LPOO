@@ -100,6 +100,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ User_LastName;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Usuario;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Salario;
+	private: System::Windows::Forms::Button^ button1;
 
 
 
@@ -164,6 +165,7 @@ namespace ProyectView {
 			this->buttonModifyUser = (gcnew System::Windows::Forms::Button());
 			this->buttonDeleteUser = (gcnew System::Windows::Forms::Button());
 			this->gBoxGender = (gcnew System::Windows::Forms::GroupBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewUser))->BeginInit();
 			this->gBoxGender->SuspendLayout();
 			this->SuspendLayout();
@@ -473,9 +475,9 @@ namespace ProyectView {
 			// 
 			// buttonModifyUser
 			// 
-			this->buttonModifyUser->Location = System::Drawing::Point(480, 439);
+			this->buttonModifyUser->Location = System::Drawing::Point(408, 439);
 			this->buttonModifyUser->Name = L"buttonModifyUser";
-			this->buttonModifyUser->Size = System::Drawing::Size(146, 41);
+			this->buttonModifyUser->Size = System::Drawing::Size(159, 41);
 			this->buttonModifyUser->TabIndex = 33;
 			this->buttonModifyUser->Text = L"MODIFICAR";
 			this->buttonModifyUser->UseVisualStyleBackColor = true;
@@ -483,11 +485,11 @@ namespace ProyectView {
 			// 
 			// buttonDeleteUser
 			// 
-			this->buttonDeleteUser->Location = System::Drawing::Point(807, 439);
+			this->buttonDeleteUser->Location = System::Drawing::Point(615, 439);
 			this->buttonDeleteUser->Name = L"buttonDeleteUser";
-			this->buttonDeleteUser->Size = System::Drawing::Size(129, 41);
+			this->buttonDeleteUser->Size = System::Drawing::Size(159, 41);
 			this->buttonDeleteUser->TabIndex = 34;
-			this->buttonDeleteUser->Text = L"Eliminar";
+			this->buttonDeleteUser->Text = L"ELIMINAR";
 			this->buttonDeleteUser->UseVisualStyleBackColor = true;
 			this->buttonDeleteUser->Click += gcnew System::EventHandler(this, &UserForm::btnDelete_Click);
 			// 
@@ -501,11 +503,22 @@ namespace ProyectView {
 			this->gBoxGender->TabIndex = 35;
 			this->gBoxGender->TabStop = false;
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(823, 440);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(158, 40);
+			this->button1->TabIndex = 36;
+			this->button1->Text = L"LIMPIAR";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &UserForm::button1_Click);
+			// 
 			// UserForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1107, 771);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->gBoxGender);
 			this->Controls->Add(this->buttonDeleteUser);
 			this->Controls->Add(this->buttonModifyUser);
@@ -540,6 +553,7 @@ namespace ProyectView {
 			this->Controls->Add(this->label1);
 			this->Name = L"UserForm";
 			this->Text = L"Formulario de Usuario";
+			this->Shown += gcnew System::EventHandler(this, &UserForm::UserForm_Shown);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewUser))->EndInit();
 			this->gBoxGender->ResumeLayout(false);
 			this->gBoxGender->PerformLayout();
@@ -610,9 +624,9 @@ private: System::Void buttonAddUser_Click(System::Object^ sender, System::EventA
 		user->Username = UserUsuario->Text;
 		user->Password = UserPassword->Text;
 		user->Name = UserName->Text;
-		user->Status = UserStatus->Text;
 		user->LastName = UserLastName->Text;
 		user->Salary = Double::Parse(UserSalary->Text);
+		user->State = UserStatus->Text;
 		user->Type = UserType->Text;
 		user->Gender = UserFemale->Checked ? 'F' : 'M';
 		user->Adress = UserDirection->Text;
@@ -620,6 +634,8 @@ private: System::Void buttonAddUser_Click(System::Object^ sender, System::EventA
 		user->Birthday = UserDateTimeBirthday->Value.ToString("yyyy-MM-dd");
 		user->Email = UserEmail->Text;
 		user->DocNumber = UserDNI->Text;
+		user->Status = 'A';
+
 		//s->Store = Controller::QueryStoreById(((ComboBoxItem^)cmbStore->Items[cmbStore->SelectedIndex])->Value);
 		Controller::AddUser(user);
 		RefreshdataGridViewUser();
@@ -775,14 +791,36 @@ private: System::Void dgvSalesmen_CellClick(System::Object^ sender, System::Wind
 
 
 private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (UserId->Text->Trim()->Equals(""))
-		MessageBox::Show("Debe seleccionar un vendedor.");
-	else {
-		MessageBox::Show("¿Está seguro que desea eliminar la informacion del usuario?", "Confirmación", MessageBoxButtons::YesNoCancel, MessageBoxIcon::Exclamation);
+	buttonModifyUser->Enabled = false;
+	buttonDeleteUser->Enabled = false;
+
+	try {
+		if (UserId->Text->Trim() == "") {
+			MessageBox::Show("No se puede eliminar porque no hay ningun usuario seleccionado.");
+			return;
+		}
+		int userId = Int32::Parse(UserId->Text);
+
+		if (MessageBox::Show(
+			"Estas seguro(a) de eliminar el usuario?",
+			"Confirmacion", MessageBoxButtons::YesNo,
+			MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
+		{
+
+
+			User^ user = Controller::QueryUsertById(userId);
+			user-> Status= 0;
+
+			Controller::DeleteUser(userId);
+
+			RefreshdataGridViewUser();
+			ClearControls();
+		}
 	}
-	Controller::DeleteUser(Int32::Parse(UserId->Text));
-	ClearControls();
-	ShowUser();
+	catch (...) {
+		MessageBox::Show("No se puede eliminar el producto porque el Id no es valido.");
+		return;
+	}
 }
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (dataGridViewUser->CurrentCell != nullptr &&
@@ -841,25 +879,30 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 				return;
 			}
 			buttonModifyUser->Enabled = false;
+			buttonDeleteUser->Enabled = false;
+
 
 			user->Id = Int32::Parse(UserId->Text);
 			user->Username = UserUsuario->Text;
 			user->Password = UserPassword->Text;
 			user->Name = UserName->Text;
-			user->Status = UserStatus->Text;
 			user->LastName = UserLastName->Text;
 			user->Salary = Double::Parse(UserSalary->Text);
 			user->Type = UserType->Text;
+			user->State = UserStatus->Text;
+			/*Añadi state ya que necesitaba la variable Status para otra funcion, en resumen, State es el estado del usuaio 
+			en codigo, pero en los graficos se sige llamando status*/
 			user->Gender = UserFemale->Checked ? 'F' : 'M';
 			user->Adress = UserDirection->Text;
 			user->PhoneNumber = UserNumber->Text;
 			user->Birthday = UserDateTimeBirthday->Value.ToString("yyyy-MM-dd");
 			user->Email = UserEmail->Text;
 			user->DocNumber = UserDNI->Text;
+			user->Status = 'A';
 			//s->Store = Controller::QueryStoreById(((ComboBoxItem^)cmbStore->Items[cmbStore->SelectedIndex])->Value);
 			Controller::UpdateUser(user);
 			RefreshdataGridViewUser();
-			buttonModifyUser->Enabled = true;
+		
 			ClearControls();
 		}
 		catch (Exception^ ex) {
@@ -874,6 +917,9 @@ private: System::Void dataGridViewUser_CellClick(System::Object^ sender, System:
 	int userId = Convert::ToInt32(dataGridViewUser->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
 	User^ p = Controller::QueryUsertById(userId);
 
+	buttonModifyUser->Enabled = true;
+	buttonDeleteUser->Enabled = true;
+
 	UserId->Text = "" + p->Id;
 	UserDNI->Text = "" + p->DocNumber;
 	UserName->Text = p->Name;
@@ -881,9 +927,9 @@ private: System::Void dataGridViewUser_CellClick(System::Object^ sender, System:
 	UserDirection->Text = p->Adress;
 	UserEmail->Text = p->Email;
 	UserType->Text = p->Type;
-	UserStatus->Text = p->Status;
 	UserUsuario->Text = "" + p->Username;
 	UserPassword->Text = "" + p->Password;
+	UserStatus->Text = "" + p->State;
 
 	UserLastName->Text = p->LastName;
 	UserSalary->Text = "" + p->Salary;
@@ -897,5 +943,13 @@ private: System::Void dataGridViewUser_CellClick(System::Object^ sender, System:
 	 ShowUser();
 
  }
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	ClearControls();
+
+}
+private: System::Void UserForm_Shown(System::Object^ sender, System::EventArgs^ e) {
+	buttonModifyUser->Enabled = false;
+	buttonDeleteUser->Enabled = false;
+}
 };
 }

@@ -15,7 +15,7 @@ namespace ProjectModel {
         property String^ Adress;
         property String^ PhoneNumber;
         property String^ Email;
-        property String^ Status;
+        property char Status;
         property String^ LastName;
         property double Salary;
         property String^ Username;
@@ -23,5 +23,6 @@ namespace ProjectModel {
         property char Gender;
         property String^ Birthday;
         property String^ Type;
+        property String^ State;
     };
 }

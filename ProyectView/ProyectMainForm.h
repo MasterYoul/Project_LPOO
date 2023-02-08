@@ -15,6 +15,7 @@ namespace ProyectView {
 	using namespace System::Drawing;
 
 
+
 	/// <summary>
 	/// Resumen de ProyectMainForm
 	/// </summary>
@@ -194,6 +195,7 @@ private: System::Void salirToolStripMenuItem_Click(System::Object^ sender, Syste
 }
 private: System::Void platosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	MealsForm^ mealsForm = gcnew MealsForm();
+
 	mealsForm-> MdiParent = this;
 	mealsForm->Show();
 }

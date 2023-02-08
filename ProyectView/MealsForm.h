@@ -12,6 +12,7 @@ namespace ProyectView {
 	using namespace ProjectController;
 	using namespace System::Collections::Generic;
 
+
 	/// <summary>
 	/// Resumen de MealsForm
 	/// </summary>
@@ -59,6 +60,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MeaslPrice;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsStock;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button2;
 
 
 
@@ -113,6 +115,7 @@ namespace ProyectView {
 			this->MeaslPrice = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->MealsStock = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureMeals))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridMeals))->BeginInit();
 			this->SuspendLayout();
@@ -172,21 +175,21 @@ namespace ProyectView {
 			// 
 			// txtMealsId
 			// 
-			this->txtMealsId->Location = System::Drawing::Point(159, 43);
+			this->txtMealsId->Location = System::Drawing::Point(135, 40);
 			this->txtMealsId->Name = L"txtMealsId";
-			this->txtMealsId->Size = System::Drawing::Size(100, 22);
+			this->txtMealsId->Size = System::Drawing::Size(232, 22);
 			this->txtMealsId->TabIndex = 6;
 			// 
 			// textMealsName
 			// 
-			this->textMealsName->Location = System::Drawing::Point(159, 92);
+			this->textMealsName->Location = System::Drawing::Point(135, 92);
 			this->textMealsName->Name = L"textMealsName";
-			this->textMealsName->Size = System::Drawing::Size(196, 22);
+			this->textMealsName->Size = System::Drawing::Size(232, 22);
 			this->textMealsName->TabIndex = 7;
 			// 
 			// textMealsDescription
 			// 
-			this->textMealsDescription->Location = System::Drawing::Point(159, 155);
+			this->textMealsDescription->Location = System::Drawing::Point(135, 155);
 			this->textMealsDescription->Multiline = true;
 			this->textMealsDescription->Name = L"textMealsDescription";
 			this->textMealsDescription->Size = System::Drawing::Size(232, 75);
@@ -194,32 +197,34 @@ namespace ProyectView {
 			// 
 			// textMealsPrice
 			// 
-			this->textMealsPrice->Location = System::Drawing::Point(159, 279);
+			this->textMealsPrice->Location = System::Drawing::Point(135, 279);
 			this->textMealsPrice->Name = L"textMealsPrice";
-			this->textMealsPrice->Size = System::Drawing::Size(125, 22);
+			this->textMealsPrice->Size = System::Drawing::Size(130, 22);
 			this->textMealsPrice->TabIndex = 9;
 			// 
 			// textMealsStock
 			// 
-			this->textMealsStock->Location = System::Drawing::Point(159, 352);
+			this->textMealsStock->Cursor = System::Windows::Forms::Cursors::IBeam;
+			this->textMealsStock->Location = System::Drawing::Point(135, 352);
 			this->textMealsStock->Name = L"textMealsStock";
-			this->textMealsStock->Size = System::Drawing::Size(100, 22);
+			this->textMealsStock->Size = System::Drawing::Size(130, 22);
 			this->textMealsStock->TabIndex = 10;
 			// 
 			// pictureMeals
 			// 
 			this->pictureMeals->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->pictureMeals->Location = System::Drawing::Point(513, 33);
+			this->pictureMeals->Location = System::Drawing::Point(467, 43);
 			this->pictureMeals->Name = L"pictureMeals";
-			this->pictureMeals->Size = System::Drawing::Size(257, 152);
+			this->pictureMeals->Size = System::Drawing::Size(303, 201);
+			this->pictureMeals->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureMeals->TabIndex = 11;
 			this->pictureMeals->TabStop = false;
 			// 
 			// buttonAdd
 			// 
-			this->buttonAdd->Location = System::Drawing::Point(237, 419);
+			this->buttonAdd->Location = System::Drawing::Point(135, 419);
 			this->buttonAdd->Name = L"buttonAdd";
-			this->buttonAdd->Size = System::Drawing::Size(101, 43);
+			this->buttonAdd->Size = System::Drawing::Size(168, 43);
 			this->buttonAdd->TabIndex = 12;
 			this->buttonAdd->Text = L"AGREGAR";
 			this->buttonAdd->UseVisualStyleBackColor = true;
@@ -227,9 +232,9 @@ namespace ProyectView {
 			// 
 			// buttonModify
 			// 
-			this->buttonModify->Location = System::Drawing::Point(443, 419);
+			this->buttonModify->Location = System::Drawing::Point(374, 419);
 			this->buttonModify->Name = L"buttonModify";
-			this->buttonModify->Size = System::Drawing::Size(126, 43);
+			this->buttonModify->Size = System::Drawing::Size(170, 43);
 			this->buttonModify->TabIndex = 13;
 			this->buttonModify->Text = L"MODIFICAR";
 			this->buttonModify->UseVisualStyleBackColor = true;
@@ -237,9 +242,9 @@ namespace ProyectView {
 			// 
 			// buttonDelate
 			// 
-			this->buttonDelate->Location = System::Drawing::Point(639, 419);
+			this->buttonDelate->Location = System::Drawing::Point(600, 419);
 			this->buttonDelate->Name = L"buttonDelate";
-			this->buttonDelate->Size = System::Drawing::Size(118, 43);
+			this->buttonDelate->Size = System::Drawing::Size(170, 43);
 			this->buttonDelate->TabIndex = 14;
 			this->buttonDelate->Text = L"ELIMINAR";
 			this->buttonDelate->UseVisualStyleBackColor = true;
@@ -256,7 +261,7 @@ namespace ProyectView {
 			this->dataGridMeals->Name = L"dataGridMeals";
 			this->dataGridMeals->RowHeadersWidth = 51;
 			this->dataGridMeals->RowTemplate->Height = 24;
-			this->dataGridMeals->Size = System::Drawing::Size(1281, 197);
+			this->dataGridMeals->Size = System::Drawing::Size(1018, 225);
 			this->dataGridMeals->TabIndex = 15;
 			this->dataGridMeals->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MealsForm::dataGridMeals_CellClick);
 			// 
@@ -297,18 +302,30 @@ namespace ProyectView {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(513, 206);
+			this->button1->Location = System::Drawing::Point(499, 277);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(230, 24);
+			this->button1->Size = System::Drawing::Size(230, 43);
 			this->button1->TabIndex = 16;
 			this->button1->Text = L"ESTABLECER IMAGEN";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MealsForm::btnSetImage_Click);
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(822, 419);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(170, 43);
+			this->button2->TabIndex = 17;
+			this->button2->Text = L"LIMPIAR";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MealsForm::button2_Click);
 			// 
 			// MealsForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1378, 741);
+			this->ClientSize = System::Drawing::Size(1092, 785);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridMeals);
 			this->Controls->Add(this->buttonDelate);
@@ -329,6 +346,7 @@ namespace ProyectView {
 			this->Name = L"MealsForm";
 			this->Text = L"Formulario de Comida";
 			this->Load += gcnew System::EventHandler(this, &MealsForm::MealsForm_Load);
+			this->Shown += gcnew System::EventHandler(this, &MealsForm::MealsForm_Shown);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureMeals))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridMeals))->EndInit();
 			this->ResumeLayout(false);
@@ -337,9 +355,33 @@ namespace ProyectView {
 		}
 #pragma endregion
 
+
+
 private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 	Meals^ meals = gcnew Meals();
 	//Meals->setId(Convert::ToInt32(txtMealsId->Text));
+
+	if (txtMealsId->Text->Trim() == "") {
+		MessageBox::Show("El ID del plato no debe estar vacío.");
+		return;
+	}
+	if (textMealsName->Text->Trim() == "") {
+		MessageBox::Show("El nombre del plato no debe estar vacío.");
+		return;
+	}
+	if (textMealsDescription->Text->Trim() == "") {
+		MessageBox::Show("La descripcion del plato no debe estar vacío.");
+		return;
+	}
+	if (textMealsPrice->Text->Trim() == "") {
+		MessageBox::Show("El precio del plato no debe estar vacío.");
+		return;
+	}
+	if (textMealsStock->Text->Trim() == "") {
+		MessageBox::Show("El stock del plato no debe estar vacío.");
+		return;
+	}
+	
 	meals->Id = Convert::ToInt32(txtMealsId->Text);
 	meals->Name = textMealsName->Text;
 	meals->Description = textMealsDescription->Text;
@@ -355,11 +397,24 @@ private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^
 
 	Controller::AddMeals(meals);
 
-	CleanControls();
+	ClearControls();
 	ShowMeals();
-
-
 }
+
+	   Void RefreshdatadataGridMeals() {
+		   List <Meals^>^ MealsList = Controller::QueryAllMeals();
+		   dataGridMeals->Rows->Clear();
+		   if (MealsList != nullptr)
+			   for (int i = 0; i < MealsList->Count; i++) {
+				   dataGridMeals->Rows->Add(gcnew array<String^> {
+					   "" + MealsList[i]->Id,
+						   MealsList[i]->Name,
+						   MealsList[i]->Description,
+						   ""+ MealsList[i]->Price,
+						   "" + MealsList[i]->Stock
+				   });
+			   }
+	   }
 	  
 	void ShowMeals() {
 		   List<Meals^>^ MealsList = Controller::QueryAllMeals();
@@ -375,7 +430,7 @@ private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^
 			   });
 		   }
 	   }
-	   void CleanControls() {
+	   void ClearControls() {
 		   txtMealsId->Clear();
 		   textMealsName->Clear();
 		   textMealsDescription->Clear();
@@ -387,6 +442,26 @@ private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^
 
 private: System::Void buttonModify_Click(System::Object^ sender, System::EventArgs^ e) {
 	Meals^ meals = gcnew Meals();
+	if (txtMealsId->Text->Trim() == "") {
+		MessageBox::Show("El ID del plato no debe estar vacío.");
+		return;
+	}
+	if (textMealsName->Text->Trim() == "") {
+		MessageBox::Show("El nombre del plato no debe estar vacío.");
+		return;
+	}
+	if (textMealsDescription->Text->Trim() == "") {
+		MessageBox::Show("La descripcion del plato no debe estar vacío.");
+		return;
+	}
+	if (textMealsPrice->Text->Trim() == "") {
+		MessageBox::Show("El precio del plato no debe estar vacío.");
+		return;
+	}
+	if (textMealsStock->Text->Trim() == "") {
+		MessageBox::Show("El stock del plato no debe estar vacío.");
+		return;
+	}
 	//meals->setId(Convert::ToInt32(txtMealsId->Text));
 	meals->Id = Convert::ToInt32(txtMealsId->Text);
 	meals->Name = textMealsName->Text;
@@ -395,7 +470,8 @@ private: System::Void buttonModify_Click(System::Object^ sender, System::EventAr
 	meals->Stock = Convert::ToInt32(textMealsStock->Text);
 	meals->Status = 'A';
 	buttonModify->Enabled = false;
-	
+	buttonDelate->Enabled = false;
+
 	if (pictureMeals != nullptr && pictureMeals->Image != nullptr) {
 		System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
 		pictureMeals->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
@@ -403,22 +479,40 @@ private: System::Void buttonModify_Click(System::Object^ sender, System::EventAr
 	}
 
 	Controller::UpdateMeals(meals);
-	CleanControls();
+	ClearControls();
 	ShowMeals();
 }
 private: System::Void buttonDelate_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (txtMealsId->Text->Trim() == "") {
-		MessageBox::Show("Debe seleccionar un plato");
+	buttonModify->Enabled = false;
+	buttonDelate->Enabled = false;
+	try {
+		if (txtMealsId->Text->Trim() == "") {
+			MessageBox::Show("No se puede eliminar porque no hay ningun producto seleccionado.");
+			return;
+		}
+		int MealsId = Int32::Parse(txtMealsId->Text);
 
+		if (MessageBox::Show(
+			"Estas seguro(a) de eliminar el producto?",
+			"Confirmacion", MessageBoxButtons::YesNo,
+			MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
+		{
+		
+
+			Meals^ meals = Controller::QueryMealstById(MealsId);
+			meals->Status = 0;
+
+			Controller::DeleteMeals(MealsId);
+
+			RefreshdatadataGridMeals();
+			ClearControls();
+		}
+	}
+	catch (...) {
+		MessageBox::Show("No se puede eliminar el producto porque el Id no es valido.");
 		return;
 	}
-	else
-	{
-		MessageBox::Show("¿Está seguro que desea eliminar la informacion del cliente?", "Confirmación", MessageBoxButtons::YesNoCancel, MessageBoxIcon::Exclamation);
-	}
-	Controller::DeleteMeals(Convert::ToInt32(txtMealsId->Text->Trim()));
-	CleanControls();
-	ShowMeals();
+
 }
 
 
@@ -432,7 +526,11 @@ private: System::Void dataGridMeals_CellClick(System::Object^ sender, System::Wi
 	textMealsName->Text = p->Name;
 	textMealsDescription->Text = p->Description;
 	textMealsPrice->Text = "" + p->Price;
-	textMealsStock->Text = "" + p->Stock;
+	textMealsStock->Text
+		= "" + p->Stock;
+	buttonModify->Enabled = true;
+	buttonDelate->Enabled = true;
+
 	if (p->Photo != nullptr) {
 		System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream(p->Photo);
 		pictureMeals->Image = Image::FromStream(ms);
@@ -446,5 +544,23 @@ private: System::Void dataGridMeals_CellClick(System::Object^ sender, System::Wi
 	 ShowMeals();
 	 
 }
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	ClearControls();
+}
+private: System::Void btnSetImage_Click(System::Object^ sender, System::EventArgs^ e) {
+	OpenFileDialog^ opnfd = gcnew OpenFileDialog();
+	opnfd->Filter = "Image Files (*.jpg;*.jpeg;)|*.jpg;*.jpeg;";
+	if (opnfd->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+	{
+		pictureMeals->Image = gcnew Bitmap(opnfd->FileName);
+	}
+
+}
+
+private: System::Void MealsForm_Shown(System::Object^ sender, System::EventArgs^ e) {
+	buttonModify->Enabled = false;
+	buttonDelate->Enabled = false;
+}
+
 };
 }

@@ -164,15 +164,15 @@ namespace ProyectView {
 			this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->comboBoxRatioClient = (gcnew System::Windows::Forms::ComboBox());
 			this->dataGridViewClient = (gcnew System::Windows::Forms::DataGridView());
-			this->CleanClientBtn = (gcnew System::Windows::Forms::Button());
-			this->label10 = (gcnew System::Windows::Forms::Label());
-			this->textIdClient = (gcnew System::Windows::Forms::TextBox());
 			this->Id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->NameClient = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->DNIClient = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Rate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->TxtOpinion = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->PhoneNumber = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->CleanClientBtn = (gcnew System::Windows::Forms::Button());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->textIdClient = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDownVisitsClient))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewClient))->BeginInit();
 			this->SuspendLayout();
@@ -243,11 +243,11 @@ namespace ProyectView {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(479, 146);
+			this->label8->Location = System::Drawing::Point(451, 146);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(48, 16);
+			this->label8->Size = System::Drawing::Size(76, 16);
 			this->label8->TabIndex = 7;
-			this->label8->Text = L"RATIO";
+			this->label8->Text = L"Calificación";
 			// 
 			// label9
 			// 
@@ -382,33 +382,7 @@ namespace ProyectView {
 			this->dataGridViewClient->RowTemplate->Height = 24;
 			this->dataGridViewClient->Size = System::Drawing::Size(926, 213);
 			this->dataGridViewClient->TabIndex = 23;
-
-			// 
-			// CleanClientBtn
-			// 
-			this->CleanClientBtn->Location = System::Drawing::Point(752, 295);
-			this->CleanClientBtn->Name = L"CleanClientBtn";
-			this->CleanClientBtn->Size = System::Drawing::Size(125, 42);
-			this->CleanClientBtn->TabIndex = 24;
-			this->CleanClientBtn->Text = L"Limpiar";
-			this->CleanClientBtn->UseVisualStyleBackColor = true;
-			this->CleanClientBtn->Click += gcnew System::EventHandler(this, &Client_InfoForm::CleanClientBtn_Click);
-			// 
-			// label10
-			// 
-			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(509, 204);
-			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(18, 16);
-			this->label10->TabIndex = 25;
-			this->label10->Text = L"Id";
-			// 
-			// textIdClient
-			// 
-			this->textIdClient->Location = System::Drawing::Point(550, 198);
-			this->textIdClient->Name = L"textIdClient";
-			this->textIdClient->Size = System::Drawing::Size(168, 22);
-			this->textIdClient->TabIndex = 26;
+			this->dataGridViewClient->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Client_InfoForm::dataGridViewClient_Info_CellClick);
 			// 
 			// Id
 			// 
@@ -451,6 +425,32 @@ namespace ProyectView {
 			this->PhoneNumber->MinimumWidth = 6;
 			this->PhoneNumber->Name = L"PhoneNumber";
 			this->PhoneNumber->Width = 125;
+			// 
+			// CleanClientBtn
+			// 
+			this->CleanClientBtn->Location = System::Drawing::Point(752, 295);
+			this->CleanClientBtn->Name = L"CleanClientBtn";
+			this->CleanClientBtn->Size = System::Drawing::Size(125, 42);
+			this->CleanClientBtn->TabIndex = 24;
+			this->CleanClientBtn->Text = L"Limpiar";
+			this->CleanClientBtn->UseVisualStyleBackColor = true;
+			this->CleanClientBtn->Click += gcnew System::EventHandler(this, &Client_InfoForm::CleanClientBtn_Click);
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(509, 201);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(18, 16);
+			this->label10->TabIndex = 25;
+			this->label10->Text = L"Id";
+			// 
+			// textIdClient
+			// 
+			this->textIdClient->Location = System::Drawing::Point(550, 198);
+			this->textIdClient->Name = L"textIdClient";
+			this->textIdClient->Size = System::Drawing::Size(168, 22);
+			this->textIdClient->TabIndex = 26;
 			// 
 			// Client_InfoForm
 			// 
@@ -588,6 +588,7 @@ private: System::Void butADD_Click(System::Object ^ sender, System::EventArgs ^ 
 				  if (Client_InfoList != nullptr)
 					  for (int i = 0; i < Client_InfoList->Count; i++) {
 						  dataGridViewClient->Rows->Add(gcnew array<String^> {
+							  "" + Client_InfoList[i]->Id,
 							  Client_InfoList[i]->Name,
 								  "" + Client_InfoList[i]->DocNumber,
 								  "" + Client_InfoList[i]->Rate,
@@ -619,6 +620,7 @@ private: System::Void butADD_Click(System::Object ^ sender, System::EventArgs ^ 
 				  dataGridViewClient->Rows->Clear();
 				  for (int i = 0; i < Client_InfoList->Count; i++) {
 					  dataGridViewClient->Rows->Add(gcnew array<String^>{
+						  "" + Client_InfoList[i]->Id,
 						  Client_InfoList[i]->Name,
 							  "" + Client_InfoList[i]->DocNumber,
 							  "" + Client_InfoList[i]->Rate,
@@ -645,10 +647,10 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 		{
 
 
-			User^ c = Controller::QueryUsertById(ClientId);
+			Client_Info^ c = Controller::QueryClient_InfotById(ClientId);
 			c->Status = 0;
 
-			Controller::DeleteUser(ClientId);
+			Controller::DeleteClient_Info(ClientId);
 
 			RefreshdataGridViewClient();
 			ClearControls();
@@ -754,7 +756,7 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 		}
 	}
 }
-	   
+	/*
 private: System::Void dataGridViewUser_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	int selectedRowIndex = dataGridViewClient->SelectedCells[0]->RowIndex;
 	int ClientId = Convert::ToInt32(dataGridViewClient->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
@@ -763,6 +765,7 @@ private: System::Void dataGridViewUser_CellClick(System::Object^ sender, System:
 	butActualizar->Enabled = true;
 	butDELETE->Enabled = true;
 
+	textIdClient->Text = "" + c->Id;
 	textNameClient->Text = c->Name;
 	textLastNameClient->Text = c->LastName;
 	textOpinionClient->Text = c->TxtOpin;
@@ -777,7 +780,7 @@ private: System::Void dataGridViewUser_CellClick(System::Object^ sender, System:
 	//UserMale->Checked = p->Gender == 'M';
 	//UserFemale->Checked = p->Gender == 'F';
 }
-
+*/
 
  private: System::Void MealsForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	 ShowClient();
@@ -790,6 +793,29 @@ private: System::Void CleanClientBtn_Click(System::Object^ sender, System::Event
 private: System::Void Client_InfoForm_Shown(System::Object^ sender, System::EventArgs^ e) {
 	butActualizar->Enabled = false;
 	butDELETE->Enabled = false;
+}
+private: System::Void dataGridViewClient_Info_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	int selectedRowIndex = dataGridViewClient->SelectedCells[0]->RowIndex;
+	int ClientId = Convert::ToInt32(dataGridViewClient->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
+	Client_Info^ c = Controller::QueryClient_InfotById(ClientId);
+
+	butActualizar->Enabled = true;
+	butDELETE->Enabled = true;
+
+	textIdClient->Text = "" + c->Id;
+	textNameClient->Text = c->Name;
+	textLastNameClient->Text = c->LastName;
+	textOpinionClient->Text = c->TxtOpin;
+	comboBoxRatioClient->Text = "" + c->Rate;
+	textRucClient->Text = c->RucNumber;
+	textNumberClient->Text = c->PhoneNumber;
+	textDniClient->Text = c->DocNumber;
+	numericUpDownVisitsClient->Text = "" + c->VisitQuantity;
+	radioButtonPersonClient->Checked = c->Type == 'P';
+	radioButtonEmpresaClient->Checked = c->Type == 'E';
+
+	//UserMale->Checked = p->Gender == 'M';
+	//UserFemale->Checked = p->Gender == 'F';
 }
 };
 }

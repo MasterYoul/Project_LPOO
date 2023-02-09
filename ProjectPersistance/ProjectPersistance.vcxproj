@@ -20,10 +20,10 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
-    <ProjectGuid>{9A78A018-CA83-43DF-ACFA-4C09983CAFCF}</ProjectGuid>
+    <ProjectGuid>{32323C79-95C6-411F-8EF0-98F8238D1633}</ProjectGuid>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>ProjectController</RootNamespace>
+    <RootNamespace>ProjectPersistance</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <EnableManagedPackageReferenceSupport>true</EnableManagedPackageReferenceSupport>
   </PropertyGroup>
@@ -121,7 +121,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="ProjectController.h" />
+    <ClInclude Include="ProjectPersistance.h" />
     <ClInclude Include="Resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -132,7 +132,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ProjectController.cpp" />
+    <ClCompile Include="ProjectPersistance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
@@ -148,9 +148,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ProjectModel\ProjectModel.vcxproj">
       <Project>{58f0c9ee-8454-4044-a0f4-da98171815c7}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\ProjectPersistance\ProjectPersistance.vcxproj">
-      <Project>{32323c79-95c6-411f-8ef0-98f8238d1633}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

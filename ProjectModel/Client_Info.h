@@ -7,7 +7,7 @@
 
 using namespace System;
 namespace ProjectModel {
-
+    [Serializable]
     public ref class Client_Info {
     public:
         property String^ DocNumber;

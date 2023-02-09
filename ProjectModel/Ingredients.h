@@ -9,6 +9,7 @@
 using namespace System;
 
 namespace ProjectModel {
+    [Serializable]
     public ref class Ingredients {
     public:
         property int Id;

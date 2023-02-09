@@ -10,6 +10,7 @@
 using namespace System;
 
 namespace ProjectModel {
+    [Serializable]
     public ref class Sale {
     public:
         property int Id;

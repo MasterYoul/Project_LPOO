@@ -112,10 +112,10 @@ String^ ProjectController::Controller::AddClient_Info(Client_Info^ Client_Info)
     return Client_Info->DocNumber;
 }
 
-Client_Info^ ProjectController::Controller::QueryClient_InfotById(String^ Client_InfoDocNumber)
+Client_Info^ ProjectController::Controller::QueryClient_InfotById(int Client_InfoId)
 {
     for (int i = 0; i < Client_InfoList->Count; i++)
-        if (Client_InfoList[i]->DocNumber == Client_InfoDocNumber)
+        if (Client_InfoList[i]->Id == Client_InfoId)
             return Client_InfoList[i];
     return nullptr;
 }
@@ -155,6 +155,17 @@ List<Client_Info^>^ ProjectController::Controller::QueryClient_InfoByNameOrLastN
     return newProductList;
 }
 
+/*List<Client_Info^>^ ProjectController::Controller::QueryClient_InfoByDni(String^ nameDesc)
+{
+    List<Client_Info^>^ newProductList = gcnew List<Client_Info^>();
+    for (int i = 0; i < Client_InfoList->Count; i++) {
+        if (Client_InfoList[i]->DocNumber->Contains(value) || Client_InfoList[i]->LastName->Contains(value))
+            newProductList->Add(Client_InfoList[i]);
+    }
+    return newProductList;
+    
+}
+*/
 int ProjectController::Controller::AddSale(Sale^ Sale)
 {
     SaleList->Add(Sale);

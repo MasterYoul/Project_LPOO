@@ -19,6 +19,8 @@ namespace ProjectModel {
         property String^ RucNumber;
         property int Rate;
         property String^ TxtOpin;
+        property char Status;
+        property int Id;
        
     };
 }

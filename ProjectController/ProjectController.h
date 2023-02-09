@@ -34,11 +34,12 @@ namespace ProjectController {
 		static List<Ingredients^>^ QueryIngredientsByNameOrDescription(String^ nameDesc);
 
 		static String^ AddClient_Info(Client_Info^ Client_Info);
-		static Client_Info^ QueryClient_InfotById(String^ Client_InfoDocNumber);
+		static Client_Info^ QueryClient_InfotById(int Client_InfoId);
 		static List<Client_Info^>^ QueryAllClient_Info();
 		static String^ UpdateClient_Info(Client_Info^ Client_Info);
 		static String^ DeleteClient_Info(String^ Client_InfoId);
 		static List<Client_Info^>^ QueryClient_InfoByNameOrLastName(String^ nameDesc);
+		//static List<Client_Info^>^ QueryClient_InfoByDni(String^ nameDesc);
 
 		static int AddSale(Sale^ Sale);
 		static Sale^ QuerySaletById(int SaleId);

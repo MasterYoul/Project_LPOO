@@ -526,8 +526,7 @@ private: System::Void dataGridMeals_CellClick(System::Object^ sender, System::Wi
 	textMealsName->Text = p->Name;
 	textMealsDescription->Text = p->Description;
 	textMealsPrice->Text = "" + p->Price;
-	textMealsStock->Text
-		= "" + p->Stock;
+	textMealsStock->Text= "" + p->Stock;
 	buttonModify->Enabled = true;
 	buttonDelate->Enabled = true;
 

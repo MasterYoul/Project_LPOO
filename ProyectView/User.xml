@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUser xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <User>
+    <State>Activo</State>
+    <Type>Cocinero</Type>
+    <Birthday>2023-02-10</Birthday>
+    <Gender>77</Gender>
+    <Password>password</Password>
+    <Username>JoelUser</Username>
+    <Salary>232</Salary>
+    <LastName>Espinoza</LastName>
+    <Status>65</Status>
+    <Email>joel_ev02@hotmail.com</Email>
+    <PhoneNumber>1283781</PhoneNumber>
+    <Adress>Av.Ricardo Palma 323, Dpt 102</Adress>
+    <Name>Joel</Name>
+    <DocNumber>913768297</DocNumber>
+    <Id>311</Id>
+  </User>
+</ArrayOfUser>

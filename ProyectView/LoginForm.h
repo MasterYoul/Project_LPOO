@@ -129,6 +129,7 @@ namespace ProyectView {
 			// 
 			this->txtPassword->Location = System::Drawing::Point(179, 70);
 			this->txtPassword->Name = L"txtPassword";
+			this->txtPassword->PasswordChar = '*';
 			this->txtPassword->Size = System::Drawing::Size(251, 22);
 			this->txtPassword->TabIndex = 6;
 			this->txtPassword->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &LoginForm::txtPassword_KeyDown);

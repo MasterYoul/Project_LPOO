@@ -391,9 +391,20 @@ List<User^>^ ProjectController::Controller::QueryUserByNameOrLastName(String^ va
     return newProductList;
 }
 
+User^ ProjectController::Controller::QueryUsertByCredentials(String^ username, String^ password)
+{
+    UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
+    for (int i = 0; i < UserList->Count; i++) {
+        if (UserList[i]->Username->Equals(username) && UserList[i]->Password->Equals(password)) {
+            return UserList[i];
+        }
+    }
+    return nullptr;
+}
+
 User^ ProjectController::Controller::Login(String^ username, String^ password)
 {
-    User^ user;
+    /*User^ user;
     if (username == "usuario" && password == "usuario") {
         user = gcnew User();
         user->Id = 1;
@@ -402,5 +413,6 @@ User^ ProjectController::Controller::Login(String^ username, String^ password)
         user->Salary = 4500;
         user->Username = "usuario";
     }
-    return user;
+    return user;*/
+    return QueryUsertByCredentials(username, password);
 }

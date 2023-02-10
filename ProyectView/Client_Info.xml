@@ -13,4 +13,17 @@
     <Name>Pedro</Name>
     <DocNumber>123123</DocNumber>
   </Client_Info>
+  <Client_Info>
+    <Id>1</Id>
+    <Status>65</Status>
+    <TxtOpin>asdf</TxtOpin>
+    <Rate>3</Rate>
+    <RucNumber>1234</RucNumber>
+    <Type>80</Type>
+    <VisitQuantity>2</VisitQuantity>
+    <PhoneNumber>123456783</PhoneNumber>
+    <LastName>Miguel</LastName>
+    <Name>Juan</Name>
+    <DocNumber>123456789</DocNumber>
+  </Client_Info>
 </ArrayOfClient_Info>

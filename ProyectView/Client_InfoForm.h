@@ -11,12 +11,17 @@ namespace ProyectView {
 	using namespace ProjectModel;
 	using namespace ProjectController;
 	using namespace System::Collections::Generic;
+	using namespace Threading;
 
 	/// <summary>
 	/// Resumen de Client_InfoForm
 	/// </summary>
 	public ref class Client_InfoForm : public System::Windows::Forms::Form
 	{
+	public:
+		property char UseType;
+		property Form^ RefSaleForm;
+
 	public:
 		Client_InfoForm(void)
 		{
@@ -37,6 +42,7 @@ namespace ProyectView {
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::Label^ label1;
 	protected:
 	private: System::Windows::Forms::Label^ label2;

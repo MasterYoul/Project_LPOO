@@ -1,6 +1,9 @@
 #pragma once
-#include "Resource.h"
 #include "MealsSearchForm.h"
+#include "Client_InfoForm.h"
+#include "Resource.h"
+
+
 
 namespace ProyectView {
 
@@ -87,6 +90,11 @@ namespace ProyectView {
 			this->btnSearchCustomer = (gcnew System::Windows::Forms::Button());
 			this->btnAddCustomer = (gcnew System::Windows::Forms::Button());
 			this->dgvDetails = (gcnew System::Windows::Forms::DataGridView());
+			this->MealsId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->MealsName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->PriceMeals = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Quantity = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->SubTotal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnRegisterSale = (gcnew System::Windows::Forms::Button());
 			this->txtSubtotal = (gcnew System::Windows::Forms::TextBox());
 			this->txtTax = (gcnew System::Windows::Forms::TextBox());
@@ -94,11 +102,6 @@ namespace ProyectView {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->MealsId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->MealsName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->PriceMeals = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Quantity = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->SubTotal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvDetails))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -181,6 +184,7 @@ namespace ProyectView {
 			this->btnAddCustomer->TabIndex = 20;
 			this->btnAddCustomer->Text = L"+ Cliente";
 			this->btnAddCustomer->UseVisualStyleBackColor = true;
+			this->btnAddCustomer->Click += gcnew System::EventHandler(this, &SaleForm::btnAddCustomer_Click);
 			// 
 			// dgvDetails
 			// 
@@ -195,6 +199,41 @@ namespace ProyectView {
 			this->dgvDetails->RowTemplate->Height = 24;
 			this->dgvDetails->Size = System::Drawing::Size(897, 267);
 			this->dgvDetails->TabIndex = 21;
+			// 
+			// MealsId
+			// 
+			this->MealsId->HeaderText = L"Id";
+			this->MealsId->MinimumWidth = 6;
+			this->MealsId->Name = L"MealsId";
+			this->MealsId->Width = 50;
+			// 
+			// MealsName
+			// 
+			this->MealsName->HeaderText = L"Nombre";
+			this->MealsName->MinimumWidth = 6;
+			this->MealsName->Name = L"MealsName";
+			this->MealsName->Width = 400;
+			// 
+			// PriceMeals
+			// 
+			this->PriceMeals->HeaderText = L"Precio";
+			this->PriceMeals->MinimumWidth = 6;
+			this->PriceMeals->Name = L"PriceMeals";
+			this->PriceMeals->Width = 125;
+			// 
+			// Quantity
+			// 
+			this->Quantity->HeaderText = L"Cantidad";
+			this->Quantity->MinimumWidth = 6;
+			this->Quantity->Name = L"Quantity";
+			this->Quantity->Width = 125;
+			// 
+			// SubTotal
+			// 
+			this->SubTotal->HeaderText = L"Sub Total";
+			this->SubTotal->MinimumWidth = 6;
+			this->SubTotal->Name = L"SubTotal";
+			this->SubTotal->Width = 125;
 			// 
 			// btnRegisterSale
 			// 
@@ -254,41 +293,6 @@ namespace ProyectView {
 			this->label6->TabIndex = 28;
 			this->label6->Text = L"Total:";
 			// 
-			// MealsId
-			// 
-			this->MealsId->HeaderText = L"Id";
-			this->MealsId->MinimumWidth = 6;
-			this->MealsId->Name = L"MealsId";
-			this->MealsId->Width = 50;
-			// 
-			// MealsName
-			// 
-			this->MealsName->HeaderText = L"Nombre";
-			this->MealsName->MinimumWidth = 6;
-			this->MealsName->Name = L"MealsName";
-			this->MealsName->Width = 400;
-			// 
-			// PriceMeals
-			// 
-			this->PriceMeals->HeaderText = L"Precio";
-			this->PriceMeals->MinimumWidth = 6;
-			this->PriceMeals->Name = L"PriceMeals";
-			this->PriceMeals->Width = 125;
-			// 
-			// Quantity
-			// 
-			this->Quantity->HeaderText = L"Cantidad";
-			this->Quantity->MinimumWidth = 6;
-			this->Quantity->Name = L"Quantity";
-			this->Quantity->Width = 125;
-			// 
-			// SubTotal
-			// 
-			this->SubTotal->HeaderText = L"Sub Total";
-			this->SubTotal->MinimumWidth = 6;
-			this->SubTotal->Name = L"SubTotal";
-			this->SubTotal->Width = 125;
-			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -313,6 +317,7 @@ namespace ProyectView {
 			this->Controls->Add(this->label1);
 			this->Name = L"SaleForm";
 			this->Text = L"SaleForm";
+			this->Load += gcnew System::EventHandler(this, &SaleForm::SaleForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvDetails))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -336,5 +341,13 @@ namespace ProyectView {
 		
 
 
+private: System::Void btnAddCustomer_Click(System::Object^ sender, System::EventArgs^ e) {
+	Client_InfoForm^ client_InfoForm = gcnew Client_InfoForm();
+	client_InfoForm->UseType = 'S';
+	client_InfoForm->RefSaleForm = this;
+
+	client_InfoForm->ShowDialog();
+}
+	private: System::Void SaleForm_Load(System::Object^ sender, System::EventArgs^ e);
 };
 }

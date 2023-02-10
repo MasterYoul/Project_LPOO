@@ -11,14 +11,16 @@ void ProjectController::Controller::Init()
 
 int ProjectController::Controller::AddMeals(Meals^ meals)
 {
-    //Persistance::PersistBinary("meals.bin", MealsList);
     MealsList->Add(meals);
+    Persistance::PersistBinary("Meals.bin", MealsList);
+    //Persistance::Persist("Meals.txt", MealsList);
     return meals->Id;
 }
 
 Meals^ ProjectController::Controller::QueryMealstById(int MealsId)
 {
     //MealsList = (List<Meals^>^)Persistance::LoadBinaryData("meals.bin");
+    
     for (int i = 0; i < MealsList->Count; i++)
         if (MealsList[i]->Id == MealsId)
             return MealsList[i];
@@ -27,7 +29,8 @@ Meals^ ProjectController::Controller::QueryMealstById(int MealsId)
 
 List<Meals^>^ ProjectController::Controller::QueryAllMeals()
 {
-    // MealsList = (List<Meals^>^)Persistance::LoadBinaryData("meals.bin");
+    //MealsList = (List<Meals^>^)Persistance::LoadData("Meals.txt");
+    MealsList = (List<Meals^>^)Persistance::LoadBinaryData("Meals.bin");
     return MealsList;
 }
 
@@ -121,8 +124,9 @@ List<Ingredients^>^ ProjectController::Controller::QueryIngredientsByNameOrDescr
 
 String^ ProjectController::Controller::AddClient_Info(Client_Info^ Client_Info)
 {
-    //Persistance::PersistBinary("Client_Info.bin", Client_InfoList);
+    
     Client_InfoList->Add(Client_Info);
+    Persistance::PersistBinary("Client_Info.bin", Client_InfoList);
     return Client_Info->DocNumber;
 }
 
@@ -137,7 +141,7 @@ Client_Info^ ProjectController::Controller::QueryClient_InfotById(int Client_Inf
 
 List<Client_Info^>^ ProjectController::Controller::QueryAllClient_Info()
 {
-    // Client_InfoList = (List<Client_Info^>^)Persistance::LoadBinaryData("Client_Info.bin");
+    Client_InfoList = (List<Client_Info^>^)Persistance::LoadBinaryData("Client_Info.bin");
     return Client_InfoList;
 }
 
@@ -289,6 +293,7 @@ int ProjectController::Controller::AddUser(User^ User)
 {
     // Persistance::PersistBinary("User.bin", UserList);
     UserList->Add(User);
+    Persistance::PersistBinary("User.bin", UserList);
     return User->Id;
 }
 
@@ -304,6 +309,7 @@ User^ ProjectController::Controller::QueryUsertById(int UserId)
 List<User^>^ ProjectController::Controller::QueryAllUser()
 {
     //UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
+    UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
     return UserList;
 }
 

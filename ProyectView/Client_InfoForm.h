@@ -485,6 +485,7 @@ namespace ProyectView {
 			this->Controls->Add(this->label1);
 			this->Name = L"Client_InfoForm";
 			this->Text = L"Client_InfoForm";
+			this->Load += gcnew System::EventHandler(this, &Client_InfoForm::Client_InfoForm_Load);
 			this->Shown += gcnew System::EventHandler(this, &Client_InfoForm::Client_InfoForm_Shown);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDownVisitsClient))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewClient))->EndInit();
@@ -782,10 +783,7 @@ private: System::Void dataGridViewUser_CellClick(System::Object^ sender, System:
 }
 */
 
- private: System::Void MealsForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	 ShowClient();
 
- }
  
 private: System::Void CleanClientBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 	ClearControls();
@@ -816,6 +814,9 @@ private: System::Void dataGridViewClient_Info_CellClick(System::Object^ sender, 
 
 	//UserMale->Checked = p->Gender == 'M';
 	//UserFemale->Checked = p->Gender == 'F';
+}
+private: System::Void Client_InfoForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	ShowClient();
 }
 };
 }

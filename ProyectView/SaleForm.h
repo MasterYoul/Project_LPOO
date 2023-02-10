@@ -323,6 +323,7 @@ namespace ProyectView {
 		MealsSearchForm^ mealsForm = gcnew MealsSearchForm(this);
 		mealsForm->ShowDialog();
 	}
+	
 	public: Void AddMealToSaleDetails(Meals^ p) {
 		dgvDetails->Rows->Add(gcnew array<String^> {
 			Convert::ToString(p->Id),
@@ -331,7 +332,8 @@ namespace ProyectView {
 		});
 
 	}
-		  
+		
+		
 
 
 };

@@ -553,6 +553,7 @@ namespace ProyectView {
 			this->Controls->Add(this->label1);
 			this->Name = L"UserForm";
 			this->Text = L"Formulario de Usuario";
+			this->Load += gcnew System::EventHandler(this, &UserForm::UserForm_Load);
 			this->Shown += gcnew System::EventHandler(this, &UserForm::UserForm_Shown);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewUser))->EndInit();
 			this->gBoxGender->ResumeLayout(false);
@@ -939,10 +940,7 @@ private: System::Void dataGridViewUser_CellClick(System::Object^ sender, System:
 }
 
 
- private: System::Void MealsForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	 ShowUser();
 
- }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	ClearControls();
 
@@ -950,6 +948,9 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void UserForm_Shown(System::Object^ sender, System::EventArgs^ e) {
 	buttonModifyUser->Enabled = false;
 	buttonDeleteUser->Enabled = false;
+}
+private: System::Void UserForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	ShowUser();
 }
 };
 }

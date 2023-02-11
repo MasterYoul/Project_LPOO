@@ -1,1 +1,2 @@
 123,Arroz Chaufa,Sin sillao,15,30
+456,Arroz a la cubana,sin platano ,14,6

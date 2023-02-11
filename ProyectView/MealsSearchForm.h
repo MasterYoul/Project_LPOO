@@ -50,6 +50,10 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ IdMeals;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NombreMeal;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PriceMeal;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ s;
+
+
+
 
 	private:
 		/// <summary>
@@ -74,6 +78,7 @@ namespace ProyectView {
 			this->IdMeals = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->NombreMeal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->PriceMeal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->s = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvMeals))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -127,14 +132,14 @@ namespace ProyectView {
 			this->btnCancel->TabIndex = 5;
 			this->btnCancel->Text = L"CANCELAR";
 			this->btnCancel->UseVisualStyleBackColor = true;
-
+			this->btnCancel->Click += gcnew System::EventHandler(this, &MealsSearchForm::btnCancel_Click);
 			// 
 			// dgvMeals
 			// 
 			this->dgvMeals->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvMeals->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+			this->dgvMeals->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->IdMeals, this->NombreMeal,
-					this->PriceMeal
+					this->PriceMeal, this->s
 			});
 			this->dgvMeals->Location = System::Drawing::Point(34, 133);
 			this->dgvMeals->Name = L"dgvMeals";
@@ -164,6 +169,13 @@ namespace ProyectView {
 			this->PriceMeal->MinimumWidth = 6;
 			this->PriceMeal->Name = L"PriceMeal";
 			this->PriceMeal->Width = 125;
+			// 
+			// s
+			// 
+			this->s->HeaderText = L"Column1";
+			this->s->MinimumWidth = 6;
+			this->s->Name = L"s";
+			this->s->Width = 125;
 			// 
 			// MealsSearchForm
 			// 
@@ -214,5 +226,8 @@ namespace ProyectView {
 	}
 private: System::Void dgvMeals_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 
+private: System::Void btnCancel_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

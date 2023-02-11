@@ -6,8 +6,10 @@
 #pragma once
 #include "User.h"
 #include "Client_Info.h"
+#include "SaleDetail.h"
 
 using namespace System;
+using namespace System::Collections::Generic;
 
 namespace ProjectModel {
     [Serializable]
@@ -19,6 +21,11 @@ namespace ProjectModel {
         property double Total;
         property User^ User;
         property Client_Info^ Client_Info;
+        property List<SaleDetail^>^ SaleDetails;
+        Sale() {
+            SaleDetails = gcnew List<SaleDetail^>();
+        }
     };
 
 }
+

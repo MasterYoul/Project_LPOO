@@ -426,3 +426,22 @@ User^ ProjectController::Controller::Login(String^ username, String^ password)
     return user;*/
     return QueryUsertByCredentials(username, password);
 }
+
+List<Sale^>^ ProjectController::Controller::QueryAllSales()
+{
+    SaleList = (List<Sale^>^)Persistance::LoadBinaryData("sales.bin");
+    return SaleList;
+}
+
+int ProjectController::Controller::QueryLastSaleId()
+{
+        SaleList = (List<Sale^>^)Persistance::LoadBinaryData("sales.bin");
+    if (SaleList->Count == 0) return 0;
+    else return SaleList[SaleList->Count - 1]->Id;
+}
+
+void ProjectController::Controller::RegisterSale(Sale^ sale)
+{
+    SaleList->Add(sale);
+    Persistance::PersistBinary("sales.bin", SaleList);
+}

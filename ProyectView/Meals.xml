@@ -9,4 +9,12 @@
     <Name>Arroz Chaufa</Name>
     <Id>123</Id>
   </Meals>
+  <Meals>
+    <Status>65</Status>
+    <Stock>6</Stock>
+    <Price>14</Price>
+    <Description>sin platano </Description>
+    <Name>Arroz a la cubana</Name>
+    <Id>456</Id>
+  </Meals>
 </ArrayOfMeals>

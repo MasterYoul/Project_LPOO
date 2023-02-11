@@ -21,6 +21,8 @@ namespace ProyectView {
 	/// </summary>
 	public ref class SaleForm : public System::Windows::Forms::Form
 	{
+	private:
+		Client_Info^ client_Info;
 	public:
 		SaleForm(void)
 		{
@@ -209,6 +211,7 @@ namespace ProyectView {
 			this->dgvDetails->RowTemplate->Height = 24;
 			this->dgvDetails->Size = System::Drawing::Size(974, 267);
 			this->dgvDetails->TabIndex = 21;
+			this->dgvDetails->CellValueChanged += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dgvDetails_CellValueChanged);
 			// 
 			// MealsId
 			// 
@@ -253,6 +256,7 @@ namespace ProyectView {
 			this->btnRegisterSale->TabIndex = 22;
 			this->btnRegisterSale->Text = L"Registrar Venta";
 			this->btnRegisterSale->UseVisualStyleBackColor = true;
+			this->btnRegisterSale->Click += gcnew System::EventHandler(this, &SaleForm::btnRegisterSale_Click);
 			// 
 			// txtSubtotal
 			// 
@@ -359,15 +363,35 @@ namespace ProyectView {
 	}
 	
 	public: Void AddMealToSaleDetails(Meals^ p) {
+		for (int i = 0; i < dgvDetails->RowCount - 1; i++) {
+			int mealId = Convert::ToInt32(dgvDetails->Rows[i]->Cells[0]->Value->ToString());
+			if (p->Id == mealId) {
+				int quantity = Convert::ToInt32(dgvDetails->Rows[i]->Cells[3]->Value->ToString());
+				quantity++;
+				dgvDetails->Rows[i]->Cells[3]->Value = quantity;
+				dgvDetails->Rows[i]->Cells[4]->Value = quantity *
+					Double::Parse(dgvDetails->Rows[i]->Cells[2]->Value->ToString());
+				RefreshTotalAmounts();
+				return;
+			}
+		}
 		dgvDetails->Rows->Add(gcnew array<String^> {
 			Convert::ToString(p->Id),
 				p->Name,
+				Convert::ToString(p->Price),
+				"1",
 				Convert::ToString(p->Price)
+				
 		});
+		RefreshTotalAmounts();
 
 	}
-		
-		
+		  Void SetClient_Info(Client_Info^ cust) {
+			  this->client_Info = cust;
+			  textClient->Text = cust->DocNumber;
+			  lblClientData->Text = this->client_Info->DocNumber + " - " +
+				  cust->Name + " " + (cust)->LastName;
+		  }
 
 
 private: System::Void btnAddCustomer_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -403,5 +427,25 @@ private: System::Void btnDeleteMeal_Click(System::Object^ sender, System::EventA
 	else
 		MessageBox::Show("Para eliminar un producto debe seleccionar toda la fila.");
 }
+private: System::Void btnRegisterSale_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void dgvDetails_CellValueChanged(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	
+		if (dgvDetails->Columns[e->ColumnIndex]->Name == "quantity") {
+			dgvDetails->Rows[e->RowIndex]->Cells[4]->Value =
+				//Int32::Parse(dgvDetails->CurrentCell->Value->ToString())*
+				Int32::Parse(dgvDetails->Rows[e->RowIndex]->Cells[3]->Value->ToString()) *
+				Double::Parse(dgvDetails->Rows[e->RowIndex]->Cells[2]->Value->ToString());
+			RefreshTotalAmounts();
+		}
+}
+		private: Void RefreshTotalAmounts() {
+			double total = 0;
+			for (int i = 0; i < dgvDetails->RowCount - 1; i++)
+				total += Double::Parse(dgvDetails->Rows[i]->Cells[4]->Value->ToString());
+			txtSubtotal->Text = "" + (total * (1 - IGV));
+			txtTax->Text = "" + (total * IGV);
+			txtTotal->Text = "" + total;
+		}
+
 };
 }

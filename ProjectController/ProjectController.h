@@ -69,5 +69,12 @@ namespace ProjectController {
 
 
 		static User^ Login(String^ username, String^ password);
+
+
+
+		//Operaciones de venta
+		static List<Sale^>^ QueryAllSales();
+		static int QueryLastSaleId();
+		static void RegisterSale(Sale^ sale);
 	};
 }

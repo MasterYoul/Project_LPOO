@@ -14,6 +14,7 @@ namespace ProjectController {
 		static List<Sale^>^ SaleList = gcnew List<Sale^>();
 		static List<TableDetail^>^ TableDetailList = gcnew List<TableDetail^>();
 		static List<User^>^ UserList = gcnew List<User^>();
+		
 
 	public:
 
@@ -40,6 +41,7 @@ namespace ProjectController {
 		static int DeleteClient_Info(int Client_InfoId);
 		static List<Client_Info^>^ QueryClient_InfoByNameOrLastName(String^ nameDesc);
 		//static List<Client_Info^>^ QueryClient_InfoByDni(String^ nameDesc);
+		static Client_Info^ QueryClient_InfoByDocNumber(String^ docNumber);
 
 		static int AddSale(Sale^ Sale);
 		static Sale^ QuerySaletById(int SaleId);
@@ -62,6 +64,7 @@ namespace ProjectController {
 		static int DeleteUser(int UserId);
 		static List<User^>^ QueryUserByNameOrLastName(String^ nameDesc);
 		static User^ QueryUsertByCredentials(String^ username, String^ password);
+		
 
 
 

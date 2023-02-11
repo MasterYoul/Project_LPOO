@@ -136,7 +136,6 @@ namespace ProyectView {
 			this->textClient->Name = L"textClient";
 			this->textClient->Size = System::Drawing::Size(317, 22);
 			this->textClient->TabIndex = 3;
-			this->textClient->Text = L"Digite DNI";
 			this->textClient->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			// 
 			// lblClientData
@@ -175,6 +174,7 @@ namespace ProyectView {
 			this->btnSearchCustomer->TabIndex = 19;
 			this->btnSearchCustomer->Text = L"BUSCAR";
 			this->btnSearchCustomer->UseVisualStyleBackColor = true;
+			this->btnSearchCustomer->Click += gcnew System::EventHandler(this, &SaleForm::btnSearchCustomer_Click);
 			// 
 			// btnAddCustomer
 			// 
@@ -349,5 +349,20 @@ private: System::Void btnAddCustomer_Click(System::Object^ sender, System::Event
 	client_InfoForm->ShowDialog();
 }
 	private: System::Void SaleForm_Load(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void btnSearchCustomer_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+		
+		Client_Info^ client_Info = Controller::QueryClient_InfoByDocNumber(textClient->Text);
+
+	if (client_Info != nullptr) {
+		
+			lblClientData->Text = client_Info->DocNumber + " - " + client_Info->Name +
+			" " + client_Info->LastName;
+	}
+	else {
+		MessageBox::Show("Cliente no encontrado!");
+	}
+	
+}
 };
 }

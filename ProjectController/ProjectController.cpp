@@ -201,6 +201,16 @@ List<Client_Info^>^ ProjectController::Controller::QueryClient_InfoByNameOrLastN
     return newProductList;
 }
 
+Client_Info^ ProjectController::Controller::QueryClient_InfoByDocNumber(String^ docNumber)
+{
+    Client_InfoList = (List<Client_Info^>^)Persistance::LoadBinaryData("Client_Info.bin");
+    for (int i = 0; i < Client_InfoList->Count; i++)
+        if (docNumber == Client_InfoList[i]->DocNumber) {
+            return Client_InfoList[i];
+        }
+    return nullptr;
+}
+
 /*List<Client_Info^>^ ProjectController::Controller::QueryClient_InfoByDni(String^ nameDesc)
 {
     List<Client_Info^>^ newProductList = gcnew List<Client_Info^>();

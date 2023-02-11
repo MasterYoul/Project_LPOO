@@ -148,6 +148,9 @@
     <ClInclude Include="SaleForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Sugesstions.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="UserForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -167,6 +170,7 @@
     <ClCompile Include="ProyectMainForm.cpp" />
     <ClCompile Include="ProyectView.cpp" />
     <ClCompile Include="SaleForm.cpp" />
+    <ClCompile Include="Sugesstions.cpp" />
     <ClCompile Include="UserForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SaleForm.resx">
       <DependentUpon>SaleForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sugesstions.resx">
+      <DependentUpon>Sugesstions.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.h</DependentUpon>

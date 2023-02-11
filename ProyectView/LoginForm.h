@@ -46,6 +46,7 @@ namespace ProyectView {
 
 	private: System::Windows::Forms::TextBox^ txtUsername;
 	private: System::Windows::Forms::TextBox^ txtPassword;
+	private: System::Windows::Forms::Button^ button1;
 
 
 
@@ -69,6 +70,7 @@ namespace ProyectView {
 			this->butRecover = (gcnew System::Windows::Forms::Button());
 			this->txtUsername = (gcnew System::Windows::Forms::TextBox());
 			this->txtPassword = (gcnew System::Windows::Forms::TextBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -134,12 +136,22 @@ namespace ProyectView {
 			this->txtPassword->TabIndex = 6;
 			this->txtPassword->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &LoginForm::txtPassword_KeyDown);
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(97, 205);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(260, 39);
+			this->button1->TabIndex = 7;
+			this->button1->Text = L"Sugerencias";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
 			// LoginForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(482, 207);
+			this->ClientSize = System::Drawing::Size(482, 269);
 			this->ControlBox = false;
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->txtPassword);
 			this->Controls->Add(this->txtUsername);
 			this->Controls->Add(this->butRecover);

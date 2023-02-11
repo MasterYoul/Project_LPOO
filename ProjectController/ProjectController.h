@@ -11,9 +11,10 @@ namespace ProjectController {
 		static List<Meals^>^ MealsList = gcnew List<Meals^>();
 		static List<Ingredients^>^ IngredientsList = gcnew List<Ingredients^>();
 		static List<Client_Info^>^ Client_InfoList = gcnew List<Client_Info^>();
-		static List<Sale^>^ SaleList = gcnew List<Sale^>();
+		static List<Sale^>^ SalesList = gcnew List<Sale^>();
 		static List<TableDetail^>^ TableDetailList = gcnew List<TableDetail^>();
 		static List<User^>^ UserList = gcnew List<User^>();
+		static List <Sale^>^ SaleList = gcnew List<Sale^>();
 		
 
 	public:
@@ -45,7 +46,7 @@ namespace ProjectController {
 
 		static int AddSale(Sale^ Sale);
 		static Sale^ QuerySaletById(int SaleId);
-		static List<Sale^>^ QueryAllSale();
+		
 		static int UpdateSale(Sale^ Sale);
 		static int DeleteSale(int SaleId);
 
@@ -73,8 +74,8 @@ namespace ProjectController {
 
 
 		//Operaciones de venta
-		static List<Sale^>^ QueryAllSales();
+		static List<Sale^>^ QueryAllSale();
 		static int QueryLastSaleId();
-		static void RegisterSale(Sale^ sale);
+		static Void RegisterSale(Sale^ sale);
 	};
 }

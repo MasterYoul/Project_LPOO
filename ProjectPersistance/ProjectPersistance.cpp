@@ -314,6 +314,10 @@ Object^ ProjectPersistance::Persistance::LoadBinaryData(String^ fileName)
             }
         }
     }
+    catch (NullReferenceException^ ex) {
+        //Mandar un mensaje por correo
+        throw ex;
+    }
     catch (Exception^ ex) {
         throw ex;
     }

@@ -144,9 +144,9 @@ String^ ProjectController::Controller::AddClient_Info(Client_Info^ Client_Info)
 
 Client_Info^ ProjectController::Controller::QueryClient_InfotById(int Client_InfoId)
 {
-    Client_InfoList = (List<Client_Info^>^)Persistance::LoadData("Client_Info.txt");
+    //Client_InfoList = (List<Client_Info^>^)Persistance::LoadData("Client_Info.txt");
     Client_InfoList = (List<Client_Info^>^)Persistance::LoadBinaryData("Client_Info.bin");
-    Client_InfoList = (List<Client_Info^>^)Persistance::LoadXMLData("Client_Info.xml");
+    //Client_InfoList = (List<Client_Info^>^)Persistance::LoadXMLData("Client_Info.xml");
     for (int i = 0; i < Client_InfoList->Count; i++)
         if (Client_InfoList[i]->Id == Client_InfoId)
             return Client_InfoList[i];
@@ -242,13 +242,7 @@ Sale^ ProjectController::Controller::QuerySaletById(int SaleId)
     return nullptr;
 }
 
-List<Sale^>^ ProjectController::Controller::QueryAllSale()
-{
-    SaleList = (List<Sale^>^)Persistance::LoadData("Sale.txt");
-    SaleList = (List<Sale^>^)Persistance::LoadXMLData("Sale.xml");
-    SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
-    return SaleList;
-}
+
 
 int ProjectController::Controller::UpdateSale(Sale^ Sale)
 {
@@ -427,21 +421,25 @@ User^ ProjectController::Controller::Login(String^ username, String^ password)
     return QueryUsertByCredentials(username, password);
 }
 
-List<Sale^>^ ProjectController::Controller::QueryAllSales()
+
+
+List<Sale^>^ ProjectController::Controller::QueryAllSale()
 {
-    SaleList = (List<Sale^>^)Persistance::LoadBinaryData("sales.bin");
+    SaleList = (List<Sale^>^)Persistance::LoadData("Sale.txt");
+    SaleList = (List<Sale^>^)Persistance::LoadXMLData("Sale.xml");
+    SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
     return SaleList;
 }
 
 int ProjectController::Controller::QueryLastSaleId()
 {
-        SaleList = (List<Sale^>^)Persistance::LoadBinaryData("sales.bin");
+    SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
     if (SaleList->Count == 0) return 0;
     else return SaleList[SaleList->Count - 1]->Id;
 }
 
-void ProjectController::Controller::RegisterSale(Sale^ sale)
+Void ProjectController::Controller::RegisterSale(Sale^ sale)
 {
     SaleList->Add(sale);
-    Persistance::PersistBinary("sales.bin", SaleList);
+    Persistance::PersistBinary("Sale.bin", SaleList);
 }

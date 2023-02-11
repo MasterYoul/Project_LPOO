@@ -54,11 +54,11 @@ namespace ProyectView {
 	private: System::Windows::Forms::Button^ btnSearchCustomer;
 	private: System::Windows::Forms::Button^ btnAddCustomer;
 	private: System::Windows::Forms::DataGridView^ dgvDetails;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsId;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsName;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PriceMeals;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Quantity;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SubTotal;
+
+
+
+
+
 	private: System::Windows::Forms::Button^ btnRegisterSale;
 	private: System::Windows::Forms::TextBox^ txtSubtotal;
 	private: System::Windows::Forms::TextBox^ txtTax;
@@ -66,6 +66,13 @@ namespace ProyectView {
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsId;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsName;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PriceMeals;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Quantity;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SubTotal;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::TextBox^ textBox1;
 
 	private:
 		/// <summary>
@@ -102,6 +109,8 @@ namespace ProyectView {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvDetails))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -165,6 +174,7 @@ namespace ProyectView {
 			this->btnDeleteMeal->TabIndex = 18;
 			this->btnDeleteMeal->Text = L"Eliminar Plato";
 			this->btnDeleteMeal->UseVisualStyleBackColor = true;
+			this->btnDeleteMeal->Click += gcnew System::EventHandler(this, &SaleForm::btnDeleteMeal_Click);
 			// 
 			// btnSearchCustomer
 			// 
@@ -197,7 +207,7 @@ namespace ProyectView {
 			this->dgvDetails->Name = L"dgvDetails";
 			this->dgvDetails->RowHeadersWidth = 51;
 			this->dgvDetails->RowTemplate->Height = 24;
-			this->dgvDetails->Size = System::Drawing::Size(897, 267);
+			this->dgvDetails->Size = System::Drawing::Size(974, 267);
 			this->dgvDetails->TabIndex = 21;
 			// 
 			// MealsId
@@ -212,7 +222,7 @@ namespace ProyectView {
 			this->MealsName->HeaderText = L"Nombre";
 			this->MealsName->MinimumWidth = 6;
 			this->MealsName->Name = L"MealsName";
-			this->MealsName->Width = 400;
+			this->MealsName->Width = 300;
 			// 
 			// PriceMeals
 			// 
@@ -260,7 +270,7 @@ namespace ProyectView {
 			// 
 			// txtTotal
 			// 
-			this->txtTotal->Location = System::Drawing::Point(786, 619);
+			this->txtTotal->Location = System::Drawing::Point(786, 650);
 			this->txtTotal->Name = L"txtTotal";
 			this->txtTotal->Size = System::Drawing::Size(146, 22);
 			this->txtTotal->TabIndex = 25;
@@ -287,17 +297,36 @@ namespace ProyectView {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(711, 625);
+			this->label6->Location = System::Drawing::Point(711, 656);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(41, 16);
 			this->label6->TabIndex = 28;
 			this->label6->Text = L"Total:";
 			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(677, 619);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(75, 16);
+			this->label3->TabIndex = 29;
+			this->label3->Text = L"Descuento:";
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(786, 613);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(146, 22);
+			this->textBox1->TabIndex = 30;
+			this->textBox1->Text = L"0";
+			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(979, 690);
+			this->ClientSize = System::Drawing::Size(1021, 740);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
@@ -363,6 +392,16 @@ private: System::Void btnAddCustomer_Click(System::Object^ sender, System::Event
 		MessageBox::Show("Cliente no encontrado!");
 	}
 	
+}
+private: System::Void btnDeleteMeal_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (dgvDetails->SelectedRows->Count == 1) {
+		if (dgvDetails->SelectedRows[0]->Cells[0]->Value->ToString()->Trim() != "")
+			dgvDetails->Rows->RemoveAt(dgvDetails->SelectedRows[0]->Index);
+		else
+			MessageBox::Show("No se puede eliminar una fila vacía.");
+	}
+	else
+		MessageBox::Show("Para eliminar un producto debe seleccionar toda la fila.");
 }
 };
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "Sugesstions.h";
 
 namespace ProyectView {
 
@@ -144,6 +145,7 @@ namespace ProyectView {
 			this->button1->TabIndex = 7;
 			this->button1->Text = L"Sugerencias";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &LoginForm::button1_Click);
 			// 
 			// LoginForm
 			// 
@@ -174,5 +176,12 @@ private: System::Void btnCancel_Click(System::Object^ sender, System::EventArgs^
  private: System::Void txtPassword_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		   if (e->KeyData == Keys::Enter)
 			   btnOK->PerformClick();}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	Sugesstions^ SugesstionsForm = gcnew Sugesstions();
+	SugesstionsForm->UseType = 'S';
+	SugesstionsForm->RefSaleForm = this;
+	SugesstionsForm->ShowDialog();
+
+}
 };
 }

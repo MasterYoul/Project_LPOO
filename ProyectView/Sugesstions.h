@@ -15,12 +15,16 @@ namespace ProyectView {
 	public ref class Sugesstions : public System::Windows::Forms::Form
 	{
 	public:
+		property char UseType;
+		property Form^ RefSaleForm;
+	public:
 		Sugesstions(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			UseType = 'M';
 		}
 
 	protected:
@@ -105,6 +109,7 @@ namespace ProyectView {
 			this->btnSearchCustomer->TabIndex = 26;
 			this->btnSearchCustomer->Text = L"BUSCAR";
 			this->btnSearchCustomer->UseVisualStyleBackColor = true;
+			this->btnSearchCustomer->Click += gcnew System::EventHandler(this, &Sugesstions::btnSearchCustomer_Click);
 			// 
 			// lblClientData
 			// 
@@ -278,5 +283,7 @@ namespace ProyectView {
 #pragma endregion
 	private: System::Void btnAddCustomer_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void btnSearchCustomer_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

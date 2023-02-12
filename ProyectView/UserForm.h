@@ -173,212 +173,224 @@ namespace ProyectView {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(186, 41);
+			this->label1->Location = System::Drawing::Point(209, 51);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(31, 16);
+			this->label1->Size = System::Drawing::Size(39, 20);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Id(*)";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(50, 79);
+			this->label2->Location = System::Drawing::Point(56, 99);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(167, 16);
+			this->label2->Size = System::Drawing::Size(201, 20);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Documento de Identidad(*)";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(145, 114);
+			this->label3->Location = System::Drawing::Point(163, 142);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(72, 16);
+			this->label3->Size = System::Drawing::Size(85, 20);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"Nombre (*)";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(140, 187);
+			this->label4->Location = System::Drawing::Point(158, 234);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(77, 16);
+			this->label4->Size = System::Drawing::Size(91, 20);
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"Dirección(*)";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(79, 154);
+			this->label5->Location = System::Drawing::Point(89, 192);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(138, 16);
+			this->label5->Size = System::Drawing::Size(165, 20);
 			this->label5->TabIndex = 4;
 			this->label5->Text = L"Numero de telefono(*)";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(163, 217);
+			this->label6->Location = System::Drawing::Point(183, 271);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(54, 16);
+			this->label6->Size = System::Drawing::Size(64, 20);
 			this->label6->TabIndex = 5;
 			this->label6->Text = L"Email(*)";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(655, 347);
+			this->label7->Location = System::Drawing::Point(737, 434);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(57, 16);
+			this->label7->Size = System::Drawing::Size(72, 20);
 			this->label7->TabIndex = 6;
 			this->label7->Text = L"Status(*)";
 			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(638, 116);
+			this->label8->Location = System::Drawing::Point(718, 145);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(70, 16);
+			this->label8->Size = System::Drawing::Size(81, 20);
 			this->label8->TabIndex = 7;
 			this->label8->Text = L"Apellido(*)";
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(649, 155);
+			this->label9->Location = System::Drawing::Point(730, 194);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(63, 16);
+			this->label9->Size = System::Drawing::Size(74, 20);
 			this->label9->TabIndex = 8;
 			this->label9->Text = L"Salario(*)";
 			// 
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(641, 41);
+			this->label10->Location = System::Drawing::Point(721, 51);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(67, 16);
+			this->label10->Size = System::Drawing::Size(80, 20);
 			this->label10->TabIndex = 9;
 			this->label10->Text = L"Usuario(*)";
 			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(619, 79);
+			this->label11->Location = System::Drawing::Point(696, 99);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(89, 16);
+			this->label11->Size = System::Drawing::Size(108, 20);
 			this->label11->TabIndex = 10;
 			this->label11->Text = L"Contraseña(*)";
 			// 
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(152, 256);
+			this->label12->Location = System::Drawing::Point(171, 320);
 			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(65, 16);
+			this->label12->Size = System::Drawing::Size(79, 20);
 			this->label12->TabIndex = 11;
 			this->label12->Text = L"Género(*)";
 			// 
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(612, 256);
+			this->label13->Location = System::Drawing::Point(688, 320);
 			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(96, 16);
+			this->label13->Size = System::Drawing::Size(114, 20);
 			this->label13->TabIndex = 12;
 			this->label13->Text = L"Cumpleaños(*)";
 			// 
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(169, 347);
+			this->label14->Location = System::Drawing::Point(190, 434);
 			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(48, 16);
+			this->label14->Size = System::Drawing::Size(55, 20);
 			this->label14->TabIndex = 13;
 			this->label14->Text = L"Tipo(*)";
 			// 
 			// UserId
 			// 
-			this->UserId->Location = System::Drawing::Point(236, 34);
+			this->UserId->Location = System::Drawing::Point(266, 42);
+			this->UserId->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserId->Name = L"UserId";
-			this->UserId->Size = System::Drawing::Size(289, 22);
+			this->UserId->Size = System::Drawing::Size(325, 26);
 			this->UserId->TabIndex = 14;
 			// 
 			// UserUsuario
 			// 
-			this->UserUsuario->Location = System::Drawing::Point(727, 33);
+			this->UserUsuario->Location = System::Drawing::Point(818, 41);
+			this->UserUsuario->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserUsuario->Name = L"UserUsuario";
-			this->UserUsuario->Size = System::Drawing::Size(317, 22);
+			this->UserUsuario->Size = System::Drawing::Size(356, 26);
 			this->UserUsuario->TabIndex = 15;
 			// 
 			// UserDNI
 			// 
-			this->UserDNI->Location = System::Drawing::Point(236, 72);
+			this->UserDNI->Location = System::Drawing::Point(266, 90);
+			this->UserDNI->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserDNI->Name = L"UserDNI";
-			this->UserDNI->Size = System::Drawing::Size(289, 22);
+			this->UserDNI->Size = System::Drawing::Size(325, 26);
 			this->UserDNI->TabIndex = 16;
 			// 
 			// UserPassword
 			// 
-			this->UserPassword->Location = System::Drawing::Point(727, 73);
+			this->UserPassword->Location = System::Drawing::Point(818, 91);
+			this->UserPassword->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserPassword->Name = L"UserPassword";
-			this->UserPassword->Size = System::Drawing::Size(317, 22);
+			this->UserPassword->Size = System::Drawing::Size(356, 26);
 			this->UserPassword->TabIndex = 17;
 			// 
 			// UserName
 			// 
-			this->UserName->Location = System::Drawing::Point(236, 109);
+			this->UserName->Location = System::Drawing::Point(266, 136);
+			this->UserName->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserName->Name = L"UserName";
-			this->UserName->Size = System::Drawing::Size(289, 22);
+			this->UserName->Size = System::Drawing::Size(325, 26);
 			this->UserName->TabIndex = 18;
 			// 
 			// UserLastName
 			// 
-			this->UserLastName->Location = System::Drawing::Point(727, 108);
+			this->UserLastName->Location = System::Drawing::Point(818, 135);
+			this->UserLastName->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserLastName->Name = L"UserLastName";
-			this->UserLastName->Size = System::Drawing::Size(317, 22);
+			this->UserLastName->Size = System::Drawing::Size(356, 26);
 			this->UserLastName->TabIndex = 19;
 			// 
 			// UserNumber
 			// 
-			this->UserNumber->Location = System::Drawing::Point(236, 149);
+			this->UserNumber->Location = System::Drawing::Point(266, 186);
+			this->UserNumber->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserNumber->Name = L"UserNumber";
-			this->UserNumber->Size = System::Drawing::Size(289, 22);
+			this->UserNumber->Size = System::Drawing::Size(325, 26);
 			this->UserNumber->TabIndex = 20;
 			// 
 			// UserSalary
 			// 
-			this->UserSalary->Location = System::Drawing::Point(727, 148);
+			this->UserSalary->Location = System::Drawing::Point(818, 185);
+			this->UserSalary->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserSalary->Name = L"UserSalary";
-			this->UserSalary->Size = System::Drawing::Size(317, 22);
+			this->UserSalary->Size = System::Drawing::Size(356, 26);
 			this->UserSalary->TabIndex = 21;
 			// 
 			// UserDirection
 			// 
-			this->UserDirection->Location = System::Drawing::Point(236, 181);
+			this->UserDirection->Location = System::Drawing::Point(266, 226);
+			this->UserDirection->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserDirection->Name = L"UserDirection";
-			this->UserDirection->Size = System::Drawing::Size(808, 22);
+			this->UserDirection->Size = System::Drawing::Size(908, 26);
 			this->UserDirection->TabIndex = 22;
 			// 
 			// UserEmail
 			// 
-			this->UserEmail->Location = System::Drawing::Point(236, 211);
+			this->UserEmail->Location = System::Drawing::Point(266, 264);
+			this->UserEmail->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserEmail->Name = L"UserEmail";
-			this->UserEmail->Size = System::Drawing::Size(808, 22);
+			this->UserEmail->Size = System::Drawing::Size(908, 26);
 			this->UserEmail->TabIndex = 23;
 			// 
 			// UserDateTimeBirthday
 			// 
-			this->UserDateTimeBirthday->Location = System::Drawing::Point(727, 250);
+			this->UserDateTimeBirthday->Location = System::Drawing::Point(818, 312);
+			this->UserDateTimeBirthday->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserDateTimeBirthday->Name = L"UserDateTimeBirthday";
-			this->UserDateTimeBirthday->Size = System::Drawing::Size(317, 22);
+			this->UserDateTimeBirthday->Size = System::Drawing::Size(356, 26);
 			this->UserDateTimeBirthday->TabIndex = 24;
 			// 
 			// UserFemale
 			// 
 			this->UserFemale->AutoSize = true;
-			this->UserFemale->Location = System::Drawing::Point(6, 13);
+			this->UserFemale->Location = System::Drawing::Point(7, 16);
+			this->UserFemale->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserFemale->Name = L"UserFemale";
-			this->UserFemale->Size = System::Drawing::Size(88, 20);
+			this->UserFemale->Size = System::Drawing::Size(105, 24);
 			this->UserFemale->TabIndex = 25;
 			this->UserFemale->TabStop = true;
 			this->UserFemale->Text = L"Femenino";
@@ -387,9 +399,10 @@ namespace ProyectView {
 			// UserMale
 			// 
 			this->UserMale->AutoSize = true;
-			this->UserMale->Location = System::Drawing::Point(170, 14);
+			this->UserMale->Location = System::Drawing::Point(191, 18);
+			this->UserMale->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserMale->Name = L"UserMale";
-			this->UserMale->Size = System::Drawing::Size(89, 20);
+			this->UserMale->Size = System::Drawing::Size(105, 24);
 			this->UserMale->TabIndex = 26;
 			this->UserMale->TabStop = true;
 			this->UserMale->Text = L"Masculino";
@@ -402,11 +415,12 @@ namespace ProyectView {
 				this->User_Id,
 					this->User_Name, this->User_LastName, this->Usuario, this->Salario
 			});
-			this->dataGridViewUser->Location = System::Drawing::Point(74, 529);
+			this->dataGridViewUser->Location = System::Drawing::Point(83, 661);
+			this->dataGridViewUser->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->dataGridViewUser->Name = L"dataGridViewUser";
 			this->dataGridViewUser->RowHeadersWidth = 51;
 			this->dataGridViewUser->RowTemplate->Height = 24;
-			this->dataGridViewUser->Size = System::Drawing::Size(970, 213);
+			this->dataGridViewUser->Size = System::Drawing::Size(1091, 266);
 			this->dataGridViewUser->TabIndex = 29;
 			this->dataGridViewUser->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &UserForm::dataGridViewUser_CellClick);
 			// 
@@ -449,25 +463,29 @@ namespace ProyectView {
 			// 
 			this->UserType->FormattingEnabled = true;
 			this->UserType->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"Mesero", L"Cocinero", L"Cajero", L"Administrador" });
-			this->UserType->Location = System::Drawing::Point(238, 339);
+			this->UserType->Location = System::Drawing::Point(268, 424);
+			this->UserType->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserType->Name = L"UserType";
-			this->UserType->Size = System::Drawing::Size(289, 24);
+			this->UserType->Size = System::Drawing::Size(325, 28);
 			this->UserType->TabIndex = 30;
+			
 			// 
 			// UserStatus
 			// 
 			this->UserStatus->FormattingEnabled = true;
 			this->UserStatus->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Activo", L"Inactivo" });
-			this->UserStatus->Location = System::Drawing::Point(727, 339);
+			this->UserStatus->Location = System::Drawing::Point(818, 424);
+			this->UserStatus->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->UserStatus->Name = L"UserStatus";
-			this->UserStatus->Size = System::Drawing::Size(289, 24);
+			this->UserStatus->Size = System::Drawing::Size(325, 28);
 			this->UserStatus->TabIndex = 31;
 			// 
 			// buttonAddUser
 			// 
-			this->buttonAddUser->Location = System::Drawing::Point(189, 439);
+			this->buttonAddUser->Location = System::Drawing::Point(213, 549);
+			this->buttonAddUser->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->buttonAddUser->Name = L"buttonAddUser";
-			this->buttonAddUser->Size = System::Drawing::Size(159, 41);
+			this->buttonAddUser->Size = System::Drawing::Size(179, 51);
 			this->buttonAddUser->TabIndex = 32;
 			this->buttonAddUser->Text = L"AGREGAR";
 			this->buttonAddUser->UseVisualStyleBackColor = true;
@@ -475,9 +493,10 @@ namespace ProyectView {
 			// 
 			// buttonModifyUser
 			// 
-			this->buttonModifyUser->Location = System::Drawing::Point(408, 439);
+			this->buttonModifyUser->Location = System::Drawing::Point(459, 549);
+			this->buttonModifyUser->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->buttonModifyUser->Name = L"buttonModifyUser";
-			this->buttonModifyUser->Size = System::Drawing::Size(159, 41);
+			this->buttonModifyUser->Size = System::Drawing::Size(179, 51);
 			this->buttonModifyUser->TabIndex = 33;
 			this->buttonModifyUser->Text = L"MODIFICAR";
 			this->buttonModifyUser->UseVisualStyleBackColor = true;
@@ -485,9 +504,10 @@ namespace ProyectView {
 			// 
 			// buttonDeleteUser
 			// 
-			this->buttonDeleteUser->Location = System::Drawing::Point(615, 439);
+			this->buttonDeleteUser->Location = System::Drawing::Point(692, 549);
+			this->buttonDeleteUser->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->buttonDeleteUser->Name = L"buttonDeleteUser";
-			this->buttonDeleteUser->Size = System::Drawing::Size(159, 41);
+			this->buttonDeleteUser->Size = System::Drawing::Size(179, 51);
 			this->buttonDeleteUser->TabIndex = 34;
 			this->buttonDeleteUser->Text = L"ELIMINAR";
 			this->buttonDeleteUser->UseVisualStyleBackColor = true;
@@ -497,17 +517,20 @@ namespace ProyectView {
 			// 
 			this->gBoxGender->Controls->Add(this->UserFemale);
 			this->gBoxGender->Controls->Add(this->UserMale);
-			this->gBoxGender->Location = System::Drawing::Point(238, 239);
+			this->gBoxGender->Location = System::Drawing::Point(268, 299);
+			this->gBoxGender->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->gBoxGender->Name = L"gBoxGender";
-			this->gBoxGender->Size = System::Drawing::Size(317, 48);
+			this->gBoxGender->Padding = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->gBoxGender->Size = System::Drawing::Size(357, 60);
 			this->gBoxGender->TabIndex = 35;
 			this->gBoxGender->TabStop = false;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(823, 440);
+			this->button1->Location = System::Drawing::Point(926, 550);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(158, 40);
+			this->button1->Size = System::Drawing::Size(178, 50);
 			this->button1->TabIndex = 36;
 			this->button1->Text = L"LIMPIAR";
 			this->button1->UseVisualStyleBackColor = true;
@@ -515,9 +538,9 @@ namespace ProyectView {
 			// 
 			// UserForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1107, 771);
+			this->ClientSize = System::Drawing::Size(1245, 964);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->gBoxGender);
 			this->Controls->Add(this->buttonDeleteUser);
@@ -551,6 +574,7 @@ namespace ProyectView {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->Name = L"UserForm";
 			this->Text = L"Formulario de Usuario";
 			this->Load += gcnew System::EventHandler(this, &UserForm::UserForm_Load);
@@ -952,5 +976,6 @@ private: System::Void UserForm_Shown(System::Object^ sender, System::EventArgs^ 
 private: System::Void UserForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	ShowUser();
 }
+
 };
 }

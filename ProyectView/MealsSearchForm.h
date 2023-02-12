@@ -85,40 +85,43 @@ namespace ProyectView {
 			// Id
 			// 
 			this->Id->AutoSize = true;
-			this->Id->Location = System::Drawing::Point(12, 13);
+			this->Id->Location = System::Drawing::Point(14, 16);
 			this->Id->Name = L"Id";
-			this->Id->Size = System::Drawing::Size(18, 16);
+			this->Id->Size = System::Drawing::Size(23, 20);
 			this->Id->TabIndex = 0;
 			this->Id->Text = L"Id";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(12, 45);
+			this->label2->Location = System::Drawing::Point(14, 56);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(132, 16);
+			this->label2->Size = System::Drawing::Size(152, 20);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Nombre/Descripción";
 			// 
 			// txtId
 			// 
-			this->txtId->Location = System::Drawing::Point(169, 7);
+			this->txtId->Location = System::Drawing::Point(190, 9);
+			this->txtId->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->txtId->Name = L"txtId";
-			this->txtId->Size = System::Drawing::Size(104, 22);
+			this->txtId->Size = System::Drawing::Size(116, 26);
 			this->txtId->TabIndex = 2;
 			// 
 			// txtNameDescription
 			// 
-			this->txtNameDescription->Location = System::Drawing::Point(169, 39);
+			this->txtNameDescription->Location = System::Drawing::Point(190, 49);
+			this->txtNameDescription->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->txtNameDescription->Name = L"txtNameDescription";
-			this->txtNameDescription->Size = System::Drawing::Size(367, 22);
+			this->txtNameDescription->Size = System::Drawing::Size(412, 26);
 			this->txtNameDescription->TabIndex = 3;
 			// 
 			// btnSearch
 			// 
-			this->btnSearch->Location = System::Drawing::Point(94, 81);
+			this->btnSearch->Location = System::Drawing::Point(106, 101);
+			this->btnSearch->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->btnSearch->Name = L"btnSearch";
-			this->btnSearch->Size = System::Drawing::Size(112, 32);
+			this->btnSearch->Size = System::Drawing::Size(126, 40);
 			this->btnSearch->TabIndex = 4;
 			this->btnSearch->Text = L"BUSCAR";
 			this->btnSearch->UseVisualStyleBackColor = true;
@@ -126,9 +129,10 @@ namespace ProyectView {
 			// 
 			// btnCancel
 			// 
-			this->btnCancel->Location = System::Drawing::Point(334, 81);
+			this->btnCancel->Location = System::Drawing::Point(376, 101);
+			this->btnCancel->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->btnCancel->Name = L"btnCancel";
-			this->btnCancel->Size = System::Drawing::Size(110, 32);
+			this->btnCancel->Size = System::Drawing::Size(124, 40);
 			this->btnCancel->TabIndex = 5;
 			this->btnCancel->Text = L"CANCELAR";
 			this->btnCancel->UseVisualStyleBackColor = true;
@@ -141,11 +145,12 @@ namespace ProyectView {
 				this->IdMeals, this->NombreMeal,
 					this->PriceMeal, this->s
 			});
-			this->dgvMeals->Location = System::Drawing::Point(34, 133);
+			this->dgvMeals->Location = System::Drawing::Point(38, 166);
+			this->dgvMeals->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->dgvMeals->Name = L"dgvMeals";
 			this->dgvMeals->RowHeadersWidth = 51;
 			this->dgvMeals->RowTemplate->Height = 24;
-			this->dgvMeals->Size = System::Drawing::Size(502, 154);
+			this->dgvMeals->Size = System::Drawing::Size(565, 192);
 			this->dgvMeals->TabIndex = 6;
 			this->dgvMeals->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MealsSearchForm::dgvMeals_CellClick);
 			// 
@@ -179,9 +184,9 @@ namespace ProyectView {
 			// 
 			// MealsSearchForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(603, 318);
+			this->ClientSize = System::Drawing::Size(678, 398);
 			this->Controls->Add(this->dgvMeals);
 			this->Controls->Add(this->btnCancel);
 			this->Controls->Add(this->btnSearch);
@@ -189,8 +194,9 @@ namespace ProyectView {
 			this->Controls->Add(this->txtId);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->Id);
+			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->Name = L"MealsSearchForm";
-			this->Text = L"MealsSearchForm";
+			this->Text = L"Búsqueda de Platos";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvMeals))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();

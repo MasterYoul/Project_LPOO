@@ -119,50 +119,53 @@ namespace ProyectView {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(90, 29);
+			this->label1->Location = System::Drawing::Point(101, 36);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(45, 16);
+			this->label1->Size = System::Drawing::Size(54, 20);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Fecha";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(89, 66);
+			this->label2->Location = System::Drawing::Point(100, 82);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(48, 16);
+			this->label2->Size = System::Drawing::Size(58, 20);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Cliente";
 			// 
 			// dateTimeSale
 			// 
-			this->dateTimeSale->Location = System::Drawing::Point(151, 23);
+			this->dateTimeSale->Location = System::Drawing::Point(170, 29);
+			this->dateTimeSale->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->dateTimeSale->Name = L"dateTimeSale";
-			this->dateTimeSale->Size = System::Drawing::Size(331, 22);
+			this->dateTimeSale->Size = System::Drawing::Size(372, 26);
 			this->dateTimeSale->TabIndex = 2;
 			// 
 			// textClient
 			// 
-			this->textClient->Location = System::Drawing::Point(151, 59);
+			this->textClient->Location = System::Drawing::Point(170, 74);
+			this->textClient->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->textClient->Name = L"textClient";
-			this->textClient->Size = System::Drawing::Size(317, 22);
+			this->textClient->Size = System::Drawing::Size(356, 26);
 			this->textClient->TabIndex = 3;
 			this->textClient->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			// 
 			// lblClientData
 			// 
-			this->lblClientData->Location = System::Drawing::Point(148, 98);
+			this->lblClientData->Location = System::Drawing::Point(166, 122);
 			this->lblClientData->Name = L"lblClientData";
-			this->lblClientData->Size = System::Drawing::Size(317, 16);
+			this->lblClientData->Size = System::Drawing::Size(357, 20);
 			this->lblClientData->TabIndex = 16;
 			this->lblClientData->Text = L"Sin Cliente";
 			this->lblClientData->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
 			// btnAddMeal
 			// 
-			this->btnAddMeal->Location = System::Drawing::Point(151, 158);
+			this->btnAddMeal->Location = System::Drawing::Point(170, 198);
+			this->btnAddMeal->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->btnAddMeal->Name = L"btnAddMeal";
-			this->btnAddMeal->Size = System::Drawing::Size(239, 55);
+			this->btnAddMeal->Size = System::Drawing::Size(269, 69);
 			this->btnAddMeal->TabIndex = 17;
 			this->btnAddMeal->Text = L"Agregar Plato";
 			this->btnAddMeal->UseVisualStyleBackColor = true;
@@ -170,9 +173,10 @@ namespace ProyectView {
 			// 
 			// btnDeleteMeal
 			// 
-			this->btnDeleteMeal->Location = System::Drawing::Point(478, 158);
+			this->btnDeleteMeal->Location = System::Drawing::Point(538, 198);
+			this->btnDeleteMeal->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->btnDeleteMeal->Name = L"btnDeleteMeal";
-			this->btnDeleteMeal->Size = System::Drawing::Size(230, 55);
+			this->btnDeleteMeal->Size = System::Drawing::Size(259, 69);
 			this->btnDeleteMeal->TabIndex = 18;
 			this->btnDeleteMeal->Text = L"Eliminar Plato";
 			this->btnDeleteMeal->UseVisualStyleBackColor = true;
@@ -180,9 +184,10 @@ namespace ProyectView {
 			// 
 			// btnSearchCustomer
 			// 
-			this->btnSearchCustomer->Location = System::Drawing::Point(627, 34);
+			this->btnSearchCustomer->Location = System::Drawing::Point(705, 42);
+			this->btnSearchCustomer->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->btnSearchCustomer->Name = L"btnSearchCustomer";
-			this->btnSearchCustomer->Size = System::Drawing::Size(125, 44);
+			this->btnSearchCustomer->Size = System::Drawing::Size(141, 55);
 			this->btnSearchCustomer->TabIndex = 19;
 			this->btnSearchCustomer->Text = L"BUSCAR";
 			this->btnSearchCustomer->UseVisualStyleBackColor = true;
@@ -190,9 +195,10 @@ namespace ProyectView {
 			// 
 			// btnAddCustomer
 			// 
-			this->btnAddCustomer->Location = System::Drawing::Point(818, 34);
+			this->btnAddCustomer->Location = System::Drawing::Point(920, 42);
+			this->btnAddCustomer->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->btnAddCustomer->Name = L"btnAddCustomer";
-			this->btnAddCustomer->Size = System::Drawing::Size(114, 44);
+			this->btnAddCustomer->Size = System::Drawing::Size(128, 55);
 			this->btnAddCustomer->TabIndex = 20;
 			this->btnAddCustomer->Text = L"+ Cliente";
 			this->btnAddCustomer->UseVisualStyleBackColor = true;
@@ -205,11 +211,12 @@ namespace ProyectView {
 				this->MealsId, this->MealsName,
 					this->PriceMeals, this->Quantity, this->SubTotal
 			});
-			this->dgvDetails->Location = System::Drawing::Point(35, 246);
+			this->dgvDetails->Location = System::Drawing::Point(39, 308);
+			this->dgvDetails->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->dgvDetails->Name = L"dgvDetails";
 			this->dgvDetails->RowHeadersWidth = 51;
 			this->dgvDetails->RowTemplate->Height = 24;
-			this->dgvDetails->Size = System::Drawing::Size(974, 267);
+			this->dgvDetails->Size = System::Drawing::Size(1096, 334);
 			this->dgvDetails->TabIndex = 21;
 			this->dgvDetails->CellValueChanged += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dgvDetails_CellValueChanged);
 			// 
@@ -250,9 +257,10 @@ namespace ProyectView {
 			// 
 			// btnRegisterSale
 			// 
-			this->btnRegisterSale->Location = System::Drawing::Point(151, 588);
+			this->btnRegisterSale->Location = System::Drawing::Point(170, 735);
+			this->btnRegisterSale->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->btnRegisterSale->Name = L"btnRegisterSale";
-			this->btnRegisterSale->Size = System::Drawing::Size(290, 35);
+			this->btnRegisterSale->Size = System::Drawing::Size(326, 44);
 			this->btnRegisterSale->TabIndex = 22;
 			this->btnRegisterSale->Text = L"Registrar Venta";
 			this->btnRegisterSale->UseVisualStyleBackColor = true;
@@ -260,75 +268,79 @@ namespace ProyectView {
 			// 
 			// txtSubtotal
 			// 
-			this->txtSubtotal->Location = System::Drawing::Point(786, 534);
+			this->txtSubtotal->Location = System::Drawing::Point(884, 668);
+			this->txtSubtotal->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->txtSubtotal->Name = L"txtSubtotal";
-			this->txtSubtotal->Size = System::Drawing::Size(146, 22);
+			this->txtSubtotal->Size = System::Drawing::Size(164, 26);
 			this->txtSubtotal->TabIndex = 23;
 			// 
 			// txtTax
 			// 
-			this->txtTax->Location = System::Drawing::Point(786, 577);
+			this->txtTax->Location = System::Drawing::Point(884, 721);
+			this->txtTax->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->txtTax->Name = L"txtTax";
-			this->txtTax->Size = System::Drawing::Size(146, 22);
+			this->txtTax->Size = System::Drawing::Size(164, 26);
 			this->txtTax->TabIndex = 24;
 			// 
 			// txtTotal
 			// 
-			this->txtTotal->Location = System::Drawing::Point(786, 650);
+			this->txtTotal->Location = System::Drawing::Point(884, 812);
+			this->txtTotal->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->txtTotal->Name = L"txtTotal";
-			this->txtTotal->Size = System::Drawing::Size(146, 22);
+			this->txtTotal->Size = System::Drawing::Size(164, 26);
 			this->txtTotal->TabIndex = 25;
 			this->txtTotal->Text = L"0";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(687, 540);
+			this->label4->Location = System::Drawing::Point(773, 675);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(65, 16);
+			this->label4->Size = System::Drawing::Size(77, 20);
 			this->label4->TabIndex = 26;
 			this->label4->Text = L"SubTotal:";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(714, 583);
+			this->label5->Location = System::Drawing::Point(803, 729);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(38, 16);
+			this->label5->Size = System::Drawing::Size(50, 20);
 			this->label5->TabIndex = 27;
 			this->label5->Text = L"I.G.V.";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(711, 656);
+			this->label6->Location = System::Drawing::Point(800, 820);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(41, 16);
+			this->label6->Size = System::Drawing::Size(48, 20);
 			this->label6->TabIndex = 28;
 			this->label6->Text = L"Total:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(677, 619);
+			this->label3->Location = System::Drawing::Point(762, 774);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(75, 16);
+			this->label3->Size = System::Drawing::Size(91, 20);
 			this->label3->TabIndex = 29;
 			this->label3->Text = L"Descuento:";
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(786, 613);
+			this->textBox1->Location = System::Drawing::Point(884, 766);
+			this->textBox1->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(146, 22);
+			this->textBox1->Size = System::Drawing::Size(164, 26);
 			this->textBox1->TabIndex = 30;
 			this->textBox1->Text = L"0";
 			// 
 			// SaleForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1021, 740);
+			this->ClientSize = System::Drawing::Size(1149, 925);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label6);
@@ -348,8 +360,9 @@ namespace ProyectView {
 			this->Controls->Add(this->dateTimeSale);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->Name = L"SaleForm";
-			this->Text = L"SaleForm";
+			this->Text = L"Generador de Ventas";
 			this->Load += gcnew System::EventHandler(this, &SaleForm::SaleForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvDetails))->EndInit();
 			this->ResumeLayout(false);

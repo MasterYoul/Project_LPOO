@@ -143,6 +143,9 @@
     <ClInclude Include="MealsSearchForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="TableForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="ProyectMainForm.h">
       <FileType>CppForm</FileType>
@@ -165,6 +168,7 @@
     <ClCompile Include="MealsForm.cpp" />
     <ClCompile Include="MealsGraphicsForm.cpp" />
     <ClCompile Include="MealsSearchForm.cpp" />
+    <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -211,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MealsSearchForm.resx">
       <DependentUpon>MealsSearchForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableForm.resx">
+      <DependentUpon>TableForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProyectMainForm.resx">
       <DependentUpon>ProyectMainForm.h</DependentUpon>

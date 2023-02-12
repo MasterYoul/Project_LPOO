@@ -51,4 +51,21 @@
     <DocNumber>12345678</DocNumber>
     <Id>2</Id>
   </User>
+  <User>
+    <State>Activo</State>
+    <Type>Administrador</Type>
+    <Birthday>2023-02-11</Birthday>
+    <Gender>70</Gender>
+    <Password>a</Password>
+    <Username>a</Username>
+    <Salary>789456</Salary>
+    <LastName>Huarcaya</LastName>
+    <Status>65</Status>
+    <Email>asdfghj</Email>
+    <PhoneNumber>78965456</PhoneNumber>
+    <Adress>asdfghj</Adress>
+    <Name>Gabriela Arantxa</Name>
+    <DocNumber>12345</DocNumber>
+    <Id>123</Id>
+  </User>
 </ArrayOfUser>

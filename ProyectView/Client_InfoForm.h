@@ -837,6 +837,8 @@ private: System::Void dataGridViewClient_Info_CellClick(System::Object^ sender, 
 
 	//UserMale->Checked = p->Gender == 'M';
 	//UserFemale->Checked = p->Gender == 'F';
+
+
 }
 private: System::Void Client_InfoForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	ShowClient();

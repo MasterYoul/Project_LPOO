@@ -149,7 +149,6 @@ namespace ProyectView {
 			this->textClient->Name = L"textClient";
 			this->textClient->Size = System::Drawing::Size(356, 26);
 			this->textClient->TabIndex = 3;
-			this->textClient->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			// 
 			// lblClientData
 			// 
@@ -157,7 +156,7 @@ namespace ProyectView {
 			this->lblClientData->Name = L"lblClientData";
 			this->lblClientData->Size = System::Drawing::Size(357, 20);
 			this->lblClientData->TabIndex = 16;
-			this->lblClientData->Text = L"Sin Cliente";
+			this->lblClientData->Text = L"Sin cliente";
 			this->lblClientData->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
 			// btnAddMeal
@@ -403,7 +402,7 @@ namespace ProyectView {
 			  this->client_Info = cust;
 			  textClient->Text = cust->DocNumber;
 			  lblClientData->Text = this->client_Info->DocNumber + " - " +
-				  cust->Name + " " + (cust)->LastName;
+				  cust->Name + " " +((Client_Info ^ )cust)->LastName;
 		  }
 
 

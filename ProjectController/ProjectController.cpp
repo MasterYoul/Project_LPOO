@@ -144,12 +144,13 @@ String^ ProjectController::Controller::AddClient_Info(Client_Info^ Client_Info)
 
 Client_Info^ ProjectController::Controller::QueryClient_InfotById(int Client_InfoId)
 {
-    //Client_InfoList = (List<Client_Info^>^)Persistance::LoadData("Client_Info.txt");
+    // Client_InfoList = (List<Client_Info^>^)Persistance::LoadData("Client_Info.txt");
     Client_InfoList = (List<Client_Info^>^)Persistance::LoadBinaryData("Client_Info.bin");
-    //Client_InfoList = (List<Client_Info^>^)Persistance::LoadXMLData("Client_Info.xml");
+   //Cient_InfoList = (List<Client_Info^>^)Persistance::LoadXMLData("Client_Info.xml");
     for (int i = 0; i < Client_InfoList->Count; i++)
-        if (Client_InfoList[i]->Id == Client_InfoId)
+        if (Client_InfoId == Client_InfoList[i]->Id) {
             return Client_InfoList[i];
+         }
     return nullptr;
 }
 

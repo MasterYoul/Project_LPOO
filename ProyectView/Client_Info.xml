@@ -39,4 +39,17 @@
     <Name>Samid George</Name>
     <DocNumber>78549545</DocNumber>
   </Client_Info>
+  <Client_Info>
+    <Id>0</Id>
+    <Status>65</Status>
+    <TxtOpin>ertyuil</TxtOpin>
+    <Rate>4</Rate>
+    <RucNumber>234567</RucNumber>
+    <Type>80</Type>
+    <VisitQuantity>1</VisitQuantity>
+    <PhoneNumber>1234567</PhoneNumber>
+    <LastName>wee</LastName>
+    <Name>alex</Name>
+    <DocNumber>1234</DocNumber>
+  </Client_Info>
 </ArrayOfClient_Info>

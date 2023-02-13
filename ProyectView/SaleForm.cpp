@@ -11,11 +11,14 @@ System::Void ProyectView::SaleForm::SaleForm_Load(System::Object^ sender, System
 System::Void ProyectView::SaleForm::btnRegisterSale_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	if (lblClientData->Text == "Sin cliente") {
-		 client_Info = Controller::QueryClient_InfotById(0);
+		 client_Info = Controller::QueryClient_InfotById (0);
 	}
 	if (dgvDetails->Rows->Count == 0 || txtTotal->Text->Trim() == "0") {
 		MessageBox::Show("Tiene que agregar un producto");
 		return;
+	}
+	else {
+		client_Info = Controller::QueryClient_InfoByDocNumber(textClient->Text);
 	}
 	Sale^ sale = gcnew Sale();
 	sale->Id = Controller::QueryLastSaleId() + 1;
@@ -28,9 +31,9 @@ System::Void ProyectView::SaleForm::btnRegisterSale_Click(System::Object^ sender
 	//y añadir cada detalle de venta a SaleDetails
 	for (int i = 0; i < dgvDetails->RowCount - 1; i++) {
 		SaleDetail^ saleDetail = gcnew SaleDetail();
-		int productId = Int32::Parse(dgvDetails->Rows[i]->Cells[0]->Value->ToString());
+		int mealId = Int32::Parse(dgvDetails->Rows[i]->Cells[0]->Value->ToString());
 		saleDetail->Id = i + 1;
-		saleDetail->Meals = Controller::QueryMealstById(productId);
+		saleDetail->Meals = Controller::QueryMealstById(mealId);
 		saleDetail->UnitPrice = Convert::ToDouble(dgvDetails->Rows[i]->Cells[2]->Value->ToString());
 		saleDetail->Quantity = Convert::ToInt32(dgvDetails->Rows[i]->Cells[3]->Value->ToString());
 		saleDetail->Subtotal = Convert::ToDouble(dgvDetails->Rows[i]->Cells[4]->Value->ToString());

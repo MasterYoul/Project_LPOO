@@ -37,7 +37,11 @@ namespace ProyectView {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chartSales;
+	protected:
+
+	protected:
+
 	protected:
 
 	private:
@@ -56,37 +60,39 @@ namespace ProyectView {
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
+			this->chartSales = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartSales))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// chart1
+			// chartSales
 			// 
 			chartArea1->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea1);
+			this->chartSales->ChartAreas->Add(chartArea1);
 			legend1->Name = L"Legend1";
-			this->chart1->Legends->Add(legend1);
-			this->chart1->Location = System::Drawing::Point(12, 12);
-			this->chart1->Name = L"chart1";
+			this->chartSales->Legends->Add(legend1);
+			this->chartSales->Location = System::Drawing::Point(16, 15);
+			this->chartSales->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->chartSales->Name = L"chartSales";
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
 			series1->Name = L"Monto";
-			this->chart1->Series->Add(series1);
-			this->chart1->Size = System::Drawing::Size(300, 300);
-			this->chart1->TabIndex = 0;
-			this->chart1->Text = L"chart1";
-			this->chart1->Click += gcnew System::EventHandler(this, &MealsGraphicsForm::chart1_Click);
+			this->chartSales->Series->Add(series1);
+			this->chartSales->Size = System::Drawing::Size(400, 369);
+			this->chartSales->TabIndex = 0;
+			this->chartSales->Text = L"chart1";
+			this->chartSales->Click += gcnew System::EventHandler(this, &MealsGraphicsForm::chart1_Click);
 			// 
 			// MealsGraphicsForm
-			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			////// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(411, 357);
-			this->Controls->Add(this->chart1);
+			this->ClientSize = System::Drawing::Size(548, 439);
+			this->Controls->Add(this->chartSales);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"MealsGraphicsForm";
 			this->Text = L"MealsGraphicsForm";
 			this->Load += gcnew System::EventHandler(this, &MealsGraphicsForm::MealsGraphicsForm_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartSales))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -97,9 +103,9 @@ namespace ProyectView {
 		List<Sale^>^ SalesList = Controller::QueryAllSale();
 		for (int i = 0; i < SalesList->Count; i++) {
 
-			chart1->Series["Monto"]->Points->Add(SalesList[i]->Total);
-			chart1->Series["Monto"]->Points[i]->AxisLabel = SalesList[i]->Client_Info->Name;
-			chart1->Series["Monto"]->Points[i]->Label = Convert::ToString(SalesList[i]->Total);
+			chartSales->Series["Monto"]->Points->Add(SalesList[i]->Total);
+			chartSales->Series["Monto"]->Points[i]->AxisLabel = SalesList[i]->Client_Info->Name;
+			chartSales->Series["Monto"]->Points[i]->Label = Convert::ToString(SalesList[i]->Total);
 		}
 	}
 	};

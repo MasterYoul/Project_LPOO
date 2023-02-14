@@ -59,6 +59,19 @@ void ProjectPersistance::Persistance::Persist(String^ fileName, Object^ persistO
             }
             
         }
+        if (persistObject->GetType() == List<TableDetail^>::typeid) {
+            for (int i = 0; i < ((List<TableDetail^>^)persistObject)->Count; i++) {
+                escritor->WriteLine(
+                    
+                    ((List<TableDetail^>^)persistObject)[i]->Id + "," +
+                    ((List<TableDetail^>^)persistObject)[i]->TableCapacity + "," +
+                    ((List<TableDetail^>^)persistObject)[i]->Floor + "," +
+                    ((List<TableDetail^>^)persistObject)[i]->Disponibility + "," +
+                    ((List<TableDetail^>^)persistObject)[i]->Reserved
+                );
+            }
+
+        }
     }
     catch (Exception^ ex) {
         throw ex;
@@ -89,6 +102,10 @@ void ProjectPersistance::Persistance::PersistXML(String^ fileName, Object^ persi
             XmlSerializer^ serializadorXML = gcnew XmlSerializer(List<Sale^>::typeid);
             serializadorXML->Serialize(output, persistObject);
         }
+        if (persistObject->GetType() == List<TableDetail^>::typeid) {
+            XmlSerializer^ serializadorXML = gcnew XmlSerializer(List<TableDetail^>::typeid);
+            serializadorXML->Serialize(output, persistObject);
+        }
     }
     catch (Exception^ ex) {
         throw ex;
@@ -116,6 +133,9 @@ void ProjectPersistance::Persistance::PersistBinary(String^ fileName, Object^ pe
             formateador->Serialize(output, persistObject);
         }
         if (persistObject->GetType() == List<Sale^>::typeid) {
+            formateador->Serialize(output, persistObject);
+        }
+        if (persistObject->GetType() == List<TableDetail^>::typeid) {
             formateador->Serialize(output, persistObject);
         }
     }
@@ -218,6 +238,24 @@ Object^ ProjectPersistance::Persistance::LoadData(String^ fileName)
                 }
             }
         }
+        if (fileName->Equals("TableDetail.txt")) {
+            res = gcnew List<TableDetail^>();
+            if (File::Exists(fileName)) {
+                while (true) {
+                    String^ linea = lector->ReadLine();
+                    if (linea == nullptr) break;
+                    array<String^>^ record = linea->Split(',');
+                    TableDetail^ p = gcnew TableDetail();
+                    p->Id = Convert::ToInt32(record[0]);
+                    p->TableCapacity = Convert::ToInt32(record[1]);
+                    p->Floor = Convert::ToInt32(record[2]);
+                    p->Disponibility = record[3];
+                    p->Reserved = (record[4]);
+                   
+                    ((List<TableDetail^>^)res)->Add(p);
+                }
+            }
+        }
     }
     catch (Exception^ ex) {
         throw ex;
@@ -269,6 +307,13 @@ Object^ ProjectPersistance::Persistance::LoadXMLData(String^ fileName) {
                 res = (List<Sale^>^)serializadorXML->Deserialize(sr);
             }
         }
+        if (fileName->Equals("TableDetail.xml")) {
+            res = gcnew List<TableDetail^>();
+            if (File::Exists(fileName)) {
+                serializadorXML = gcnew XmlSerializer(List<TableDetail^>::typeid);
+                res = (List<TableDetail^>^)serializadorXML->Deserialize(sr);
+            }
+        }
     }
     catch (Exception^ ex) {
         throw ex;
@@ -311,6 +356,12 @@ Object^ ProjectPersistance::Persistance::LoadBinaryData(String^ fileName)
             res = gcnew List<Sale^>();
             if (File::Exists(fileName)) {
                 res = (List<Sale^>^)formateador->Deserialize(input);
+            }
+        }
+        if (fileName->Equals("TableDetail.bin")) {
+            res = gcnew List<TableDetail^>();
+            if (File::Exists(fileName)) {
+                res = (List<TableDetail^>^)formateador->Deserialize(input);
             }
         }
     }

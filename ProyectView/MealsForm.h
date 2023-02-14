@@ -394,6 +394,10 @@ private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^
 		MessageBox::Show("El stock del plato no debe estar vacío.");
 		return;
 	}
+	if (textMealsStock->Text->Trim() == "") {
+		MessageBox::Show("El stock del plato no debe estar vacío.");
+		return;
+	}
 	
 	meals->Id = Convert::ToInt32(txtMealsId->Text);
 	meals->Name = textMealsName->Text;

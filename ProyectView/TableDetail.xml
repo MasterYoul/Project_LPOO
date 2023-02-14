@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTableDetail xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TableDetail>
+    <TimeReserv>12:00</TimeReserv>
+    <Reserved>Reservado</Reserved>
+    <Disponibility>No Disponible</Disponibility>
+    <TableCapacity>10</TableCapacity>
+    <Floor>2</Floor>
+    <Id>4</Id>
+  </TableDetail>
+</ArrayOfTableDetail>

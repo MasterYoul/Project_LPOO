@@ -21,6 +21,8 @@ namespace ProjectModel {
         property String^ TxtOpin;
         property char Status;
         property int Id;
+        property char Gender;
+
        
     };
 }

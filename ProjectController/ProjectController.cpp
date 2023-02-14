@@ -273,15 +273,19 @@ int ProjectController::Controller::DeleteSale(int SaleId)
 
 int ProjectController::Controller::AddTableDetail(TableDetail^ TableDetail)
 {
-    //Persistance::PersistBinary("TableDetail.bin", TableDetailList);
+    
     TableDetailList->Add(TableDetail);
-
+    Persistance::Persist("TableDetail.txt", TableDetailList);
+    Persistance::PersistXML("TableDetail.xml", TableDetailList);
+    Persistance::PersistBinary("TableDetail.bin", TableDetailList);
     return TableDetail->Id;
 }
 
 TableDetail^ ProjectController::Controller::QueryTableDetailtById(int TableDetailId)
 {
-    // TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadData("TableDetail.txt");
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadXMLData("TableDetail.xml");
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
     for (int i = 0; i < TableDetailList->Count; i++)
         if (TableDetailList[i]->Id == TableDetailId)
             return TableDetailList[i];
@@ -290,7 +294,9 @@ TableDetail^ ProjectController::Controller::QueryTableDetailtById(int TableDetai
 
 List<TableDetail^>^ ProjectController::Controller::QueryAllTableDetail()
 {
-    // TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadData("TableDetail.txt");
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadXMLData("TableDetail.xml");
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
     return TableDetailList;
 }
 
@@ -299,7 +305,9 @@ int ProjectController::Controller::UpdateTableDetail(TableDetail^ TableDetail)
     for (int i = 0; i < TableDetailList->Count; i++)
         if (TableDetailList[i]->Id == TableDetail->Id) {
             TableDetailList[i] = TableDetail;
-            //Persistance::PersistBinary("TableDetail.bin", TableDetailList);
+            Persistance::Persist("TableDetail.txt", TableDetailList);
+            Persistance::PersistXML("TableDetail.xml", TableDetailList);
+            Persistance::PersistBinary("TableDetail.bin", TableDetailList);
             return TableDetail->Id;
         }
     return 0;
@@ -310,7 +318,9 @@ int ProjectController::Controller::DeleteTableDetail(int TableDetailId)
     for (int i = 0; i < TableDetailList->Count; i++)
         if (TableDetailList[i]->Id == TableDetailId) {
             TableDetailList->RemoveAt(i);
-            // Persistance::PersistBinary("TableDetail.bin", TableDetailList);
+            Persistance::Persist("TableDetail.txt", TableDetailList);
+            Persistance::PersistXML("TableDetail.xml", TableDetailList);
+            Persistance::PersistBinary("TableDetail.bin", TableDetailList);
             return TableDetailId;
         }
     return 0;
@@ -318,7 +328,9 @@ int ProjectController::Controller::DeleteTableDetail(int TableDetailId)
 
 List<TableDetail^>^ ProjectController::Controller::QueryTableDetailByFloorOrCapacity(int value)
 {
-    //TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadData("TableDetail.txt");
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadXMLData("TableDetail.xml");
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
     List<TableDetail^>^ newProductList = gcnew List<TableDetail^>();
     for (int i = 0; i < TableDetailList->Count; i++) {
         if (TableDetailList[i]->Floor == value || TableDetailList[i]->TableCapacity == value)

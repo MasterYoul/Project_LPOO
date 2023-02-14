@@ -15,8 +15,8 @@ namespace ProjectModel {
         property int Id;
         property int Floor;
         property int TableCapacity;
-        property char Disponibility;
-        property char Reserved;
+        property String^ Disponibility;
+        property String^ Reserved;
         property String^ TimeReserv;
         property User^ User;
     };

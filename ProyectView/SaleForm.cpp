@@ -13,6 +13,13 @@ System::Void ProyectView::SaleForm::btnRegisterSale_Click(System::Object^ sender
 	if (lblClientData->Text == "Sin cliente") {
 		 client_Info = Controller::QueryClient_InfotById (0);
 	}
+	if (label8->Text == "Sin mesa") {
+		tabledetail = Controller::QueryTableDetailtById(0);
+		
+	}
+	if (label7->Text == "Sin mesero") {
+		user = Controller::QueryUsertById(0);
+	}
 	if (dgvDetails->Rows->Count == 0 || txtTotal->Text->Trim() == "0") {
 		MessageBox::Show("Tiene que agregar un producto");
 		return;
@@ -24,7 +31,8 @@ System::Void ProyectView::SaleForm::btnRegisterSale_Click(System::Object^ sender
 	sale->Id = Controller::QueryLastSaleId() + 1;
 	sale->Client_Info = client_Info;
 	sale->TxtDate = dateTimeSale->Text;
-	sale->User = (User^)ProyectMainForm::user;
+	sale->User = user;
+	sale->TableDetail = tabledetail;
 	sale->Total = Double::Parse(txtTotal->Text);
 	sale->SaleDetails = gcnew List<SaleDetail^>();
 	//Recorrer todos las filas del grid para armar los detalles de venta

@@ -17,5 +17,6 @@ namespace ProjectModel {
         property double Subtotal;
         property Double UnitPrice;
         property Meals^ Meals;
+        property String^ estado;
     };
 }

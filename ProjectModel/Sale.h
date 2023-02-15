@@ -7,6 +7,7 @@
 #include "User.h"
 #include "Client_Info.h"
 #include "SaleDetail.h"
+#include "TableDetail.h"
 //#include "Meals.h"
 
 using namespace System;
@@ -22,6 +23,7 @@ namespace ProjectModel {
         property double Total;
         property User^ User;
         //property Meals^ Meals;
+        property TableDetail^ TableDetail;
         property Client_Info^ Client_Info;
         property List<SaleDetail^>^ SaleDetails;
         Sale() {

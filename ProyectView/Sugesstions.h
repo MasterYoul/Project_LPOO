@@ -8,6 +8,9 @@ namespace ProyectView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace ProjectModel;
+	using namespace ProjectController;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de Sugesstions
@@ -46,17 +49,24 @@ namespace ProyectView {
 	private: System::Windows::Forms::DateTimePicker^ dateTimeSale;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ textBoxComments;
+
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::ComboBox^ comboBoxRatioClient;
+	private: System::Windows::Forms::ComboBox^ comboBoxLocal;
+
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::ComboBox^ comboBox1;
+	private: System::Windows::Forms::ComboBox^ comboBoxFood;
+
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::ComboBox^ comboBox2;
+	private: System::Windows::Forms::ComboBox^ comboBoxAtention;
+
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ buttonClean;
+
+	private: System::Windows::Forms::Button^ buttonSave;
+	private: System::Windows::Forms::Button^ buttonCancel;
+
+
 
 	private:
 		/// <summary>
@@ -78,17 +88,17 @@ namespace ProyectView {
 			this->dateTimeSale = (gcnew System::Windows::Forms::DateTimePicker());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxComments = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->comboBoxRatioClient = (gcnew System::Windows::Forms::ComboBox());
+			this->comboBoxLocal = (gcnew System::Windows::Forms::ComboBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->comboBoxFood = (gcnew System::Windows::Forms::ComboBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->comboBoxAtention = (gcnew System::Windows::Forms::ComboBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->buttonClean = (gcnew System::Windows::Forms::Button());
+			this->buttonSave = (gcnew System::Windows::Forms::Button());
+			this->buttonCancel = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// btnAddCustomer
@@ -99,7 +109,6 @@ namespace ProyectView {
 			this->btnAddCustomer->TabIndex = 27;
 			this->btnAddCustomer->Text = L"REGISTRARSE";
 			this->btnAddCustomer->UseVisualStyleBackColor = true;
-			this->btnAddCustomer->Click += gcnew System::EventHandler(this, &Sugesstions::btnAddCustomer_Click);
 			// 
 			// btnSearchCustomer
 			// 
@@ -109,7 +118,6 @@ namespace ProyectView {
 			this->btnSearchCustomer->TabIndex = 26;
 			this->btnSearchCustomer->Text = L"BUSCAR";
 			this->btnSearchCustomer->UseVisualStyleBackColor = true;
-			this->btnSearchCustomer->Click += gcnew System::EventHandler(this, &Sugesstions::btnSearchCustomer_Click);
 			// 
 			// lblClientData
 			// 
@@ -153,31 +161,31 @@ namespace ProyectView {
 			this->label1->TabIndex = 21;
 			this->label1->Text = L"Fecha";
 			// 
-			// textBox1
+			// textBoxComments
 			// 
-			this->textBox1->Location = System::Drawing::Point(113, 443);
-			this->textBox1->Multiline = true;
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(648, 125);
-			this->textBox1->TabIndex = 28;
+			this->textBoxComments->Location = System::Drawing::Point(113, 443);
+			this->textBoxComments->Multiline = true;
+			this->textBoxComments->Name = L"textBoxComments";
+			this->textBoxComments->Size = System::Drawing::Size(648, 125);
+			this->textBoxComments->TabIndex = 28;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(8, 443);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(87, 16);
+			this->label3->Size = System::Drawing::Size(79, 16);
 			this->label3->TabIndex = 29;
-			this->label3->Text = L"Comenteario:";
+			this->label3->Text = L"Comentario:";
 			// 
-			// comboBoxRatioClient
+			// comboBoxLocal
 			// 
-			this->comboBoxRatioClient->FormattingEnabled = true;
-			this->comboBoxRatioClient->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"1", L"2", L"3", L"4", L"5" });
-			this->comboBoxRatioClient->Location = System::Drawing::Point(222, 360);
-			this->comboBoxRatioClient->Name = L"comboBoxRatioClient";
-			this->comboBoxRatioClient->Size = System::Drawing::Size(169, 24);
-			this->comboBoxRatioClient->TabIndex = 31;
+			this->comboBoxLocal->FormattingEnabled = true;
+			this->comboBoxLocal->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"1", L"2", L"3", L"4", L"5" });
+			this->comboBoxLocal->Location = System::Drawing::Point(222, 360);
+			this->comboBoxLocal->Name = L"comboBoxLocal";
+			this->comboBoxLocal->Size = System::Drawing::Size(169, 24);
+			this->comboBoxLocal->TabIndex = 31;
 			// 
 			// label8
 			// 
@@ -188,14 +196,14 @@ namespace ProyectView {
 			this->label8->TabIndex = 30;
 			this->label8->Text = L"Puntuación del local:";
 			// 
-			// comboBox1
+			// comboBoxFood
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"1", L"2", L"3", L"4", L"5" });
-			this->comboBox1->Location = System::Drawing::Point(222, 260);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(169, 24);
-			this->comboBox1->TabIndex = 33;
+			this->comboBoxFood->FormattingEnabled = true;
+			this->comboBoxFood->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"1", L"2", L"3", L"4", L"5" });
+			this->comboBoxFood->Location = System::Drawing::Point(222, 260);
+			this->comboBoxFood->Name = L"comboBoxFood";
+			this->comboBoxFood->Size = System::Drawing::Size(169, 24);
+			this->comboBoxFood->TabIndex = 33;
 			// 
 			// label4
 			// 
@@ -206,14 +214,14 @@ namespace ProyectView {
 			this->label4->TabIndex = 32;
 			this->label4->Text = L"Puntuacion de la comida:";
 			// 
-			// comboBox2
+			// comboBoxAtention
 			// 
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"1", L"2", L"3", L"4", L"5" });
-			this->comboBox2->Location = System::Drawing::Point(222, 165);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(169, 24);
-			this->comboBox2->TabIndex = 35;
+			this->comboBoxAtention->FormattingEnabled = true;
+			this->comboBoxAtention->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"1", L"2", L"3", L"4", L"5" });
+			this->comboBoxAtention->Location = System::Drawing::Point(222, 165);
+			this->comboBoxAtention->Name = L"comboBoxAtention";
+			this->comboBoxAtention->Size = System::Drawing::Size(169, 24);
+			this->comboBoxAtention->TabIndex = 35;
 			// 
 			// label5
 			// 
@@ -224,49 +232,52 @@ namespace ProyectView {
 			this->label5->TabIndex = 34;
 			this->label5->Text = L"Puntuacion de la atención:";
 			// 
-			// button1
+			// buttonClean
 			// 
-			this->button1->Location = System::Drawing::Point(338, 609);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(114, 44);
-			this->button1->TabIndex = 37;
-			this->button1->Text = L"LIMPIAR";
-			this->button1->UseVisualStyleBackColor = true;
+			this->buttonClean->Location = System::Drawing::Point(338, 609);
+			this->buttonClean->Name = L"buttonClean";
+			this->buttonClean->Size = System::Drawing::Size(114, 44);
+			this->buttonClean->TabIndex = 37;
+			this->buttonClean->Text = L"LIMPIAR";
+			this->buttonClean->UseVisualStyleBackColor = true;
+			this->buttonClean->Click += gcnew System::EventHandler(this, &Sugesstions::buttonClean_Click);
 			// 
-			// button2
+			// buttonSave
 			// 
-			this->button2->Location = System::Drawing::Point(167, 609);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(125, 44);
-			this->button2->TabIndex = 36;
-			this->button2->Text = L"GUARDAR";
-			this->button2->UseVisualStyleBackColor = true;
+			this->buttonSave->Location = System::Drawing::Point(167, 609);
+			this->buttonSave->Name = L"buttonSave";
+			this->buttonSave->Size = System::Drawing::Size(125, 44);
+			this->buttonSave->TabIndex = 36;
+			this->buttonSave->Text = L"GUARDAR";
+			this->buttonSave->UseVisualStyleBackColor = true;
+			this->buttonSave->Click += gcnew System::EventHandler(this, &Sugesstions::buttonSave_Click);
 			// 
-			// button3
+			// buttonCancel
 			// 
-			this->button3->Location = System::Drawing::Point(519, 609);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(114, 44);
-			this->button3->TabIndex = 38;
-			this->button3->Text = L"CANCELAR";
-			this->button3->UseVisualStyleBackColor = true;
+			this->buttonCancel->Location = System::Drawing::Point(519, 609);
+			this->buttonCancel->Name = L"buttonCancel";
+			this->buttonCancel->Size = System::Drawing::Size(114, 44);
+			this->buttonCancel->TabIndex = 38;
+			this->buttonCancel->Text = L"CANCELAR";
+			this->buttonCancel->UseVisualStyleBackColor = true;
+			this->buttonCancel->Click += gcnew System::EventHandler(this, &Sugesstions::buttonCancel_Click);
 			// 
 			// Sugesstions
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(823, 715);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->comboBox2);
+			this->Controls->Add(this->buttonCancel);
+			this->Controls->Add(this->buttonClean);
+			this->Controls->Add(this->buttonSave);
+			this->Controls->Add(this->comboBoxAtention);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->comboBoxFood);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->comboBoxRatioClient);
+			this->Controls->Add(this->comboBoxLocal);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->textBoxComments);
 			this->Controls->Add(this->btnAddCustomer);
 			this->Controls->Add(this->btnSearchCustomer);
 			this->Controls->Add(this->lblClientData);
@@ -281,9 +292,63 @@ namespace ProyectView {
 
 		}
 #pragma endregion
-	private: System::Void btnAddCustomer_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
+
+private: System::Void buttonSave_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (dateTimeSale->Text->Trim() == "") {
+		MessageBox::Show("La fecha de la sugerencia no debe estar vacío.");
+		return;
 	}
-private: System::Void btnSearchCustomer_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (textClient->Text->Trim() == "") {
+		MessageBox::Show("El nombre del cliente no debe estar vacío.");
+		return;
+	}
+	if (comboBoxAtention->Text->Trim() == "") {
+		MessageBox::Show("El puntaje de la atencion no debe estar vacío.");
+		return;
+	}
+	if (comboBoxFood->Text->Trim() == "") {
+		MessageBox::Show("El puntaje de la comida no debe estar vacío.");
+		return;
+	}
+	if (comboBoxLocal->Text->Trim() == "") {
+		MessageBox::Show("El puntaje del local no debe estar vacío.");
+		return;
+	}
+	if (textBoxComments->Text->Trim() == "") {
+		MessageBox::Show("El tipo de usuario no debe estar vacío.");
+		return;
+	}
+	
+	Suggestions^ suggestions = gcnew Suggestions();
+	suggestions->Date = dateTimeSale->Value.ToString("yyyy-MM-dd");
+	suggestions->ClientName = textClient->Text;
+	suggestions->AttentionScore = comboBoxAtention->Text;
+	suggestions->FoodScore = comboBoxFood->Text;
+	suggestions->VenueScore = comboBoxLocal->Text;
+	suggestions->Comments = textBoxComments ->Text;
+
+	
+	//Completar el Registro
+	Controller::RegisterSuggestions(suggestions);
+	MessageBox::Show("Se ha registrado la sugerencia correctamente.");
+}
+
+	   void ClearControls() {
+		   textClient->Text = "";
+		   comboBoxAtention->Text = "";
+		   comboBoxFood->Text = "";
+		   comboBoxLocal->Text = "";
+		   textBoxComments->Text = "";
+
+	   }
+
+private: System::Void buttonClean_Click(System::Object^ sender, System::EventArgs^ e) {
+	ClearControls();
+}
+private: System::Void buttonCancel_Click(System::Object^ sender, System::EventArgs^ e) {
+
 }
 };
 }

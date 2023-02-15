@@ -434,6 +434,12 @@ User^ ProjectController::Controller::Login(String^ username, String^ password)
     return QueryUsertByCredentials(username, password);
 }
 
+Void ProjectController::Controller::RegisterSuggestions(Suggestions^ suggestions)
+{
+    SuggestionsList->Add(suggestions);
+}
+
+
 
 
 List<Sale^>^ ProjectController::Controller::QueryAllSale()

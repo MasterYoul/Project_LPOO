@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfClient_Info xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Client_Info>
-    <Gender>0</Gender>
-    <Id>434</Id>
-    <Status>65</Status>
-    <TxtOpin>Buena Comida</TxtOpin>
-    <Rate>2</Rate>
-    <RucNumber>12423</RucNumber>
-    <Type>80</Type>
-    <VisitQuantity>8</VisitQuantity>
-    <PhoneNumber>6436345</PhoneNumber>
-    <LastName>Espinozadd</LastName>
-    <Name>Pedro</Name>
-    <DocNumber>123123</DocNumber>
-  </Client_Info>
-  <Client_Info>
     <Gender>77</Gender>
     <Id>1</Id>
     <Status>65</Status>
@@ -55,5 +41,19 @@
     <LastName>wee</LastName>
     <Name>alex</Name>
     <DocNumber>1234</DocNumber>
+  </Client_Info>
+  <Client_Info>
+    <Gender>77</Gender>
+    <Id>434</Id>
+    <Status>65</Status>
+    <TxtOpin>Buena Comida</TxtOpin>
+    <Rate>2</Rate>
+    <RucNumber>12423</RucNumber>
+    <Type>80</Type>
+    <VisitQuantity>8</VisitQuantity>
+    <PhoneNumber>6436345</PhoneNumber>
+    <LastName>Espinozadd</LastName>
+    <Name>Pedro</Name>
+    <DocNumber>123123</DocNumber>
   </Client_Info>
 </ArrayOfClient_Info>

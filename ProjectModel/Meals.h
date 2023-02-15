@@ -4,7 +4,7 @@
 
 
 #pragma once
-
+//#include "SaleDetail.h"
 
 using namespace System;
 
@@ -19,8 +19,11 @@ namespace ProjectModel {
         property String^ Description;
         property Double Price;
         property int Stock;
+        property int StockUsed;
         property char Status;
         property array<Byte>^ Photo;
+        property double TotalMeals;
+        //property SaleDetail^ SaleDetail;
 
         
     };

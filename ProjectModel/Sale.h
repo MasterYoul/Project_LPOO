@@ -7,6 +7,7 @@
 #include "User.h"
 #include "Client_Info.h"
 #include "SaleDetail.h"
+//#include "Meals.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -20,6 +21,7 @@ namespace ProjectModel {
         property char Status;
         property double Total;
         property User^ User;
+        //property Meals^ Meals;
         property Client_Info^ Client_Info;
         property List<SaleDetail^>^ SaleDetails;
         Sale() {

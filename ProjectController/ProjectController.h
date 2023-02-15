@@ -15,6 +15,7 @@ namespace ProjectController {
 		static List<TableDetail^>^ TableDetailList = gcnew List<TableDetail^>();
 		static List<User^>^ UserList = gcnew List<User^>();
 		static List <Sale^>^ SaleList = gcnew List<Sale^>();
+		static List<Suggestions^>^ SuggestionsList = gcnew List<Suggestions^>();
 		
 
 	public:
@@ -71,7 +72,7 @@ namespace ProjectController {
 
 		static User^ Login(String^ username, String^ password);
 
-
+		static Void RegisterSuggestions(Suggestions^ suggestions);
 
 		//Operaciones de venta
 		static List<Sale^>^ QueryAllSale();

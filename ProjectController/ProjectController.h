@@ -71,12 +71,16 @@ namespace ProjectController {
 		static List<User^>^ QueryUserByNameOrLastName(String^ nameDesc);
 		static User^ QueryUsertByCredentials(String^ username, String^ password);
 
+		static User^ QuerychangeEstado(int id);
+
 		static User^ QueryUserChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword);
 		
 
 
 
 		static User^ Login(String^ username, String^ password);
+
+		static User^ CambioEstado(int id);
 
 		static User^ ChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword);
 

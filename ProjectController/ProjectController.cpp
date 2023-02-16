@@ -441,6 +441,25 @@ User^ ProjectController::Controller::QueryUsertByCredentials(String^ username, S
     }
     return nullptr;
 }
+User^ ProjectController::Controller::QuerychangeEstado(int id) {
+    UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
+    for (int i = 0; i < UserList->Count; i++) {
+        if (UserList[i]->Id==id ) {
+            UserList[i]->State = "NO DISPONIBLE";
+            Persistance::PersistBinary("User.bin", UserList);
+            for (int i = 0; i < UserList->Count; i++) {
+                if (UserList[i]->Id == id) {
+                    return UserList[i];
+                }
+            }
+
+            return nullptr;
+        }
+    }
+    return nullptr;
+}
+
+
 User^ ProjectController::Controller::QueryUserChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword) {
     UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
     for (int i = 0; i < UserList->Count; i++) {
@@ -472,6 +491,10 @@ User^ ProjectController::Controller::Login(String^ username, String^ password)
     }
     return user;*/
     return QueryUsertByCredentials(username, password);
+}
+
+User^ ProjectController::Controller::CambioEstado(int id) {
+    return QuerychangeEstado(id);
 }
 User^ ProjectController::Controller::ChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword) {
     return QueryUserChangePassword(UserDNI,  UserUsuario,  UserName,  UserLastName, UserNumber, newpassword);

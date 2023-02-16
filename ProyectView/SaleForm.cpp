@@ -44,6 +44,7 @@ System::Void ProyectView::SaleForm::btnRegisterSale_Click(System::Object^ sender
 	sale->TableDetail = tabledetail;
 	sale->Total = Double::Parse(txtTotal->Text);
 	sale->SaleDetails = gcnew List<SaleDetail^>();
+	User^ emp =  Controller::CambioEstado(Convert::ToInt32(textBox3->Text));
 
 	
 

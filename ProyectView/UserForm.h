@@ -458,7 +458,7 @@ namespace ProyectView {
 			// UserStatus
 			// 
 			this->UserStatus->FormattingEnabled = true;
-			this->UserStatus->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Activo", L"Inactivo" });
+			this->UserStatus->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"DISPONIBLE", L"NO DISPONIBLE", L"INACTIVO" });
 			this->UserStatus->Location = System::Drawing::Point(727, 339);
 			this->UserStatus->Name = L"UserStatus";
 			this->UserStatus->Size = System::Drawing::Size(289, 24);

@@ -342,7 +342,7 @@ namespace ProyectView {
 			// comboBoxDisponibility
 			// 
 			this->comboBoxDisponibility->FormattingEnabled = true;
-			this->comboBoxDisponibility->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Disponible", L"No Disponible" });
+			this->comboBoxDisponibility->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"DISPONIBLE", L"NO DISPONIBLE" });
 			this->comboBoxDisponibility->Location = System::Drawing::Point(641, 20);
 			this->comboBoxDisponibility->Name = L"comboBoxDisponibility";
 			this->comboBoxDisponibility->Size = System::Drawing::Size(141, 24);

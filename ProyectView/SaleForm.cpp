@@ -45,7 +45,7 @@ System::Void ProyectView::SaleForm::btnRegisterSale_Click(System::Object^ sender
 	sale->Total = Double::Parse(txtTotal->Text);
 	sale->SaleDetails = gcnew List<SaleDetail^>();
 	User^ emp =  Controller::CambioEstado(Convert::ToInt32(textBox3->Text));
-
+	TableDetail^ table = Controller::CambioEstadoTable(Convert::ToInt32(textBox3->Text));
 	
 
 	//Recorrer todos las filas del grid para armar los detalles de venta

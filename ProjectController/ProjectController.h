@@ -73,6 +73,8 @@ namespace ProjectController {
 
 		static User^ QuerychangeEstado(int id);
 
+		static TableDetail^ QuerychangeEstadoTable(int id);
+
 		static User^ QueryUserChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword);
 		
 
@@ -81,6 +83,7 @@ namespace ProjectController {
 		static User^ Login(String^ username, String^ password);
 
 		static User^ CambioEstado(int id);
+		static TableDetail^ CambioEstadoTable(int id);
 
 		static User^ ChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword);
 

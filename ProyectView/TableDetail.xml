@@ -2,8 +2,8 @@
 <ArrayOfTableDetail xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <TableDetail>
     <TimeReserv>5:00</TimeReserv>
-    <Reserved>Reservado</Reserved>
-    <Disponibility>No Disponible</Disponibility>
+    <Reserved>Libre</Reserved>
+    <Disponibility>DISPONIBLE</Disponibility>
     <TableCapacity>32435</TableCapacity>
     <Floor>3</Floor>
     <Id>1</Id>
@@ -18,8 +18,8 @@
   </TableDetail>
   <TableDetail>
     <TimeReserv>5</TimeReserv>
-    <Reserved>Reservado</Reserved>
-    <Disponibility>No Disponible</Disponibility>
+    <Reserved>Libre</Reserved>
+    <Disponibility>DISPONIBLE</Disponibility>
     <TableCapacity>5</TableCapacity>
     <Floor>7</Floor>
     <Id>4</Id>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfUser xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <User>
-    <State>Inactivo</State>
+    <State>DISPONIBLE</State>
     <Type>Mesero</Type>
     <Birthday>2023-02-15</Birthday>
     <Gender>77</Gender>
-    <Password>samid</Password>
+    <Password>george</Password>
     <Username>samid</Username>
     <Salary>23456789</Salary>
     <LastName>villafuerte</LastName>

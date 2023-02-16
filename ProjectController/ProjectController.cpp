@@ -374,9 +374,9 @@ int ProjectController::Controller::AddUser(User^ User)
 
 User^ ProjectController::Controller::QueryUsertById(int UserId)
 {
-    UserList = (List<User^>^)Persistance::LoadData("User.txt");
+   // UserList = (List<User^>^)Persistance::LoadData("User.txt");
     UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
-    UserList = (List<User^>^)Persistance::LoadXMLData("User.xml");
+   // UserList = (List<User^>^)Persistance::LoadXMLData("User.xml");
     for (int i = 0; i < UserList->Count; i++)
         if (UserList[i]->Id == UserId)
             return UserList[i];

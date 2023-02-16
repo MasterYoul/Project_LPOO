@@ -16,7 +16,7 @@ namespace ProjectController {
 		static List<User^>^ UserList = gcnew List<User^>();
 		static List <Sale^>^ SaleList = gcnew List<Sale^>();
 		static List<Suggestions^>^ SuggestionsList = gcnew List<Suggestions^>();
-		
+
 
 	public:
 
@@ -28,6 +28,9 @@ namespace ProjectController {
 		static int UpdateMeals(Meals^ Meals);
 		static int DeleteMeals(int MealsId);
 		static List<Meals^>^ QueryMealsByNameOrDescription(String^ nameDesc);
+	
+
+		//static List<SaleDetail^>^ QueryAllSaleDetail();
 
 		static int AddIngredients(Ingredients^ Ingredients);
 		static Ingredients^ QueryIngredientstById(int IngredientsId);
@@ -54,6 +57,7 @@ namespace ProjectController {
 
 		static int AddTableDetail(TableDetail^ TableDetail);
 		static TableDetail^ QueryTableDetailtById(int TableDetailId);
+		static TableDetail^ QueryTableDetailOcupado(int TableDetailId);
 		static List<TableDetail^>^ QueryAllTableDetail();
 		static int UpdateTableDetail(TableDetail^ TableDetail);
 		static int DeleteTableDetail(int TableDetailId);

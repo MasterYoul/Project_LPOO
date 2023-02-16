@@ -18,6 +18,9 @@ namespace ProyectView {
 	public ref class UserForm : public System::Windows::Forms::Form
 	{
 	public:
+		property char UseType;
+		property Form^ RefSaleForm;
+	public:
 		UserForm(void)
 		{
 			InitializeComponent();

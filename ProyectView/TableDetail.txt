@@ -1,1 +1,3 @@
-4,10,2,No Disponible,Reservado
+1,32435,3,No Disponible,Reservado
+0,3,0,NO DISPONIBLE,
+4,5,7,No Disponible,Reservado

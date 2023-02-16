@@ -1,71 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfUser xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <User>
-    <State>Activo</State>
-    <Type>Cocinero</Type>
-    <Birthday>2023-02-10</Birthday>
-    <Gender>77</Gender>
-    <Password>password</Password>
-    <Username>JoelUser</Username>
-    <Salary>232</Salary>
-    <LastName>Espinoza</LastName>
-    <Status>65</Status>
-    <Email>joel_ev02@hotmail.com</Email>
-    <PhoneNumber>1283781</PhoneNumber>
-    <Adress>Av.Ricardo Palma 323, Dpt 102</Adress>
-    <Name>Joel</Name>
-    <DocNumber>913768297</DocNumber>
-    <Id>311</Id>
-  </User>
-  <User>
-    <State>Activo</State>
-    <Type>Administrador</Type>
-    <Birthday>2002-12-01</Birthday>
+    <State>Inactivo</State>
+    <Type>Mesero</Type>
+    <Birthday>2023-02-15</Birthday>
     <Gender>77</Gender>
     <Password>samid</Password>
     <Username>samid</Username>
-    <Salary>1000</Salary>
-    <LastName>Villafuerte Mogrovejo</LastName>
+    <Salary>23456789</Salary>
+    <LastName>villafuerte</LastName>
     <Status>65</Status>
-    <Email>samid.villafuerte@gmail.com</Email>
-    <PhoneNumber>933707464</PhoneNumber>
-    <Adress>cusco</Adress>
-    <Name>Samid George</Name>
-    <DocNumber>78549545</DocNumber>
-    <Id>1</Id>
-  </User>
-  <User>
-    <State>Activo</State>
-    <Type>Administrador</Type>
-    <Birthday>2002-12-01</Birthday>
-    <Gender>77</Gender>
-    <Password>usuario</Password>
-    <Username>usuario</Username>
-    <Salary>1000</Salary>
-    <LastName>de sesion</LastName>
-    <Status>65</Status>
-    <Email>waregeh</Email>
+    <Email>SDBdgzn</Email>
     <PhoneNumber>123456789</PhoneNumber>
-    <Adress>1rfgtrs</Adress>
-    <Name>al inicio</Name>
-    <DocNumber>12345678</DocNumber>
-    <Id>2</Id>
+    <Adress>hzfbgbn</Adress>
+    <Name>samid</Name>
+    <DocNumber>1234567</DocNumber>
+    <Id>0</Id>
   </User>
   <User>
     <State>Activo</State>
-    <Type>Administrador</Type>
-    <Birthday>2023-02-11</Birthday>
-    <Gender>70</Gender>
+    <Type>Mesero</Type>
+    <Birthday>2023-02-15</Birthday>
+    <Gender>77</Gender>
     <Password>a</Password>
     <Username>a</Username>
-    <Salary>789456</Salary>
-    <LastName>Huarcaya</LastName>
+    <Salary>12345</Salary>
+    <LastName>a</LastName>
     <Status>65</Status>
-    <Email>asdfghj</Email>
-    <PhoneNumber>78965456</PhoneNumber>
-    <Adress>asdfghj</Adress>
-    <Name>Gabriela Arantxa</Name>
-    <DocNumber>12345</DocNumber>
-    <Id>123</Id>
+    <Email>zenjhryxk</Email>
+    <PhoneNumber>123456</PhoneNumber>
+    <Adress>2awyhtj</Adress>
+    <Name>jorge</Name>
+    <DocNumber>1234567</DocNumber>
+    <Id>1</Id>
   </User>
 </ArrayOfUser>

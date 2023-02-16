@@ -1,4 +1,2 @@
-311,Joel,Espinoza,JoelUser,232
-1,Samid George,Villafuerte Mogrovejo,samid,1000
-2,al inicio,de sesion,usuario,1000
-123,Gabriela Arantxa,Huarcaya,a,789456
+0,samid,villafuerte,samid,23456789
+1,jorge,a,a,12345

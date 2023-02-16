@@ -348,7 +348,7 @@ private: System::Void buttonClean_Click(System::Object^ sender, System::EventArg
 	ClearControls();
 }
 private: System::Void buttonCancel_Click(System::Object^ sender, System::EventArgs^ e) {
-
+	this->Close();
 }
 };
 }

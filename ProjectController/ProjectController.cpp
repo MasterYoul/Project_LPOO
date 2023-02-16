@@ -77,6 +77,14 @@ List<Meals^>^ ProjectController::Controller::QueryMealsByNameOrDescription(Strin
     return newProductList;
 }
 
+/*List<SaleDetail^>^ ProjectController::Controller::QueryAllSaleDetail()
+{
+    //TableDetailList = (List<Meals^>^)Persistance::LoadData("Meals.txt");
+    TableDetailList = (List<SaleDetail^>^)Persistance::LoadBinaryData("Meals.bin");
+   // TableDetailList = (List<Meals^>^)Persistance::LoadXMLData("Meals.xml");
+    return TableDetailList;
+}*/
+
 int ProjectController::Controller::AddIngredients(Ingredients^ Ingredients)
 {
     //Persistance::PersistBinary("Ingredients.bin", IngredientsList);
@@ -153,6 +161,7 @@ Client_Info^ ProjectController::Controller::QueryClient_InfotById(int Client_Inf
          }
     return nullptr;
 }
+
 
 List<Client_Info^>^ ProjectController::Controller::QueryAllClient_Info()
 {
@@ -291,6 +300,20 @@ TableDetail^ ProjectController::Controller::QueryTableDetailtById(int TableDetai
             return TableDetailList[i];
     return nullptr;
 }
+TableDetail^ ProjectController::Controller::QueryTableDetailOcupado(int TableDetailId)
+{
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadData("TableDetail.txt");
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadXMLData("TableDetail.xml");
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    for (int i = 0; i < TableDetailList->Count; i++)
+        if (TableDetailList[i]->Id == TableDetailId) {
+            return TableDetailList[i];
+            TableDetailList[i]->Disponibility = "OCUPADO";
+        }
+    return nullptr;
+}
+
+
 
 List<TableDetail^>^ ProjectController::Controller::QueryAllTableDetail()
 {

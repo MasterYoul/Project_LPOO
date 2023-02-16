@@ -19,6 +19,9 @@ namespace ProyectView {
 	public ref class TableForm : public System::Windows::Forms::Form
 	{
 	public:
+		property char UseType;
+		property Form^ RefSaleForm;
+	public:
 		TableForm(void)
 		{
 			InitializeComponent();
@@ -84,6 +87,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::Button^ button1;
 
 
 
@@ -113,6 +117,11 @@ namespace ProyectView {
 		void InitializeComponent(void)
 		{
 			this->dataGridTable = (gcnew System::Windows::Forms::DataGridView());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->txtTableId = (gcnew System::Windows::Forms::TextBox());
 			this->txtTableFloor = (gcnew System::Windows::Forms::TextBox());
 			this->txtTableCapacity = (gcnew System::Windows::Forms::TextBox());
@@ -129,11 +138,7 @@ namespace ProyectView {
 			this->btnClear = (gcnew System::Windows::Forms::Button());
 			this->comboBoxDisponibility = (gcnew System::Windows::Forms::ComboBox());
 			this->comboBoxReserved = (gcnew System::Windows::Forms::ComboBox());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridTable))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -152,6 +157,41 @@ namespace ProyectView {
 			this->dataGridTable->Size = System::Drawing::Size(915, 382);
 			this->dataGridTable->TabIndex = 0;
 			this->dataGridTable->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &TableForm::dataGridTable_CellClick);
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Id";
+			this->Column1->MinimumWidth = 8;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 70;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Capacidad";
+			this->Column2->MinimumWidth = 8;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 125;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Piso";
+			this->Column3->MinimumWidth = 8;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 70;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Disponibilidad";
+			this->Column4->MinimumWidth = 8;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 150;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Estado de Reserva";
+			this->Column5->MinimumWidth = 8;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 200;
 			// 
 			// txtTableId
 			// 
@@ -236,7 +276,7 @@ namespace ProyectView {
 			// 
 			this->btnAdd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnAdd->Location = System::Drawing::Point(134, 205);
+			this->btnAdd->Location = System::Drawing::Point(37, 205);
 			this->btnAdd->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAdd->Name = L"btnAdd";
 			this->btnAdd->Size = System::Drawing::Size(121, 44);
@@ -268,7 +308,7 @@ namespace ProyectView {
 			// 
 			this->btnDelete->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnDelete->Location = System::Drawing::Point(316, 205);
+			this->btnDelete->Location = System::Drawing::Point(195, 205);
 			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
 			this->btnDelete->Size = System::Drawing::Size(124, 44);
@@ -281,7 +321,7 @@ namespace ProyectView {
 			// 
 			this->btnModify->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnModify->Location = System::Drawing::Point(513, 205);
+			this->btnModify->Location = System::Drawing::Point(393, 205);
 			this->btnModify->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnModify->Name = L"btnModify";
 			this->btnModify->Size = System::Drawing::Size(123, 44);
@@ -294,7 +334,7 @@ namespace ProyectView {
 			// 
 			this->btnClear->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnClear->Location = System::Drawing::Point(707, 205);
+			this->btnClear->Location = System::Drawing::Point(569, 205);
 			this->btnClear->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClear->Name = L"btnClear";
 			this->btnClear->Size = System::Drawing::Size(124, 44);
@@ -321,45 +361,25 @@ namespace ProyectView {
 			this->comboBoxReserved->Size = System::Drawing::Size(141, 24);
 			this->comboBoxReserved->TabIndex = 18;
 			// 
-			// Column1
+			// button1
 			// 
-			this->Column1->HeaderText = L"Id";
-			this->Column1->MinimumWidth = 8;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 70;
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Capacidad";
-			this->Column2->MinimumWidth = 8;
-			this->Column2->Name = L"Column2";
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Piso";
-			this->Column3->MinimumWidth = 8;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 70;
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Disponibilidad";
-			this->Column4->MinimumWidth = 8;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 150;
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Estado de Reserva";
-			this->Column5->MinimumWidth = 8;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 200;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(728, 205);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(124, 44);
+			this->button1->TabIndex = 19;
+			this->button1->Text = L"Actualizar";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &TableForm::button1_Click);
 			// 
 			// TableForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(964, 706);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->comboBoxReserved);
 			this->Controls->Add(this->comboBoxDisponibility);
 			this->Controls->Add(this->btnClear);
@@ -561,5 +581,8 @@ private: System::Void TableForm_Shown(System::Object^ sender, System::EventArgs^
 	btnDelete->Enabled = false;
 }
 
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	RefreshdatadataGridTable();
+}
 };
 }

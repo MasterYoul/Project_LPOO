@@ -143,6 +143,9 @@
     <ClInclude Include="MealsSearchForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PedidosForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="RecoverForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -178,6 +181,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PedidosForm.cpp" />
     <ClCompile Include="ProyectMainForm.cpp" />
     <ClCompile Include="ProyectView.cpp" />
     <ClCompile Include="RecoverForm.cpp" />
@@ -219,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MealsSearchForm.resx">
       <DependentUpon>MealsSearchForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PedidosForm.resx">
+      <DependentUpon>PedidosForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecoverForm.resx">
       <DependentUpon>RecoverForm.h</DependentUpon>

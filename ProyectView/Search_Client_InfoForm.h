@@ -17,15 +17,17 @@ namespace ProyectView {
 	/// </summary>
 	public ref class Search_Client_InfoForm : public System::Windows::Forms::Form
 	{
-		Form^ refForm;// Variable de instancia
 	public:
-		Search_Client_InfoForm(Form^ form)
+		property char Type;
+		property Form^ saleForm;// Variable de instancia
+	public:
+		Search_Client_InfoForm(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
-			refForm = form;
+			Type = 'M';
 		}
 
 	protected:
@@ -70,16 +72,16 @@ namespace ProyectView {
 		void InitializeComponent(void)
 		{
 			this->dgvMeals = (gcnew System::Windows::Forms::DataGridView());
+			this->IdMeals = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->NombreMeal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->PriceMeal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->s = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
 			this->btnSearch = (gcnew System::Windows::Forms::Button());
 			this->txtNameDescription = (gcnew System::Windows::Forms::TextBox());
 			this->txtId = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->Id = (gcnew System::Windows::Forms::Label());
-			this->IdMeals = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->NombreMeal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->PriceMeal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->s = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvMeals))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -96,6 +98,35 @@ namespace ProyectView {
 			this->dgvMeals->RowTemplate->Height = 24;
 			this->dgvMeals->Size = System::Drawing::Size(502, 154);
 			this->dgvMeals->TabIndex = 13;
+			this->dgvMeals->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Search_Client_InfoForm::dgvMeals_CellClick);
+			// 
+			// IdMeals
+			// 
+			this->IdMeals->HeaderText = L"Id";
+			this->IdMeals->MinimumWidth = 6;
+			this->IdMeals->Name = L"IdMeals";
+			this->IdMeals->Width = 50;
+			// 
+			// NombreMeal
+			// 
+			this->NombreMeal->HeaderText = L"Nombre";
+			this->NombreMeal->MinimumWidth = 6;
+			this->NombreMeal->Name = L"NombreMeal";
+			this->NombreMeal->Width = 200;
+			// 
+			// PriceMeal
+			// 
+			this->PriceMeal->HeaderText = L"Apellido";
+			this->PriceMeal->MinimumWidth = 6;
+			this->PriceMeal->Name = L"PriceMeal";
+			this->PriceMeal->Width = 125;
+			// 
+			// s
+			// 
+			this->s->HeaderText = L"DNI";
+			this->s->MinimumWidth = 6;
+			this->s->Name = L"s";
+			this->s->Width = 125;
 			// 
 			// btnCancel
 			// 
@@ -105,6 +136,7 @@ namespace ProyectView {
 			this->btnCancel->TabIndex = 12;
 			this->btnCancel->Text = L"CANCELAR";
 			this->btnCancel->UseVisualStyleBackColor = true;
+			this->btnCancel->Click += gcnew System::EventHandler(this, &Search_Client_InfoForm::btnCancel_Click);
 			// 
 			// btnSearch
 			// 
@@ -147,34 +179,6 @@ namespace ProyectView {
 			this->Id->Size = System::Drawing::Size(18, 16);
 			this->Id->TabIndex = 7;
 			this->Id->Text = L"Id";
-			// 
-			// IdMeals
-			// 
-			this->IdMeals->HeaderText = L"Id";
-			this->IdMeals->MinimumWidth = 6;
-			this->IdMeals->Name = L"IdMeals";
-			this->IdMeals->Width = 50;
-			// 
-			// NombreMeal
-			// 
-			this->NombreMeal->HeaderText = L"Nombre";
-			this->NombreMeal->MinimumWidth = 6;
-			this->NombreMeal->Name = L"NombreMeal";
-			this->NombreMeal->Width = 200;
-			// 
-			// PriceMeal
-			// 
-			this->PriceMeal->HeaderText = L"Apellido";
-			this->PriceMeal->MinimumWidth = 6;
-			this->PriceMeal->Name = L"PriceMeal";
-			this->PriceMeal->Width = 125;
-			// 
-			// s
-			// 
-			this->s->HeaderText = L"DNI";
-			this->s->MinimumWidth = 6;
-			this->s->Name = L"s";
-			this->s->Width = 125;
 			// 
 			// Search_Client_InfoForm
 			// 
@@ -224,5 +228,9 @@ namespace ProyectView {
 			}
 		}
 	}
+private: System::Void btnCancel_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
+private: System::Void dgvMeals_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 };
 }

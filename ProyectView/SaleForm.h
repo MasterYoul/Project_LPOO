@@ -522,8 +522,6 @@ namespace ProyectView {
 			  lblClientData->Text = this->client_Info->DocNumber + " - " +
 				  cust->Name + " " +((Client_Info ^ )cust)->LastName;
 		  }
-
-
 private: System::Void btnAddCustomer_Click(System::Object^ sender, System::EventArgs^ e) {
 	Client_InfoForm^ client_InfoForm = gcnew Client_InfoForm();
 	client_InfoForm->UseType = 'S';
@@ -624,8 +622,11 @@ private: System::Void BtnCleanSale_Click(System::Object^ sender, System::EventAr
 	txtTotal->Text = "";
 }
 private: System::Void SEARCH_CLIENT_Click(System::Object^ sender, System::EventArgs^ e) {
-	Search_Client_InfoForm^ search_Client_InfoForm = gcnew Search_Client_InfoForm(this);
-	search_Client_InfoForm->ShowDialog();
+	Search_Client_InfoForm^ client_infoform = gcnew Search_Client_InfoForm();
+	client_infoform->Type = 'S';
+	client_infoform->saleForm = this;
+
+	client_infoform->ShowDialog();
 }
 };
 }

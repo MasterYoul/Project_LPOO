@@ -106,7 +106,6 @@ namespace ProyectView {
 			this->chartCommonMeals->Size = System::Drawing::Size(410, 368);
 			this->chartCommonMeals->TabIndex = 1;
 			this->chartCommonMeals->Text = L"chart1";
-
 			// 
 			// MealsGraphicsForm
 			// 
@@ -117,7 +116,7 @@ namespace ProyectView {
 			this->Controls->Add(this->chartSales);
 			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"MealsGraphicsForm";
-			this->Text = L"MealsGraphicsForm";
+			this->Text = L"Reporte  en graficos";
 			this->Load += gcnew System::EventHandler(this, &MealsGraphicsForm::MealsGraphicsForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartSales))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartCommonMeals))->EndInit();

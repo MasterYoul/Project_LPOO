@@ -10,8 +10,8 @@ namespace ProyectView {
 	using namespace System::Drawing;
 	using namespace ProjectModel;
 	using namespace ProjectController;
-	using namespace System::Collections::Generic;
 	using namespace Threading;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de Client_InfoForm
@@ -29,6 +29,7 @@ namespace ProyectView {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			UseType = 'M';
 		}
 
 	protected:
@@ -137,6 +138,49 @@ namespace ProyectView {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	private: System::ComponentModel::IContainer^ components;
 
 
@@ -146,6 +190,50 @@ namespace ProyectView {
 		/// </summary>
 		/// 
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #pragma region Windows Form Designer generated code
@@ -651,17 +739,17 @@ private: System::Void butADD_Click(System::Object ^ sender, System::EventArgs ^ 
 			  }
 
 			  Void RefreshdataGridViewClient() {
-				  List <Client_Info^>^ Client_InfoList = Controller::QueryAllClient_Info();
+				  List <Client_Info^>^ client_InfoList = Controller::QueryAllClient_Info();
 				  dataGridViewClient->Rows->Clear();
-				  if (Client_InfoList != nullptr)
-					  for (int i = 0; i < Client_InfoList->Count; i++) {
+				  if (client_InfoList != nullptr)
+					  for (int i = 0; i < client_InfoList->Count; i++) {
 						  dataGridViewClient->Rows->Add(gcnew array<String^> {
-							  "" + Client_InfoList[i]->Id,
-							  Client_InfoList[i]->Name,
-								  "" + Client_InfoList[i]->DocNumber,
-								  "" + Client_InfoList[i]->Rate,
-								   Client_InfoList[i]->TxtOpin,
-								  "" + Client_InfoList[i]->PhoneNumber,
+							  "" + client_InfoList[i]->Id,
+								  client_InfoList[i]->Name,
+								  "" + client_InfoList[i]->DocNumber,
+								  "" + client_InfoList[i]->Rate,
+								  client_InfoList[i]->TxtOpin,
+								  "" + client_InfoList[i]->PhoneNumber,
 
 						  });
 					  }
@@ -758,6 +846,64 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 	*/
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	  
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (dataGridViewClient->CurrentCell != nullptr &&
@@ -861,37 +1007,11 @@ private: System::Void Client_InfoForm_Shown(System::Object^ sender, System::Even
 	butActualizar->Enabled = false;
 	butDELETE->Enabled = false;
 }
-private: System::Void dataGridViewClient_Info_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	int selectedRowIndex = dataGridViewClient->SelectedCells[0]->RowIndex;
-	int ClientId = Convert::ToInt32(dataGridViewClient->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
-	Client_Info^ c = Controller::QueryClient_InfotById(ClientId);
-
-	butActualizar->Enabled = true;
-	butDELETE->Enabled = true;
-
-	textIdClient->Text = "" + c->Id;
-	textNameClient->Text = c->Name;
-	textLastNameClient->Text = c->LastName;
-	textOpinionClient->Text = c->TxtOpin;
-	comboBoxRatioClient->Text = "" + c->Rate;
-	textRucClient->Text = c->RucNumber;
-	textNumberClient->Text = c->PhoneNumber;
-	textDniClient->Text = c->DocNumber;
-	numericUpDownVisitsClient->Text = "" + c->VisitQuantity;
-	radioButtonPersonClient->Checked = c->Type == 'P';
-	radioButtonEmpresaClient->Checked = c->Type == 'E';
-	ClientFemale->Checked = c->Gender == 'F';
-	ClientMale->Checked = c->Gender == 'M';
-
-
-	//UserMale->Checked = p->Gender == 'M';
-	//UserFemale->Checked = p->Gender == 'F';
-
-
-}
+private: System::Void dataGridViewClient_Info_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 private: System::Void Client_InfoForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	ShowClient();
 }
+	   
 
 };
 }

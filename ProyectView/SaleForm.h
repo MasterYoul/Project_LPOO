@@ -28,9 +28,9 @@ namespace ProyectView {
 		Client_Info^ client_Info;
 		TableDetail^ tabledetail;
 		User^ user;
-	private: System::Windows::Forms::Button^ button3;
+
 	private: System::Windows::Forms::Button^ BtnCleanSale;
-	private: System::Windows::Forms::Button^ button4;
+
 		   
 	public:
 		SaleForm(void)
@@ -139,8 +139,6 @@ namespace ProyectView {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->BtnCleanSale = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvDetails))->BeginInit();
 			this->SuspendLayout();
@@ -422,26 +420,6 @@ namespace ProyectView {
 			this->textBox2->Size = System::Drawing::Size(317, 22);
 			this->textBox2->TabIndex = 41;
 			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(818, 208);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(114, 44);
-			this->button3->TabIndex = 49;
-			this->button3->Text = L"MESERO";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &SaleForm::button3_Click);
-			// 
-			// button4
-			// 
-			this->button4->Location = System::Drawing::Point(818, 127);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(114, 44);
-			this->button4->TabIndex = 50;
-			this->button4->Text = L"MESA";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &SaleForm::button4_Click);
-			// 
 			// BtnCleanSale
 			// 
 			this->BtnCleanSale->Location = System::Drawing::Point(409, 760);
@@ -458,8 +436,6 @@ namespace ProyectView {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1021, 868);
 			this->Controls->Add(this->BtnCleanSale);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label7);
@@ -599,7 +575,12 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	}
 }
 
-
+	   public:  Void SetCustomer(Client_Info^ cust) {
+		   this->client_Info = cust;
+		   textClient->Text = cust->DocNumber;
+		   lblClientData->Text = cust->DocNumber + " - " +
+			   cust->Name + " " + cust->LastName;
+	   }
 
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	TableDetail^ TableDetail = Controller::QueryTableDetailtById(Int32::Parse(textBox2->Text));
@@ -613,22 +594,7 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 		MessageBox::Show("Mesa no encontra!");
 	}
 }
-private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	UserForm^ client_InfoForm = gcnew UserForm();
-	client_InfoForm->UseType = 'S';
-	client_InfoForm->RefSaleForm = this;
-	//btnAdd->Enabled = false;
-	client_InfoForm->ShowDialog();
-	
-}
-private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	TableForm^ client_InfoForm = gcnew TableForm();
-	client_InfoForm->UseType = 'S';
-	client_InfoForm->RefSaleForm = this;
-	//btnAdd->Enabled = false;
 
-	client_InfoForm->ShowDialog();
-}
 private: System::Void BtnCleanSale_Click(System::Object^ sender, System::EventArgs^ e) {
 	TableDetail^ TableDetail = Controller::QueryTableDetailtById(Int32::Parse(textBox2->Text));
 	

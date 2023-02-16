@@ -19,9 +19,6 @@ namespace ProyectView {
 	public ref class TableForm : public System::Windows::Forms::Form
 	{
 	public:
-		property char UseType;
-		property Form^ RefSaleForm;
-	public:
 		TableForm(void)
 		{
 			InitializeComponent();

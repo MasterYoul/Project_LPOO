@@ -1,6 +1,7 @@
 #pragma once
 #include "MealsSearchForm.h"
 #include "Client_InfoForm.h"
+#include "Search_Client_InfoForm.h"
 #include "UserForm.h"
 #include "TableForm.h"
 #include "Resource.h"
@@ -28,6 +29,8 @@ namespace ProyectView {
 		Client_Info^ client_Info;
 		TableDetail^ tabledetail;
 		User^ user;
+	private: System::Windows::Forms::Label^ label11;
+	private: System::Windows::Forms::Button^ SEARCH_CLIENT;
 
 	private: System::Windows::Forms::Button^ BtnCleanSale;
 
@@ -54,7 +57,7 @@ namespace ProyectView {
 		}
 	private: System::Windows::Forms::Label^ label1;
 	protected:
-	private: System::Windows::Forms::Label^ label2;
+
 	private: System::Windows::Forms::DateTimePicker^ dateTimeSale;
 	private: System::Windows::Forms::TextBox^ textClient;
 	private: System::Windows::Forms::Label^ lblClientData;
@@ -108,7 +111,6 @@ namespace ProyectView {
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->dateTimeSale = (gcnew System::Windows::Forms::DateTimePicker());
 			this->textClient = (gcnew System::Windows::Forms::TextBox());
 			this->lblClientData = (gcnew System::Windows::Forms::Label());
@@ -140,26 +142,19 @@ namespace ProyectView {
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->BtnCleanSale = (gcnew System::Windows::Forms::Button());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->SEARCH_CLIENT = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvDetails))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(90, 29);
+			this->label1->Location = System::Drawing::Point(68, 23);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(45, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Fecha";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(89, 66);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(48, 16);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"Cliente";
 			// 
 			// dateTimeSale
 			// 
@@ -170,14 +165,14 @@ namespace ProyectView {
 			// 
 			// textClient
 			// 
-			this->textClient->Location = System::Drawing::Point(151, 59);
+			this->textClient->Location = System::Drawing::Point(154, 70);
 			this->textClient->Name = L"textClient";
 			this->textClient->Size = System::Drawing::Size(317, 22);
 			this->textClient->TabIndex = 3;
 			// 
 			// lblClientData
 			// 
-			this->lblClientData->Location = System::Drawing::Point(148, 98);
+			this->lblClientData->Location = System::Drawing::Point(151, 105);
 			this->lblClientData->Name = L"lblClientData";
 			this->lblClientData->Size = System::Drawing::Size(317, 16);
 			this->lblClientData->TabIndex = 16;
@@ -206,19 +201,19 @@ namespace ProyectView {
 			// 
 			// btnSearchCustomer
 			// 
-			this->btnSearchCustomer->Location = System::Drawing::Point(627, 34);
+			this->btnSearchCustomer->Location = System::Drawing::Point(576, 70);
 			this->btnSearchCustomer->Name = L"btnSearchCustomer";
-			this->btnSearchCustomer->Size = System::Drawing::Size(125, 44);
+			this->btnSearchCustomer->Size = System::Drawing::Size(157, 30);
 			this->btnSearchCustomer->TabIndex = 19;
-			this->btnSearchCustomer->Text = L"BUSCAR";
+			this->btnSearchCustomer->Text = L"BUSCAR CLIENTE";
 			this->btnSearchCustomer->UseVisualStyleBackColor = true;
 			this->btnSearchCustomer->Click += gcnew System::EventHandler(this, &SaleForm::btnSearchCustomer_Click);
 			// 
 			// btnAddCustomer
 			// 
-			this->btnAddCustomer->Location = System::Drawing::Point(818, 34);
+			this->btnAddCustomer->Location = System::Drawing::Point(760, 60);
 			this->btnAddCustomer->Name = L"btnAddCustomer";
-			this->btnAddCustomer->Size = System::Drawing::Size(114, 44);
+			this->btnAddCustomer->Size = System::Drawing::Size(163, 26);
 			this->btnAddCustomer->TabIndex = 20;
 			this->btnAddCustomer->Text = L"+ Cliente";
 			this->btnAddCustomer->UseVisualStyleBackColor = true;
@@ -379,11 +374,11 @@ namespace ProyectView {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(627, 208);
+			this->button2->Location = System::Drawing::Point(576, 219);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(125, 44);
+			this->button2->Size = System::Drawing::Size(157, 32);
 			this->button2->TabIndex = 45;
-			this->button2->Text = L"BUSCAR";
+			this->button2->Text = L"BUSCAR MESERO";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &SaleForm::button2_Click);
 			// 
@@ -396,11 +391,11 @@ namespace ProyectView {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(627, 130);
+			this->button1->Location = System::Drawing::Point(576, 149);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(125, 44);
+			this->button1->Size = System::Drawing::Size(157, 32);
 			this->button1->TabIndex = 43;
-			this->button1->Text = L"BUSCAR";
+			this->button1->Text = L"BUSCAR MESA";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &SaleForm::button1_Click_1);
 			// 
@@ -430,11 +425,32 @@ namespace ProyectView {
 			this->BtnCleanSale->UseVisualStyleBackColor = true;
 			this->BtnCleanSale->Click += gcnew System::EventHandler(this, &SaleForm::BtnCleanSale_Click);
 			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(68, 70);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(48, 16);
+			this->label11->TabIndex = 53;
+			this->label11->Text = L"Cliente";
+			// 
+			// SEARCH_CLIENT
+			// 
+			this->SEARCH_CLIENT->Location = System::Drawing::Point(760, 92);
+			this->SEARCH_CLIENT->Name = L"SEARCH_CLIENT";
+			this->SEARCH_CLIENT->Size = System::Drawing::Size(163, 29);
+			this->SEARCH_CLIENT->TabIndex = 54;
+			this->SEARCH_CLIENT->Text = L"AGREGAR CLIENTE";
+			this->SEARCH_CLIENT->UseVisualStyleBackColor = true;
+			this->SEARCH_CLIENT->Click += gcnew System::EventHandler(this, &SaleForm::SEARCH_CLIENT_Click);
+			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1021, 868);
+			this->ClientSize = System::Drawing::Size(1028, 868);
+			this->Controls->Add(this->SEARCH_CLIENT);
+			this->Controls->Add(this->label11);
 			this->Controls->Add(this->BtnCleanSale);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label9);
@@ -461,7 +477,6 @@ namespace ProyectView {
 			this->Controls->Add(this->lblClientData);
 			this->Controls->Add(this->textClient);
 			this->Controls->Add(this->dateTimeSale);
-			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"SaleForm";
 			this->Text = L"Generador de Ventas";
@@ -607,6 +622,10 @@ private: System::Void BtnCleanSale_Click(System::Object^ sender, System::EventAr
 	txtTax->Text = "";
 	textBox1 ->Text = "";
 	txtTotal->Text = "";
+}
+private: System::Void SEARCH_CLIENT_Click(System::Object^ sender, System::EventArgs^ e) {
+	Search_Client_InfoForm^ search_Client_InfoForm = gcnew Search_Client_InfoForm(this);
+	search_Client_InfoForm->ShowDialog();
 }
 };
 }

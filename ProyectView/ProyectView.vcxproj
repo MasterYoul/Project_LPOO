@@ -149,6 +149,9 @@
     <ClInclude Include="RecoverForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Search_Client_InfoForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="TableForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -186,6 +189,7 @@
     <ClCompile Include="ProyectView.cpp" />
     <ClCompile Include="RecoverForm.cpp" />
     <ClCompile Include="SaleForm.cpp" />
+    <ClCompile Include="Search_Client_InfoForm.cpp" />
     <ClCompile Include="Sugesstions.cpp" />
     <ClCompile Include="UserForm.cpp" />
   </ItemGroup>
@@ -229,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecoverForm.resx">
       <DependentUpon>RecoverForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Search_Client_InfoForm.resx">
+      <DependentUpon>Search_Client_InfoForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableForm.resx">
       <DependentUpon>TableForm.h</DependentUpon>

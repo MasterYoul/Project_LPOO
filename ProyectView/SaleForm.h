@@ -17,6 +17,7 @@ namespace ProyectView {
 	using namespace System::Drawing;
 	using namespace ProjectModel;
 	using namespace ProjectController;
+	
 
 	/// <summary>
 	/// Resumen de SaleForm
@@ -28,6 +29,7 @@ namespace ProyectView {
 		TableDetail^ tabledetail;
 		User^ user;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ BtnCleanSale;
 	private: System::Windows::Forms::Button^ button4;
 		   
 	public:
@@ -139,6 +141,7 @@ namespace ProyectView {
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->BtnCleanSale = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvDetails))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -185,7 +188,7 @@ namespace ProyectView {
 			// 
 			// btnAddMeal
 			// 
-			this->btnAddMeal->Location = System::Drawing::Point(168, 332);
+			this->btnAddMeal->Location = System::Drawing::Point(93, 331);
 			this->btnAddMeal->Name = L"btnAddMeal";
 			this->btnAddMeal->Size = System::Drawing::Size(239, 55);
 			this->btnAddMeal->TabIndex = 17;
@@ -195,7 +198,7 @@ namespace ProyectView {
 			// 
 			// btnDeleteMeal
 			// 
-			this->btnDeleteMeal->Location = System::Drawing::Point(495, 332);
+			this->btnDeleteMeal->Location = System::Drawing::Point(388, 331);
 			this->btnDeleteMeal->Name = L"btnDeleteMeal";
 			this->btnDeleteMeal->Size = System::Drawing::Size(230, 55);
 			this->btnDeleteMeal->TabIndex = 18;
@@ -275,9 +278,9 @@ namespace ProyectView {
 			// 
 			// btnRegisterSale
 			// 
-			this->btnRegisterSale->Location = System::Drawing::Point(151, 760);
+			this->btnRegisterSale->Location = System::Drawing::Point(59, 760);
 			this->btnRegisterSale->Name = L"btnRegisterSale";
-			this->btnRegisterSale->Size = System::Drawing::Size(290, 35);
+			this->btnRegisterSale->Size = System::Drawing::Size(290, 54);
 			this->btnRegisterSale->TabIndex = 22;
 			this->btnRegisterSale->Text = L"Registrar Venta";
 			this->btnRegisterSale->UseVisualStyleBackColor = true;
@@ -439,11 +442,22 @@ namespace ProyectView {
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &SaleForm::button4_Click);
 			// 
+			// BtnCleanSale
+			// 
+			this->BtnCleanSale->Location = System::Drawing::Point(409, 760);
+			this->BtnCleanSale->Name = L"BtnCleanSale";
+			this->BtnCleanSale->Size = System::Drawing::Size(229, 54);
+			this->BtnCleanSale->TabIndex = 51;
+			this->BtnCleanSale->Text = L"Limpiar Todo";
+			this->BtnCleanSale->UseVisualStyleBackColor = true;
+			this->BtnCleanSale->Click += gcnew System::EventHandler(this, &SaleForm::BtnCleanSale_Click);
+			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1021, 868);
+			this->Controls->Add(this->BtnCleanSale);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->label10);
@@ -603,15 +617,30 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	UserForm^ client_InfoForm = gcnew UserForm();
 	client_InfoForm->UseType = 'S';
 	client_InfoForm->RefSaleForm = this;
-
+	//btnAdd->Enabled = false;
 	client_InfoForm->ShowDialog();
+	
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	TableForm^ client_InfoForm = gcnew TableForm();
 	client_InfoForm->UseType = 'S';
 	client_InfoForm->RefSaleForm = this;
+	//btnAdd->Enabled = false;
 
 	client_InfoForm->ShowDialog();
+}
+private: System::Void BtnCleanSale_Click(System::Object^ sender, System::EventArgs^ e) {
+	TableDetail^ TableDetail = Controller::QueryTableDetailtById(Int32::Parse(textBox2->Text));
+	
+	dgvDetails->DataSource = "";
+
+	textClient->Text = "";
+	textBox2->Text = "";
+	textBox3->Text = "";
+	txtSubtotal->Text = "";
+	txtTax->Text = "";
+	textBox1 ->Text = "";
+	txtTotal->Text = "";
 }
 };
 }

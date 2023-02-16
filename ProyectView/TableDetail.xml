@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTableDetail xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <TableDetail>
-    <TimeReserv>5</TimeReserv>
+    <TimeReserv>5:00</TimeReserv>
     <Reserved>Reservado</Reserved>
     <Disponibility>No Disponible</Disponibility>
     <TableCapacity>32435</TableCapacity>
@@ -9,6 +9,8 @@
     <Id>1</Id>
   </TableDetail>
   <TableDetail>
+    <TimeReserv>12</TimeReserv>
+    <Reserved>Libre</Reserved>
     <Disponibility>NO DISPONIBLE</Disponibility>
     <TableCapacity>3</TableCapacity>
     <Floor>0</Floor>

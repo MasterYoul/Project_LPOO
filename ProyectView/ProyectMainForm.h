@@ -58,7 +58,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::ToolStripMenuItem^ ayudaToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ realizarVentasToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ salirToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ gráficosToolStripMenuItem;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ reporteToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ mesasToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ verPedidosToolStripMenuItem;
@@ -88,7 +88,6 @@ namespace ProyectView {
 			this->realizarVentasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->verPedidosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reportesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->gráficosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reporteToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ayudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
@@ -187,24 +186,15 @@ namespace ProyectView {
 			// 
 			// reportesToolStripMenuItem
 			// 
-			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->gráficosToolStripMenuItem,
-					this->reporteToolStripMenuItem
-			});
+			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->reporteToolStripMenuItem });
 			this->reportesToolStripMenuItem->Name = L"reportesToolStripMenuItem";
 			this->reportesToolStripMenuItem->Size = System::Drawing::Size(82, 24);
 			this->reportesToolStripMenuItem->Text = L"Reportes";
 			// 
-			// gráficosToolStripMenuItem
-			// 
-			this->gráficosToolStripMenuItem->Name = L"gráficosToolStripMenuItem";
-			this->gráficosToolStripMenuItem->Size = System::Drawing::Size(146, 26);
-			this->gráficosToolStripMenuItem->Text = L"Gráficos";
-			// 
 			// reporteToolStripMenuItem
 			// 
 			this->reporteToolStripMenuItem->Name = L"reporteToolStripMenuItem";
-			this->reporteToolStripMenuItem->Size = System::Drawing::Size(146, 26);
+			this->reporteToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->reporteToolStripMenuItem->Text = L"Reporte";
 			this->reporteToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::reporteToolStripMenuItem_Click);
 			// 
@@ -282,5 +272,8 @@ private: System::Void verPedidosToolStripMenuItem_Click(System::Object^ sender, 
 	saleForm->Show();
 }
 
+
+private: System::Void gráficosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

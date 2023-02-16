@@ -87,7 +87,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
-	private: System::Windows::Forms::Button^ button1;
+
 
 
 
@@ -138,7 +138,6 @@ namespace ProyectView {
 			this->btnClear = (gcnew System::Windows::Forms::Button());
 			this->comboBoxDisponibility = (gcnew System::Windows::Forms::ComboBox());
 			this->comboBoxReserved = (gcnew System::Windows::Forms::ComboBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridTable))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -276,7 +275,7 @@ namespace ProyectView {
 			// 
 			this->btnAdd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnAdd->Location = System::Drawing::Point(37, 205);
+			this->btnAdd->Location = System::Drawing::Point(134, 198);
 			this->btnAdd->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAdd->Name = L"btnAdd";
 			this->btnAdd->Size = System::Drawing::Size(121, 44);
@@ -308,7 +307,7 @@ namespace ProyectView {
 			// 
 			this->btnDelete->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnDelete->Location = System::Drawing::Point(195, 205);
+			this->btnDelete->Location = System::Drawing::Point(292, 198);
 			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
 			this->btnDelete->Size = System::Drawing::Size(124, 44);
@@ -321,7 +320,7 @@ namespace ProyectView {
 			// 
 			this->btnModify->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnModify->Location = System::Drawing::Point(393, 205);
+			this->btnModify->Location = System::Drawing::Point(490, 198);
 			this->btnModify->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnModify->Name = L"btnModify";
 			this->btnModify->Size = System::Drawing::Size(123, 44);
@@ -334,7 +333,7 @@ namespace ProyectView {
 			// 
 			this->btnClear->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnClear->Location = System::Drawing::Point(569, 205);
+			this->btnClear->Location = System::Drawing::Point(666, 198);
 			this->btnClear->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClear->Name = L"btnClear";
 			this->btnClear->Size = System::Drawing::Size(124, 44);
@@ -361,25 +360,11 @@ namespace ProyectView {
 			this->comboBoxReserved->Size = System::Drawing::Size(141, 24);
 			this->comboBoxReserved->TabIndex = 18;
 			// 
-			// button1
-			// 
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(728, 205);
-			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(124, 44);
-			this->button1->TabIndex = 19;
-			this->button1->Text = L"Actualizar";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &TableForm::button1_Click);
-			// 
 			// TableForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(964, 706);
-			this->Controls->Add(this->button1);
 			this->Controls->Add(this->comboBoxReserved);
 			this->Controls->Add(this->comboBoxDisponibility);
 			this->Controls->Add(this->btnClear);

@@ -7,7 +7,7 @@
     <StockUsed>25</StockUsed>
     <Stock>30</Stock>
     <Price>15</Price>
-    <Description>Sin sillao</Description>
+    <Description>ChaufaDescription</Description>
     <Name>Arroz Chaufa</Name>
     <Id>123</Id>
   </Meals>
@@ -17,7 +17,7 @@
     <StockUsed>45</StockUsed>
     <Stock>60</Stock>
     <Price>14</Price>
-    <Description>sin platano </Description>
+    <Description>CubanaDescription</Description>
     <Name>Arroz a la cubana</Name>
     <Id>456</Id>
   </Meals>

@@ -70,11 +70,15 @@ namespace ProjectController {
 		static int DeleteUser(int UserId);
 		static List<User^>^ QueryUserByNameOrLastName(String^ nameDesc);
 		static User^ QueryUsertByCredentials(String^ username, String^ password);
+
+		static User^ QueryUserChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword);
 		
 
 
 
 		static User^ Login(String^ username, String^ password);
+
+		static User^ ChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword);
 
 		static Void RegisterSuggestions(Suggestions^ suggestions);
 

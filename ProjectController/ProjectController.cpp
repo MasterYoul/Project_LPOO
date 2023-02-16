@@ -441,6 +441,23 @@ User^ ProjectController::Controller::QueryUsertByCredentials(String^ username, S
     }
     return nullptr;
 }
+User^ ProjectController::Controller::QueryUserChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword) {
+    UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
+    for (int i = 0; i < UserList->Count; i++) {
+        if (UserList[i]->DocNumber->Equals(UserDNI) && UserList[i]->Username->Equals(UserUsuario) && UserList[i]->Name->Equals(UserName) && UserList[i]->LastName->Equals(UserLastName) && UserList[i]->PhoneNumber->Equals(UserNumber)) {
+            UserList[i]->Password=newpassword;
+            Persistance::PersistBinary("User.bin", UserList);
+            for (int i = 0; i < UserList->Count; i++) {
+                if (UserList[i]->DocNumber->Equals(UserDNI) && UserList[i]->Username->Equals(UserUsuario) && UserList[i]->Name->Equals(UserName) && UserList[i]->LastName->Equals(UserLastName) && UserList[i]->PhoneNumber->Equals(UserNumber)) {
+                    return UserList[i];
+                }
+            }
+            
+            return nullptr;
+        }
+    }
+    return nullptr;
+}
 
 User^ ProjectController::Controller::Login(String^ username, String^ password)
 {
@@ -455,6 +472,9 @@ User^ ProjectController::Controller::Login(String^ username, String^ password)
     }
     return user;*/
     return QueryUsertByCredentials(username, password);
+}
+User^ ProjectController::Controller::ChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword) {
+    return QueryUserChangePassword(UserDNI,  UserUsuario,  UserName,  UserLastName, UserNumber, newpassword);
 }
 
 Void ProjectController::Controller::RegisterSuggestions(Suggestions^ suggestions)

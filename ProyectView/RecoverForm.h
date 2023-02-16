@@ -373,6 +373,7 @@ namespace ProyectView {
 			this->button1->TabIndex = 68;
 			this->button1->Text = L"Cambiar Contraseña";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &RecoverForm::button1_Click);
 			// 
 			// button2
 			// 
@@ -430,5 +431,6 @@ namespace ProyectView {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

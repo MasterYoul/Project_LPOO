@@ -4,6 +4,7 @@
 
 
 #pragma once
+#include "Client_Info.h"
 
 using namespace System;
 namespace ProjectModel {
@@ -16,6 +17,7 @@ namespace ProjectModel {
         property String^ FoodScore;
         property String^ VenueScore;
         property String^ Comments;
+        property Client_Info^ Client_Info;
 
     };
 }

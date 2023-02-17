@@ -138,6 +138,9 @@ void ProjectPersistance::Persistance::PersistBinary(String^ fileName, Object^ pe
         if (persistObject->GetType() == List<TableDetail^>::typeid) {
             formateador->Serialize(output, persistObject);
         }
+        if (persistObject->GetType() == List<Suggestions^>::typeid) {
+            formateador->Serialize(output, persistObject);
+        }
     }
     catch (Exception^ ex) {
         throw ex;
@@ -362,6 +365,12 @@ Object^ ProjectPersistance::Persistance::LoadBinaryData(String^ fileName)
             res = gcnew List<TableDetail^>();
             if (File::Exists(fileName)) {
                 res = (List<TableDetail^>^)formateador->Deserialize(input);
+            }
+        }
+        if (fileName->Equals("Suggestions.bin")) {
+            res = gcnew List<Suggestions^>();
+            if (File::Exists(fileName)) {
+                res = (List<Suggestions^>^)formateador->Deserialize(input);
             }
         }
     }

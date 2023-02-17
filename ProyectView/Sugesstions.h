@@ -1,4 +1,6 @@
 #pragma once
+#include "Client_InfoForm.h"
+#include "Search_Client_InfoForm.h"
 
 namespace ProyectView {
 
@@ -17,6 +19,8 @@ namespace ProyectView {
 	/// </summary>
 	public ref class Sugesstions : public System::Windows::Forms::Form
 	{
+	private:
+		Client_Info^ client_Info;
 	public:
 		property char UseType;
 		property Form^ RefSaleForm;
@@ -118,6 +122,7 @@ namespace ProyectView {
 			this->btnSearchCustomer->TabIndex = 26;
 			this->btnSearchCustomer->Text = L"BUSCAR";
 			this->btnSearchCustomer->UseVisualStyleBackColor = true;
+			this->btnSearchCustomer->Click += gcnew System::EventHandler(this, &Sugesstions::btnSearchCustomer_Click);
 			// 
 			// lblClientData
 			// 
@@ -350,5 +355,18 @@ private: System::Void buttonClean_Click(System::Object^ sender, System::EventArg
 private: System::Void buttonCancel_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();
 }
+private: System::Void btnSearchCustomer_Click(System::Object^ sender, System::EventArgs^ e) {
+	Search_Client_InfoForm^ client_infoform = gcnew Search_Client_InfoForm();
+	client_infoform->Type = 'K';
+	client_infoform->saleForm = this;
+
+	client_infoform->ShowDialog();
+}
+	   public:  Void SetCustomer(Client_Info^ cust) {
+		   this->client_Info = cust;
+		   textClient->Text = cust->DocNumber;
+		   lblClientData->Text = cust->DocNumber + " - " +
+			   cust->Name + " " + cust->LastName;
+	   }
 };
 }

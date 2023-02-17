@@ -20,6 +20,7 @@ namespace ProyectView {
 	public:
 		property char Type;
 		property Form^ saleForm;// Variable de instancia
+		property Form^ sugesstionForm;
 	public:
 		Search_Client_InfoForm(void)
 		{

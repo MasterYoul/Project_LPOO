@@ -60,12 +60,12 @@ namespace ProyectView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea3 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea4 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->chartSales = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->chartCommonMeals = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartSales))->BeginInit();
@@ -74,17 +74,17 @@ namespace ProyectView {
 			// 
 			// chartSales
 			// 
-			chartArea1->Name = L"ChartArea1";
-			this->chartSales->ChartAreas->Add(chartArea1);
-			legend1->Name = L"Legend1";
-			this->chartSales->Legends->Add(legend1);
-			this->chartSales->Location = System::Drawing::Point(16, 15);
+			chartArea3->Name = L"ChartArea1";
+			this->chartSales->ChartAreas->Add(chartArea3);
+			legend3->Name = L"Legend1";
+			this->chartSales->Legends->Add(legend3);
+			this->chartSales->Location = System::Drawing::Point(45, 203);
 			this->chartSales->Margin = System::Windows::Forms::Padding(4);
 			this->chartSales->Name = L"chartSales";
-			series1->ChartArea = L"ChartArea1";
-			series1->Legend = L"Legend1";
-			series1->Name = L"Monto";
-			this->chartSales->Series->Add(series1);
+			series3->ChartArea = L"ChartArea1";
+			series3->Legend = L"Legend1";
+			series3->Name = L"Monto";
+			this->chartSales->Series->Add(series3);
 			this->chartSales->Size = System::Drawing::Size(400, 369);
 			this->chartSales->TabIndex = 0;
 			this->chartSales->Text = L"chart1";
@@ -92,17 +92,17 @@ namespace ProyectView {
 			// 
 			// chartCommonMeals
 			// 
-			chartArea2->Name = L"ChartArea1";
-			this->chartCommonMeals->ChartAreas->Add(chartArea2);
-			legend2->Name = L"Legend1";
-			this->chartCommonMeals->Legends->Add(legend2);
-			this->chartCommonMeals->Location = System::Drawing::Point(563, 15);
+			chartArea4->Name = L"ChartArea1";
+			this->chartCommonMeals->ChartAreas->Add(chartArea4);
+			legend4->Name = L"Legend1";
+			this->chartCommonMeals->Legends->Add(legend4);
+			this->chartCommonMeals->Location = System::Drawing::Point(633, 203);
 			this->chartCommonMeals->Name = L"chartCommonMeals";
-			series2->ChartArea = L"ChartArea1";
-			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Pie;
-			series2->Legend = L"Legend1";
-			series2->Name = L"Platos";
-			this->chartCommonMeals->Series->Add(series2);
+			series4->ChartArea = L"ChartArea1";
+			series4->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Pie;
+			series4->Legend = L"Legend1";
+			series4->Name = L"Platos";
+			this->chartCommonMeals->Series->Add(series4);
 			this->chartCommonMeals->Size = System::Drawing::Size(410, 368);
 			this->chartCommonMeals->TabIndex = 1;
 			this->chartCommonMeals->Text = L"chart1";
@@ -111,7 +111,7 @@ namespace ProyectView {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1067, 439);
+			this->ClientSize = System::Drawing::Size(1067, 649);
 			this->Controls->Add(this->chartCommonMeals);
 			this->Controls->Add(this->chartSales);
 			this->Margin = System::Windows::Forms::Padding(4);

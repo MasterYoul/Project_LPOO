@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Search_Client_InfoForm.h"
 #include "SaleForm.h";
+#include "Sugesstions.h"
 
 
 
@@ -15,6 +16,12 @@ System::Void ProyectView::Search_Client_InfoForm::dgvMeals_CellClick(System::Obj
 			//¿Cómo enviamos al formulario de la venta los datos del cliente?
 			//Rpta. Mediante una referencia al formulario de la venta (SaleForm).
 			((SaleForm^)saleForm)->SetCustomer(p);
+			this->Close();
+		}
+		if (Type == 'K') {
+			//¿Cómo enviamos al formulario de la venta los datos del cliente?
+			//Rpta. Mediante una referencia al formulario de la venta (SaleForm).
+			((Sugesstions^)sugesstionForm)->SetCustomer(p);
 			this->Close();
 		}
 	}

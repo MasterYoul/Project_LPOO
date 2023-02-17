@@ -19,6 +19,7 @@ namespace ProjectModel {
         property String^ Description;
         property Double Price;
         property int Stock;
+        property String^ DateMeal;
         property int StockUsed;
         property char Status;
         property array<Byte>^ Photo;

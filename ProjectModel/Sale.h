@@ -21,6 +21,7 @@ namespace ProjectModel {
         property String^ TxtDate;
         property char Status;
         property double Total;
+        property String^ Fecha; //agregado para el grafico de barras
         property User^ User;
         //property Meals^ Meals;
         property TableDetail^ TableDetail;

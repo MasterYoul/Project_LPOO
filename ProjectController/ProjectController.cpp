@@ -613,3 +613,21 @@ Void ProjectController::Controller::RegisterSale(Sale^ sale)
     SaleList->Add(sale);
     Persistance::PersistBinary("Sale.bin", SaleList);
 }
+
+
+List<Sale^>^ ProjectController::Controller::QueryAllTotalSaleList(String^ date)
+{
+    SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
+    List<Sale^>^ totalList = gcnew List<Sale^>();
+    for (int i = 0; i < SalesList->Count; i++) {
+        if (SaleList[i]->TxtDate->Equals(date)) 
+            totalList->Add(SaleList[i]);
+
+    }
+    return totalList;
+    //return List<Sale^>();
+}
+
+
+
+

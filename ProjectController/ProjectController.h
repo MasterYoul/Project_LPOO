@@ -97,5 +97,7 @@ namespace ProjectController {
 		static List<Sale^>^ QueryAllSale();
 		static int QueryLastSaleId();
 		static Void RegisterSale(Sale^ sale);
+
+		static List<Sale^>^ QueryAllTotalSaleList(String^ date);
 	};
 }

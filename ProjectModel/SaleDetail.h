@@ -15,6 +15,7 @@ namespace ProjectModel {
         property int Id;
         property int Quantity;
         property double Subtotal;
+        
         property Double UnitPrice;
         property Meals^ Meals;
         property String^ Estado;

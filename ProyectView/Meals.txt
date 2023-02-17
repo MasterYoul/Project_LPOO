@@ -1,3 +1,2 @@
-123,Arroz Chaufa,ChaufaDescription,15,30
-456,Arroz a la cubana,CubanaDescription,14,60
-4,Ceviche,cevicheDescription,16,50
+234,Ceviche,CevicheDescription,15,44
+123,Arroz Chaufa,Arroz ChaufaDescription,15,28

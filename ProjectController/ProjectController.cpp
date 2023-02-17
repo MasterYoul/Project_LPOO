@@ -618,6 +618,7 @@ Void ProjectController::Controller::RegisterSale(Sale^ sale)
 List<Sale^>^ ProjectController::Controller::QueryAllTotalSaleList(String^ date)
 {
     SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
+    List<Sale^>^ SalesList = Controller::QueryAllSale();
     List<Sale^>^ totalList = gcnew List<Sale^>();
     for (int i = 0; i < SalesList->Count; i++) {
         if (SaleList[i]->TxtDate->Equals(date)) 

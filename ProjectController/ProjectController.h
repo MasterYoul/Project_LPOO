@@ -17,10 +17,10 @@ namespace ProjectController {
 		static List <Sale^>^ SaleList = gcnew List<Sale^>();
 		static List<Suggestions^>^ SuggestionsList = gcnew List<Suggestions^>();
 
-
 	public:
 
 		static void Init();
+
 
 		static List<SaleDetail^>^ QueryAllSaleDetail();
 

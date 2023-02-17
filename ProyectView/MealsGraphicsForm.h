@@ -166,12 +166,12 @@ namespace ProyectView {
 				chartSales->Series["Monto"]->Points[k]->Label = Convert::ToString(SumTotal);
 			}
 			*/
-			for (int i = 0; i < SalesList->Count; i++) {
+			for (int i = 1; i < SalesList->Count; i++) {
 
 				if (SalesList[i]->Fecha->Contains(BuscarPorFecha)) {
 					chartSales->Series["Monto"]->Points->Add(SalesList[i]->Total);
 					chartSales->Series["Monto"]->Points[k]->Color = Color::Blue;
-					chartSales->Series["Monto"]->Points[k]->AxisLabel = SalesList[i]->Fecha;
+					chartSales->Series["Monto"]->Points[k]->AxisLabel = SalesList[i]->Client_Info->Name;
 					chartSales->Series["Monto"]->Points[k]->Label = Convert::ToString(SalesList[i]->Total);
 					k++;
 				}

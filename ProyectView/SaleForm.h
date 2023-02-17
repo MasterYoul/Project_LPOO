@@ -191,7 +191,7 @@ namespace ProyectView {
 			// 
 			// btnAddMeal
 			// 
-			this->btnAddMeal->Location = System::Drawing::Point(93, 331);
+			this->btnAddMeal->Location = System::Drawing::Point(205, 319);
 			this->btnAddMeal->Name = L"btnAddMeal";
 			this->btnAddMeal->Size = System::Drawing::Size(239, 55);
 			this->btnAddMeal->TabIndex = 17;
@@ -201,7 +201,7 @@ namespace ProyectView {
 			// 
 			// btnDeleteMeal
 			// 
-			this->btnDeleteMeal->Location = System::Drawing::Point(388, 331);
+			this->btnDeleteMeal->Location = System::Drawing::Point(500, 319);
 			this->btnDeleteMeal->Name = L"btnDeleteMeal";
 			this->btnDeleteMeal->Size = System::Drawing::Size(230, 55);
 			this->btnDeleteMeal->TabIndex = 18;

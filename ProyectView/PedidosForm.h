@@ -38,7 +38,9 @@ namespace ProyectView {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridView^ dataGridPedidos;
+	protected:
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ IdSaleDetail;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ QuantitySaleDetail;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsSaleDetail;
@@ -62,28 +64,28 @@ namespace ProyectView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridPedidos = (gcnew System::Windows::Forms::DataGridView());
 			this->IdSaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->QuantitySaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->MealsSaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->EstadoSaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridPedidos))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// dataGridView1
+			// dataGridPedidos
 			// 
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+			this->dataGridPedidos->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridPedidos->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->IdSaleDetail,
 					this->QuantitySaleDetail, this->MealsSaleDetail, this->EstadoSaleDetail
 			});
-			this->dataGridView1->Location = System::Drawing::Point(55, 170);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->RowHeadersWidth = 51;
-			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(928, 473);
-			this->dataGridView1->TabIndex = 0;
+			this->dataGridPedidos->Location = System::Drawing::Point(55, 170);
+			this->dataGridPedidos->Name = L"dataGridPedidos";
+			this->dataGridPedidos->RowHeadersWidth = 51;
+			this->dataGridPedidos->RowTemplate->Height = 24;
+			this->dataGridPedidos->Size = System::Drawing::Size(928, 473);
+			this->dataGridPedidos->TabIndex = 0;
 			// 
 			// IdSaleDetail
 			// 
@@ -121,7 +123,7 @@ namespace ProyectView {
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Actualizar";
 			this->button1->UseVisualStyleBackColor = true;
-
+			this->button1->Click += gcnew System::EventHandler(this, &PedidosForm::button1_Click);
 			// 
 			// PedidosForm
 			// 
@@ -129,14 +131,28 @@ namespace ProyectView {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1071, 708);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->dataGridView1);
+			this->Controls->Add(this->dataGridPedidos);
 			this->Name = L"PedidosForm";
 			this->Text = L"Lista de pedidos";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridPedidos))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	//Búsqueda de productos por el nombre o descripción ingresado por el usuario
+	List<SaleDetail^>^ saledetaillist = Controller::QueryAllSaleDetail();
+	//Se borran los datos del grid.
+	dataGridPedidos->Rows->Clear();
+	for (int i = 0; i < saledetaillist->Count; i++) {
+		dataGridPedidos->Rows->Add(gcnew array<String^> {
+			"" + saledetaillist[i]->Id,
+				Convert::ToString(saledetaillist[i]->Quantity),
+				saledetaillist[i]->Meals->Name,
+				saledetaillist[i]->Estado
+		});
+	}
+}
 };
 }

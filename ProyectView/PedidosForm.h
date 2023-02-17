@@ -41,11 +41,23 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridView^ dataGridPedidos;
 	protected:
 
+
+
+
+
+	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ IdSaleDetail;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ QuantitySaleDetail;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsSaleDetail;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ EstadoSaleDetail;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Estado;
+
+
+
+
+
+
+
+
 
 
 
@@ -65,11 +77,11 @@ namespace ProyectView {
 		void InitializeComponent(void)
 		{
 			this->dataGridPedidos = (gcnew System::Windows::Forms::DataGridView());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->IdSaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->QuantitySaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->MealsSaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->EstadoSaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->Estado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridPedidos))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -78,7 +90,7 @@ namespace ProyectView {
 			this->dataGridPedidos->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridPedidos->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->IdSaleDetail,
-					this->QuantitySaleDetail, this->MealsSaleDetail, this->EstadoSaleDetail
+					this->QuantitySaleDetail, this->MealsSaleDetail, this->Estado
 			});
 			this->dataGridPedidos->Location = System::Drawing::Point(55, 170);
 			this->dataGridPedidos->Name = L"dataGridPedidos";
@@ -86,6 +98,16 @@ namespace ProyectView {
 			this->dataGridPedidos->RowTemplate->Height = 24;
 			this->dataGridPedidos->Size = System::Drawing::Size(928, 473);
 			this->dataGridPedidos->TabIndex = 0;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(395, 40);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(226, 60);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"Actualizar";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &PedidosForm::button1_Click);
 			// 
 			// IdSaleDetail
 			// 
@@ -108,22 +130,12 @@ namespace ProyectView {
 			this->MealsSaleDetail->Name = L"MealsSaleDetail";
 			this->MealsSaleDetail->Width = 125;
 			// 
-			// EstadoSaleDetail
+			// Estado
 			// 
-			this->EstadoSaleDetail->HeaderText = L"Estado";
-			this->EstadoSaleDetail->MinimumWidth = 6;
-			this->EstadoSaleDetail->Name = L"EstadoSaleDetail";
-			this->EstadoSaleDetail->Width = 125;
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(395, 40);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(226, 60);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Actualizar";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &PedidosForm::button1_Click);
+			this->Estado->HeaderText = L"Estado";
+			this->Estado->MinimumWidth = 6;
+			this->Estado->Name = L"Estado";
+			this->Estado->Width = 125;
 			// 
 			// PedidosForm
 			// 

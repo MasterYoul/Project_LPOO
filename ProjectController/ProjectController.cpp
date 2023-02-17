@@ -8,11 +8,29 @@ void ProjectController::Controller::Init()
 {
 
 }
+/*User^ ProjectController::Controller::QuerychangeEstado(int id) {
+    UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
+    for (int i = 0; i < UserList->Count; i++) {
+        if (UserList[i]->Id == id) {
+            UserList[i]->State = "NO DISPONIBLE";
+            Persistance::PersistBinary("User.bin", UserList);
+            for (int i = 0; i < UserList->Count; i++) {
+                if (UserList[i]->Id == id) {
+                    return UserList[i];
+                }
+            }
+
+            return nullptr;
+        }
+    }
+    return nullptr;
+}*/
 
 List<SaleDetail^>^ ProjectController::Controller::QueryAllSaleDetail()
 {
     SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
     List<SaleDetail^>^ returnedDetalle = gcnew List<SaleDetail^>();
+    
     
     for (int num = 1; num < SaleList->Count; num++)
     {
@@ -24,6 +42,22 @@ List<SaleDetail^>^ ProjectController::Controller::QueryAllSaleDetail()
             }
         }
        
+    }
+    
+
+    // cambios
+    for (int num = 0; num < SaleList->Count; num++)
+    {
+        for (int i = 0; i < SaleList[num]->SaleDetails->Count; i++) {
+            if (SaleList[num]->SaleDetails[i]->Estado->Equals("no preparado")) {
+                SaleList[num]->SaleDetails[i]->Estado = "preparado";
+                
+
+            }
+            
+        }
+        
+        Persistance::PersistBinary("Sale.bin", SaleList);
     }
     return returnedDetalle;
 }

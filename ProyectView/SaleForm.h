@@ -31,6 +31,16 @@ namespace ProyectView {
 		User^ user;
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::Button^ SEARCH_CLIENT;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsId;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsName;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PriceMeals;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ quantity2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SubTotal;
+
+
+
+
+
 
 	private: System::Windows::Forms::Button^ BtnCleanSale;
 
@@ -80,11 +90,11 @@ namespace ProyectView {
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsId;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsName;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PriceMeals;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Quantity;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SubTotal;
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Label^ label10;
@@ -119,11 +129,6 @@ namespace ProyectView {
 			this->btnSearchCustomer = (gcnew System::Windows::Forms::Button());
 			this->btnAddCustomer = (gcnew System::Windows::Forms::Button());
 			this->dgvDetails = (gcnew System::Windows::Forms::DataGridView());
-			this->MealsId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->MealsName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->PriceMeals = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Quantity = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->SubTotal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnRegisterSale = (gcnew System::Windows::Forms::Button());
 			this->txtSubtotal = (gcnew System::Windows::Forms::TextBox());
 			this->txtTax = (gcnew System::Windows::Forms::TextBox());
@@ -144,6 +149,11 @@ namespace ProyectView {
 			this->BtnCleanSale = (gcnew System::Windows::Forms::Button());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->SEARCH_CLIENT = (gcnew System::Windows::Forms::Button());
+			this->MealsId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->MealsName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->PriceMeals = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->quantity2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->SubTotal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvDetails))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -224,7 +234,7 @@ namespace ProyectView {
 			this->dgvDetails->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgvDetails->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->MealsId, this->MealsName,
-					this->PriceMeals, this->Quantity, this->SubTotal
+					this->PriceMeals, this->quantity2, this->SubTotal
 			});
 			this->dgvDetails->Location = System::Drawing::Point(35, 418);
 			this->dgvDetails->Name = L"dgvDetails";
@@ -233,41 +243,6 @@ namespace ProyectView {
 			this->dgvDetails->Size = System::Drawing::Size(974, 267);
 			this->dgvDetails->TabIndex = 21;
 			this->dgvDetails->CellValueChanged += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dgvDetails_CellValueChanged);
-			// 
-			// MealsId
-			// 
-			this->MealsId->HeaderText = L"Id";
-			this->MealsId->MinimumWidth = 6;
-			this->MealsId->Name = L"MealsId";
-			this->MealsId->Width = 50;
-			// 
-			// MealsName
-			// 
-			this->MealsName->HeaderText = L"Nombre";
-			this->MealsName->MinimumWidth = 6;
-			this->MealsName->Name = L"MealsName";
-			this->MealsName->Width = 300;
-			// 
-			// PriceMeals
-			// 
-			this->PriceMeals->HeaderText = L"Precio";
-			this->PriceMeals->MinimumWidth = 6;
-			this->PriceMeals->Name = L"PriceMeals";
-			this->PriceMeals->Width = 125;
-			// 
-			// Quantity
-			// 
-			this->Quantity->HeaderText = L"Cantidad";
-			this->Quantity->MinimumWidth = 6;
-			this->Quantity->Name = L"Quantity";
-			this->Quantity->Width = 125;
-			// 
-			// SubTotal
-			// 
-			this->SubTotal->HeaderText = L"Sub Total";
-			this->SubTotal->MinimumWidth = 6;
-			this->SubTotal->Name = L"SubTotal";
-			this->SubTotal->Width = 125;
 			// 
 			// btnRegisterSale
 			// 
@@ -444,6 +419,41 @@ namespace ProyectView {
 			this->SEARCH_CLIENT->UseVisualStyleBackColor = true;
 			this->SEARCH_CLIENT->Click += gcnew System::EventHandler(this, &SaleForm::SEARCH_CLIENT_Click);
 			// 
+			// MealsId
+			// 
+			this->MealsId->HeaderText = L"Id";
+			this->MealsId->MinimumWidth = 6;
+			this->MealsId->Name = L"MealsId";
+			this->MealsId->Width = 50;
+			// 
+			// MealsName
+			// 
+			this->MealsName->HeaderText = L"Nombre";
+			this->MealsName->MinimumWidth = 6;
+			this->MealsName->Name = L"MealsName";
+			this->MealsName->Width = 300;
+			// 
+			// PriceMeals
+			// 
+			this->PriceMeals->HeaderText = L"Precio";
+			this->PriceMeals->MinimumWidth = 6;
+			this->PriceMeals->Name = L"PriceMeals";
+			this->PriceMeals->Width = 125;
+			// 
+			// quantity2
+			// 
+			this->quantity2->HeaderText = L"Cantidad";
+			this->quantity2->MinimumWidth = 6;
+			this->quantity2->Name = L"quantity2";
+			this->quantity2->Width = 125;
+			// 
+			// SubTotal
+			// 
+			this->SubTotal->HeaderText = L"Sub Total";
+			this->SubTotal->MinimumWidth = 6;
+			this->SubTotal->Name = L"SubTotal";
+			this->SubTotal->Width = 125;
+			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -556,15 +566,16 @@ private: System::Void btnDeleteMeal_Click(System::Object^ sender, System::EventA
 		MessageBox::Show("Para eliminar un producto debe seleccionar toda la fila.");
 }
 private: System::Void btnRegisterSale_Click(System::Object^ sender, System::EventArgs^ e);
+
 private: System::Void dgvDetails_CellValueChanged(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	
-		if (dgvDetails->Columns[e->ColumnIndex]->Name == "quantity") {
-			dgvDetails->Rows[e->RowIndex]->Cells[4]->Value =
-				//Int32::Parse(dgvDetails->CurrentCell->Value->ToString())*
-				Int32::Parse(dgvDetails->Rows[e->RowIndex]->Cells[3]->Value->ToString()) *
-				Double::Parse(dgvDetails->Rows[e->RowIndex]->Cells[2]->Value->ToString());
-			RefreshTotalAmounts();
-		}
+	if (dgvDetails->Columns[e->ColumnIndex]->Name == "quantity2") {
+		dgvDetails->Rows[e->RowIndex]->Cells[4]->Value =
+
+			Int32::Parse(dgvDetails->Rows[e->RowIndex]->Cells[3]->Value->ToString()) *
+			Double::Parse(dgvDetails->Rows[e->RowIndex]->Cells[2]->Value->ToString());
+		//Int32::Parse(dgvDetails->CurrentCell->Value->ToString())*
+		RefreshTotalAmounts();
+}
 }
 		private: Void RefreshTotalAmounts() {
 			double total = 0;

@@ -26,6 +26,7 @@ namespace ProjectModel {
         property TableDetail^ TableDetail;
         property Client_Info^ Client_Info;
         property List<SaleDetail^>^ SaleDetails;
+        property String^ Estado;
         Sale() {
             SaleDetails = gcnew List<SaleDetail^>();
         }

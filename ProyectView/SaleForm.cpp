@@ -44,6 +44,7 @@ System::Void ProyectView::SaleForm::btnRegisterSale_Click(System::Object^ sender
 	sale->TableDetail = tabledetail;
 	sale->Total = Double::Parse(txtTotal->Text);
 	sale->SaleDetails = gcnew List<SaleDetail^>();
+	sale->Estado = "no preparado";
 	User^ emp =  Controller::CambioEstado(Convert::ToInt32(textBox3->Text));
 	TableDetail^ table = Controller::CambioEstadoTable(Convert::ToInt32(textBox3->Text));
 	
@@ -58,7 +59,7 @@ System::Void ProyectView::SaleForm::btnRegisterSale_Click(System::Object^ sender
 		saleDetail->UnitPrice = Convert::ToDouble(dgvDetails->Rows[i]->Cells[2]->Value->ToString());
 		saleDetail->Quantity = Convert::ToInt32(dgvDetails->Rows[i]->Cells[3]->Value->ToString());
 		saleDetail->Subtotal = Convert::ToDouble(dgvDetails->Rows[i]->Cells[4]->Value->ToString());
-		saleDetail->Estado = "no preparado";
+		
 		sale->SaleDetails->Add(saleDetail);
 
 

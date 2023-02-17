@@ -61,6 +61,10 @@ namespace ProyectView {
 
 
 
+
+
+
+
 	protected:
 
 	private:
@@ -118,14 +122,14 @@ namespace ProyectView {
 			// 
 			// QuantitySaleDetail
 			// 
-			this->QuantitySaleDetail->HeaderText = L"Quantity";
+			this->QuantitySaleDetail->HeaderText = L"Cantidad";
 			this->QuantitySaleDetail->MinimumWidth = 6;
 			this->QuantitySaleDetail->Name = L"QuantitySaleDetail";
 			this->QuantitySaleDetail->Width = 125;
 			// 
 			// MealsSaleDetail
 			// 
-			this->MealsSaleDetail->HeaderText = L"Meals";
+			this->MealsSaleDetail->HeaderText = L"Plato";
 			this->MealsSaleDetail->MinimumWidth = 6;
 			this->MealsSaleDetail->Name = L"MealsSaleDetail";
 			this->MealsSaleDetail->Width = 125;

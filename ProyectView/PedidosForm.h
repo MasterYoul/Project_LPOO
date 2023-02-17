@@ -153,8 +153,19 @@ namespace ProyectView {
 #pragma endregion
 	
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	/*
+	MessageBox::Show("¿Seguro que quiere Actualizar?");
+	MessageBoxButtons botones = MessageBoxButtons::OKCancel;
+	
+	if ( botones == DialogResult.OK) {
+
+	}*/
+
+
 	//Búsqueda de productos por el nombre o descripción ingresado por el usuario
 	List<SaleDetail^>^ saledetaillist = Controller::QueryAllSaleDetail();
+	List<SaleDetail^>^ saledetaillis=Controller::ChangeQueryAllSaleDetail();
 	//Se borran los datos del grid.
 	dataGridPedidos->Rows->Clear();
 	for (int i = 0; i < saledetaillist->Count; i++) {

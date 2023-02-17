@@ -31,8 +31,7 @@ List<SaleDetail^>^ ProjectController::Controller::QueryAllSaleDetail()
     SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
     List<SaleDetail^>^ returnedDetalle = gcnew List<SaleDetail^>();
     
-    
-    for (int num = 1; num < SaleList->Count; num++)
+    for (int num = 1; num <=SaleList->Count; num++)
     {
         
         Sale^ sale =QuerySaletById(num);
@@ -41,9 +40,18 @@ List<SaleDetail^>^ ProjectController::Controller::QueryAllSaleDetail()
                 returnedDetalle->Add(sale->SaleDetails[i]);
             }
         }
-       
     }
     
+    // cambios
+    
+    return returnedDetalle;
+}
+
+List<SaleDetail^>^ ProjectController::Controller::ChangeQueryAllSaleDetail()
+{
+    SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
+    List<SaleDetail^>^ returnedDetalle = gcnew List<SaleDetail^>();
+
 
     // cambios
     for (int num = 0; num < SaleList->Count; num++)
@@ -51,15 +59,15 @@ List<SaleDetail^>^ ProjectController::Controller::QueryAllSaleDetail()
         for (int i = 0; i < SaleList[num]->SaleDetails->Count; i++) {
             if (SaleList[num]->SaleDetails[i]->Estado->Equals("no preparado")) {
                 SaleList[num]->SaleDetails[i]->Estado = "preparado";
-                
-
+                returnedDetalle->Add(SaleList[num]->SaleDetails[i]);
             }
-            
+
         }
-        
+
         Persistance::PersistBinary("Sale.bin", SaleList);
     }
     return returnedDetalle;
+
 }
 
 int ProjectController::Controller::AddMeals(Meals^ meals)

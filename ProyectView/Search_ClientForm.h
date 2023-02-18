@@ -88,11 +88,11 @@ namespace ProyectView {
 				this->IdMeals, this->NombreMeal,
 					this->PriceMeal, this->s
 			});
-			this->dgvMeals->Location = System::Drawing::Point(64, 164);
+			this->dgvMeals->Location = System::Drawing::Point(24, 173);
 			this->dgvMeals->Name = L"dgvMeals";
 			this->dgvMeals->RowHeadersWidth = 51;
 			this->dgvMeals->RowTemplate->Height = 24;
-			this->dgvMeals->Size = System::Drawing::Size(502, 154);
+			this->dgvMeals->Size = System::Drawing::Size(632, 154);
 			this->dgvMeals->TabIndex = 20;
 			this->dgvMeals->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Search_ClientForm::dgvMeals_CellClick);
 			// 
@@ -180,7 +180,8 @@ namespace ProyectView {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(672, 375);
+			this->ClientSize = System::Drawing::Size(702, 375);
+			this->ControlBox = false;
 			this->Controls->Add(this->dgvMeals);
 			this->Controls->Add(this->btnCancel);
 			this->Controls->Add(this->btnSearch);

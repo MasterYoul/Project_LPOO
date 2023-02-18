@@ -2,58 +2,44 @@
 <ArrayOfClient_Info xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Client_Info>
     <Gender>77</Gender>
-    <Id>1</Id>
+    <Id>23</Id>
     <Status>65</Status>
-    <TxtOpin>asdf</TxtOpin>
-    <Rate>3</Rate>
-    <RucNumber>1234</RucNumber>
+    <TxtOpin>Sin opinion</TxtOpin>
+    <Rate>0</Rate>
+    <RucNumber>0</RucNumber>
     <Type>80</Type>
-    <VisitQuantity>2</VisitQuantity>
-    <PhoneNumber>123456783</PhoneNumber>
-    <LastName>Miguel</LastName>
-    <Name>Juan</Name>
-    <DocNumber>123456789</DocNumber>
-  </Client_Info>
-  <Client_Info>
-    <Gender>0</Gender>
-    <Id>2</Id>
-    <Status>65</Status>
-    <TxtOpin>qwerty</TxtOpin>
-    <Rate>3</Rate>
-    <RucNumber>12345678</RucNumber>
-    <Type>80</Type>
-    <VisitQuantity>2</VisitQuantity>
-    <PhoneNumber>933707464</PhoneNumber>
-    <LastName>Villafuerte Mogrovejo</LastName>
-    <Name>Samid George</Name>
-    <DocNumber>78549545</DocNumber>
-  </Client_Info>
-  <Client_Info>
-    <Gender>0</Gender>
-    <Id>0</Id>
-    <Status>65</Status>
-    <TxtOpin>ertyuil</TxtOpin>
-    <Rate>4</Rate>
-    <RucNumber>234567</RucNumber>
-    <Type>80</Type>
-    <VisitQuantity>1</VisitQuantity>
-    <PhoneNumber>1234567</PhoneNumber>
-    <LastName>wee</LastName>
-    <Name>alex</Name>
-    <DocNumber>1234</DocNumber>
+    <VisitQuantity>0</VisitQuantity>
+    <PhoneNumber>23456789</PhoneNumber>
+    <LastName>Ramirez</LastName>
+    <Name>Alfred</Name>
+    <DocNumber>4567890</DocNumber>
   </Client_Info>
   <Client_Info>
     <Gender>77</Gender>
-    <Id>434</Id>
+    <Id>4</Id>
     <Status>65</Status>
-    <TxtOpin>Buena Comida</TxtOpin>
-    <Rate>2</Rate>
-    <RucNumber>12423</RucNumber>
+    <TxtOpin>Sin opinion</TxtOpin>
+    <Rate>0</Rate>
+    <RucNumber>2354</RucNumber>
+    <Type>69</Type>
+    <VisitQuantity>0</VisitQuantity>
+    <PhoneNumber>463</PhoneNumber>
+    <LastName>ertyu</LastName>
+    <Name>eryu</Name>
+    <DocNumber>78549545</DocNumber>
+  </Client_Info>
+  <Client_Info>
+    <Gender>77</Gender>
+    <Id>4</Id>
+    <Status>65</Status>
+    <TxtOpin>Sin opinion</TxtOpin>
+    <Rate>0</Rate>
+    <RucNumber>1234567</RucNumber>
     <Type>80</Type>
-    <VisitQuantity>8</VisitQuantity>
-    <PhoneNumber>6436345</PhoneNumber>
-    <LastName>Espinozadd</LastName>
-    <Name>Pedro</Name>
-    <DocNumber>123123</DocNumber>
+    <VisitQuantity>0</VisitQuantity>
+    <PhoneNumber>retc</PhoneNumber>
+    <LastName>etgyhuio</LastName>
+    <Name>wertyu</Name>
+    <DocNumber>78549545</DocNumber>
   </Client_Info>
 </ArrayOfClient_Info>

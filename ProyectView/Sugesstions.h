@@ -1,6 +1,7 @@
 #pragma once
 #include "Client_InfoForm.h"
 #include "Search_ClientForm.h"
+#include "RegisterClientForm.h"
 
 namespace ProyectView {
 
@@ -111,10 +112,11 @@ namespace ProyectView {
 			// 
 			this->btnAddCustomer->Location = System::Drawing::Point(668, 136);
 			this->btnAddCustomer->Name = L"btnAddCustomer";
-			this->btnAddCustomer->Size = System::Drawing::Size(114, 44);
+			this->btnAddCustomer->Size = System::Drawing::Size(143, 44);
 			this->btnAddCustomer->TabIndex = 27;
 			this->btnAddCustomer->Text = L"REGISTRARSE";
 			this->btnAddCustomer->UseVisualStyleBackColor = true;
+			this->btnAddCustomer->Click += gcnew System::EventHandler(this, &Sugesstions::btnAddCustomer_Click);
 			// 
 			// btnSearchCustomer
 			// 
@@ -274,7 +276,7 @@ namespace ProyectView {
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Mongolian Baiti", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(36, 30);
+			this->label6->Location = System::Drawing::Point(19, 31);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(722, 24);
 			this->label6->TabIndex = 39;
@@ -284,7 +286,7 @@ namespace ProyectView {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(847, 701);
+			this->ClientSize = System::Drawing::Size(950, 701);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->buttonCancel);
 			this->Controls->Add(this->buttonClean);
@@ -377,11 +379,27 @@ private: System::Void btnSearchCustomer_Click(System::Object^ sender, System::Ev
 
 	client_infoform->ShowDialog();
 }
+	   private: System::Void btnAddCustomer_Click(System::Object^ sender, System::EventArgs^ e) {
+		   RegisterClientForm^ client_infoform = gcnew RegisterClientForm();
+		   client_infoform->Type = 'S';
+		   client_infoform->registerclientForm = this;
+
+		   client_infoform->ShowDialog();
+	   }
 	   public:  Void SetCustom(Client_Info^ cust) {
 		   this->client_Info = cust;
 		   textClient->Text = Convert::ToString(cust->DocNumber);
 		   lblClientData->Text = cust->DocNumber + " - " +
 			   cust->Name + " " + cust->LastName;
 	   }
+
+	 public:  Void SetCust(Client_Info^ cust) {
+				 this->client_Info = cust;
+				 textClient->Text = Convert::ToString(cust->DocNumber);
+				 lblClientData->Text = cust->DocNumber + " - " +
+					 cust->Name + " " + cust->LastName;
+			 }
+			 
+
 };
 }

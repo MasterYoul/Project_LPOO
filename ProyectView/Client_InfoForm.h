@@ -850,60 +850,6 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	  
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (dataGridViewClient->CurrentCell != nullptr &&

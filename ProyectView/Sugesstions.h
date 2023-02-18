@@ -336,7 +336,7 @@ private: System::Void buttonSave_Click(System::Object^ sender, System::EventArgs
 		return;
 	}
 	if (textBoxComments->Text->Trim() == "") {
-		MessageBox::Show("El tipo de usuario no debe estar vacío.");
+		MessageBox::Show("Le falta realizar un comentario.");
 		return;
 	}
 	
@@ -352,6 +352,7 @@ private: System::Void buttonSave_Click(System::Object^ sender, System::EventArgs
 	//Completar el Registro
 	Controller::RegisterSuggestions(suggestions);
 	MessageBox::Show("Se ha registrado la sugerencia correctamente.");
+	ClearControls();
 }
 
 	   void ClearControls() {

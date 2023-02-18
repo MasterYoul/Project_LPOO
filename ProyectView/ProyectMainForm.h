@@ -475,7 +475,15 @@ private: System::Void mantenimientoDeClientesToolStripMenuItem_Click(System::Obj
 private: System::Void mantenimientoDeEmpleadosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	UserForm^ productForm = gcnew UserForm();
 	productForm->MdiParent = this;
-	productForm->Show();
+	
+	if (ProyectMainForm::user->Type ->Equals( "Administrador")) {
+		productForm->Show();
+	}
+	else {
+		productForm->Hide();
+		MessageBox::Show("Usted no tiene acceso a esta ventana.");
+	}
+	
 }
 private: System::Void mantemientoDeMesasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	TableForm^ tableForm = gcnew TableForm();
@@ -517,8 +525,13 @@ private: System::Void filtroDePlatosToolStripMenuItem_Click(System::Object^ send
 private: System::Void filtroDeEmpleadosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	SearchUserForm^ saleForm = gcnew SearchUserForm();
 	saleForm->MdiParent = this;
-	saleForm->Show();
-
+	if(ProyectMainForm::user->Type == "Administrador"){
+		saleForm->Show();
+	}
+	else {
+		saleForm->Hide();
+		MessageBox::Show("Usted no tiene acceso a esta ventana.");
+	}
 }
 };
 }

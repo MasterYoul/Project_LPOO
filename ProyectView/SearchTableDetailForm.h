@@ -21,7 +21,7 @@ namespace ProyectView {
 		property char Type;
 		property Form^ saleForm;// Variable de instancia
 	public:
-		SearchTableDetailForm(void)
+		SearchTableDetailForm()
 		{
 			InitializeComponent();
 			//
@@ -80,6 +80,11 @@ namespace ProyectView {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
@@ -92,11 +97,6 @@ namespace ProyectView {
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -113,6 +113,42 @@ namespace ProyectView {
 			this->dataGridView1->RowTemplate->Height = 24;
 			this->dataGridView1->Size = System::Drawing::Size(751, 587);
 			this->dataGridView1->TabIndex = 0;
+			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SearchTableDetailForm::dataGridView1_CellClick);
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Id";
+			this->Column1->MinimumWidth = 6;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 50;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Piso";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 50;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Capacidad";
+			this->Column3->MinimumWidth = 6;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 80;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Disponibilidad";
+			this->Column4->MinimumWidth = 6;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 125;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Reservado";
+			this->Column5->MinimumWidth = 6;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 125;
 			// 
 			// button1
 			// 
@@ -174,7 +210,7 @@ namespace ProyectView {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(1034, 545);
+			this->button2->Location = System::Drawing::Point(975, 545);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(111, 58);
 			this->button2->TabIndex = 10;
@@ -183,12 +219,13 @@ namespace ProyectView {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(1264, 545);
+			this->button3->Location = System::Drawing::Point(1126, 545);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(111, 58);
 			this->button3->TabIndex = 11;
 			this->button3->Text = L"CANCELAR";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &SearchTableDetailForm::button3_Click);
 			// 
 			// textBox4
 			// 
@@ -217,46 +254,11 @@ namespace ProyectView {
 			this->label5->TabIndex = 14;
 			this->label5->Text = L"Mesas disponibles:";
 			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Id";
-			this->Column1->MinimumWidth = 6;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 50;
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Piso";
-			this->Column2->MinimumWidth = 6;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 50;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Capacidad";
-			this->Column3->MinimumWidth = 6;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 80;
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Disponibilidad";
-			this->Column4->MinimumWidth = 6;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 125;
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Reservado";
-			this->Column5->MinimumWidth = 6;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 125;
-			// 
 			// SearchTableDetailForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1402, 686);
+			this->ClientSize = System::Drawing::Size(1296, 686);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->textBox4);
 			this->Controls->Add(this->label4);
@@ -317,5 +319,10 @@ namespace ProyectView {
 		}
 
 	}
+private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
+
 };
 }

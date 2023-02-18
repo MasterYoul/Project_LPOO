@@ -619,6 +619,14 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		   lblClientData->Text = cust->DocNumber + " - " +
 			   cust->Name + " " + cust->LastName;
 	   }
+			 public:  Void SetTableDetail(TableDetail^ cust) {
+				 this->tabledetail = cust;
+				 textBox2->Text = Convert::ToString(cust->Id);
+				 label8->Text = cust->Id + " - Piso:" +
+					 cust->Floor +
+					 "- Capacidad:" + cust->TableCapacity;
+			 }
+			 
 
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	TableDetail^ TableDetail = Controller::QueryTableDetailtById(Int32::Parse(textBox2->Text));

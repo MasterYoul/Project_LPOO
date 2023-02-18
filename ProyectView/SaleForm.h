@@ -214,9 +214,9 @@ namespace ProyectView {
 			// 
 			// btnSearchCustomer
 			// 
-			this->btnSearchCustomer->Location = System::Drawing::Point(576, 70);
+			this->btnSearchCustomer->Location = System::Drawing::Point(534, 66);
 			this->btnSearchCustomer->Name = L"btnSearchCustomer";
-			this->btnSearchCustomer->Size = System::Drawing::Size(157, 30);
+			this->btnSearchCustomer->Size = System::Drawing::Size(150, 30);
 			this->btnSearchCustomer->TabIndex = 19;
 			this->btnSearchCustomer->Text = L"BUSCAR CLIENTE";
 			this->btnSearchCustomer->UseVisualStyleBackColor = true;
@@ -224,9 +224,9 @@ namespace ProyectView {
 			// 
 			// btnAddCustomer
 			// 
-			this->btnAddCustomer->Location = System::Drawing::Point(760, 60);
+			this->btnAddCustomer->Location = System::Drawing::Point(884, 64);
 			this->btnAddCustomer->Name = L"btnAddCustomer";
-			this->btnAddCustomer->Size = System::Drawing::Size(163, 26);
+			this->btnAddCustomer->Size = System::Drawing::Size(125, 26);
 			this->btnAddCustomer->TabIndex = 20;
 			this->btnAddCustomer->Text = L"+ Cliente";
 			this->btnAddCustomer->UseVisualStyleBackColor = true;
@@ -387,7 +387,7 @@ namespace ProyectView {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(576, 219);
+			this->button2->Location = System::Drawing::Point(534, 211);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(157, 32);
 			this->button2->TabIndex = 45;
@@ -404,9 +404,9 @@ namespace ProyectView {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(576, 149);
+			this->button1->Location = System::Drawing::Point(534, 149);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(157, 32);
+			this->button1->Size = System::Drawing::Size(157, 29);
 			this->button1->TabIndex = 43;
 			this->button1->Text = L"BUSCAR MESA";
 			this->button1->UseVisualStyleBackColor = true;
@@ -449,7 +449,7 @@ namespace ProyectView {
 			// 
 			// SEARCH_CLIENT
 			// 
-			this->SEARCH_CLIENT->Location = System::Drawing::Point(760, 92);
+			this->SEARCH_CLIENT->Location = System::Drawing::Point(700, 64);
 			this->SEARCH_CLIENT->Name = L"SEARCH_CLIENT";
 			this->SEARCH_CLIENT->Size = System::Drawing::Size(163, 29);
 			this->SEARCH_CLIENT->TabIndex = 54;
@@ -459,7 +459,7 @@ namespace ProyectView {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(760, 149);
+			this->button3->Location = System::Drawing::Point(700, 149);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(163, 29);
 			this->button3->TabIndex = 55;

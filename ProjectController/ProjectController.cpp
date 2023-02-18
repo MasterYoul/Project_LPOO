@@ -28,6 +28,24 @@ List<SaleDetail^>^ ProjectController::Controller::ChangeQueryAllSaleDetail()
 
 }
 
+List<TableDetail^>^ ProjectController::Controller::QueryAllTableOcupado() {
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    int j = 0;
+
+    List<TableDetail^>^ returnedDetalle = gcnew List<TableDetail^>();
+    for (int i = 0; i < TableDetailList->Count; i++)
+    {
+        if (TableDetailList[i]->Disponibility->Equals("DISPONIBLE")) {
+            j++;
+        }
+        else {
+            returnedDetalle->Add(TableDetailList[i]);
+        }
+
+    }
+    return returnedDetalle;
+}
+
 List<TableDetail^>^ ProjectController::Controller::QueryAllTableLibre() {
     TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
  
@@ -41,6 +59,7 @@ List<TableDetail^>^ ProjectController::Controller::QueryAllTableLibre() {
     }
     return returnedDetalle;
 }
+
 List<Meals^>^ ProjectController::Controller::QueryMealsByNameOrDescription(String^ value)
 {
     MealsList = (List<Meals^>^)Persistance::LoadData("Meals.txt");

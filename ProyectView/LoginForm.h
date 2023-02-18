@@ -130,10 +130,10 @@ namespace ProyectView {
 			// 
 			// butRecover
 			// 
-			this->butRecover->Location = System::Drawing::Point(763, 270);
+			this->butRecover->Location = System::Drawing::Point(745, 269);
 			this->butRecover->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->butRecover->Name = L"butRecover";
-			this->butRecover->Size = System::Drawing::Size(123, 41);
+			this->butRecover->Size = System::Drawing::Size(180, 41);
 			this->butRecover->TabIndex = 4;
 			this->butRecover->Text = L"Recuperar Contraseña";
 			this->butRecover->UseVisualStyleBackColor = true;
@@ -158,13 +158,14 @@ namespace ProyectView {
 			// 
 			// button1
 			// 
+			this->button1->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->button1->Location = System::Drawing::Point(684, 475);
 			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(241, 64);
 			this->button1->TabIndex = 7;
 			this->button1->Text = L"Sugerencias";
-			this->button1->UseVisualStyleBackColor = true;
+			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &LoginForm::button1_Click);
 			// 
 			// pictureBox1
@@ -183,7 +184,7 @@ namespace ProyectView {
 			this->label3->Font = (gcnew System::Drawing::Font(L"Sitka Small", 18, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->label3->Location = System::Drawing::Point(630, 39);
+			this->label3->Location = System::Drawing::Point(607, 39);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(264, 44);
 			this->label3->TabIndex = 9;

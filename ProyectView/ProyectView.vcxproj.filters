@@ -80,6 +80,9 @@
     <ClInclude Include="SearchPlatos.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="SearchUserForm.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProyectView.cpp">
@@ -144,6 +147,9 @@
     </ClCompile>
     <ClCompile Include="SearchPlatos.cpp">
       <Filter>Archivos de encabezado</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchUserForm.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

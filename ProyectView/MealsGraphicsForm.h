@@ -148,15 +148,49 @@ namespace ProyectView {
 #pragma endregion
 	
 	void RefreshDGV() {
+		chartSales->Series["Monto"]->Points->Clear();
+		List<Sale^>^ salesList = Controller::QueryAllSale();
+		int b = 0;
+		for (int i = 0; i < salesList->Count; i++) {
+			//agarra el total, es una lista
 
+			int p = i;
+			int r = 0;
+			while (p >= 0) {
+				if (Convert::ToString(salesList[i]->Client_Info) == Convert::ToString(salesList[p]->Client_Info)) {
+					r++;
+				}
+				p = p - 1;
+			}
+			if (r < 2) {
+				chartSales->Series["Monto"]->Points->Add(salesList[i]->Total);
+				chartSales->Series["Monto"]->Points[b]->AxisLabel = Convert::ToString(salesList[i]->Client_Info);
+				double z = 0;
+				for (int j = 0; j < salesList->Count; j++) {
+					if (Convert::ToString(salesList[i]->Client_Info) == Convert::ToString(salesList[j]->Client_Info)) {
+
+						z = z + Convert::ToDouble(salesList[j]->Total);
+					}
+				}
+				chartSales->Series["Monto"]->Points[b]->Label = Convert::ToString(z);
+				b++;
+			}
+			else {
+
+			}
+		}
+
+
+		
 		DateTime dt = dateTimeReport->Value;
 		String^ BuscarPorFecha = dt.ToString("yyyy-MM-dd");
 
 		
-		chartSales->Series["Monto"]->Points->Clear();
-		chartCommonMeals->Series["Platos"]->Points->Clear();
+		//
+		//chartCommonMeals->Series["Platos"]->Points->Clear();
 
 		//List<Sale^>^ SumTotal= Controller::QueryAllTotalSaleList(BuscarPorFecha);
+		/*
 		int k = 0;
 		if (chartSales != nullptr) {
 			List<Sale^>^ SalesList = Controller::QueryAllSale();
@@ -166,7 +200,7 @@ namespace ProyectView {
 				chartSales->Series["Monto"]->Points[k]->Label = Convert::ToString(SumTotal);
 			}
 			*/
-			for (int i = 1; i < SalesList->Count; i++) {
+			/*for (int i = 1; i < SalesList->Count; i++) {
 
 				if (SalesList[i]->Fecha->Contains(BuscarPorFecha)) {
 					chartSales->Series["Monto"]->Points->Add(SalesList[i]->Total);
@@ -177,7 +211,7 @@ namespace ProyectView {
 				}
 			}
 
-		}
+		}*/
 
 		chartCommonMeals->Series["Platos"]->Points->Clear();
 	

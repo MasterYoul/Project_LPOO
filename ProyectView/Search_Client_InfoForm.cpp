@@ -18,10 +18,10 @@ System::Void ProyectView::Search_Client_InfoForm::dgvMeals_CellClick(System::Obj
 			((SaleForm^)saleForm)->SetCustomer(p);
 			this->Close();
 		}
-		if (Type == 'K') {
+		else {
 			//¿Cómo enviamos al formulario de la venta los datos del cliente?
 			//Rpta. Mediante una referencia al formulario de la venta (SaleForm).
-			((Sugesstions^)sugesstionForm)->SetCustomer(p);
+			((Sugesstions^)sugesstionForm)->SetCustom(p);
 			this->Close();
 		}
 	}

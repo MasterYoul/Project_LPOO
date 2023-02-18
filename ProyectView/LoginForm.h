@@ -49,6 +49,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::TextBox^ txtUsername;
 	private: System::Windows::Forms::TextBox^ txtPassword;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 
 
@@ -66,6 +67,7 @@ namespace ProyectView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LoginForm::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->btnOK = (gcnew System::Windows::Forms::Button());
@@ -74,31 +76,34 @@ namespace ProyectView {
 			this->txtUsername = (gcnew System::Windows::Forms::TextBox());
 			this->txtPassword = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(133, 71);
+			this->label1->Location = System::Drawing::Point(586, 58);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(54, 16);
+			this->label1->Size = System::Drawing::Size(63, 13);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Usuario";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(111, 120);
+			this->label2->Location = System::Drawing::Point(586, 110);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(76, 16);
+			this->label2->Size = System::Drawing::Size(87, 13);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Contraseña";
 			// 
 			// btnOK
 			// 
-			this->btnOK->Location = System::Drawing::Point(37, 199);
+			this->btnOK->Location = System::Drawing::Point(599, 156);
+			this->btnOK->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnOK->Name = L"btnOK";
-			this->btnOK->Size = System::Drawing::Size(118, 50);
+			this->btnOK->Size = System::Drawing::Size(118, 41);
 			this->btnOK->TabIndex = 2;
 			this->btnOK->Text = L"Aceptar";
 			this->btnOK->UseVisualStyleBackColor = true;
@@ -106,9 +111,10 @@ namespace ProyectView {
 			// 
 			// btnCancel
 			// 
-			this->btnCancel->Location = System::Drawing::Point(211, 199);
+			this->btnCancel->Location = System::Drawing::Point(828, 156);
+			this->btnCancel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnCancel->Name = L"btnCancel";
-			this->btnCancel->Size = System::Drawing::Size(107, 50);
+			this->btnCancel->Size = System::Drawing::Size(107, 41);
 			this->btnCancel->TabIndex = 3;
 			this->btnCancel->Text = L"Cancelar";
 			this->btnCancel->UseVisualStyleBackColor = true;
@@ -116,9 +122,10 @@ namespace ProyectView {
 			// 
 			// butRecover
 			// 
-			this->butRecover->Location = System::Drawing::Point(378, 199);
+			this->butRecover->Location = System::Drawing::Point(663, 226);
+			this->butRecover->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->butRecover->Name = L"butRecover";
-			this->butRecover->Size = System::Drawing::Size(217, 50);
+			this->butRecover->Size = System::Drawing::Size(217, 41);
 			this->butRecover->TabIndex = 4;
 			this->butRecover->Text = L"Recuperar Contraseña";
 			this->butRecover->UseVisualStyleBackColor = true;
@@ -126,35 +133,49 @@ namespace ProyectView {
 			// 
 			// txtUsername
 			// 
-			this->txtUsername->Location = System::Drawing::Point(236, 65);
+			this->txtUsername->Location = System::Drawing::Point(713, 55);
+			this->txtUsername->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtUsername->Name = L"txtUsername";
-			this->txtUsername->Size = System::Drawing::Size(251, 22);
+			this->txtUsername->Size = System::Drawing::Size(251, 20);
 			this->txtUsername->TabIndex = 5;
 			// 
 			// txtPassword
 			// 
-			this->txtPassword->Location = System::Drawing::Point(236, 114);
+			this->txtPassword->Location = System::Drawing::Point(711, 106);
+			this->txtPassword->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtPassword->Name = L"txtPassword";
-			this->txtPassword->Size = System::Drawing::Size(251, 22);
+			this->txtPassword->Size = System::Drawing::Size(251, 20);
 			this->txtPassword->TabIndex = 6;
 			this->txtPassword->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &LoginForm::txtPassword_KeyDown);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(169, 343);
+			this->button1->Location = System::Drawing::Point(663, 408);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(260, 39);
+			this->button1->Size = System::Drawing::Size(241, 64);
 			this->button1->TabIndex = 7;
 			this->button1->Text = L"Sugerencias";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &LoginForm::button1_Click);
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(54, 22);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(505, 489);
+			this->pictureBox1->TabIndex = 8;
+			this->pictureBox1->TabStop = false;
+			// 
 			// LoginForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(607, 414);
+			this->ClientSize = System::Drawing::Size(1050, 550);
 			this->ControlBox = false;
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->txtPassword);
 			this->Controls->Add(this->txtUsername);
@@ -163,8 +184,13 @@ namespace ProyectView {
 			this->Controls->Add(this->btnOK);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Font = (gcnew System::Drawing::Font(L"Lucida Console", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"LoginForm";
 			this->Text = L"Autentificación de Usuario";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

@@ -362,7 +362,7 @@ private: System::Void btnSearchCustomer_Click(System::Object^ sender, System::Ev
 
 	client_infoform->ShowDialog();
 }
-	   public:  Void SetCustomer(Client_Info^ cust) {
+	   public:  Void SetCustom(Client_Info^ cust) {
 		   this->client_Info = cust;
 		   textClient->Text = cust->DocNumber;
 		   lblClientData->Text = cust->DocNumber + " - " +

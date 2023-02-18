@@ -6,9 +6,10 @@
 #include "SaleForm.h";
 #include "MealsGraphicsForm.h"
 #include "TableForm.h";
-#include "PedidosForm.h"
-#include "SearchTableDetailForm.h"
+#include "PedidosForm.h";
+#include "SearchTableDetailForm.h":
 #include "SearchClientInfoForm.h";
+#include "SearchPlatos.h"
 
 namespace ProyectView {
 
@@ -205,6 +206,7 @@ namespace ProyectView {
 			this->filtroDePlatosToolStripMenuItem->Name = L"filtroDePlatosToolStripMenuItem";
 			this->filtroDePlatosToolStripMenuItem->Size = System::Drawing::Size(258, 26);
 			this->filtroDePlatosToolStripMenuItem->Text = L"Filtro de Platos";
+			this->filtroDePlatosToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::filtroDePlatosToolStripMenuItem_Click);
 			// 
 			// clientesToolStripMenuItem
 			// 
@@ -502,6 +504,11 @@ private: System::Void ayudaToolStripMenuItem_Click(System::Object^ sender, Syste
 }
 private: System::Void filtroDeClientesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	SearchClientInfoForm^ saleForm = gcnew SearchClientInfoForm();
+	saleForm->MdiParent = this;
+	saleForm->Show();
+}
+private: System::Void filtroDePlatosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	SearchPlatos^ saleForm = gcnew SearchPlatos();
 	saleForm->MdiParent = this;
 	saleForm->Show();
 }

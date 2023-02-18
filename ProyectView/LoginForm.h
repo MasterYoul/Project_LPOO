@@ -130,10 +130,10 @@ namespace ProyectView {
 			// 
 			// butRecover
 			// 
-			this->butRecover->Location = System::Drawing::Point(745, 269);
+			this->butRecover->Location = System::Drawing::Point(745, 256);
 			this->butRecover->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->butRecover->Name = L"butRecover";
-			this->butRecover->Size = System::Drawing::Size(180, 41);
+			this->butRecover->Size = System::Drawing::Size(180, 33);
 			this->butRecover->TabIndex = 4;
 			this->butRecover->Text = L"Recuperar Contraseña";
 			this->butRecover->UseVisualStyleBackColor = true;

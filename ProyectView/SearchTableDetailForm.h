@@ -48,8 +48,8 @@ namespace ProyectView {
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBox3;
-	private: System::Windows::Forms::Label^ label3;
+
+
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button3;
 
@@ -68,6 +68,10 @@ namespace ProyectView {
 	private: System::Windows::Forms::ComboBox^ comboBox1;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::TextBox^ textBox3;
+
+
 
 	private:
 		/// <summary>
@@ -93,14 +97,14 @@ namespace ProyectView {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -200,22 +204,6 @@ namespace ProyectView {
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"PISO:";
 			// 
-			// textBox3
-			// 
-			this->textBox3->Location = System::Drawing::Point(778, 547);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(216, 22);
-			this->textBox3->TabIndex = 7;
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(775, 511);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(87, 16);
-			this->label3->TabIndex = 6;
-			this->label3->Text = L"CAPACIDAD:";
-			// 
 			// button2
 			// 
 			this->button2->Location = System::Drawing::Point(880, 604);
@@ -277,6 +265,22 @@ namespace ProyectView {
 			this->button4->Text = L"BUSCAR";
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &SearchTableDetailForm::button4_Click);
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(775, 511);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(87, 16);
+			this->label3->TabIndex = 6;
+			this->label3->Text = L"CAPACIDAD:";
+			// 
+			// textBox3
+			// 
+			this->textBox3->Location = System::Drawing::Point(778, 547);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(216, 22);
+			this->textBox3->TabIndex = 7;
 			// 
 			// SearchTableDetailForm
 			// 

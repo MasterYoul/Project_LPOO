@@ -152,6 +152,9 @@
     <ClInclude Include="RegisterClientForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="SearchClientInfoForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="SearchTableDetailForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -199,6 +202,7 @@
     <ClCompile Include="RecoverForm.cpp" />
     <ClCompile Include="RegisterClientForm.cpp" />
     <ClCompile Include="SaleForm.cpp" />
+    <ClCompile Include="SearchClientInfoForm.cpp" />
     <ClCompile Include="SearchTableDetailForm.cpp" />
     <ClCompile Include="Search_ClientForm.cpp" />
     <ClCompile Include="Search_Client_InfoForm.cpp" />
@@ -248,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterClientForm.resx">
       <DependentUpon>RegisterClientForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchClientInfoForm.resx">
+      <DependentUpon>SearchClientInfoForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchTableDetailForm.resx">
       <DependentUpon>SearchTableDetailForm.h</DependentUpon>

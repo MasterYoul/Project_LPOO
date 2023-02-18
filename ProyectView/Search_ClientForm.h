@@ -13,16 +13,15 @@ namespace ProyectView {
 	using namespace System::Collections::Generic;
 
 	/// <summary>
-	/// Resumen de Search_Client_InfoForm
+	/// Resumen de Search_ClientForm
 	/// </summary>
-	public ref class Search_Client_InfoForm : public System::Windows::Forms::Form
+	public ref class Search_ClientForm : public System::Windows::Forms::Form
 	{
 	public:
 		property char Type;
-		property Form^ saleForm;// Variable de instancia
-		
+		property Form^ sugesstionForm;
 	public:
-		Search_Client_InfoForm(void)
+		Search_ClientForm(void)
 		{
 			InitializeComponent();
 			//
@@ -35,7 +34,7 @@ namespace ProyectView {
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
 		/// </summary>
-		~Search_Client_InfoForm()
+		~Search_ClientForm()
 		{
 			if (components)
 			{
@@ -44,20 +43,16 @@ namespace ProyectView {
 		}
 	private: System::Windows::Forms::DataGridView^ dgvMeals;
 	protected:
-
-
-
-
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ IdMeals;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NombreMeal;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PriceMeal;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ s;
 	private: System::Windows::Forms::Button^ btnCancel;
 	private: System::Windows::Forms::Button^ btnSearch;
 	private: System::Windows::Forms::TextBox^ txtNameDescription;
 	private: System::Windows::Forms::TextBox^ txtId;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ Id;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ IdMeals;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NombreMeal;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PriceMeal;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ s;
 
 	private:
 		/// <summary>
@@ -93,13 +88,13 @@ namespace ProyectView {
 				this->IdMeals, this->NombreMeal,
 					this->PriceMeal, this->s
 			});
-			this->dgvMeals->Location = System::Drawing::Point(64, 163);
+			this->dgvMeals->Location = System::Drawing::Point(64, 164);
 			this->dgvMeals->Name = L"dgvMeals";
 			this->dgvMeals->RowHeadersWidth = 51;
 			this->dgvMeals->RowTemplate->Height = 24;
 			this->dgvMeals->Size = System::Drawing::Size(502, 154);
-			this->dgvMeals->TabIndex = 13;
-			this->dgvMeals->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Search_Client_InfoForm::dgvMeals_CellClick);
+			this->dgvMeals->TabIndex = 20;
+			this->dgvMeals->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Search_ClientForm::dgvMeals_CellClick);
 			// 
 			// IdMeals
 			// 
@@ -131,61 +126,61 @@ namespace ProyectView {
 			// 
 			// btnCancel
 			// 
-			this->btnCancel->Location = System::Drawing::Point(364, 111);
+			this->btnCancel->Location = System::Drawing::Point(364, 112);
 			this->btnCancel->Name = L"btnCancel";
 			this->btnCancel->Size = System::Drawing::Size(110, 32);
-			this->btnCancel->TabIndex = 12;
+			this->btnCancel->TabIndex = 19;
 			this->btnCancel->Text = L"CANCELAR";
 			this->btnCancel->UseVisualStyleBackColor = true;
-			this->btnCancel->Click += gcnew System::EventHandler(this, &Search_Client_InfoForm::btnCancel_Click);
+			this->btnCancel->Click += gcnew System::EventHandler(this, &Search_ClientForm::btnCancel_Click);
 			// 
 			// btnSearch
 			// 
-			this->btnSearch->Location = System::Drawing::Point(124, 111);
+			this->btnSearch->Location = System::Drawing::Point(124, 112);
 			this->btnSearch->Name = L"btnSearch";
 			this->btnSearch->Size = System::Drawing::Size(112, 32);
-			this->btnSearch->TabIndex = 11;
+			this->btnSearch->TabIndex = 18;
 			this->btnSearch->Text = L"BUSCAR";
 			this->btnSearch->UseVisualStyleBackColor = true;
-			this->btnSearch->Click += gcnew System::EventHandler(this, &Search_Client_InfoForm::btnSearch_Click);
+			this->btnSearch->Click += gcnew System::EventHandler(this, &Search_ClientForm::btnSearch_Click);
 			// 
 			// txtNameDescription
 			// 
-			this->txtNameDescription->Location = System::Drawing::Point(199, 69);
+			this->txtNameDescription->Location = System::Drawing::Point(199, 70);
 			this->txtNameDescription->Name = L"txtNameDescription";
 			this->txtNameDescription->Size = System::Drawing::Size(367, 22);
-			this->txtNameDescription->TabIndex = 10;
+			this->txtNameDescription->TabIndex = 17;
 			// 
 			// txtId
 			// 
-			this->txtId->Location = System::Drawing::Point(199, 37);
+			this->txtId->Location = System::Drawing::Point(199, 38);
 			this->txtId->Name = L"txtId";
 			this->txtId->Size = System::Drawing::Size(104, 22);
-			this->txtId->TabIndex = 9;
+			this->txtId->TabIndex = 16;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(42, 75);
+			this->label2->Location = System::Drawing::Point(42, 76);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(132, 16);
-			this->label2->TabIndex = 8;
+			this->label2->TabIndex = 15;
 			this->label2->Text = L"Nombre/Descripción";
 			// 
 			// Id
 			// 
 			this->Id->AutoSize = true;
-			this->Id->Location = System::Drawing::Point(42, 43);
+			this->Id->Location = System::Drawing::Point(42, 44);
 			this->Id->Name = L"Id";
 			this->Id->Size = System::Drawing::Size(18, 16);
-			this->Id->TabIndex = 7;
+			this->Id->TabIndex = 14;
 			this->Id->Text = L"Id";
 			// 
-			// Search_Client_InfoForm
+			// Search_ClientForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(645, 378);
+			this->ClientSize = System::Drawing::Size(672, 375);
 			this->Controls->Add(this->dgvMeals);
 			this->Controls->Add(this->btnCancel);
 			this->Controls->Add(this->btnSearch);
@@ -193,8 +188,8 @@ namespace ProyectView {
 			this->Controls->Add(this->txtId);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->Id);
-			this->Name = L"Search_Client_InfoForm";
-			this->Text = L"Search_Client_InfoForm";
+			this->Name = L"Search_ClientForm";
+			this->Text = L"Search_ClientForm";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvMeals))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();

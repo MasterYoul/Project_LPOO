@@ -1,6 +1,6 @@
 #pragma once
 #include "Client_InfoForm.h"
-#include "Search_Client_InfoForm.h"
+#include "Search_ClientForm.h"
 
 namespace ProyectView {
 
@@ -69,6 +69,7 @@ namespace ProyectView {
 
 	private: System::Windows::Forms::Button^ buttonSave;
 	private: System::Windows::Forms::Button^ buttonCancel;
+	private: System::Windows::Forms::Label^ label6;
 
 
 
@@ -103,11 +104,12 @@ namespace ProyectView {
 			this->buttonClean = (gcnew System::Windows::Forms::Button());
 			this->buttonSave = (gcnew System::Windows::Forms::Button());
 			this->buttonCancel = (gcnew System::Windows::Forms::Button());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// btnAddCustomer
 			// 
-			this->btnAddCustomer->Location = System::Drawing::Point(670, 49);
+			this->btnAddCustomer->Location = System::Drawing::Point(668, 136);
 			this->btnAddCustomer->Name = L"btnAddCustomer";
 			this->btnAddCustomer->Size = System::Drawing::Size(114, 44);
 			this->btnAddCustomer->TabIndex = 27;
@@ -116,7 +118,7 @@ namespace ProyectView {
 			// 
 			// btnSearchCustomer
 			// 
-			this->btnSearchCustomer->Location = System::Drawing::Point(489, 50);
+			this->btnSearchCustomer->Location = System::Drawing::Point(487, 137);
 			this->btnSearchCustomer->Name = L"btnSearchCustomer";
 			this->btnSearchCustomer->Size = System::Drawing::Size(125, 44);
 			this->btnSearchCustomer->TabIndex = 26;
@@ -126,7 +128,7 @@ namespace ProyectView {
 			// 
 			// lblClientData
 			// 
-			this->lblClientData->Location = System::Drawing::Point(97, 110);
+			this->lblClientData->Location = System::Drawing::Point(95, 197);
 			this->lblClientData->Name = L"lblClientData";
 			this->lblClientData->Size = System::Drawing::Size(317, 16);
 			this->lblClientData->TabIndex = 25;
@@ -135,7 +137,7 @@ namespace ProyectView {
 			// 
 			// textClient
 			// 
-			this->textClient->Location = System::Drawing::Point(100, 71);
+			this->textClient->Location = System::Drawing::Point(98, 158);
 			this->textClient->Name = L"textClient";
 			this->textClient->Size = System::Drawing::Size(331, 22);
 			this->textClient->TabIndex = 24;
@@ -143,7 +145,7 @@ namespace ProyectView {
 			// 
 			// dateTimeSale
 			// 
-			this->dateTimeSale->Location = System::Drawing::Point(100, 35);
+			this->dateTimeSale->Location = System::Drawing::Point(98, 122);
 			this->dateTimeSale->Name = L"dateTimeSale";
 			this->dateTimeSale->Size = System::Drawing::Size(331, 22);
 			this->dateTimeSale->TabIndex = 23;
@@ -151,7 +153,7 @@ namespace ProyectView {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(38, 78);
+			this->label2->Location = System::Drawing::Point(36, 165);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(48, 16);
 			this->label2->TabIndex = 22;
@@ -160,7 +162,7 @@ namespace ProyectView {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(39, 41);
+			this->label1->Location = System::Drawing::Point(37, 128);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(45, 16);
 			this->label1->TabIndex = 21;
@@ -168,16 +170,16 @@ namespace ProyectView {
 			// 
 			// textBoxComments
 			// 
-			this->textBoxComments->Location = System::Drawing::Point(113, 443);
+			this->textBoxComments->Location = System::Drawing::Point(462, 297);
 			this->textBoxComments->Multiline = true;
 			this->textBoxComments->Name = L"textBoxComments";
-			this->textBoxComments->Size = System::Drawing::Size(648, 125);
+			this->textBoxComments->Size = System::Drawing::Size(349, 269);
 			this->textBoxComments->TabIndex = 28;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(8, 443);
+			this->label3->Location = System::Drawing::Point(459, 261);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(79, 16);
 			this->label3->TabIndex = 29;
@@ -187,7 +189,7 @@ namespace ProyectView {
 			// 
 			this->comboBoxLocal->FormattingEnabled = true;
 			this->comboBoxLocal->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"1", L"2", L"3", L"4", L"5" });
-			this->comboBoxLocal->Location = System::Drawing::Point(222, 360);
+			this->comboBoxLocal->Location = System::Drawing::Point(223, 496);
 			this->comboBoxLocal->Name = L"comboBoxLocal";
 			this->comboBoxLocal->Size = System::Drawing::Size(169, 24);
 			this->comboBoxLocal->TabIndex = 31;
@@ -195,7 +197,7 @@ namespace ProyectView {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(19, 368);
+			this->label8->Location = System::Drawing::Point(20, 504);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(130, 16);
 			this->label8->TabIndex = 30;
@@ -205,7 +207,7 @@ namespace ProyectView {
 			// 
 			this->comboBoxFood->FormattingEnabled = true;
 			this->comboBoxFood->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"1", L"2", L"3", L"4", L"5" });
-			this->comboBoxFood->Location = System::Drawing::Point(222, 260);
+			this->comboBoxFood->Location = System::Drawing::Point(223, 396);
 			this->comboBoxFood->Name = L"comboBoxFood";
 			this->comboBoxFood->Size = System::Drawing::Size(169, 24);
 			this->comboBoxFood->TabIndex = 33;
@@ -213,7 +215,7 @@ namespace ProyectView {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(19, 268);
+			this->label4->Location = System::Drawing::Point(20, 404);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(157, 16);
 			this->label4->TabIndex = 32;
@@ -223,7 +225,7 @@ namespace ProyectView {
 			// 
 			this->comboBoxAtention->FormattingEnabled = true;
 			this->comboBoxAtention->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"1", L"2", L"3", L"4", L"5" });
-			this->comboBoxAtention->Location = System::Drawing::Point(222, 165);
+			this->comboBoxAtention->Location = System::Drawing::Point(223, 301);
 			this->comboBoxAtention->Name = L"comboBoxAtention";
 			this->comboBoxAtention->Size = System::Drawing::Size(169, 24);
 			this->comboBoxAtention->TabIndex = 35;
@@ -231,7 +233,7 @@ namespace ProyectView {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(19, 173);
+			this->label5->Location = System::Drawing::Point(20, 309);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(163, 16);
 			this->label5->TabIndex = 34;
@@ -239,7 +241,7 @@ namespace ProyectView {
 			// 
 			// buttonClean
 			// 
-			this->buttonClean->Location = System::Drawing::Point(338, 609);
+			this->buttonClean->Location = System::Drawing::Point(343, 629);
 			this->buttonClean->Name = L"buttonClean";
 			this->buttonClean->Size = System::Drawing::Size(114, 44);
 			this->buttonClean->TabIndex = 37;
@@ -249,7 +251,7 @@ namespace ProyectView {
 			// 
 			// buttonSave
 			// 
-			this->buttonSave->Location = System::Drawing::Point(167, 609);
+			this->buttonSave->Location = System::Drawing::Point(162, 629);
 			this->buttonSave->Name = L"buttonSave";
 			this->buttonSave->Size = System::Drawing::Size(125, 44);
 			this->buttonSave->TabIndex = 36;
@@ -259,7 +261,7 @@ namespace ProyectView {
 			// 
 			// buttonCancel
 			// 
-			this->buttonCancel->Location = System::Drawing::Point(519, 609);
+			this->buttonCancel->Location = System::Drawing::Point(519, 629);
 			this->buttonCancel->Name = L"buttonCancel";
 			this->buttonCancel->Size = System::Drawing::Size(114, 44);
 			this->buttonCancel->TabIndex = 38;
@@ -267,11 +269,23 @@ namespace ProyectView {
 			this->buttonCancel->UseVisualStyleBackColor = true;
 			this->buttonCancel->Click += gcnew System::EventHandler(this, &Sugesstions::buttonCancel_Click);
 			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Mongolian Baiti", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label6->Location = System::Drawing::Point(36, 30);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(722, 24);
+			this->label6->TabIndex = 39;
+			this->label6->Text = L"REALIZE SUS QUEJAS, SUGERENCIAS Y RECOMENDACIONES:";
+			// 
 			// Sugesstions
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(823, 715);
+			this->ClientSize = System::Drawing::Size(847, 701);
+			this->Controls->Add(this->label6);
 			this->Controls->Add(this->buttonCancel);
 			this->Controls->Add(this->buttonClean);
 			this->Controls->Add(this->buttonSave);
@@ -356,15 +370,15 @@ private: System::Void buttonCancel_Click(System::Object^ sender, System::EventAr
 	this->Close();
 }
 private: System::Void btnSearchCustomer_Click(System::Object^ sender, System::EventArgs^ e) {
-	Search_Client_InfoForm^ client_infoform = gcnew Search_Client_InfoForm();
-	client_infoform->Type = 'K';
-	client_infoform->saleForm = this;
+	Search_ClientForm^ client_infoform = gcnew Search_ClientForm();
+	client_infoform->Type = 'S';
+	client_infoform->sugesstionForm = this;
 
 	client_infoform->ShowDialog();
 }
 	   public:  Void SetCustom(Client_Info^ cust) {
 		   this->client_Info = cust;
-		   textClient->Text = cust->DocNumber;
+		   textClient->Text = Convert::ToString(cust->DocNumber);
 		   lblClientData->Text = cust->DocNumber + " - " +
 			   cust->Name + " " + cust->LastName;
 	   }

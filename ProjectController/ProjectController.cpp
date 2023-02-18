@@ -9,17 +9,35 @@ void ProjectController::Controller::Init()
 
 }
 
+List<SaleDetail^>^ ProjectController::Controller::ChangeQueryAllSaleDetail()
+{
+    SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
+    List<SaleDetail^>^ returnedDetalle = gcnew List<SaleDetail^>();
+    // cambios
+    for (int num = 0; num < SaleList->Count; num++)
+    {
+        for (int i = 0; i < SaleList[num]->SaleDetails->Count; i++) {
+            if (SaleList[num]->SaleDetails[i]->Estado->Equals("no preparado")) {
+                SaleList[num]->SaleDetails[i]->Estado = "preparado";
+                returnedDetalle->Add(SaleList[num]->SaleDetails[i]);
+            }
+        }
+        Persistance::PersistBinary("Sale.bin", SaleList);
+    }
+    return returnedDetalle;
 
+}
 
 List<TableDetail^>^ ProjectController::Controller::QueryAllTableLibre() {
     TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
-    String^ valor = "DISPONIBLE";
+ 
     List<TableDetail^>^ returnedDetalle = gcnew List<TableDetail^>();
-    for (int i = 0; i <= TableDetailList->Count; i++)
+    for (int i = 0; i < TableDetailList->Count; i++)
     {
-        if (TableDetailList[i]->Disponibility->Equals(valor)) {
+        if (TableDetailList[i]->Disponibility->Equals("DISPONIBLE")) {
             returnedDetalle->Add(TableDetailList[i]);
         }
+        
     }
     return returnedDetalle;
 }
@@ -74,28 +92,7 @@ List<SaleDetail^>^ ProjectController::Controller::QueryAllSaleDetail()
     return returnedDetalle;
 }
 
-List<SaleDetail^>^ ProjectController::Controller::ChangeQueryAllSaleDetail()
-{
-    SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
-    List<SaleDetail^>^ returnedDetalle = gcnew List<SaleDetail^>();
 
-
-    // cambios
-    for (int num = 0; num < SaleList->Count; num++)
-    {
-        for (int i = 0; i < SaleList[num]->SaleDetails->Count; i++) {
-            if (SaleList[num]->SaleDetails[i]->Estado->Equals("no preparado")) {
-                SaleList[num]->SaleDetails[i]->Estado = "preparado";
-                returnedDetalle->Add(SaleList[num]->SaleDetails[i]);
-            }
-
-        }
-
-        Persistance::PersistBinary("Sale.bin", SaleList);
-    }
-    return returnedDetalle;
-
-}
 
 int ProjectController::Controller::AddMeals(Meals^ meals)
 {

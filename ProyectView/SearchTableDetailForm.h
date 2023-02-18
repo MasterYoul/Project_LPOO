@@ -54,12 +54,17 @@ namespace ProyectView {
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::TextBox^ textBox4;
 	private: System::Windows::Forms::Label^ label4;
+
+
+
+
+
+	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
-	private: System::Windows::Forms::Label^ label5;
 
 	private:
 		/// <summary>
@@ -86,12 +91,12 @@ namespace ProyectView {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->label5 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -201,26 +206,37 @@ namespace ProyectView {
 			this->label4->TabIndex = 12;
 			this->label4->Text = L"BUSCAR MESAS LIBRES";
 			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Mongolian Baiti", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->Location = System::Drawing::Point(24, 9);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(345, 43);
+			this->label5->TabIndex = 14;
+			this->label5->Text = L"Mesas disponibles:";
+			// 
 			// Column1
 			// 
 			this->Column1->HeaderText = L"Id";
 			this->Column1->MinimumWidth = 6;
 			this->Column1->Name = L"Column1";
-			this->Column1->Width = 125;
+			this->Column1->Width = 50;
 			// 
 			// Column2
 			// 
 			this->Column2->HeaderText = L"Piso";
 			this->Column2->MinimumWidth = 6;
 			this->Column2->Name = L"Column2";
-			this->Column2->Width = 125;
+			this->Column2->Width = 50;
 			// 
 			// Column3
 			// 
 			this->Column3->HeaderText = L"Capacidad";
 			this->Column3->MinimumWidth = 6;
 			this->Column3->Name = L"Column3";
-			this->Column3->Width = 125;
+			this->Column3->Width = 80;
 			// 
 			// Column4
 			// 
@@ -235,17 +251,6 @@ namespace ProyectView {
 			this->Column5->MinimumWidth = 6;
 			this->Column5->Name = L"Column5";
 			this->Column5->Width = 125;
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Font = (gcnew System::Drawing::Font(L"Mongolian Baiti", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label5->Location = System::Drawing::Point(24, 9);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(345, 43);
-			this->label5->TabIndex = 14;
-			this->label5->Text = L"Mesas disponibles:";
 			// 
 			// SearchTableDetailForm
 			// 

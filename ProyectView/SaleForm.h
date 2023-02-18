@@ -4,6 +4,7 @@
 #include "Search_Client_InfoForm.h"
 #include "UserForm.h"
 #include "TableForm.h"
+#include "SearchTableDetailForm.h"
 #include "Resource.h"
 
 
@@ -36,6 +37,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PriceMeals;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ quantity2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SubTotal;
+	private: System::Windows::Forms::Button^ button3;
 
 
 
@@ -129,6 +131,11 @@ namespace ProyectView {
 			this->btnSearchCustomer = (gcnew System::Windows::Forms::Button());
 			this->btnAddCustomer = (gcnew System::Windows::Forms::Button());
 			this->dgvDetails = (gcnew System::Windows::Forms::DataGridView());
+			this->MealsId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->MealsName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->PriceMeals = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->quantity2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->SubTotal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnRegisterSale = (gcnew System::Windows::Forms::Button());
 			this->txtSubtotal = (gcnew System::Windows::Forms::TextBox());
 			this->txtTax = (gcnew System::Windows::Forms::TextBox());
@@ -149,11 +156,7 @@ namespace ProyectView {
 			this->BtnCleanSale = (gcnew System::Windows::Forms::Button());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->SEARCH_CLIENT = (gcnew System::Windows::Forms::Button());
-			this->MealsId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->MealsName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->PriceMeals = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->quantity2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->SubTotal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvDetails))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -243,6 +246,41 @@ namespace ProyectView {
 			this->dgvDetails->Size = System::Drawing::Size(974, 267);
 			this->dgvDetails->TabIndex = 21;
 			this->dgvDetails->CellValueChanged += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SaleForm::dgvDetails_CellValueChanged);
+			// 
+			// MealsId
+			// 
+			this->MealsId->HeaderText = L"Id";
+			this->MealsId->MinimumWidth = 6;
+			this->MealsId->Name = L"MealsId";
+			this->MealsId->Width = 50;
+			// 
+			// MealsName
+			// 
+			this->MealsName->HeaderText = L"Nombre";
+			this->MealsName->MinimumWidth = 6;
+			this->MealsName->Name = L"MealsName";
+			this->MealsName->Width = 300;
+			// 
+			// PriceMeals
+			// 
+			this->PriceMeals->HeaderText = L"Precio";
+			this->PriceMeals->MinimumWidth = 6;
+			this->PriceMeals->Name = L"PriceMeals";
+			this->PriceMeals->Width = 125;
+			// 
+			// quantity2
+			// 
+			this->quantity2->HeaderText = L"Cantidad";
+			this->quantity2->MinimumWidth = 6;
+			this->quantity2->Name = L"quantity2";
+			this->quantity2->Width = 125;
+			// 
+			// SubTotal
+			// 
+			this->SubTotal->HeaderText = L"Sub Total";
+			this->SubTotal->MinimumWidth = 6;
+			this->SubTotal->Name = L"SubTotal";
+			this->SubTotal->Width = 125;
 			// 
 			// btnRegisterSale
 			// 
@@ -419,46 +457,22 @@ namespace ProyectView {
 			this->SEARCH_CLIENT->UseVisualStyleBackColor = true;
 			this->SEARCH_CLIENT->Click += gcnew System::EventHandler(this, &SaleForm::SEARCH_CLIENT_Click);
 			// 
-			// MealsId
+			// button3
 			// 
-			this->MealsId->HeaderText = L"Id";
-			this->MealsId->MinimumWidth = 6;
-			this->MealsId->Name = L"MealsId";
-			this->MealsId->Width = 50;
-			// 
-			// MealsName
-			// 
-			this->MealsName->HeaderText = L"Nombre";
-			this->MealsName->MinimumWidth = 6;
-			this->MealsName->Name = L"MealsName";
-			this->MealsName->Width = 300;
-			// 
-			// PriceMeals
-			// 
-			this->PriceMeals->HeaderText = L"Precio";
-			this->PriceMeals->MinimumWidth = 6;
-			this->PriceMeals->Name = L"PriceMeals";
-			this->PriceMeals->Width = 125;
-			// 
-			// quantity2
-			// 
-			this->quantity2->HeaderText = L"Cantidad";
-			this->quantity2->MinimumWidth = 6;
-			this->quantity2->Name = L"quantity2";
-			this->quantity2->Width = 125;
-			// 
-			// SubTotal
-			// 
-			this->SubTotal->HeaderText = L"Sub Total";
-			this->SubTotal->MinimumWidth = 6;
-			this->SubTotal->Name = L"SubTotal";
-			this->SubTotal->Width = 125;
+			this->button3->Location = System::Drawing::Point(760, 149);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(163, 29);
+			this->button3->TabIndex = 55;
+			this->button3->Text = L"BUSCAR MESA";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &SaleForm::button3_Click);
 			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1028, 868);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->SEARCH_CLIENT);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->BtnCleanSale);
@@ -634,6 +648,13 @@ private: System::Void BtnCleanSale_Click(System::Object^ sender, System::EventAr
 }
 private: System::Void SEARCH_CLIENT_Click(System::Object^ sender, System::EventArgs^ e) {
 	Search_Client_InfoForm^ client_infoform = gcnew Search_Client_InfoForm();
+	client_infoform->Type = 'S';
+	client_infoform->saleForm = this;
+
+	client_infoform->ShowDialog();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	SearchTableDetailForm^ client_infoform = gcnew SearchTableDetailForm();
 	client_infoform->Type = 'S';
 	client_infoform->saleForm = this;
 

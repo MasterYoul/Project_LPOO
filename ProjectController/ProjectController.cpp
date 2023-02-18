@@ -8,6 +8,33 @@ void ProjectController::Controller::Init()
 {
 
 }
+
+
+
+List<TableDetail^>^ ProjectController::Controller::QueryAllTableLibre() {
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    String^ valor = "DISPONIBLE";
+    List<TableDetail^>^ returnedDetalle = gcnew List<TableDetail^>();
+    for (int i = 0; i <= TableDetailList->Count; i++)
+    {
+        if (TableDetailList[i]->Disponibility->Equals(valor)) {
+            returnedDetalle->Add(TableDetailList[i]);
+        }
+    }
+    return returnedDetalle;
+}
+List<Meals^>^ ProjectController::Controller::QueryMealsByNameOrDescription(String^ value)
+{
+    MealsList = (List<Meals^>^)Persistance::LoadData("Meals.txt");
+    MealsList = (List<Meals^>^)Persistance::LoadXMLData("Meals.xml");
+    MealsList = (List<Meals^>^)Persistance::LoadBinaryData("Meals.bin");
+    List<Meals^>^ newProductList = gcnew List<Meals^>();
+    for (int i = 0; i < MealsList->Count; i++) {
+        if (MealsList[i]->Name->Contains(value) || MealsList[i]->Description->Contains(value))
+            newProductList->Add(MealsList[i]);
+    }
+    return newProductList;
+}
 /*User^ ProjectController::Controller::QuerychangeEstado(int id) {
     UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
     for (int i = 0; i < UserList->Count; i++) {
@@ -125,18 +152,7 @@ int ProjectController::Controller::DeleteMeals(int MealsId)
     return 0;
 }
 
-List<Meals^>^ ProjectController::Controller::QueryMealsByNameOrDescription(String^ value)
-{
-    MealsList = (List<Meals^>^)Persistance::LoadData("Meals.txt");
-    MealsList = (List<Meals^>^)Persistance::LoadXMLData("Meals.xml");
-    MealsList = (List<Meals^>^)Persistance::LoadBinaryData("Meals.bin");
-    List<Meals^>^ newProductList = gcnew List<Meals^>();
-    for (int i = 0; i < MealsList->Count; i++) {
-        if (MealsList[i]->Name->Contains(value) || MealsList[i]->Description->Contains(value))
-            newProductList->Add(MealsList[i]);
-    }
-    return newProductList;
-}
+
 
 /*List<SaleDetail^>^ ProjectController::Controller::QueryAllSaleDetail()
 {

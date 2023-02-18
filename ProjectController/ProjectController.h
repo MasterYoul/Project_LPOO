@@ -60,6 +60,7 @@ namespace ProjectController {
 
 
 		static int AddTableDetail(TableDetail^ TableDetail);
+		static List<TableDetail^>^ QueryAllTableLibre();
 		static TableDetail^ QueryTableDetailtById(int TableDetailId);
 		static TableDetail^ QueryTableDetailOcupado(int TableDetailId);
 		static List<TableDetail^>^ QueryAllTableDetail();

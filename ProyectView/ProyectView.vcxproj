@@ -193,6 +193,9 @@
     <ClInclude Include="UserForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="UserInformation.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
@@ -224,6 +227,7 @@
     <ClCompile Include="Search_Client_InfoForm.cpp" />
     <ClCompile Include="Sugesstions.cpp" />
     <ClCompile Include="UserForm.cpp" />
+    <ClCompile Include="UserInformation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />
@@ -307,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInformation.resx">
+      <DependentUpon>UserInformation.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

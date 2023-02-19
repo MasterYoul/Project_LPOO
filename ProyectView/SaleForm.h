@@ -38,6 +38,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ quantity2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SubTotal;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ button4;
 
 
 
@@ -157,6 +158,7 @@ namespace ProyectView {
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->SEARCH_CLIENT = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvDetails))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -194,9 +196,9 @@ namespace ProyectView {
 			// 
 			// btnAddMeal
 			// 
-			this->btnAddMeal->Location = System::Drawing::Point(205, 319);
+			this->btnAddMeal->Location = System::Drawing::Point(232, 271);
 			this->btnAddMeal->Name = L"btnAddMeal";
-			this->btnAddMeal->Size = System::Drawing::Size(239, 55);
+			this->btnAddMeal->Size = System::Drawing::Size(239, 40);
 			this->btnAddMeal->TabIndex = 17;
 			this->btnAddMeal->Text = L"Agregar Plato";
 			this->btnAddMeal->UseVisualStyleBackColor = true;
@@ -204,9 +206,9 @@ namespace ProyectView {
 			// 
 			// btnDeleteMeal
 			// 
-			this->btnDeleteMeal->Location = System::Drawing::Point(500, 319);
+			this->btnDeleteMeal->Location = System::Drawing::Point(528, 271);
 			this->btnDeleteMeal->Name = L"btnDeleteMeal";
-			this->btnDeleteMeal->Size = System::Drawing::Size(230, 55);
+			this->btnDeleteMeal->Size = System::Drawing::Size(230, 40);
 			this->btnDeleteMeal->TabIndex = 18;
 			this->btnDeleteMeal->Text = L"Eliminar Plato";
 			this->btnDeleteMeal->UseVisualStyleBackColor = true;
@@ -224,9 +226,9 @@ namespace ProyectView {
 			// 
 			// btnAddCustomer
 			// 
-			this->btnAddCustomer->Location = System::Drawing::Point(884, 64);
+			this->btnAddCustomer->Location = System::Drawing::Point(863, 64);
 			this->btnAddCustomer->Name = L"btnAddCustomer";
-			this->btnAddCustomer->Size = System::Drawing::Size(125, 26);
+			this->btnAddCustomer->Size = System::Drawing::Size(135, 29);
 			this->btnAddCustomer->TabIndex = 20;
 			this->btnAddCustomer->Text = L"+ Cliente";
 			this->btnAddCustomer->UseVisualStyleBackColor = true;
@@ -239,7 +241,7 @@ namespace ProyectView {
 				this->MealsId, this->MealsName,
 					this->PriceMeals, this->quantity2, this->SubTotal
 			});
-			this->dgvDetails->Location = System::Drawing::Point(35, 418);
+			this->dgvDetails->Location = System::Drawing::Point(42, 329);
 			this->dgvDetails->Name = L"dgvDetails";
 			this->dgvDetails->RowHeadersWidth = 51;
 			this->dgvDetails->RowTemplate->Height = 24;
@@ -284,9 +286,9 @@ namespace ProyectView {
 			// 
 			// btnRegisterSale
 			// 
-			this->btnRegisterSale->Location = System::Drawing::Point(59, 760);
+			this->btnRegisterSale->Location = System::Drawing::Point(42, 648);
 			this->btnRegisterSale->Name = L"btnRegisterSale";
-			this->btnRegisterSale->Size = System::Drawing::Size(290, 54);
+			this->btnRegisterSale->Size = System::Drawing::Size(212, 47);
 			this->btnRegisterSale->TabIndex = 22;
 			this->btnRegisterSale->Text = L"Registrar Venta";
 			this->btnRegisterSale->UseVisualStyleBackColor = true;
@@ -294,21 +296,21 @@ namespace ProyectView {
 			// 
 			// txtSubtotal
 			// 
-			this->txtSubtotal->Location = System::Drawing::Point(786, 706);
+			this->txtSubtotal->Location = System::Drawing::Point(793, 617);
 			this->txtSubtotal->Name = L"txtSubtotal";
 			this->txtSubtotal->Size = System::Drawing::Size(146, 22);
 			this->txtSubtotal->TabIndex = 23;
 			// 
 			// txtTax
 			// 
-			this->txtTax->Location = System::Drawing::Point(786, 749);
+			this->txtTax->Location = System::Drawing::Point(793, 660);
 			this->txtTax->Name = L"txtTax";
 			this->txtTax->Size = System::Drawing::Size(146, 22);
 			this->txtTax->TabIndex = 24;
 			// 
 			// txtTotal
 			// 
-			this->txtTotal->Location = System::Drawing::Point(786, 822);
+			this->txtTotal->Location = System::Drawing::Point(793, 733);
 			this->txtTotal->Name = L"txtTotal";
 			this->txtTotal->Size = System::Drawing::Size(146, 22);
 			this->txtTotal->TabIndex = 25;
@@ -317,7 +319,7 @@ namespace ProyectView {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(687, 712);
+			this->label4->Location = System::Drawing::Point(694, 623);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(65, 16);
 			this->label4->TabIndex = 26;
@@ -326,7 +328,7 @@ namespace ProyectView {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(714, 755);
+			this->label5->Location = System::Drawing::Point(721, 666);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(38, 16);
 			this->label5->TabIndex = 27;
@@ -335,7 +337,7 @@ namespace ProyectView {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(711, 828);
+			this->label6->Location = System::Drawing::Point(718, 739);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(41, 16);
 			this->label6->TabIndex = 28;
@@ -344,7 +346,7 @@ namespace ProyectView {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(677, 791);
+			this->label3->Location = System::Drawing::Point(684, 702);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(75, 16);
 			this->label3->TabIndex = 29;
@@ -352,16 +354,18 @@ namespace ProyectView {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(786, 785);
+			this->textBox1->Location = System::Drawing::Point(793, 696);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(146, 22);
 			this->textBox1->TabIndex = 30;
 			this->textBox1->Text = L"0";
+			this->textBox1->Click += gcnew System::EventHandler(this, &SaleForm::textBox1_Click);
+			this->textBox1->MouseCaptureChanged += gcnew System::EventHandler(this, &SaleForm::textBox1_MouseCaptureChanged);
 			// 
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(21, 149);
+			this->label10->Location = System::Drawing::Point(21, 136);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(102, 16);
 			this->label10->TabIndex = 48;
@@ -370,7 +374,7 @@ namespace ProyectView {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(12, 219);
+			this->label9->Location = System::Drawing::Point(12, 200);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(113, 16);
 			this->label9->TabIndex = 47;
@@ -378,7 +382,7 @@ namespace ProyectView {
 			// 
 			// label7
 			// 
-			this->label7->Location = System::Drawing::Point(151, 253);
+			this->label7->Location = System::Drawing::Point(151, 234);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(317, 16);
 			this->label7->TabIndex = 46;
@@ -387,7 +391,7 @@ namespace ProyectView {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(534, 211);
+			this->button2->Location = System::Drawing::Point(534, 192);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(157, 32);
 			this->button2->TabIndex = 45;
@@ -397,14 +401,14 @@ namespace ProyectView {
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(151, 219);
+			this->textBox3->Location = System::Drawing::Point(151, 200);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(317, 22);
 			this->textBox3->TabIndex = 44;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(534, 149);
+			this->button1->Location = System::Drawing::Point(534, 136);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(157, 29);
 			this->button1->TabIndex = 43;
@@ -414,7 +418,7 @@ namespace ProyectView {
 			// 
 			// label8
 			// 
-			this->label8->Location = System::Drawing::Point(148, 188);
+			this->label8->Location = System::Drawing::Point(151, 170);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(317, 16);
 			this->label8->TabIndex = 42;
@@ -423,16 +427,16 @@ namespace ProyectView {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(151, 149);
+			this->textBox2->Location = System::Drawing::Point(151, 136);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(317, 22);
 			this->textBox2->TabIndex = 41;
 			// 
 			// BtnCleanSale
 			// 
-			this->BtnCleanSale->Location = System::Drawing::Point(409, 760);
+			this->BtnCleanSale->Location = System::Drawing::Point(285, 648);
 			this->BtnCleanSale->Name = L"BtnCleanSale";
-			this->BtnCleanSale->Size = System::Drawing::Size(229, 54);
+			this->BtnCleanSale->Size = System::Drawing::Size(162, 47);
 			this->BtnCleanSale->TabIndex = 51;
 			this->BtnCleanSale->Text = L"Limpiar Todo";
 			this->BtnCleanSale->UseVisualStyleBackColor = true;
@@ -451,27 +455,38 @@ namespace ProyectView {
 			// 
 			this->SEARCH_CLIENT->Location = System::Drawing::Point(700, 64);
 			this->SEARCH_CLIENT->Name = L"SEARCH_CLIENT";
-			this->SEARCH_CLIENT->Size = System::Drawing::Size(163, 29);
+			this->SEARCH_CLIENT->Size = System::Drawing::Size(140, 29);
 			this->SEARCH_CLIENT->TabIndex = 54;
-			this->SEARCH_CLIENT->Text = L"AGREGAR CLIENTE";
+			this->SEARCH_CLIENT->Text = L"BUSCAR CLIENTE";
 			this->SEARCH_CLIENT->UseVisualStyleBackColor = true;
 			this->SEARCH_CLIENT->Click += gcnew System::EventHandler(this, &SaleForm::SEARCH_CLIENT_Click);
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(700, 149);
+			this->button3->Location = System::Drawing::Point(700, 136);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(163, 29);
+			this->button3->Size = System::Drawing::Size(140, 29);
 			this->button3->TabIndex = 55;
 			this->button3->Text = L"BUSCAR MESA";
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &SaleForm::button3_Click);
 			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(481, 648);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(112, 47);
+			this->button4->TabIndex = 56;
+			this->button4->Text = L"Actualizar";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &SaleForm::button4_Click);
+			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1028, 868);
+			this->ClientSize = System::Drawing::Size(1028, 767);
+			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->SEARCH_CLIENT);
 			this->Controls->Add(this->label11);
@@ -578,6 +593,8 @@ private: System::Void btnDeleteMeal_Click(System::Object^ sender, System::EventA
 	}
 	else
 		MessageBox::Show("Para eliminar un producto debe seleccionar toda la fila.");
+	RefreshTotalAmounts();
+
 }
 private: System::Void btnRegisterSale_Click(System::Object^ sender, System::EventArgs^ e);
 
@@ -597,19 +614,26 @@ private: System::Void dgvDetails_CellValueChanged(System::Object^ sender, System
 				total += Double::Parse(dgvDetails->Rows[i]->Cells[4]->Value->ToString());
 			txtSubtotal->Text = "" + (total * (1 - IGV));
 			txtTax->Text = "" + (total * IGV);
-			txtTotal->Text = "" + total;
+			txtTotal->Text = "" + (total- Double::Parse(textBox1->Text));
 		}
 
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	User^ User = Controller::QueryUsertById(Int32::Parse(textBox3->Text));
-
-	if (User != nullptr) {
-
-		label7->Text = User->DocNumber + " - " + User->Name +
-			" " + User->LastName;
+	if (textBox3 == nullptr) {
+		MessageBox::Show("Insertar el id de un mesero existente");
 	}
 	else {
-		MessageBox::Show("Mesero no encontrado!");
+		User^ User = Controller::QueryUsertById(Int32::Parse(textBox3->Text));
+
+
+		if (User != nullptr) {
+
+			label7->Text = User->DocNumber + " - " + User->Name +
+				" " + User->LastName;
+		}
+		else {
+			MessageBox::Show("Mesero no encontrado!");
+		}
+
 	}
 }
 
@@ -667,6 +691,17 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	client_infoform->saleForm = this;
 
 	client_infoform->ShowDialog();
+}
+private: System::Void textBox1_MouseCaptureChanged(System::Object^ sender, System::EventArgs^ e) {
+	RefreshTotalAmounts();
+}
+private: System::Void textBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+	RefreshTotalAmounts();
+
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	RefreshTotalAmounts();
+
 }
 };
 }

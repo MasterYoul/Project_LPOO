@@ -70,5 +70,6 @@ System::Void ProyectView::SaleForm::btnRegisterSale_Click(System::Object^ sender
 	//Completar el RegisterSale
 	Controller::RegisterSale(sale);
 	MessageBox::Show("Se ha registrado la venta exitosamente.");
+	RefreshTotalAmounts();
 }
 

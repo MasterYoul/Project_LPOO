@@ -1,4 +1,6 @@
 #pragma once
+#include "Client_InfoForm.h"
+#include "SearchClientInfoForm.h"
 
 namespace ProyectView {
 
@@ -8,12 +10,17 @@ namespace ProyectView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace ProjectModel;
+	using namespace ProjectController;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de SearchModifySuggestionForm
 	/// </summary>
 	public ref class SearchModifySuggestionForm : public System::Windows::Forms::Form
 	{
+	private:
+		Client_Info^ client_Info;
 	public:
 		SearchModifySuggestionForm(void)
 		{
@@ -132,6 +139,7 @@ namespace ProyectView {
 			this->button4->TabIndex = 61;
 			this->button4->Text = L"+CLIENTE";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &SearchModifySuggestionForm::button4_Click);
 			// 
 			// label4
 			// 
@@ -199,6 +207,7 @@ namespace ProyectView {
 			this->button1->TabIndex = 51;
 			this->button1->Text = L"BUSCAR";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &SearchModifySuggestionForm::button1_Click);
 			// 
 			// dataGridView1
 			// 
@@ -375,5 +384,24 @@ namespace ProyectView {
 
 		}
 #pragma endregion
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+
+
+
+		   public:  Void SetCustom(Client_Info^ cust) {
+			   this->client_Info = cust;
+			   textBox4->Text = Convert::ToString(cust->DocNumber);
+			   lblClientData->Text = cust->DocNumber + " - " +
+				   cust->Name + " " + cust->LastName;
+		   }
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	SearchClientInfoForm^ client_infoform = gcnew SearchClientInfoForm();
+	client_infoform->Type = 'S';
+	client_infoform->sugesstionForm = this;
+
+	client_infoform->ShowDialog();
+}
+};
+	
 }

@@ -11,6 +11,7 @@
 #include "SearchClientInfoForm.h";
 #include "SearchPlatos.h";
 #include "SearchUserForm.h";
+#include "SearchModifySuggestionForm.h";
 
 namespace ProyectView {
 
@@ -191,7 +192,7 @@ namespace ProyectView {
 			});
 			this->platosToolStripMenuItem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"platosToolStripMenuItem.Image")));
 			this->platosToolStripMenuItem->Name = L"platosToolStripMenuItem";
-			this->platosToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->platosToolStripMenuItem->Size = System::Drawing::Size(166, 26);
 			this->platosToolStripMenuItem->Text = L"Platos";
 			this->platosToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::platosToolStripMenuItem_Click);
 			// 
@@ -217,7 +218,7 @@ namespace ProyectView {
 			});
 			this->clientesToolStripMenuItem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"clientesToolStripMenuItem.Image")));
 			this->clientesToolStripMenuItem->Name = L"clientesToolStripMenuItem";
-			this->clientesToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->clientesToolStripMenuItem->Size = System::Drawing::Size(166, 26);
 			this->clientesToolStripMenuItem->Text = L"Clientes";
 			this->clientesToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::clientesToolStripMenuItem_Click);
 			// 
@@ -243,7 +244,7 @@ namespace ProyectView {
 			});
 			this->empleadosToolStripMenuItem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"empleadosToolStripMenuItem.Image")));
 			this->empleadosToolStripMenuItem->Name = L"empleadosToolStripMenuItem";
-			this->empleadosToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->empleadosToolStripMenuItem->Size = System::Drawing::Size(166, 26);
 			this->empleadosToolStripMenuItem->Text = L"Empleados";
 			this->empleadosToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::empleadosToolStripMenuItem_Click);
 			// 
@@ -269,7 +270,7 @@ namespace ProyectView {
 			});
 			this->mesasToolStripMenuItem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"mesasToolStripMenuItem.Image")));
 			this->mesasToolStripMenuItem->Name = L"mesasToolStripMenuItem";
-			this->mesasToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->mesasToolStripMenuItem->Size = System::Drawing::Size(166, 26);
 			this->mesasToolStripMenuItem->Text = L"Mesas";
 			this->mesasToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::mesasToolStripMenuItem_Click);
 			// 
@@ -366,6 +367,7 @@ namespace ProyectView {
 			this->filtrarSugerenciasToolStripMenuItem->Name = L"filtrarSugerenciasToolStripMenuItem";
 			this->filtrarSugerenciasToolStripMenuItem->Size = System::Drawing::Size(239, 26);
 			this->filtrarSugerenciasToolStripMenuItem->Text = L"Filtrar Sugerencias";
+			this->filtrarSugerenciasToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::filtrarSugerenciasToolStripMenuItem_Click);
 			// 
 			// reportesToolStripMenuItem
 			// 
@@ -526,6 +528,17 @@ private: System::Void filtroDeEmpleadosToolStripMenuItem_Click(System::Object^ s
 	SearchUserForm^ saleForm = gcnew SearchUserForm();
 	saleForm->MdiParent = this;
 	if(ProyectMainForm::user->Type == "Administrador"){
+		saleForm->Show();
+	}
+	else {
+		saleForm->Hide();
+		MessageBox::Show("Usted no tiene acceso a esta ventana.");
+	}
+}
+private: System::Void filtrarSugerenciasToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	SearchModifySuggestionForm^ saleForm = gcnew SearchModifySuggestionForm();
+	saleForm->MdiParent = this;
+	if (ProyectMainForm::user->Type == "Administrador") {
 		saleForm->Show();
 	}
 	else {

@@ -11,6 +11,7 @@ namespace ProjectModel {
     [Serializable]
     public ref class Suggestions {
     public:
+        property int Id;
         property String^ Date;
         property String^ ClientName;
         property String^ AttentionScore;

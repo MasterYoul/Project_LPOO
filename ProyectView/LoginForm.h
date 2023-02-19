@@ -89,7 +89,7 @@ namespace ProyectView {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Lucida Console", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(588, 118);
+			this->label1->Location = System::Drawing::Point(575, 124);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(78, 17);
 			this->label1->TabIndex = 0;
@@ -100,7 +100,7 @@ namespace ProyectView {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Lucida Console", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(588, 170);
+			this->label2->Location = System::Drawing::Point(575, 176);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(108, 17);
 			this->label2->TabIndex = 1;
@@ -108,7 +108,7 @@ namespace ProyectView {
 			// 
 			// btnOK
 			// 
-			this->btnOK->Location = System::Drawing::Point(715, 216);
+			this->btnOK->Location = System::Drawing::Point(700, 224);
 			this->btnOK->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnOK->Name = L"btnOK";
 			this->btnOK->Size = System::Drawing::Size(105, 25);
@@ -119,10 +119,10 @@ namespace ProyectView {
 			// 
 			// btnCancel
 			// 
-			this->btnCancel->Location = System::Drawing::Point(847, 216);
+			this->btnCancel->Location = System::Drawing::Point(836, 224);
 			this->btnCancel->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnCancel->Name = L"btnCancel";
-			this->btnCancel->Size = System::Drawing::Size(107, 25);
+			this->btnCancel->Size = System::Drawing::Size(115, 25);
 			this->btnCancel->TabIndex = 3;
 			this->btnCancel->Text = L"Cancelar";
 			this->btnCancel->UseVisualStyleBackColor = true;
@@ -130,10 +130,10 @@ namespace ProyectView {
 			// 
 			// butRecover
 			// 
-			this->butRecover->Location = System::Drawing::Point(745, 256);
+			this->butRecover->Location = System::Drawing::Point(702, 275);
 			this->butRecover->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->butRecover->Name = L"butRecover";
-			this->butRecover->Size = System::Drawing::Size(180, 33);
+			this->butRecover->Size = System::Drawing::Size(249, 33);
 			this->butRecover->TabIndex = 4;
 			this->butRecover->Text = L"Recuperar Contraseña";
 			this->butRecover->UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@ namespace ProyectView {
 			// 
 			// txtUsername
 			// 
-			this->txtUsername->Location = System::Drawing::Point(715, 115);
+			this->txtUsername->Location = System::Drawing::Point(700, 121);
 			this->txtUsername->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtUsername->Name = L"txtUsername";
 			this->txtUsername->Size = System::Drawing::Size(251, 20);
@@ -149,7 +149,7 @@ namespace ProyectView {
 			// 
 			// txtPassword
 			// 
-			this->txtPassword->Location = System::Drawing::Point(713, 166);
+			this->txtPassword->Location = System::Drawing::Point(700, 172);
 			this->txtPassword->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtPassword->Name = L"txtPassword";
 			this->txtPassword->Size = System::Drawing::Size(251, 20);
@@ -159,7 +159,7 @@ namespace ProyectView {
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->button1->Location = System::Drawing::Point(684, 475);
+			this->button1->Location = System::Drawing::Point(633, 432);
 			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(241, 64);
@@ -171,7 +171,7 @@ namespace ProyectView {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(54, 22);
+			this->pictureBox1->Location = System::Drawing::Point(41, 28);
 			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(505, 517);
@@ -184,7 +184,7 @@ namespace ProyectView {
 			this->label3->Font = (gcnew System::Drawing::Font(L"Sitka Small", 18, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->label3->Location = System::Drawing::Point(607, 39);
+			this->label3->Location = System::Drawing::Point(570, 45);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(264, 44);
 			this->label3->TabIndex = 9;
@@ -196,7 +196,7 @@ namespace ProyectView {
 			this->label4->Font = (gcnew System::Drawing::Font(L"Sitka Small", 18, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label4->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->label4->Location = System::Drawing::Point(607, 372);
+			this->label4->Location = System::Drawing::Point(561, 363);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(392, 44);
 			this->label4->TabIndex = 10;
@@ -207,7 +207,7 @@ namespace ProyectView {
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
-			this->ClientSize = System::Drawing::Size(1050, 599);
+			this->ClientSize = System::Drawing::Size(1007, 583);
 			this->ControlBox = false;
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);

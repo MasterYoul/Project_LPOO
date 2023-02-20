@@ -42,4 +42,18 @@
     <Name>wertyu</Name>
     <DocNumber>78549545</DocNumber>
   </Client_Info>
+  <Client_Info>
+    <Gender>77</Gender>
+    <Id>5</Id>
+    <Status>65</Status>
+    <TxtOpin>Sin opinion</TxtOpin>
+    <Rate>1</Rate>
+    <RucNumber>1</RucNumber>
+    <Type>80</Type>
+    <VisitQuantity>1</VisitQuantity>
+    <PhoneNumber>234511</PhoneNumber>
+    <LastName>Jimenez</LastName>
+    <Name>Juan</Name>
+    <DocNumber>4356789</DocNumber>
+  </Client_Info>
 </ArrayOfClient_Info>

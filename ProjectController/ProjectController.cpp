@@ -111,6 +111,20 @@ List<SaleDetail^>^ ProjectController::Controller::QueryAllSaleDetail()
     return returnedDetalle;
 }
 
+List<SaleDetail^>^ ProjectController::Controller::QuerySingleSaleDetail(int SaleId)
+{
+    SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
+    List<SaleDetail^>^ returnedDetalle = gcnew List<SaleDetail^>();
+    Sale^ sale = QuerySaletById(SaleId);
+    for (int i = 0; i < sale->SaleDetails->Count; i++) {
+        if (sale->SaleDetails[i]->Id==SaleId) {
+            returnedDetalle->Add(sale->SaleDetails[i]);
+            return returnedDetalle;
+        }
+    }
+    return nullptr;
+}
+
 
 
 int ProjectController::Controller::AddMeals(Meals^ meals)

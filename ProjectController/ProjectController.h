@@ -24,6 +24,8 @@ namespace ProjectController {
 
 		static List<SaleDetail^>^ QueryAllSaleDetail();
 
+		static List<SaleDetail^>^ QuerySingleSaleDetail(int SaleId);
+
 		static List<SaleDetail^>^ ChangeQueryAllSaleDetail();
 
 		static List<TableDetail^>^ QueryAllTableOcupado();

@@ -1,3 +1,4 @@
 23,Alfred,4567890,0,Sin opinion,23456789
 4,eryu,78549545,0,Sin opinion,463
 4,wertyu,78549545,0,Sin opinion,retc
+5,Juan,4356789,1,Sin opinion,234511

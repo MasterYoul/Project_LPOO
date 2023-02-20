@@ -1,2 +1,3 @@
 234,Ceviche,CevicheDescription,15,44
-123,Arroz Chaufa,Arroz ChaufaDescription,15,28
+123,Arroz Chaufa,Arroz ChaufaDescription,15,27
+35,Arroz con Pollo,Arroz con pollo descripcion,13,24

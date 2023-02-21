@@ -590,6 +590,17 @@ int ProjectController::Controller::AddUser(User^ User)
     return User->Id;
 }
 
+User^ ProjectController::Controller::QueryUserbyDni(String^ Dni)
+{
+    // UserList = (List<User^>^)Persistance::LoadData("User.txt");
+    UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
+    // UserList = (List<User^>^)Persistance::LoadXMLData("User.xml");
+    for (int i = 0; i < UserList->Count; i++)
+        if (UserList[i]->DocNumber->Equals(Dni))
+            return UserList[i];
+    return nullptr;
+}
+
 User^ ProjectController::Controller::QueryUsertById(int UserId)
 {
    // UserList = (List<User^>^)Persistance::LoadData("User.txt");

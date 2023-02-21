@@ -84,6 +84,7 @@ namespace ProjectController {
 		static List<TableDetail^>^ QueryTableDetailByFloorOrCapacity(int value);
 
 		static int AddUser(User^ User);
+		static User^ QueryUserbyDni(String^ Dni);
 		static User^ QueryUsertById(int UserId);
 		static List<User^>^ QueryAllUser();
 		static int UpdateUser(User^ User);

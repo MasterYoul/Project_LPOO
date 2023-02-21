@@ -8,6 +8,9 @@ namespace ProyectView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace ProjectController;
+	using namespace ProjectModel;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de SearchUserForm
@@ -120,6 +123,7 @@ namespace ProyectView {
 			this->button4->TabIndex = 63;
 			this->button4->Text = L"BUSCAR";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &SearchUserForm::button4_Click);
 			// 
 			// label4
 			// 
@@ -311,5 +315,40 @@ namespace ProyectView {
 
 		}
 #pragma endregion
-	};
+	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+		User^ p;
+		if (textBox1->Text->Trim() != "" && textBox4->Text->Trim() == "") {
+
+			 p = Controller::QueryUsertById(Convert::ToInt32(textBox1->Text->Trim()));
+			//Se borran los datos del grid.
+			dataGridView1->Rows->Clear();
+			dataGridView1->Rows->Add(gcnew array<String^> {
+				"" + p->Id,
+					p->Name,
+					p->DocNumber,
+					p->Adress,
+					Convert::ToString(p->Salary)
+			});
+
+		
+
+		}
+		else if (textBox1->Text->Trim() == "" && textBox4->Text->Trim() != "") {
+			//Búsqueda de usuario por su id
+			 p = Controller::QueryUserbyDni(textBox4->Text->Trim());
+			//Se borran los datos del grid.
+			dataGridView1->Rows->Clear();
+			dataGridView1->Rows->Add(gcnew array<String^> {
+				"" + p->Id,
+					p->Name,
+					p->DocNumber,
+					p->Adress,
+					Convert::ToString(p->Salary)
+			});
+		}
+		else {
+			MessageBox::Show("Solo llene uno de los recuadros");
+		}
+	}
+};
 }

@@ -314,42 +314,52 @@ namespace ProyectView {
 
 		if (comboBox1->Text->Equals("LIBRES")) {
 			if (textBox2->Text->Trim() != "" && textBox3->Text->Trim() == "") { // Buscando por piso
-
+				mealsList = Controller::QueryAllTableLibreporpiso(Convert::ToInt32(textBox2->Text->Trim()));
 			}
 			else if (textBox2->Text->Trim() == "" && textBox3->Text->Trim() != "") {// Buscando por capacidad
 
 			}
-			else if (textBox2->Text->Trim() == "" && textBox3->Text->Trim() != "") { // buscando por piso y capacidad
-
+			else if (textBox2->Text->Trim() != "" && textBox3->Text->Trim() != "") { // buscando por piso y capacidad
+				mealsList = Controller::QueryAllTableLibreporpisoporcapacidad(Convert::ToInt32(textBox2->Text->Trim()), Convert::ToInt32(textBox3->Text->Trim()));
 			}
 			else { // buscando todos los libres
 				mealsList = Controller::QueryAllTableLibre();
 			}
 			
 		}
+
+
+
 		else if (comboBox1->Text->Equals("OCUPADAS")){
 			if (textBox2->Text->Trim() != "" && textBox3->Text->Trim() == "") { // Buscando por piso
-
+				mealsList = Controller::QueryAllTableOcupadasporpiso(Convert::ToInt32(textBox2->Text->Trim()));
 			}
 			else if (textBox2->Text->Trim() == "" && textBox3->Text->Trim() != "") {// Buscando por capacidad
 
+				mealsList = Controller::QueryAllTableOcupadasporcapacidad(Convert::ToInt32(textBox3->Text->Trim()));
 			}
-			else if (textBox2->Text->Trim() == "" && textBox3->Text->Trim() != "") { // buscando por piso y capacidad
-
+			else if (textBox2->Text->Trim() != "" && textBox3->Text->Trim() != "") { // buscando por piso y capacidad
+				mealsList = Controller::QueryAllTableOcupadaporpisoporcapacidad(Convert::ToInt32(textBox2->Text->Trim()), Convert::ToInt32(textBox3->Text->Trim()));
 			}
 			else { // buscando todos los ocupados
 				mealsList = Controller::QueryAllTableOcupado();
 			}
 
 		}
+
+
 		else {
-			 if (textBox2->Text->Trim() == "" && textBox3->Text->Trim() != "") {// Buscando por capacidad
-
+			if (textBox2->Text->Trim() != "" && textBox3->Text->Trim() == "") { // Buscando por piso
+				mealsList = Controller::QueryAllTableporpiso(Convert::ToInt32(textBox2->Text->Trim()));
 			}
-			else if (textBox2->Text->Trim() == "" && textBox3->Text->Trim() != "") { // buscando por piso y capacidad
-
+			else if (textBox2->Text->Trim() == "" && textBox3->Text->Trim() != "") {// Buscando por capacidad
+				mealsList = Controller::QueryAllTableporcapacidad(Convert::ToInt32( Convert::ToInt32(textBox3->Text->Trim())));
+			}
+			else if (textBox2->Text->Trim() != "" && textBox3->Text->Trim() != "") { // buscando por piso y capacidad
+				mealsList = Controller::QueryAllTableporpisoporcapacidad(Convert::ToInt32(textBox2->Text->Trim()), Convert::ToInt32(textBox3->Text->Trim()));
 			}
 			else { // buscando todas las mesas
+
 				 mealsList = Controller::QueryAllTableDetail();
 			}
 		
@@ -375,8 +385,14 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	this->Close();
 }
 
+
+
+
+
+
+
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	//Búsqueda de producto por el código ingresado por el usuario
+	//Búsqueda de mesa por el código ingresado por el usuario
 	TableDetail^ p = Controller::QueryTableDetailtById(Convert::ToInt32(textBox1->Text->Trim()));
 	//Se borran los datos del grid.
 	dataGridView1->Rows->Clear();

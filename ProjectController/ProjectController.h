@@ -30,6 +30,12 @@ namespace ProjectController {
 
 		static List<TableDetail^>^ QueryAllTableOcupado();
 
+		static List<TableDetail^>^ QueryAllTableLibreporpiso(int piso);
+
+		static List<TableDetail^>^ QueryAllTableOcupadasporpiso(int piso);
+
+		static List<TableDetail^>^ QueryAllTableOcupadasporcapacidad(int capacidad);
+
 		static int AddMeals(Meals^ meals);
 		static Meals^ QueryMealstById(int MealsId);
 		static List<Meals^>^ QueryAllMeals();
@@ -64,6 +70,11 @@ namespace ProjectController {
 
 
 		static int AddTableDetail(TableDetail^ TableDetail);
+		static List<TableDetail^>^ QueryAllTableLibreporpisoporcapacidad(int piso, int capacidad);
+		static List<TableDetail^>^ QueryAllTableporpisoporcapacidad(int piso, int capacidad);
+		static List<TableDetail^>^ QueryAllTableOcupadaporpisoporcapacidad(int piso, int capacidad);
+		static List<TableDetail^>^ QueryAllTableporpiso(int piso);
+		static List<TableDetail^>^ QueryAllTableporcapacidad(int capacidad);
 		static List<TableDetail^>^ QueryAllTableLibre();
 		static TableDetail^ QueryTableDetailtById(int TableDetailId);
 		static TableDetail^ QueryTableDetailOcupado(int TableDetailId);

@@ -46,6 +46,117 @@ List<TableDetail^>^ ProjectController::Controller::QueryAllTableOcupado() {
     return returnedDetalle;
 }
 
+List<TableDetail^>^ ProjectController::Controller::QueryAllTableLibreporpiso(int piso) {
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    List<TableDetail^>^ returnedDetalle = gcnew List<TableDetail^>();
+    for (int i = 0; i < TableDetailList->Count; i++)
+    {
+        if (TableDetailList[i]->Disponibility->Equals("DISPONIBLE") && TableDetailList[i]->Floor==(piso)) {
+            returnedDetalle->Add(TableDetailList[i]);
+        }
+
+    }
+    return returnedDetalle;
+
+}
+
+List<TableDetail^>^ ProjectController::Controller::QueryAllTableOcupadasporpiso(int piso) {
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    List<TableDetail^>^ returnedDetalle = gcnew List<TableDetail^>();
+    for (int i = 0; i < TableDetailList->Count; i++)
+    {
+        if (TableDetailList[i]->Disponibility->Equals("NO DISPONIBLE") && TableDetailList[i]->Floor == (piso)) {
+            returnedDetalle->Add(TableDetailList[i]);
+        }
+
+    }
+    return returnedDetalle;
+
+}
+List<TableDetail^>^ ProjectController::Controller::QueryAllTableOcupadasporcapacidad(int capacidad) {
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    List<TableDetail^>^ returnedDetalle = gcnew List<TableDetail^>();
+    for (int i = 0; i < TableDetailList->Count; i++)
+    {
+        if (TableDetailList[i]->Disponibility->Equals("NO DISPONIBLE") && TableDetailList[i]->TableCapacity == (capacidad)) {
+            returnedDetalle->Add(TableDetailList[i]);
+        }
+
+    }
+    return returnedDetalle;
+
+}
+
+
+
+List<TableDetail^>^ ProjectController::Controller::QueryAllTableLibreporpisoporcapacidad(int piso, int capacidad) {
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    List<TableDetail^>^ returnedDetalle = gcnew List<TableDetail^>();
+    for (int i = 0; i < TableDetailList->Count; i++)
+    {
+        if (TableDetailList[i]->Disponibility->Equals("DISPONIBLE") && TableDetailList[i]->Floor == (piso) && TableDetailList[i]->TableCapacity == capacidad) {
+            returnedDetalle->Add(TableDetailList[i]);
+        }
+
+    }
+    return returnedDetalle;
+}
+
+
+
+List<TableDetail^>^ ProjectController::Controller::QueryAllTableporpisoporcapacidad(int piso, int capacidad) {
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    List<TableDetail^>^ returnedDetalle = gcnew List<TableDetail^>();
+    for (int i = 0; i < TableDetailList->Count; i++)
+    {
+        if ( TableDetailList[i]->Floor == (piso)&& TableDetailList[i]->TableCapacity==capacidad) {
+            returnedDetalle->Add(TableDetailList[i]);
+        }
+
+    }
+    return returnedDetalle;
+}
+
+List<TableDetail^>^ ProjectController::Controller::QueryAllTableOcupadaporpisoporcapacidad(int piso, int capacidad) {
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    List<TableDetail^>^ returnedDetalle = gcnew List<TableDetail^>();
+    for (int i = 0; i < TableDetailList->Count; i++)
+    {
+        if (TableDetailList[i]->Disponibility->Equals("NO DISPONIBLE") && TableDetailList[i]->Floor == (piso) && TableDetailList[i]->TableCapacity == capacidad) {
+            returnedDetalle->Add(TableDetailList[i]);
+        }
+
+    }
+    return returnedDetalle;
+}
+
+
+List<TableDetail^>^ ProjectController::Controller::QueryAllTableporpiso(int piso) {
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    List<TableDetail^>^ returnedDetalle = gcnew List<TableDetail^>();
+    for (int i = 0; i < TableDetailList->Count; i++)
+    {
+        if (TableDetailList[i]->Floor == (piso) ) {
+            returnedDetalle->Add(TableDetailList[i]);
+        }
+
+    }
+    return returnedDetalle;
+}
+List<TableDetail^>^ ProjectController::Controller::QueryAllTableporcapacidad(int capacidad) {
+    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    List<TableDetail^>^ returnedDetalle = gcnew List<TableDetail^>();
+    for (int i = 0; i < TableDetailList->Count; i++)
+    {
+        if (TableDetailList[i]->TableCapacity == (capacidad)) {
+            returnedDetalle->Add(TableDetailList[i]);
+        }
+
+    }
+    return returnedDetalle;
+}
+
+
 List<TableDetail^>^ ProjectController::Controller::QueryAllTableLibre() {
     TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
  

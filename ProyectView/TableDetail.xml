@@ -40,4 +40,12 @@
     <Floor>6</Floor>
     <Id>2</Id>
   </TableDetail>
+  <TableDetail>
+    <TimeReserv>65</TimeReserv>
+    <Reserved>Libre</Reserved>
+    <Disponibility>DISPONIBLE</Disponibility>
+    <TableCapacity>6</TableCapacity>
+    <Floor>7</Floor>
+    <Id>5</Id>
+  </TableDetail>
 </ArrayOfTableDetail>

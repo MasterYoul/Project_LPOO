@@ -319,6 +319,8 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
 
+
+
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	//Búsqueda de producto por el código ingresado por el usuario

@@ -249,14 +249,15 @@ int ProjectController::Controller::AddMeals(Meals^ meals)
 
 Meals^ ProjectController::Controller::QueryMealstById(int MealsId)
 {
-    MealsList = (List<Meals^>^)Persistance::LoadData("products.txt");
-    MealsList = (List<Meals^>^)Persistance::LoadXMLData("products.xml");
-    MealsList = (List<Meals^>^)Persistance::LoadBinaryData("Meals.bin");
+    //MealsList = (List<Meals^>^)Persistance::LoadData("products.txt");
+    //MealsList = (List<Meals^>^)Persistance::LoadXMLData("products.xml");
+    //MealsList = (List<Meals^>^)Persistance::LoadBinaryData("Meals.bin");
 
-    for (int i = 0; i < MealsList->Count; i++)
-        if (MealsList[i]->Id == MealsId)
-            return MealsList[i];
-    return nullptr;
+    //for (int i = 0; i < MealsList->Count; i++)
+       // if (MealsList[i]->Id == MealsId)
+           // return MealsList[i];
+    //return nullptr;
+    return Persistance::QueryProductById(MealsId);
 }
 
 List<Meals^>^ ProjectController::Controller::QueryAllMeals()

@@ -441,6 +441,46 @@ List<Meals^>^ ProjectPersistance::Persistance::QueryAllActiveMeals()
     
 }
 
+Meals^ ProjectPersistance::Persistance::QueryProductById(int MealsId)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    Meals^ activeMeals;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM MEALS WHERE id=" + MealsId +
+            " AND status = 'A'", conn);
+        //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        if (reader->Read()) {
+            Meals^ p = gcnew Meals();
+            p->Id = Convert::ToInt32(reader["id"]->ToString());
+            p->Name = reader["name"]->ToString();
+            p->Description = reader["description"]->ToString();
+            p->Price = Convert::ToDouble(reader["price"]->ToString());
+            p->Stock = Convert::ToInt32(reader["stock"]->ToString());
+            p->StockUsed = Convert::ToInt32(reader["StockUsed"]->ToString());
+            p->TotalMeals = Convert::ToDouble(reader["TotalMeals"]->ToString());
+            if (!DBNull::Value->Equals(reader["status"])) p->Status = reader["status"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["photo"])) p->Photo = (array<Byte>^)reader["photo"];
+            activeMeals = p;
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return activeMeals;
+}
+
 
 
 

@@ -179,7 +179,7 @@ namespace ProyectView {
 			// 
 			this->UserStatus->FormattingEnabled = true;
 			this->UserStatus->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Activo", L"Inactivo" });
-			this->UserStatus->Location = System::Drawing::Point(728, 343);
+			this->UserStatus->Location = System::Drawing::Point(700, 343);
 			this->UserStatus->Name = L"UserStatus";
 			this->UserStatus->Size = System::Drawing::Size(289, 24);
 			this->UserStatus->TabIndex = 62;
@@ -252,7 +252,7 @@ namespace ProyectView {
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(139, 351);
+			this->label14->Location = System::Drawing::Point(119, 351);
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(48, 16);
 			this->label14->TabIndex = 49;
@@ -270,7 +270,7 @@ namespace ProyectView {
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(124, 292);
+			this->label12->Location = System::Drawing::Point(119, 292);
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(65, 16);
 			this->label12->TabIndex = 47;
@@ -306,7 +306,7 @@ namespace ProyectView {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(641, 351);
+			this->label7->Location = System::Drawing::Point(582, 351);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(57, 16);
 			this->label7->TabIndex = 42;
@@ -315,7 +315,7 @@ namespace ProyectView {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(135, 232);
+			this->label6->Location = System::Drawing::Point(119, 232);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(54, 16);
 			this->label6->TabIndex = 41;
@@ -324,7 +324,7 @@ namespace ProyectView {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(81, 160);
+			this->label5->Location = System::Drawing::Point(119, 158);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(100, 16);
 			this->label5->TabIndex = 40;
@@ -333,7 +333,7 @@ namespace ProyectView {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(147, 120);
+			this->label3->Location = System::Drawing::Point(119, 121);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(72, 16);
 			this->label3->TabIndex = 38;
@@ -342,7 +342,7 @@ namespace ProyectView {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(147, 81);
+			this->label2->Location = System::Drawing::Point(119, 78);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(43, 16);
 			this->label2->TabIndex = 37;

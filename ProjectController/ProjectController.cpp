@@ -1,7 +1,7 @@
 #include "pch.h"
 
 #include "ProjectController.h"
-using namespace ProjectPersistance;
+
 
 
 void ProjectController::Controller::Init()
@@ -261,9 +261,10 @@ Meals^ ProjectController::Controller::QueryMealstById(int MealsId)
 
 List<Meals^>^ ProjectController::Controller::QueryAllMeals()
 {
-    MealsList = (List<Meals^>^)Persistance::LoadData("Meals.txt");
-    MealsList = (List<Meals^>^)Persistance::LoadBinaryData("Meals.bin");
-    MealsList = (List<Meals^>^)Persistance::LoadXMLData("Meals.xml");
+   // MealsList = (List<Meals^>^)Persistance::LoadData("Meals.txt");
+   // MealsList = (List<Meals^>^)Persistance::LoadBinaryData("Meals.bin");
+   // MealsList = (List<Meals^>^)Persistance::LoadXMLData("Meals.xml");
+    MealsList = Persistance::QueryAllActiveMeals();
     return MealsList;
 }
 

@@ -8,6 +8,7 @@ using namespace ProjectModel;
 using namespace System::Runtime::Serialization::Formatters::Binary;
 using namespace System::Runtime::Serialization;
 
+
 void ProjectPersistance::Persistance::Persist(String^ fileName, Object^ persistObject)
 {
     FileStream^ archivo;
@@ -327,6 +328,8 @@ Object^ ProjectPersistance::Persistance::LoadXMLData(String^ fileName) {
     return res;
 }
 
+
+
 Object^ ProjectPersistance::Persistance::LoadBinaryData(String^ fileName)
 {
     Object^ res;
@@ -386,6 +389,56 @@ Object^ ProjectPersistance::Persistance::LoadBinaryData(String^ fileName)
     }
 
     return res;
+}
+
+
+SqlConnection^ ProjectPersistance::Persistance::GetConnection()
+{
+    SqlConnection^ conn = gcnew SqlConnection();
+    String^ password = "SP183DN";
+    conn->ConnectionString = "Server=200.16.7.140;Database=a20182138;User ID=a20182138;Password=" + password+";";
+    conn->Open();
+    return conn;
+    // TODO: Insertar una instrucción "return" aquí
+}
+
+List<Meals^>^ ProjectPersistance::Persistance::QueryAllActiveMeals()
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    List<Meals^>^ activemealsList = gcnew List<Meals^>();
+    try {
+        // paso1: Se obtiene la conexion
+        conn = GetConnection();
+        // paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM MEALS WHERE Status='A'", conn);
+        //paso 3: Se ejecuta la sentecia
+        reader = comm->ExecuteReader();
+        // paso 4: se procesan los resultados
+        while (reader->Read()) {
+            Meals^ p = gcnew Meals();
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->Name = reader["Name"]->ToString();
+            p->Description = reader["Description"]->ToString();
+            p->Price = Convert::ToDouble(reader["Price"]->ToString());
+            p->Stock = Convert::ToInt32(reader["Stock"]->ToString());
+            p->TotalMeals = Convert::ToDouble(reader["TotalMeals"]->ToString());
+            p->DateMeal = reader["DateMeal"]->ToString();
+            p->StockUsed = Convert::ToInt32(reader["StockUsed"]->ToString());
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Photo"])) p->Photo = (array<Byte>^)reader["Photo"];
+            activemealsList->Add(p);
+        }
+    }
+    catch(Exception^ ex){}
+    finally {
+        //paso 5: S e cierra los objetos de conexion
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return activemealsList;
+    
 }
 
 

@@ -2,6 +2,10 @@
 
 using namespace System;
 
+using namespace ProjectModel;
+using namespace System::Collections::Generic;
+using namespace System::Data::SqlClient;
+
 namespace ProjectPersistance {
 	public ref class Persistance
 	{
@@ -15,6 +19,11 @@ namespace ProjectPersistance {
 
 		static void PersistXML(String^ fileName, Object^ persistObject);
 		static Object^ LoadXMLData(String^ fileName);
+
+
+		static SqlConnection^ GetConnection();
+
+		static List<Meals^>^ QueryAllActiveMeals();
 	};
 }
 

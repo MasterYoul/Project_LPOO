@@ -45,12 +45,14 @@ namespace ProyectView {
 
 
 
-	private: System::Windows::Forms::Button^ button1;
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ IdSaleDetail;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ QuantitySaleDetail;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsSaleDetail;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Estado;
 	private: System::Windows::Forms::Button^ btnReady;
+
+	private: System::ComponentModel::IContainer^ components;
 
 
 
@@ -72,7 +74,7 @@ namespace ProyectView {
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -86,7 +88,6 @@ namespace ProyectView {
 			this->QuantitySaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->MealsSaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Estado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->btnReady = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridPedidos))->BeginInit();
 			this->SuspendLayout();
@@ -98,12 +99,11 @@ namespace ProyectView {
 				this->IdSaleDetail,
 					this->QuantitySaleDetail, this->MealsSaleDetail, this->Estado
 			});
-			this->dataGridPedidos->Location = System::Drawing::Point(62, 212);
-			this->dataGridPedidos->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->dataGridPedidos->Location = System::Drawing::Point(12, 90);
 			this->dataGridPedidos->Name = L"dataGridPedidos";
 			this->dataGridPedidos->RowHeadersWidth = 51;
 			this->dataGridPedidos->RowTemplate->Height = 24;
-			this->dataGridPedidos->Size = System::Drawing::Size(1044, 591);
+			this->dataGridPedidos->Size = System::Drawing::Size(689, 543);
 			this->dataGridPedidos->TabIndex = 0;
 			this->dataGridPedidos->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PedidosForm::dataGridPedidos_CellClick);
 			this->dataGridPedidos->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PedidosForm::dataGridPedidos_CellContentClick);
@@ -136,22 +136,12 @@ namespace ProyectView {
 			this->Estado->Name = L"Estado";
 			this->Estado->Width = 125;
 			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(198, 51);
-			this->button1->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(254, 75);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Actualizar";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &PedidosForm::button1_Click);
-			// 
 			// btnReady
 			// 
-			this->btnReady->Location = System::Drawing::Point(707, 59);
+			this->btnReady->Location = System::Drawing::Point(758, 638);
+			this->btnReady->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnReady->Name = L"btnReady";
-			this->btnReady->Size = System::Drawing::Size(210, 67);
+			this->btnReady->Size = System::Drawing::Size(154, 34);
 			this->btnReady->TabIndex = 2;
 			this->btnReady->Text = L"Listo";
 			this->btnReady->UseVisualStyleBackColor = true;
@@ -159,15 +149,14 @@ namespace ProyectView {
 			// 
 			// PedidosForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1205, 885);
+			this->ClientSize = System::Drawing::Size(1433, 708);
 			this->Controls->Add(this->btnReady);
-			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridPedidos);
-			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->Name = L"PedidosForm";
 			this->Text = L"Lista de pedidos";
+			this->Load += gcnew System::EventHandler(this, &PedidosForm::PedidosForm_Load);
 			this->Shown += gcnew System::EventHandler(this, &PedidosForm::PedidosForm_Shown);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridPedidos))->EndInit();
 			this->ResumeLayout(false);
@@ -242,6 +231,8 @@ private: System::Void dataGridPedidos_CellClick(System::Object^ sender, System::
 	int selectedRowIndex = dataGridPedidos->SelectedCells[0]->RowIndex;
 	int SaleDetailId = Convert::ToInt32(dataGridPedidos->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
 	List<SaleDetail^>^ SaleDetailList = Controller::QuerySingleSaleDetail(SaleDetailId);
+}
+private: System::Void PedidosForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

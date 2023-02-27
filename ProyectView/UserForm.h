@@ -837,7 +837,7 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 	}
 }
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (dataGridViewUser->CurrentCell != nullptr &&
+	/*if (dataGridViewUser->CurrentCell != nullptr &&
 		dataGridViewUser->CurrentCell->Value != nullptr &&
 		dataGridViewUser->CurrentCell->Value->ToString() != "" &&
 		!UserId->Text->Trim()->Equals("")) {
@@ -891,65 +891,90 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 			if (UserStatus->Text->Trim() == "") {
 				MessageBox::Show("El status del usuario no debe estar vacío.");
 				return;
-			}
+			}*/
 			buttonModifyUser->Enabled = false;
 			buttonDeleteUser->Enabled = false;
+			User^ user = gcnew User();
 
-
-			user->Id = Int32::Parse(UserId->Text);
+			user->Id = Convert::ToInt32(UserId->Text);
 			user->Username = UserUsuario->Text;
 			user->Password = UserPassword->Text;
 			user->Name = UserName->Text;
 			user->LastName = UserLastName->Text;
-			user->Salary = Double::Parse(UserSalary->Text);
+			user->Salary = Convert::ToDouble(UserSalary->Text);
 			user->Type = UserType->Text;
-			user->State = UserStatus->Text;
-			/*Añadi state ya que necesitaba la variable Status para otra funcion, en resumen, State es el estado del usuaio 
-			en codigo, pero en los graficos se sige llamando status*/
 			user->Gender = UserFemale->Checked ? 'F' : 'M';
 			user->Adress = UserDirection->Text;
 			user->PhoneNumber = UserNumber->Text;
 			user->Birthday = UserDateTimeBirthday->Value.ToString("yyyy-MM-dd");
 			user->Email = UserEmail->Text;
 			user->DocNumber = UserDNI->Text;
-			user->Status = 'A';
-			//s->Store = Controller::QueryStoreById(((ComboBoxItem^)cmbStore->Items[cmbStore->SelectedIndex])->Value);
+			user->State = "Np";
+
+
+
+			if (UserStatus->Text->Equals("DISPONIBLE")) {
+				user->Status = 'D';
+			}
+			else if (UserStatus->Text->Equals("NO DISPONIBLE")) {
+				user->Status = 'N';
+			}
+			else {
+				user->Status = 'I';
+			}
 			Controller::UpdateUser(user);
 			RefreshdataGridViewUser();
 		
 			ClearControls();
-		}
+		/* }
 		catch (Exception^ ex) {
 			MessageBox::Show(ex->ToString(), "Envíe el error al área de TI.");
 			return;
-		}
-	}
+		}*/
+	//}
 }
 	 
 private: System::Void dataGridViewUser_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	int selectedRowIndex = dataGridViewUser->SelectedCells[0]->RowIndex;
-	int userId = Convert::ToInt32(dataGridViewUser->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
-	User^ p = Controller::QueryUsertById(userId);
+	if (dataGridViewUser->CurrentCell != nullptr &&
+		dataGridViewUser->CurrentCell->Value != nullptr &&
+		dataGridViewUser->CurrentCell->Value->ToString() != "") {
+		int selectedRowIndex = dataGridViewUser->SelectedCells[0]->RowIndex;
+		DataGridViewRow^ selectedRow = dataGridViewUser->Rows[selectedRowIndex];
+		String^ a = selectedRow->Cells[0]->Value->ToString();
+		int userId = Int32::Parse(a);
+		User^ p = Controller::QueryUsertById(userId);
 
-	buttonModifyUser->Enabled = true;
-	buttonDeleteUser->Enabled = true;
+		buttonModifyUser->Enabled = true;
+		buttonDeleteUser->Enabled = true;
 
-	UserId->Text = "" + p->Id;
-	UserDNI->Text = "" + p->DocNumber;
-	UserName->Text = p->Name;
-	UserNumber->Text = p->PhoneNumber;
-	UserDirection->Text = p->Adress;
-	UserEmail->Text = p->Email;
-	UserType->Text = p->Type;
-	UserUsuario->Text = "" + p->Username;
-	UserPassword->Text = "" + p->Password;
-	UserStatus->Text = "" + p->State;
+		UserId->Text = "" + p->Id;
+		UserDNI->Text = p->DocNumber;
+		UserName->Text = p->Name;
+		UserNumber->Text = p->PhoneNumber;
+		UserDirection->Text = p->Adress;
+		UserEmail->Text = p->Email;
+		UserType->Text = p->Type;
+		UserUsuario->Text = p->Username;
+		UserPassword->Text = p->Password;
+		UserLastName->Text = p->LastName;
+		UserSalary->Text = "" + p->Salary;
+		UserMale->Checked = p->Gender == 'M';
+		UserFemale->Checked = p->Gender == 'F';
+		UserDateTimeBirthday->Value = DateTime::Parse(p->Birthday);
 
-	UserLastName->Text = p->LastName;
-	UserSalary->Text = "" + p->Salary;
-	UserMale->Checked = p->Gender == 'M';
-	UserFemale->Checked = p->Gender == 'F';
-	UserDateTimeBirthday->Value = DateTime::Parse(p->Birthday);
+		if (p->Status=='D') {
+			UserStatus->Text = "DISPONIBLE";
+		}
+		else if (p->Status == 'N') {
+			UserStatus->Text = "NO DISPONIBLE";
+			
+		}
+		else {
+			UserStatus->Text = "INACTIVO";
+			
+		}
+
+	}
 }
 
 

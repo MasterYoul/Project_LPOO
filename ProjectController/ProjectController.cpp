@@ -626,7 +626,7 @@ List<User^>^ ProjectController::Controller::QueryAllUser()
 
 int ProjectController::Controller::UpdateUser(User^ User)
 {
-    for (int i = 0; i < UserList->Count; i++)
+    /*for (int i = 0; i < UserList->Count; i++)
         if (UserList[i]->Id == User->Id) {
             UserList[i] = User;
             Persistance::Persist("User.txt", UserList);
@@ -634,7 +634,8 @@ int ProjectController::Controller::UpdateUser(User^ User)
             Persistance::PersistBinary("User.bin", UserList);
             return User->Id;
         }
-    return 0;
+    return 0;*/
+    return Persistance::UpdateUser(User);
 }
 
 int ProjectController::Controller::DeleteUser(int UserId)

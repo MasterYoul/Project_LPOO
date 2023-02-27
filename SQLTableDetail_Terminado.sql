@@ -29,6 +29,127 @@ GO
 	
 IF OBJECT_ID('dbo.MEALS', 'U') IS NOT NULL DROP TABLE dbo.MEALS
 GO
+	
+	CREATE TABLE USUARIO (
+	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Name VARCHAR (250) NOT NULL,
+	DocNumber VARCHAR (250) NOT NULL UNIQUE,
+	Adress VARCHAR (500) NOT NULL,
+	Email VARCHAR(250) NOT NULL ,
+	PhoneNumber VARCHAR(250) NOT NULL,
+	Status CHAR(1) NULL,  --D DISPONIBLE, N NO DISPONIBLE , I INACTIVO
+	LastName VARCHAR (250) NOT NULL,
+	Salary DECIMAL(10,2) NULL,
+	Username VARCHAR (250) NOT NULL,
+	Password VARCHAR (250) NOT NULL,
+	Gender CHAR(1)  NULL,
+	Birthday DATE  NULL,
+	Type VARCHAR(120) NOT NULL,
+	State VARCHAR(120)  NULL,
+	Photo IMAGE NULL,
+
+	)
+	GO
+INSERT INTO USUARIO(Name, DocNumber, Adress,Email, PhoneNumber,Status,LastName,Salary,Username,Password,Gender,Birthday, Type, State)
+VALUES ('Samid','78549545','cusco','capu.samid.villafuerte@gmail.com','78549545','A','Villafuerte',1111,'Samid','george','1','10/03/2002','Administrador','A')
+
+
+GO
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[usp_AddUsuario]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[usp_AddUsuario]
+END
+GO
+CREATE PROCEDURE usp_AddUsuario(
+	
+	@Name VARCHAR (250) , --1
+	@DocNumber VARCHAR (250) ,--2
+	@Adress VARCHAR (500) ,--3
+	@Email VARCHAR(250),--4
+	@PhoneNumber VARCHAR(250),
+	@Status CHAR(1) ,--5    D,N,I
+	@LastName VARCHAR (250) ,--6
+	@Salary DECIMAL(10,2),--7
+	@Username VARCHAR (250), --8
+	@Password VARCHAR (250),--9
+	@Gender CHAR(1) ,--10
+	@Birthday DATE ,--11
+	@Type VARCHAR(120) ,--12
+	@State VARCHAR(120),--13
+	@Photo IMAGE,--14
+	@Id INT out--15
+) AS
+	BEGIN
+		INSERT INTO USUARIO (name, DocNumber, Adress, Email,PhoneNumber, Status, LastName, Salary, Username, Password, Gender, Birthday, Type, State, Photo)
+		SELECT @name, @DocNumber, @Adress, @Email,@PhoneNumber, @Status, @LastName, @Salary, @Username, @Password, @Gender, @Birthday, @Type, @State,@Photo
+		SET @id = SCOPE_IDENTITY()
+	END
+GO
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[usp_UpdateUsuario]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[usp_UpdateUsuario]
+END
+GO
+CREATE PROCEDURE usp_UpdateUsuario(
+    @Id INT , --1
+	@Name VARCHAR (250) , --2
+	@DocNumber VARCHAR (250) ,--3
+	@Adress VARCHAR (500) ,--4
+	@Email VARCHAR(250),--5
+	@PhoneNumber VARCHAR(250),--6
+	@Status CHAR(1) ,--7
+	@LastName VARCHAR (250) ,--8
+	@Salary DECIMAL(10,2),--9
+	@Username VARCHAR (250), --10
+	@Password VARCHAR (250),--11
+	@Gender CHAR(1) ,--12
+	@Birthday DATE ,--13
+	@Type VARCHAR(120) ,--14
+	@State VARCHAR(120)--15
+	@Photo IMAGE,--14
+	
+) AS
+	BEGIN
+		UPDATE USUARIO
+		SET name=@name, DocNumber=@DocNumber, Adress=@Adress, PhoneNumber=@PhoneNumber,Email=@Email, Status=@Status, LastName=@LastName, Salary=@Salary, Username=@Username,
+				 Password=@Password, Gender=@Gender, Birthday=@Birthday, Type=@Type, State=@State,Photo=@Photo
+		WHERE Id=@Id
+	END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 CREATE TABLE MEALS (
 	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),

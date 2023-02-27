@@ -491,8 +491,8 @@ User^ ProjectPersistance::Persistance::QueryUserById(int UserId)
         //Paso 1: Se obtiene la conexión
         conn = GetConnection();
         //Paso 2: Se prepara la sentencia
-        comm = gcnew SqlCommand("SELECT * FROM USUARIO WHERE id=" + UserId +
-            " AND status = 'A'", conn);
+        comm = gcnew SqlCommand("SELECT * FROM USUARIO WHERE id=" + UserId /* +
+            " AND status = 'A'"*/, conn);
         //Paso 3: Se ejecuta la sentencia
         reader = comm->ExecuteReader();
         //Paso 4: Se procesan los resultados        
@@ -647,6 +647,74 @@ int ProjectPersistance::Persistance::AddUser(User^ p)
         if (conn != nullptr) conn->Close();
     }
     return output_id;
+}
+
+int ProjectPersistance::Persistance::UpdateUser(User^p)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int result;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("dbo.usp_UpdateUsuario", conn);
+        comm->CommandType = System::Data::CommandType::StoredProcedure;
+        comm->Parameters->Add("@Id", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@Name", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@DocNumber", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Adress", System::Data::SqlDbType::VarChar, 500);
+        comm->Parameters->Add("@Email", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@PhoneNumber", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Status", System::Data::SqlDbType::Char, 1);
+        comm->Parameters->Add("@LastName", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Salary", System::Data::SqlDbType::Decimal, 10);
+        comm->Parameters["@Salary"]->Precision = 10;
+        comm->Parameters["@Salary"]->Scale = 2;
+        comm->Parameters->Add("@Username", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Password", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Gender", System::Data::SqlDbType::Char, 1);
+        comm->Parameters->Add("@Birthday", System::Data::SqlDbType::Date);
+        comm->Parameters->Add("@Type", System::Data::SqlDbType::VarChar, 120);
+        comm->Parameters->Add("@State", System::Data::SqlDbType::VarChar, 120);
+        comm->Parameters->Add("@Photo", System::Data::SqlDbType::Image);
+        comm->Prepare();
+        comm->Parameters["@Id"]->Value = p->Id;
+        comm->Parameters["@Name"]->Value = p->Name;//1
+        comm->Parameters["@DocNumber"]->Value = p->DocNumber;//2
+        comm->Parameters["@Adress"]->Value = p->Adress;//3
+        comm->Parameters["@Email"]->Value = p->Email;//4
+        comm->Parameters["@PhoneNumber"]->Value = p->PhoneNumber;//5
+        comm->Parameters["@Status"]->Value = Char::ToString(p->Status);//6
+        comm->Parameters["@LastName"]->Value = p->LastName;//7
+        comm->Parameters["@Salary"]->Value = p->Salary;//8
+        comm->Parameters["@Username"]->Value = p->Username;//9
+        comm->Parameters["@Password"]->Value = p->Password;//10
+        comm->Parameters["@Gender"]->Value = Char::ToString(p->Gender);//11
+        comm->Parameters["@Birthday"]->Value = p->Birthday;//12
+        comm->Parameters["@Type"]->Value = p->Type;//13
+        comm->Parameters["@State"]->Value = p->State;//14
+        if (p->Foto == nullptr) {
+            comm->Parameters["@Photo"]->Value = DBNull::Value;
+        }
+        else {
+            comm->Parameters["@Photo"]->Value = p->Foto;//15
+        }
+        //Paso 3: Se ejecuta la sentencia
+       result= comm->ExecuteNonQuery();
+       //Paso 4: Se procesan los resultados (no aplica)  
+      
+
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+
+        if (conn != nullptr) conn->Close();
+    }
+    return result;
 }
 
 

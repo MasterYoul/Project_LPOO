@@ -668,13 +668,15 @@ List<User^>^ ProjectController::Controller::QueryUserByNameOrLastName(String^ va
 
 User^ ProjectController::Controller::QueryUsertByCredentials(String^ username, String^ password)
 {
-    UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
+    /*UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
     for (int i = 0; i < UserList->Count; i++) {
         if (UserList[i]->Username->Equals(username) && UserList[i]->Password->Equals(password)) {
             return UserList[i];
         }
     }
-    return nullptr;
+    return nullptr;*/
+    return Persistance::Login(username, password);
+
 }
 User^ ProjectController::Controller::QuerychangeEstado(int id) {
     UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");

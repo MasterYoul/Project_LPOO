@@ -32,6 +32,7 @@ namespace ProjectPersistance {
 		static int AddUser(User^p);
 		static int UpdateUser(User^);
 		static int DeleteUser(int UserId);
+		static User^ Login(String^ Username, String^ Password);
 
 
 	};

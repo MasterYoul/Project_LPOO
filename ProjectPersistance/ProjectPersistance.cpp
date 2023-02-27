@@ -530,6 +530,54 @@ User^ ProjectPersistance::Persistance::QueryUserById(int UserId)
     return activeUser;
 }
 
+List<User^>^ ProjectPersistance::Persistance::QueryAllUser()
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    List<User^>^ UserList = gcnew List<User^>(); 
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM USUARIO", conn);
+        //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        while (reader->Read()) {
+            User^ p = gcnew User();
+            p->Id = Convert::ToInt32(reader["id"]->ToString());
+            p->DocNumber = reader["DocNumber"]->ToString();
+            p->Name = reader["Name"]->ToString();
+            p->Email = reader["Adress"]->ToString();
+            p->Adress = reader["Email"]->ToString();
+            p->PhoneNumber = reader["PhoneNumber"]->ToString();
+            p->LastName = reader["LastName"]->ToString();
+            p->Salary = Convert::ToDouble(reader["Salary"]->ToString());
+            p->Username = reader["Username"]->ToString();
+            p->Password = reader["Password"]->ToString();
+            p->Birthday = reader["Birthday"]->ToString();
+            p->Type = reader["Type"]->ToString();
+            p->State = reader["State"]->ToString();
+
+
+            if (!DBNull::Value->Equals(reader["Gender"])) p->Gender = reader["Gender"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Photo"])) p->Foto = (array<Byte>^)reader["Photo"];
+            UserList ->Add(p);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return UserList;
+}
+
 int ProjectPersistance::Persistance::AddUser(User^ p)
 {
     SqlConnection^ conn;

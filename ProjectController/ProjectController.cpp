@@ -617,10 +617,11 @@ User^ ProjectController::Controller::QueryUsertById(int UserId)
 
 List<User^>^ ProjectController::Controller::QueryAllUser()
 {
-    UserList = (List<User^>^)Persistance::LoadData("User.txt");
+    /*UserList = (List<User^>^)Persistance::LoadData("User.txt");
     UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
     UserList = (List<User^>^)Persistance::LoadXMLData("User.xml");
-    return UserList;
+    return UserList;*/
+    return Persistance::QueryAllUser();
 }
 
 int ProjectController::Controller::UpdateUser(User^ User)

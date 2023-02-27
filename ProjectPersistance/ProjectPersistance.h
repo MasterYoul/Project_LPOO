@@ -28,6 +28,7 @@ namespace ProjectPersistance {
 
 
 		static User^ QueryUserById(int UserId);
+		static List <User^>^ QueryAllUser();
 		static int AddUser(User^p);
 
 

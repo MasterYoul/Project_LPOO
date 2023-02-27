@@ -25,5 +25,6 @@ namespace ProjectModel {
         property String^ Birthday;
         property String^ Type;
         property String^ State;
+        property array<Byte>^ Foto;
     };
 }

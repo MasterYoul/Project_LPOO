@@ -573,7 +573,7 @@ private: System::Void buttonAddUser_Click(System::Object^ sender, System::EventA
 	//Client_Info->setId(Convert::ToInt32(txtMealsId->Text));
 
 	try {
-		if (UserId->Text->Trim() == "") {
+		/*if (UserId->Text->Trim() == "") {
 			MessageBox::Show("El ID del usuario no debe estar vacío.");
 			return;
 		}
@@ -620,15 +620,14 @@ private: System::Void buttonAddUser_Click(System::Object^ sender, System::EventA
 		if (UserStatus->Text->Trim() == "") {
 			MessageBox::Show("El status del usuario no debe estar vacío.");
 			return;
-		}
+		}*/
 
-		user->Id = Int32::Parse(UserId->Text);
+		//user->Id = Int32::Parse(UserId->Text);
 		user->Username = UserUsuario->Text;
 		user->Password = UserPassword->Text;
 		user->Name = UserName->Text;
 		user->LastName = UserLastName->Text;
-		user->Salary = Double::Parse(UserSalary->Text);
-		user->State = UserStatus->Text;
+		user->Salary = Convert::ToDouble(UserSalary->Text);
 		user->Type = UserType->Text;
 		user->Gender = UserFemale->Checked ? 'F' : 'M';
 		user->Adress = UserDirection->Text;
@@ -636,7 +635,20 @@ private: System::Void buttonAddUser_Click(System::Object^ sender, System::EventA
 		user->Birthday = UserDateTimeBirthday->Value.ToString("yyyy-MM-dd");
 		user->Email = UserEmail->Text;
 		user->DocNumber = UserDNI->Text;
-		user->Status = 'A';
+		user->State = "Np";
+		
+		
+			
+		if (UserStatus->Text->Equals("DISPONIBLE")) {
+			user->Status = 'D';
+		}
+		else if (UserStatus->Text->Equals("NO DISPONIBLE")) {
+			user->Status = 'N';
+		}
+		else {
+			user->Status = 'I';
+		}
+		
 
 		//s->Store = Controller::QueryStoreById(((ComboBoxItem^)cmbStore->Items[cmbStore->SelectedIndex])->Value);
 		Controller::AddUser(user);

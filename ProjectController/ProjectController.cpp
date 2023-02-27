@@ -585,11 +585,12 @@ List<TableDetail^>^ ProjectController::Controller::QueryTableDetailByFloorOrCapa
 int ProjectController::Controller::AddUser(User^ User)
 {
 
-    UserList->Add(User);
-    Persistance::PersistBinary("User.bin", UserList);
+    
+    /*Persistance::PersistBinary("User.bin", UserList);
     Persistance::Persist("User.txt", UserList);
-    Persistance::PersistXML("User.xml", UserList);
-    return User->Id;
+    Persistance::PersistXML("User.xml", UserList);*/
+    
+    return Persistance::AddUser(User);
 }
 
 User^ ProjectController::Controller::QueryUserbyDni(String^ Dni)
@@ -605,13 +606,13 @@ User^ ProjectController::Controller::QueryUserbyDni(String^ Dni)
 
 User^ ProjectController::Controller::QueryUsertById(int UserId)
 {
-   // UserList = (List<User^>^)Persistance::LoadData("User.txt");
+   /* UserList = (List<User^>^)Persistance::LoadData("User.txt");
     UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
    // UserList = (List<User^>^)Persistance::LoadXMLData("User.xml");
     for (int i = 0; i < UserList->Count; i++)
         if (UserList[i]->Id == UserId)
-            return UserList[i];
-    return nullptr;
+            return UserList[i];*/
+    return Persistance::QueryUserById(UserId);
 }
 
 List<User^>^ ProjectController::Controller::QueryAllUser()

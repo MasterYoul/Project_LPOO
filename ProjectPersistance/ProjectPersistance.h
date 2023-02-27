@@ -31,6 +31,7 @@ namespace ProjectPersistance {
 		static List <User^>^ QueryAllUser();
 		static int AddUser(User^p);
 		static int UpdateUser(User^);
+		static int DeleteUser(int UserId);
 
 
 	};

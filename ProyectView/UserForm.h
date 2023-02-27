@@ -52,7 +52,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::Label^ label12;
 	private: System::Windows::Forms::Label^ label13;
 	private: System::Windows::Forms::Label^ label14;
-	private: System::Windows::Forms::TextBox^ UserId;
+
 	private: System::Windows::Forms::TextBox^ UserUsuario;
 
 
@@ -101,6 +101,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Usuario;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Salario;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::TextBox^ UserId;
 
 
 
@@ -141,7 +142,6 @@ namespace ProyectView {
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->label14 = (gcnew System::Windows::Forms::Label());
-			this->UserId = (gcnew System::Windows::Forms::TextBox());
 			this->UserUsuario = (gcnew System::Windows::Forms::TextBox());
 			this->UserDNI = (gcnew System::Windows::Forms::TextBox());
 			this->UserPassword = (gcnew System::Windows::Forms::TextBox());
@@ -167,6 +167,7 @@ namespace ProyectView {
 			this->buttonDeleteUser = (gcnew System::Windows::Forms::Button());
 			this->gBoxGender = (gcnew System::Windows::Forms::GroupBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->UserId = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewUser))->BeginInit();
 			this->gBoxGender->SuspendLayout();
 			this->SuspendLayout();
@@ -296,13 +297,6 @@ namespace ProyectView {
 			this->label14->Size = System::Drawing::Size(48, 16);
 			this->label14->TabIndex = 13;
 			this->label14->Text = L"Tipo(*)";
-			// 
-			// UserId
-			// 
-			this->UserId->Location = System::Drawing::Point(236, 34);
-			this->UserId->Name = L"UserId";
-			this->UserId->Size = System::Drawing::Size(289, 22);
-			this->UserId->TabIndex = 14;
 			// 
 			// UserUsuario
 			// 
@@ -514,6 +508,15 @@ namespace ProyectView {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &UserForm::button1_Click);
 			// 
+			// UserId
+			// 
+			this->UserId->ImeMode = System::Windows::Forms::ImeMode::Disable;
+			this->UserId->Location = System::Drawing::Point(236, 34);
+			this->UserId->Name = L"UserId";
+			this->UserId->ReadOnly = true;
+			this->UserId->Size = System::Drawing::Size(289, 22);
+			this->UserId->TabIndex = 14;
+			// 
 			// UserForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -635,7 +638,7 @@ private: System::Void buttonAddUser_Click(System::Object^ sender, System::EventA
 		user->Birthday = UserDateTimeBirthday->Value.ToString("yyyy-MM-dd");
 		user->Email = UserEmail->Text;
 		user->DocNumber = UserDNI->Text;
-		user->State = "Np";
+		user->State = "ACTIVO";
 		
 		
 			
@@ -743,18 +746,14 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 			MessageBox::Show("No se puede eliminar porque no hay ningun usuario seleccionado.");
 			return;
 		}
-		int userId = Int32::Parse(UserId->Text);
+		int userId = Convert::ToInt32(UserId->Text->Trim());
 
-		if (MessageBox::Show(
-			"Estas seguro(a) de eliminar el usuario?",
-			"Confirmacion", MessageBoxButtons::YesNo,
+		if (MessageBox::Show("Estas seguro(a) de eliminar el usuario?","Confirmacion", MessageBoxButtons::YesNo,
 			MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
 		{
 
 
-			User^ user = Controller::QueryUsertById(userId);
-			user-> Status= 0;
-
+		
 			Controller::DeleteUser(userId);
 
 			RefreshdataGridViewUser();
@@ -839,7 +838,7 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 			user->Birthday = UserDateTimeBirthday->Value.ToString("yyyy-MM-dd");
 			user->Email = UserEmail->Text;
 			user->DocNumber = UserDNI->Text;
-			user->State = "Np";
+			user->State = "ACTIVO";
 
 
 

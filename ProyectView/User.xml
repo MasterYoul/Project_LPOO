@@ -17,21 +17,4 @@
     <DocNumber>78549545</DocNumber>
     <Id>0</Id>
   </User>
-  <User>
-    <State>NO DISPONIBLE</State>
-    <Type>Mesero</Type>
-    <Birthday>2023-02-15</Birthday>
-    <Gender>77</Gender>
-    <Password>a</Password>
-    <Username>a</Username>
-    <Salary>12345</Salary>
-    <LastName>a</LastName>
-    <Status>65</Status>
-    <Email>zenjhryxk</Email>
-    <PhoneNumber>123456</PhoneNumber>
-    <Adress>2awyhtj</Adress>
-    <Name>jorge</Name>
-    <DocNumber>1234567</DocNumber>
-    <Id>1</Id>
-  </User>
 </ArrayOfUser>

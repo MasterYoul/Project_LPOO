@@ -491,7 +491,7 @@ User^ ProjectPersistance::Persistance::QueryUserById(int UserId)
         //Paso 1: Se obtiene la conexión
         conn = GetConnection();
         //Paso 2: Se prepara la sentencia
-        comm = gcnew SqlCommand("SELECT * FROM USUARIO WHERE id=" + UserId /* +
+        comm = gcnew SqlCommand("SELECT * FROM USUARIO WHERE id=" + UserId + "AND State LIKE '%ACTIVO%'"/* +
             " AND status = 'A'"*/, conn);
         //Paso 3: Se ejecuta la sentencia
         reader = comm->ExecuteReader();
@@ -540,7 +540,7 @@ List<User^>^ ProjectPersistance::Persistance::QueryAllUser()
         //Paso 1: Se obtiene la conexión
         conn = GetConnection();
         //Paso 2: Se prepara la sentencia
-        comm = gcnew SqlCommand("SELECT * FROM USUARIO", conn);
+        comm = gcnew SqlCommand("SELECT * FROM USUARIO WHERE " + " State LIKE '%ACTIVO%'", conn);
         //Paso 3: Se ejecuta la sentencia
         reader = comm->ExecuteReader();
         //Paso 4: Se procesan los resultados        
@@ -712,6 +712,35 @@ int ProjectPersistance::Persistance::UpdateUser(User^p)
     finally {
         //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
 
+        if (conn != nullptr) conn->Close();
+    }
+    return result;
+}
+
+int ProjectPersistance::Persistance::DeleteUser(int UserId)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int result;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("UPDATE USUARIO "
+            + "SET State = 'ELIMINADO' "
+            + "WHERE id = " + UserId, conn);
+
+        //Paso 3: Se ejecuta la sentencia
+        result = comm->ExecuteNonQuery();
+
+        //Paso 4: Se procesan los resultados (No aplica)    
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
         if (conn != nullptr) conn->Close();
     }
     return result;

@@ -640,7 +640,7 @@ int ProjectController::Controller::UpdateUser(User^ User)
 
 int ProjectController::Controller::DeleteUser(int UserId)
 {
-    for (int i = 0; i < UserList->Count; i++)
+    /*for (int i = 0; i < UserList->Count; i++)
         if (UserList[i]->Id == UserId) {
             UserList->RemoveAt(i);
             Persistance::Persist("User.txt", UserList);
@@ -648,7 +648,8 @@ int ProjectController::Controller::DeleteUser(int UserId)
             Persistance::PersistBinary("User.bin", UserList);
             return UserId;
         }
-    return 0;
+    return 0;*/
+    return Persistance::DeleteUser(UserId);
 }
 
 List<User^>^ ProjectController::Controller::QueryUserByNameOrLastName(String^ value)

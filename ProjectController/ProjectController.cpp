@@ -287,7 +287,7 @@ int ProjectController::Controller::UpdateMeals(Meals^ Meals)
 
 int ProjectController::Controller::DeleteMeals(int MealsId)
 {
-    for (int i = 0; i < MealsList->Count; i++)
+    /*for (int i = 0; i < MealsList->Count; i++)
         if (MealsList[i]->Id == MealsId) {
             MealsList->RemoveAt(i);
             Persistance::Persist("Meals.txt", MealsList);
@@ -295,7 +295,8 @@ int ProjectController::Controller::DeleteMeals(int MealsId)
             Persistance::PersistBinary("Meals.bin", MealsList);
             return MealsId;
         }
-    return 0;
+    return 0;*/
+    return Persistance::DeleteMeals(MealsId);
 }
 
 

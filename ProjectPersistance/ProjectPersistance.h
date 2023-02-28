@@ -29,10 +29,13 @@ namespace ProjectPersistance {
 
 		static User^ QueryUserById(int UserId);
 		static List <User^>^ QueryAllUser();
+		static User^ QueryUserbyDni(String^Dni);
 		static int AddUser(User^p);
 		static int UpdateUser(User^);
 		static int DeleteUser(int UserId);
 		static User^ Login(String^ Username, String^ Password);
+		static User^ ChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword);
+		static User^ QueryUserRecover(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber);
 
 
 	};

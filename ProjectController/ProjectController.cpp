@@ -595,13 +595,14 @@ int ProjectController::Controller::AddUser(User^ User)
 
 User^ ProjectController::Controller::QueryUserbyDni(String^ Dni)
 {
-    // UserList = (List<User^>^)Persistance::LoadData("User.txt");
+    /*UserList = (List<User^>^)Persistance::LoadData("User.txt");
     UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
-    // UserList = (List<User^>^)Persistance::LoadXMLData("User.xml");
+    UserList = (List<User^>^)Persistance::LoadXMLData("User.xml");
     for (int i = 0; i < UserList->Count; i++)
         if (UserList[i]->DocNumber->Equals(Dni))
             return UserList[i];
-    return nullptr;
+    return nullptr;*/
+    return Persistance::QueryUserbyDni(Dni);
 }
 
 User^ ProjectController::Controller::QueryUsertById(int UserId)
@@ -758,7 +759,8 @@ TableDetail^ ProjectController::Controller::CambioEstadoTable(int id) {
 
 
 User^ ProjectController::Controller::ChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword) {
-    return QueryUserChangePassword(UserDNI,  UserUsuario,  UserName,  UserLastName, UserNumber, newpassword);
+    /*return QueryUserChangePassword(UserDNI, UserUsuario, UserName, UserLastName, UserNumber, newpassword);*/
+    return Persistance::ChangePassword(UserDNI, UserUsuario, UserName, UserLastName, UserNumber, newpassword);
 }
 
 Void ProjectController::Controller::RegisterSuggestions(Suggestions^ suggestions)

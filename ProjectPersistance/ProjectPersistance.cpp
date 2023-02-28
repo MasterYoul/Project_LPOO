@@ -578,6 +578,55 @@ List<User^>^ ProjectPersistance::Persistance::QueryAllUser()
     return UserList;
 }
 
+User^ ProjectPersistance::Persistance::QueryUserbyDni(String^ Dni)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    User^ activeUser;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM USUARIO WHERE DocNumber LIKE '%" +Dni+ "%'AND State LIKE '%ACTIVO%'"/* +
+            " AND status = 'A'"*/, conn);
+            //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        if (reader->Read()) {
+            User^ p = gcnew User();
+            p->Id = Convert::ToInt32(reader["id"]->ToString());
+            p->DocNumber = reader["DocNumber"]->ToString();
+            p->Name = reader["Name"]->ToString();
+            p->Email = reader["Email"]->ToString();
+            p->Adress = reader["Adress"]->ToString();
+            p->PhoneNumber = reader["PhoneNumber"]->ToString();
+            p->LastName = reader["LastName"]->ToString();
+            p->Salary = Convert::ToDouble(reader["Salary"]->ToString());
+            p->Username = reader["Username"]->ToString();
+            p->Password = reader["Password"]->ToString();
+            p->Birthday = reader["Birthday"]->ToString();
+            p->Type = reader["Type"]->ToString();
+            p->State = reader["State"]->ToString();
+
+
+            if (!DBNull::Value->Equals(reader["Gender"])) p->Gender = reader["Gender"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Photo"])) p->Foto = (array<Byte>^)reader["Photo"];
+            activeUser = p;
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return activeUser;
+}
+
 int ProjectPersistance::Persistance::AddUser(User^ p)
 {
     SqlConnection^ conn;
@@ -803,7 +852,113 @@ User^ ProjectPersistance::Persistance::Login(String^ Username, String^ Password)
         if (reader != nullptr) reader->Close();
         if (conn != nullptr) conn->Close();
     }
-    return user;;
+    return user;
+}
+
+User^ ProjectPersistance::Persistance::ChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword)
+{
+    User^ user= QueryUserRecover( UserDNI,  UserUsuario, UserName,  UserLastName,  UserNumber);
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int id = user->Id;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        //Paso 2: Se prepara la sentencia
+
+       /* comm = gcnew SqlCommand("UPDATE USUARIO "
+            + "SET State = 'ELIMINADO' "
+            + "WHERE id = " + UserId, conn);
+        '%" +Dni+ "%'*/
+
+
+        comm = gcnew SqlCommand("UPDATE USUARIO "
+            
+            + "SET Password = '"+newpassword+"' WHERE Id = " + id, conn);
+
+        //Paso 3: Se ejecuta la sentencia
+        comm->ExecuteNonQuery();
+
+        //Paso 4: Se procesan los resultados (No aplica)    
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    
+
+    return user;
+}
+
+User^ ProjectPersistance::Persistance::QueryUserRecover(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber)
+{
+    User^ user;
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("dbo.usp_ValidateUserRecover ", conn);
+        comm->CommandType = System::Data::CommandType::StoredProcedure;
+       
+        comm->Parameters->Add("@Name", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@DocNumber", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@PhoneNumber", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@LastName", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Username", System::Data::SqlDbType::VarChar, 250);
+        //comm->Parameters->Add("@Type", System::Data::SqlDbType::VarChar, 120);
+
+
+        comm->Prepare();
+        comm->Parameters["@Name"]->Value = UserName;
+        comm->Parameters["@DocNumber"]->Value = UserDNI;
+        comm->Parameters["@PhoneNumber"]->Value = UserNumber;
+        comm->Parameters["@LastName"]->Value = UserLastName;
+        comm->Parameters["@Username"]->Value = UserUsuario;
+        reader = comm->ExecuteReader();
+        //paso 4 se Procesan los resultados
+        if (reader->Read()) {
+
+            User^ p = gcnew User();
+            p->Id = Convert::ToInt32(reader["id"]->ToString());
+            p->DocNumber = reader["DocNumber"]->ToString();
+            p->Name = reader["Name"]->ToString();
+            p->Email = reader["Adress"]->ToString();
+            p->Adress = reader["Email"]->ToString();
+            p->PhoneNumber = reader["PhoneNumber"]->ToString();
+            p->LastName = reader["LastName"]->ToString();
+            p->Salary = Convert::ToDouble(reader["Salary"]->ToString());
+            p->Username = reader["Username"]->ToString();
+            p->Password = reader["Password"]->ToString();
+            p->Birthday = reader["Birthday"]->ToString();
+            p->Type = reader["Type"]->ToString();
+            p->State = reader["State"]->ToString();
+
+
+            if (!DBNull::Value->Equals(reader["Gender"])) p->Gender = reader["Gender"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Photo"])) p->Foto = (array<Byte>^)reader["Photo"];
+            user = p;
+        }
+
+    }
+    catch (Exception^ ex) {
+       
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return user;
 }
 
 

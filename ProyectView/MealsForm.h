@@ -436,7 +436,7 @@ private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^
 		MessageBox::Show("El stock utilizado del plato no debe estar vacío.");
 		return;
 	}
-	meals->DateMeal = dateTimeMeals->Value.ToString("yyyy-MM-dd");
+	meals->DateMeal = dateTimeMeals->Value.ToString("dd-MM-yyyy");
 	meals->Id = Convert::ToInt32(txtMealsId->Text);
 	meals->Name = textMealsName->Text;
 	meals->Description = textMealsDescription->Text;

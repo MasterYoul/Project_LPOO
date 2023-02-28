@@ -1,3 +1,2 @@
-234,Ceviche,CevicheDescription,15,44
-123,Arroz Chaufa,Arroz ChaufaDescription,15,27
-35,Arroz con Pollo,Arroz con pollo descripcion,13,24
+1,Arroz con pollo,Arroz y pollo,15,200
+2,Arroz chaufa,arroz aderezado,12,234

@@ -423,7 +423,7 @@ List<Meals^>^ ProjectPersistance::Persistance::QueryAllActiveMeals()
             p->Description = reader["Description"]->ToString();
             p->Price = Convert::ToDouble(reader["Price"]->ToString());
             p->Stock = Convert::ToInt32(reader["Stock"]->ToString());
-            p->TotalMeals = Convert::ToDouble(reader["TotalMeals"]->ToString());
+            if (!DBNull::Value->Equals(reader["TotalMeals"]))p->TotalMeals = Convert::ToDouble(reader["TotalMeals"]->ToString());
             p->DateMeal = reader["DateMeal"]->ToString();
             p->StockUsed = Convert::ToInt32(reader["StockUsed"]->ToString());
             if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
@@ -431,7 +431,9 @@ List<Meals^>^ ProjectPersistance::Persistance::QueryAllActiveMeals()
             activemealsList->Add(p);
         }
     }
-    catch(Exception^ ex){}
+    catch (Exception^ ex) {
+        throw ex;
+    }
     finally {
         //paso 5: S e cierra los objetos de conexion
         if (reader != nullptr) reader->Close();
@@ -464,7 +466,7 @@ Meals^ ProjectPersistance::Persistance::QueryProductById(int MealsId)
             p->Price = Convert::ToDouble(reader["price"]->ToString());
             p->Stock = Convert::ToInt32(reader["stock"]->ToString());
             p->StockUsed = Convert::ToInt32(reader["StockUsed"]->ToString());
-            p->TotalMeals = Convert::ToDouble(reader["TotalMeals"]->ToString());
+            if (!DBNull::Value->Equals(reader["TotalMeals"]))p->TotalMeals = Convert::ToDouble(reader["TotalMeals"]->ToString());
             if (!DBNull::Value->Equals(reader["status"])) p->Status = reader["status"]->ToString()[0];
             if (!DBNull::Value->Equals(reader["photo"])) p->Photo = (array<Byte>^)reader["photo"];
             activeMeals = p;
@@ -479,7 +481,67 @@ Meals^ ProjectPersistance::Persistance::QueryProductById(int MealsId)
         if (conn != nullptr) conn->Close();
     }
     return activeMeals;
+
 }
+
+int ProjectPersistance::Persistance::AddMeals(Meals^ p)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int output_id;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("dbo.usp_AddMeals", conn);
+        comm->CommandType = System::Data::CommandType::StoredProcedure;
+        comm->Parameters->Add("@Name", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Description", System::Data::SqlDbType::VarChar, 500);
+        comm->Parameters->Add("@price", System::Data::SqlDbType::Decimal, 10);
+        comm->Parameters["@price"]->Precision = 10;
+        comm->Parameters["@price"]->Scale = 2;
+        comm->Parameters->Add("@stock", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@StockUsed", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@DateMeal", System::Data::SqlDbType::Date);
+        comm->Parameters->Add("@Status", System::Data::SqlDbType::Char, 1);
+        comm->Parameters->Add("@Photo", System::Data::SqlDbType::Image);
+        comm->Parameters->Add("@TotalMeals", System::Data::SqlDbType::Decimal, 10);
+        comm->Parameters["@TotalMeals"]->Precision = 10;
+        comm->Parameters["@TotalMeals"]->Scale = 2;
+        SqlParameter^ outputIdParam = gcnew SqlParameter("@id", System::Data::SqlDbType::Int);
+        outputIdParam->Direction = System::Data::ParameterDirection::Output;
+        comm->Parameters->Add(outputIdParam);
+        comm->Prepare();
+        comm->Parameters["@name"]->Value = p->Name;
+        comm->Parameters["@description"]->Value = p->Description;
+        comm->Parameters["@price"]->Value = p->Price;
+        comm->Parameters["@stock"]->Value = p->Stock;
+        comm->Parameters["@stockUsed"]->Value = p->StockUsed;
+        comm->Parameters["@DateMeal"]->Value = p->DateMeal;
+        comm->Parameters["@status"]->Value = Char::ToString(p->Status);
+        comm->Parameters["@TotalMeals"]->Value = p->TotalMeals;
+        if (p->Photo == nullptr)
+            comm->Parameters["@photo"]->Value = DBNull::Value;
+        else
+            comm->Parameters["@photo"]->Value = p->Photo;
+
+        //Paso 3: Se ejecuta la sentencia
+        comm->ExecuteNonQuery();
+        //Paso 4: Se procesan los resultados        
+        output_id = Convert::ToInt32(comm->Parameters["@id"]->Value);
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    return output_id;
+}
+
+
+
 
 User^ ProjectPersistance::Persistance::QueryUserById(int UserId)
 {

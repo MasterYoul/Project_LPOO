@@ -240,11 +240,13 @@ List<SaleDetail^>^ ProjectController::Controller::QuerySingleSaleDetail(int Sale
 
 int ProjectController::Controller::AddMeals(Meals^ meals)
 {
-    MealsList->Add(meals);
+    /*MealsList->Add(meals);
     Persistance::PersistBinary("Meals.bin", MealsList);
     Persistance::Persist("Meals.txt", MealsList);
     Persistance::PersistXML("Meals.xml", MealsList);
-    return meals->Id;
+
+    return meals->Id;*/
+    return Persistance::AddMeals(meals);
 }
 
 Meals^ ProjectController::Controller::QueryMealstById(int MealsId)

@@ -25,6 +25,7 @@ namespace ProjectPersistance {
 
 		static List<Meals^>^ QueryAllActiveMeals();
 		static Meals^ QueryProductById(int MealsId);
+		static int AddMeals(Meals^);
 
 
 		static User^ QueryUserById(int UserId);

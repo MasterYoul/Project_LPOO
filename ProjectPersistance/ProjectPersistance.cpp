@@ -632,6 +632,53 @@ int ProjectPersistance::Persistance::DeleteMeals(int MealsId)
     
 }
 
+List<Meals^>^ ProjectPersistance::Persistance::QueryMealsByNameOrDescription(String^ value)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    List<Meals^>^ activeProductsList = gcnew List<Meals^>();
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM MEALS WHERE " +
+            "(Name LIKE '%" + value + "%' OR " +
+            "Description LIKE '%" + value + "%') AND " +
+            "Status = 'A'", conn);
+        //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        while (reader->Read()) {
+            Meals^ p = gcnew Meals();
+            p->Id = Convert::ToInt32(reader["id"]->ToString());
+            p->Name = reader["name"]->ToString();
+            p->Description = reader["description"]->ToString();
+            p->Price = Convert::ToDouble(reader["price"]->ToString());
+            if (!DBNull::Value->Equals(reader["TotalMeals"]))p->TotalMeals = Convert::ToDouble(reader["TotalMeals"]->ToString());
+
+            DateTime^ sdate = safe_cast<DateTime^>(reader["DateMeal"]);
+            p->DateMeal = sdate->ToString("dd-MM-yyyy", CultureInfo::InvariantCulture);
+            p->StockUsed = Convert::ToInt32(reader["StockUsed"]->ToString());
+            
+            p->Stock = Convert::ToInt32(reader["stock"]->ToString());
+            if (!DBNull::Value->Equals(reader["status"])) p->Status = reader["status"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["photo"])) p->Photo = (array<Byte>^)reader["photo"];
+            activeProductsList->Add(p);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return activeProductsList;
+}
+
+
 
 
 

@@ -410,10 +410,10 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		return;
 	}
 
-	if (txtTableTimeReserved->Text->Trim() == "") {
+	/*if (txtTableTimeReserved->Text->Trim() == "") {
 		MessageBox::Show("El tiempo de reserva  no debe estar vacío.");
 		return;
-	}
+	}*/
 
 	table->Id = Convert::ToInt32(txtTableId->Text);
 	table->Floor = Convert::ToInt32(txtTableFloor->Text);
@@ -421,6 +421,7 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 	table->Disponibility = comboBoxDisponibility->Text;
 	table->Reserved = comboBoxReserved->Text;
 	table->TimeReserv = txtTableTimeReserved->Text;
+	table->Status = 'A';
 
 	Controller::AddTableDetail(table);
 	ClearControls();
@@ -488,11 +489,12 @@ private: System::Void btnModify_Click(System::Object^ sender, System::EventArgs^
 		MessageBox::Show("El estado de reserva de la mesa no debe estar vacío.");
 		return;
 	}
-
+	/*
 	if (txtTableTimeReserved->Text->Trim() == "") {
 		MessageBox::Show("El tiempo de reserva  no debe estar vacío.");
 		return;
-	}
+	}*/
+
 	btnModify->Enabled = false;
 	btnDelete->Enabled = false;
 	table->Id = Convert::ToInt32(txtTableId->Text);
@@ -501,6 +503,8 @@ private: System::Void btnModify_Click(System::Object^ sender, System::EventArgs^
 	table->Disponibility = comboBoxDisponibility->Text;
 	table->Reserved = comboBoxReserved->Text;
 	table->TimeReserv = txtTableTimeReserved->Text;
+	table->Status = 'A';
+
 
 	Controller::UpdateTableDetail(table);
 	RefreshdatadataGridTable();
@@ -523,7 +527,8 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 			MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
 		{
 			
-
+			TableDetail^ tableDet = Controller::QueryTableDetailtById(TableId);
+			tableDet->Status = 0;
 			Controller::DeleteTableDetail(TableId);
 
 			RefreshdatadataGridTable();

@@ -595,7 +595,7 @@ private: System::Void dataGridMeals_CellClick(System::Object^ sender, System::Wi
 	textMealsStockUsed->Text = "" + p->StockUsed;
 	buttonModify->Enabled = true;
 	buttonDelate->Enabled = true;
-	dateTimeMeals->Value = DateTime::Parse(p->DateMeal);
+	//dateTimeMeals->Value = DateTime::Parse(p->DateMeal);
 
 	if (p->Photo != nullptr) {
 		System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream(p->Photo);

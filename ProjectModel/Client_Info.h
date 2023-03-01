@@ -22,7 +22,7 @@ namespace ProjectModel {
         property char Status;
         property int Id;
         property char Gender;
-
+        
        
     };
 }

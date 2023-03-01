@@ -364,18 +364,20 @@ List<Ingredients^>^ ProjectController::Controller::QueryIngredientsByNameOrDescr
     return newProductList;
 }
 
-String^ ProjectController::Controller::AddClient_Info(Client_Info^ Client_Info)
+int ProjectController::Controller::AddClient_Info(Client_Info^ Client_Info)
 {
 
-    Client_InfoList->Add(Client_Info);
-    Persistance::Persist("Client_Info.txt", Client_InfoList);
-    Persistance::PersistBinary("Client_Info.bin", Client_InfoList);
-    Persistance::PersistXML("Client_Info.xml", Client_InfoList);
-    return Client_Info->DocNumber;
+    //Client_InfoList->Add(Client_Info);
+    //Persistance::Persist("Client_Info.txt", Client_InfoList);
+    //Persistance::PersistBinary("Client_Info.bin", Client_InfoList);
+    //Persistance::PersistXML("Client_Info.xml", Client_InfoList);
+    //return Client_Info->DocNumber;
+    return Persistance::AddClient_Info(Client_Info);
 }
 
 Client_Info^ ProjectController::Controller::QueryClient_InfotById(int Client_InfoId)
 {
+    /*
     // Client_InfoList = (List<Client_Info^>^)Persistance::LoadData("Client_Info.txt");
     Client_InfoList = (List<Client_Info^>^)Persistance::LoadBinaryData("Client_Info.bin");
    //Cient_InfoList = (List<Client_Info^>^)Persistance::LoadXMLData("Client_Info.xml");
@@ -383,20 +385,24 @@ Client_Info^ ProjectController::Controller::QueryClient_InfotById(int Client_Inf
         if (Client_InfoId == Client_InfoList[i]->Id) {
             return Client_InfoList[i];
          }
-    return nullptr;
+    return nullptr;*/
+    return Persistance::QueryClient_InfotById(Client_InfoId);
 }
 
 
 List<Client_Info^>^ ProjectController::Controller::QueryAllClient_Info()
 {
-    Client_InfoList = (List<Client_Info^>^)Persistance::LoadData("Client_Info.txt");
-    Client_InfoList = (List<Client_Info^>^)Persistance::LoadBinaryData("Client_Info.bin");
-    Client_InfoList = (List<Client_Info^>^)Persistance::LoadXMLData("Client_Info.xml");
+   //Client_InfoList = (List<Client_Info^>^)Persistance::LoadData("Client_Info.txt");
+    //Client_InfoList = (List<Client_Info^>^)Persistance::LoadBinaryData("Client_Info.bin");
+    //Client_InfoList = (List<Client_Info^>^)Persistance::LoadXMLData("Client_Info.xml");
+    //return Client_InfoList;
+    Client_InfoList = Persistance::QueryAllClient_Info();
     return Client_InfoList;
 }
 
-String^ ProjectController::Controller::UpdateClient_Info(Client_Info^ Client_Info)
+int ProjectController::Controller::UpdateClient_Info(Client_Info^ Client_Info)
 {
+    /*
     for (int i = 0; i < Client_InfoList->Count; i++)
         if (Client_InfoList[i]->DocNumber == Client_Info->DocNumber) {
             Client_InfoList[i] = Client_Info;
@@ -406,10 +412,13 @@ String^ ProjectController::Controller::UpdateClient_Info(Client_Info^ Client_Inf
             return Client_Info->DocNumber;
         }
     return nullptr;
+    */
+    return Persistance::UpdateClient_Info(Client_Info);
 }
 
 int ProjectController::Controller::DeleteClient_Info(int Client_InfoId)
 {
+    /*
     for (int i = 0; i < Client_InfoList->Count; i++)
         if (Client_InfoList[i]->Id == Client_InfoId) {
             Client_InfoList->RemoveAt(i);
@@ -418,7 +427,8 @@ int ProjectController::Controller::DeleteClient_Info(int Client_InfoId)
             Persistance::PersistBinary("Client_Info.bin", Client_InfoList);
             return Client_InfoId;
         }
-    return 0;
+    return 0;*/
+    return Persistance::DeleteClient_Info(Client_InfoId);
 }
 
 List<Client_Info^>^ ProjectController::Controller::QueryClient_InfoByNameOrLastName(String^ value)
@@ -506,16 +516,17 @@ int ProjectController::Controller::DeleteSale(int SaleId)
 
 int ProjectController::Controller::AddTableDetail(TableDetail^ TableDetail)
 {
-    
-    TableDetailList->Add(TableDetail);
-    Persistance::Persist("TableDetail.txt", TableDetailList);
-    Persistance::PersistXML("TableDetail.xml", TableDetailList);
-    Persistance::PersistBinary("TableDetail.bin", TableDetailList);
-    return TableDetail->Id;
+    return Persistance::AddTableDetail(TableDetail);
+    //TableDetailList->Add(TableDetail);
+    //Persistance::Persist("TableDetail.txt", TableDetailList);
+    //Persistance::PersistXML("TableDetail.xml", TableDetailList);
+    //Persistance::PersistBinary("TableDetail.bin", TableDetailList);
+    //return TableDetail->Id;
 }
 
 TableDetail^ ProjectController::Controller::QueryTableDetailtById(int TableDetailId)
 {
+    /*
     TableDetailList = (List<TableDetail^>^)Persistance::LoadData("TableDetail.txt");
     TableDetailList = (List<TableDetail^>^)Persistance::LoadXMLData("TableDetail.xml");
     TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
@@ -523,6 +534,8 @@ TableDetail^ ProjectController::Controller::QueryTableDetailtById(int TableDetai
         if (TableDetailList[i]->Id == TableDetailId)
             return TableDetailList[i];
     return nullptr;
+    */
+    return Persistance::QueryTableDetailtById(TableDetailId);
 }
 TableDetail^ ProjectController::Controller::QueryTableDetailOcupado(int TableDetailId)
 {
@@ -541,15 +554,16 @@ TableDetail^ ProjectController::Controller::QueryTableDetailOcupado(int TableDet
 
 List<TableDetail^>^ ProjectController::Controller::QueryAllTableDetail()
 {
-    TableDetailList = (List<TableDetail^>^)Persistance::LoadData("TableDetail.txt");
-    TableDetailList = (List<TableDetail^>^)Persistance::LoadXMLData("TableDetail.xml");
-    TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    //TableDetailList = (List<TableDetail^>^)Persistance::LoadData("TableDetail.txt");
+    //TableDetailList = (List<TableDetail^>^)Persistance::LoadXMLData("TableDetail.xml");
+    //TableDetailList = (List<TableDetail^>^)Persistance::LoadBinaryData("TableDetail.bin");
+    TableDetailList = Persistance::QueryAllTableDetail();
     return TableDetailList;
 }
 
 int ProjectController::Controller::UpdateTableDetail(TableDetail^ TableDetail)
 {
-    for (int i = 0; i < TableDetailList->Count; i++)
+    /*for (int i = 0; i < TableDetailList->Count; i++)
         if (TableDetailList[i]->Id == TableDetail->Id) {
             TableDetailList[i] = TableDetail;
             Persistance::Persist("TableDetail.txt", TableDetailList);
@@ -557,11 +571,13 @@ int ProjectController::Controller::UpdateTableDetail(TableDetail^ TableDetail)
             Persistance::PersistBinary("TableDetail.bin", TableDetailList);
             return TableDetail->Id;
         }
-    return 0;
+    return 0;*/
+    return Persistance::UpdateTableDetail(TableDetail);
 }
 
 int ProjectController::Controller::DeleteTableDetail(int TableDetailId)
 {
+    /*
     for (int i = 0; i < TableDetailList->Count; i++)
         if (TableDetailList[i]->Id == TableDetailId) {
             TableDetailList->RemoveAt(i);
@@ -571,6 +587,8 @@ int ProjectController::Controller::DeleteTableDetail(int TableDetailId)
             return TableDetailId;
         }
     return 0;
+    */
+    return Persistance::DeleteTableDetail(TableDetailId);
 }
 
 List<TableDetail^>^ ProjectController::Controller::QueryTableDetailByFloorOrCapacity(int value)

@@ -54,10 +54,10 @@ namespace ProjectController {
 		static int DeleteIngredients(int IngredientsId);
 		static List<Ingredients^>^ QueryIngredientsByNameOrDescription(String^ nameDesc);
 
-		static String^ AddClient_Info(Client_Info^ Client_Info);
+		static int AddClient_Info(Client_Info^ Client_Info);
 		static Client_Info^ QueryClient_InfotById(int Client_InfoId);
 		static List<Client_Info^>^ QueryAllClient_Info();
-		static String^ UpdateClient_Info(Client_Info^ Client_Info);
+		static int UpdateClient_Info(Client_Info^ Client_Info);
 		static int DeleteClient_Info(int Client_InfoId);
 		static List<Client_Info^>^ QueryClient_InfoByNameOrLastName(String^ nameDesc);
 		//static List<Client_Info^>^ QueryClient_InfoByDni(String^ nameDesc);
@@ -70,19 +70,23 @@ namespace ProjectController {
 		static int DeleteSale(int SaleId);
 
 
-		static int AddTableDetail(TableDetail^ TableDetail);
+	
 		static List<TableDetail^>^ QueryAllTableLibreporpisoporcapacidad(int piso, int capacidad);
 		static List<TableDetail^>^ QueryAllTableporpisoporcapacidad(int piso, int capacidad);
 		static List<TableDetail^>^ QueryAllTableOcupadaporpisoporcapacidad(int piso, int capacidad);
 		static List<TableDetail^>^ QueryAllTableporpiso(int piso);
 		static List<TableDetail^>^ QueryAllTableporcapacidad(int capacidad);
 		static List<TableDetail^>^ QueryAllTableLibre();
-		static TableDetail^ QueryTableDetailtById(int TableDetailId);
 		static TableDetail^ QueryTableDetailOcupado(int TableDetailId);
+		static List<TableDetail^>^ QueryTableDetailByFloorOrCapacity(int value);
+
+
+		static TableDetail^ QueryTableDetailtById(int TableDetailId);
 		static List<TableDetail^>^ QueryAllTableDetail();
+		static int AddTableDetail(TableDetail^ TableDetail);
 		static int UpdateTableDetail(TableDetail^ TableDetail);
 		static int DeleteTableDetail(int TableDetailId);
-		static List<TableDetail^>^ QueryTableDetailByFloorOrCapacity(int value);
+		
 
 		static int AddUser(User^ User);
 		static User^ QueryUserbyDni(String^ Dni);

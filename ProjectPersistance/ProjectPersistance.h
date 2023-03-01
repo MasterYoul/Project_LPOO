@@ -31,12 +31,26 @@ namespace ProjectPersistance {
 		static List<Meals^>^ QueryMealsByNameOrDescription(String^ value);
 
 
+		static List<TableDetail^>^ QueryAllTableDetail();
+		static TableDetail^ QueryTableDetailtById(int TableDetailId);
+		static int AddTableDetail(TableDetail^);
+		static int UpdateTableDetail(TableDetail^);
+		static int DeleteTableDetail(int TableDetailId);
+
+		static List<Client_Info^>^ QueryAllClient_Info();
+		static Client_Info^ QueryClient_InfotById(int Client_InfoId);
+		static int AddClient_Info(Client_Info^);
+		static int UpdateClient_Info(Client_Info^);
+		static int DeleteClient_Info(int Client_InfoId);
+
+
 		static User^ QueryUserById(int UserId);
 		static List <User^>^ QueryAllUser();
 		static User^ QueryUserbyDni(String^Dni);
 		static int AddUser(User^p);
 		static int UpdateUser(User^);
 		static int DeleteUser(int UserId);
+
 		static User^ Login(String^ Username, String^ Password);
 		static User^ ChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword);
 		static User^ QueryUserRecover(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber);

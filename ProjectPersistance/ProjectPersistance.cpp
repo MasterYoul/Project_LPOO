@@ -425,8 +425,8 @@ List<Meals^>^ ProjectPersistance::Persistance::QueryAllActiveMeals()
             p->Stock = Convert::ToInt32(reader["Stock"]->ToString());
             if (!DBNull::Value->Equals(reader["TotalMeals"]))p->TotalMeals = Convert::ToDouble(reader["TotalMeals"]->ToString());
             
-            DateTime^ sdate = safe_cast<DateTime^>(reader["DateMeal"]);
-            p->DateMeal = sdate->ToString("dd-MM-yyyy", CultureInfo::InvariantCulture);
+            //DateTime^ sdate = safe_cast<DateTime^>(reader["DateMeal"]);
+           // p->DateMeal = sdate->ToString("dd-MM-yyyy", CultureInfo::InvariantCulture);
             //p->DateMeal = reader["DateMeal"]->ToString();
 
             p->StockUsed = Convert::ToInt32(reader["StockUsed"]->ToString());
@@ -681,6 +681,428 @@ List<Meals^>^ ProjectPersistance::Persistance::QueryMealsByNameOrDescription(Str
 
 
 
+
+int ProjectPersistance::Persistance::AddTableDetail(TableDetail^t)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int output_id;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("dbo.usp_AddTableDetail", conn);
+        comm->CommandType = System::Data::CommandType::StoredProcedure;
+        comm->Parameters->Add("@Floor", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@TableCapacity", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@Disponibility", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Reserved", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@TimeReserv", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Status", System::Data::SqlDbType::Char, 1);
+
+        SqlParameter^ outputIdParam = gcnew SqlParameter("@id", System::Data::SqlDbType::Int);
+        outputIdParam->Direction = System::Data::ParameterDirection::Output;
+        comm->Parameters->Add(outputIdParam);
+        comm->Prepare();
+        comm->Parameters["@floor"]->Value = t->Floor;
+        comm->Parameters["@tableCapacity"]->Value = t->TableCapacity;
+        comm->Parameters["@disponibility"]->Value = t->Disponibility;
+        comm->Parameters["@reserved"]->Value = t->Reserved;
+        comm->Parameters["@timeReserv"]->Value = t->TimeReserv;
+        comm->Parameters["@status"]->Value = Char::ToString(t->Status);
+
+        //Paso 3: Se ejecuta la sentencia
+        comm->ExecuteNonQuery();
+        //Paso 4: Se procesan los resultados        
+        output_id = Convert::ToInt32(comm->Parameters["@id"]->Value);
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    return output_id;
+}
+
+int ProjectPersistance::Persistance::UpdateTableDetail(TableDetail^p)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int result;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("usp_UpdateTableDetail", conn);
+        comm->CommandType = System::Data::CommandType::StoredProcedure;
+        comm->Parameters->Add("@Id", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@Floor", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@TableCapacity", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@Disponibility", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Reserved", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@TimeReserv", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Status", System::Data::SqlDbType::Char, 1);
+
+        comm->Prepare();
+        comm->Parameters["@id"]->Value = p->Id;
+        comm->Parameters["@floor"]->Value = p->Floor;
+        comm->Parameters["@tableCapacity"]->Value = p->TableCapacity;
+        comm->Parameters["@disponibility"]->Value = p->Disponibility;
+        comm->Parameters["@reserved"]->Value = p->Reserved;
+        comm->Parameters["@timeReserv"]->Value = p->TimeReserv;
+        comm->Parameters["@status"]->Value = Char::ToString(p->Status);
+  
+        //Paso 3: Se ejecuta la sentencia
+        result = comm->ExecuteNonQuery();
+        //Paso 4: Se procesan los resultados        
+
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    return result;
+}
+
+int ProjectPersistance::Persistance::DeleteTableDetail(int TableDetailId)
+{
+
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int result;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("UPDATE TABLEDETAIL "
+            + "SET Status = 'I' "
+            + "WHERE id = " + TableDetailId, conn);
+
+        //Paso 3: Se ejecuta la sentencia
+        result = comm->ExecuteNonQuery();
+
+        //Paso 4: Se procesan los resultados (No aplica)    
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    return result;
+}
+
+List<Client_Info^>^ ProjectPersistance::Persistance::QueryAllClient_Info()
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    List<Client_Info^>^ activeClientList = gcnew List<Client_Info^>();
+    try {
+        // paso1: Se obtiene la conexion
+        conn = GetConnection();
+        // paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM CLIENT_INFO WHERE Status ='A'", conn);
+        //paso 3: Se ejecuta la sentecia
+        reader = comm->ExecuteReader();
+        // paso 4: se procesan los resultados
+        while (reader->Read()) {
+            Client_Info^ p = gcnew Client_Info();
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->DocNumber = reader["DocNumber"]->ToString();
+            p->Name = reader["Name"]->ToString();
+            p->LastName = reader["LastName"]->ToString();
+            p->PhoneNumber = reader["PhoneNumber"]->ToString();
+            p->VisitQuantity = Convert::ToInt32(reader["VisitQuantity"]->ToString());
+            //p->Type = reader["Type"]->ToString()[0];
+            p->RucNumber = reader["RucNumber"]->ToString();
+            p->Rate = Convert::ToInt32(reader["Rate"]->ToString());
+            p->TxtOpin = reader["TxtOpin"]->ToString();
+            //p->Gender = reader["Gender"]->ToString()[0];
+
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Type"])) p->Type = reader["Type"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Gender"])) p->Gender = reader["Gender"]->ToString()[0];
+            activeClientList->Add(p);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //paso 5: S e cierra los objetos de conexion
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return activeClientList;
+}
+
+Client_Info^ ProjectPersistance::Persistance::QueryClient_InfotById(int Client_InfoId)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    Client_Info^ clientInfos;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM CLIENT_INFO WHERE Id=" + Client_InfoId +
+            " AND Status = 'A'", conn);
+        //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        if (reader->Read()) {
+            Client_Info^ p = gcnew Client_Info();
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->DocNumber = reader["DocNumber"]->ToString();
+            p->Name = reader["Name"]->ToString();
+            p->LastName = reader["LastName"]->ToString();
+            p->PhoneNumber = reader["PhoneNumber"]->ToString();
+            p->VisitQuantity = Convert::ToInt32(reader["VisitQuantity"]->ToString());
+            //p->Type = reader["Type"]->ToString()[0];
+            p->RucNumber = reader["RucNumber"]->ToString();
+            p->Rate = Convert::ToInt32(reader["Rate"]->ToString());
+            p->TxtOpin = reader["TxtOpin"]->ToString();
+            //p->Gender = reader["Gender"]->ToString()[0];
+
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Type"])) p->Type = reader["Type"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Gender"])) p->Gender = reader["Gender"]->ToString()[0];
+            clientInfos = p;
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return clientInfos;
+}
+
+int ProjectPersistance::Persistance::AddClient_Info(Client_Info^ p)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int output_id;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("dbo.usp_AddClient_Info", conn);
+        comm->CommandType = System::Data::CommandType::StoredProcedure;
+        comm->Parameters->Add("@DocNumber", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Name", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@LastName", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@PhoneNumber", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@VisitQuantity", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@Type", System::Data::SqlDbType::Char, 1);
+        comm->Parameters->Add("@RucNumber", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Rate", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@TxtOpin", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Status", System::Data::SqlDbType::Char, 1);
+        comm->Parameters->Add("@Gender", System::Data::SqlDbType::Char, 1);
+
+      
+        SqlParameter^ outputIdParam = gcnew SqlParameter("@id", System::Data::SqlDbType::Int);
+        outputIdParam->Direction = System::Data::ParameterDirection::Output;
+        comm->Parameters->Add(outputIdParam);
+        comm->Prepare();
+        comm->Parameters["@docNumber"]->Value = p->DocNumber;
+        comm->Parameters["@name"]->Value = p->Name;
+        comm->Parameters["@lastName"]->Value = p->LastName;
+        comm->Parameters["@phoneNumber"]->Value = p->PhoneNumber;
+        comm->Parameters["@visitQuantity"]->Value = p->VisitQuantity;
+        comm->Parameters["@type"]->Value = Char::ToString(p->Type);
+        comm->Parameters["@rucNumber"]->Value = p->RucNumber;
+        comm->Parameters["@rate"]->Value = p->Rate;
+        comm->Parameters["@txtOpin"]->Value = p->TxtOpin;
+        comm->Parameters["@status"]->Value = Char::ToString(p->Status);
+        comm->Parameters["@gender"]->Value = Char::ToString(p->Gender);
+       
+
+        //Paso 3: Se ejecuta la sentencia
+        comm->ExecuteNonQuery();
+        //Paso 4: Se procesan los resultados        
+        output_id = Convert::ToInt32(comm->Parameters["@id"]->Value);
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    return output_id;
+}
+
+int ProjectPersistance::Persistance::UpdateClient_Info(Client_Info^ p)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int result;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("dbo.usp_UpdateClient_Info", conn);
+        comm->CommandType = System::Data::CommandType::StoredProcedure;
+        comm->Parameters->Add("@Id", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@DocNumber", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Name", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@LastName", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@PhoneNumber", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@VisitQuantity", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@Type", System::Data::SqlDbType::Char, 1);
+        comm->Parameters->Add("@RucNumber", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Rate", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@TxtOpin", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Status", System::Data::SqlDbType::Char, 1);
+        comm->Parameters->Add("@Gender", System::Data::SqlDbType::Char, 1);
+
+        comm->Prepare();
+        comm->Parameters["@id"]->Value = p->Id;
+        comm->Parameters["@docNumber"]->Value = p->DocNumber;
+        comm->Parameters["@name"]->Value = p->Name;
+        comm->Parameters["@lastName"]->Value = p->LastName;
+        comm->Parameters["@phoneNumber"]->Value = p->PhoneNumber;
+        comm->Parameters["@visitQuantity"]->Value = p->VisitQuantity;
+        comm->Parameters["@type"]->Value = Char::ToString(p->Type);
+        comm->Parameters["@rucNumber"]->Value = p->RucNumber;
+        comm->Parameters["@rate"]->Value = p->Rate;
+        comm->Parameters["@txtOpin"]->Value = p->TxtOpin;
+        comm->Parameters["@status"]->Value = Char::ToString(p->Status);
+        comm->Parameters["@gender"]->Value = Char::ToString(p->Gender);
+
+        //Paso 3: Se ejecuta la sentencia
+        result = comm->ExecuteNonQuery();
+        //Paso 4: Se procesan los resultados        
+
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    return result;
+}
+
+int ProjectPersistance::Persistance::DeleteClient_Info(int Client_InfoId)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int result;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("UPDATE CLIENT_INFO "
+            + "SET Status = 'I' "
+            + "WHERE id = " + Client_InfoId, conn);
+
+        //Paso 3: Se ejecuta la sentencia
+        result = comm->ExecuteNonQuery();
+
+        //Paso 4: Se procesan los resultados (No aplica)    
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    return result;
+}
+
+TableDetail^ ProjectPersistance::Persistance::QueryTableDetailtById(int TableDetailId)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    TableDetail^ tableDetails;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM TABLEDETAIL WHERE Id=" + TableDetailId +
+            " AND status = 'A'", conn);
+        //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        if (reader->Read()) {
+            TableDetail^ p = gcnew TableDetail();
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->Floor = Convert::ToInt32(reader["Floor"]->ToString());
+            p->TableCapacity = Convert::ToInt32(reader["TableCapacity"]->ToString());
+            p->Disponibility = reader["Disponibility"]->ToString();
+            p->Reserved = reader["Reserved"]->ToString();
+            p->TimeReserv = reader["TimeReserv"]->ToString();
+
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            tableDetails = p;
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return tableDetails;
+}
+
+List<TableDetail^>^ ProjectPersistance::Persistance::QueryAllTableDetail()
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    List<TableDetail^>^ activeTablesList = gcnew List<TableDetail^>();
+    try {
+        // paso1: Se obtiene la conexion
+        conn = GetConnection();
+        // paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM TABLEDETAIL WHERE Status ='A'", conn);
+        //paso 3: Se ejecuta la sentecia
+        reader = comm->ExecuteReader();
+        // paso 4: se procesan los resultados
+        while (reader->Read()) {
+            TableDetail^ p = gcnew TableDetail();
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->Floor = Convert::ToInt32(reader["Floor"]->ToString());
+            p->TableCapacity = Convert::ToInt32(reader["TableCapacity"]->ToString());
+            p->Disponibility = reader["Disponibility"]->ToString();
+            p->Reserved = reader["Reserved"]->ToString();
+            p->TimeReserv = reader["TimeReserv"]->ToString();
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            activeTablesList->Add(p);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //paso 5: S e cierra los objetos de conexion
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return activeTablesList;
+}
 
 User^ ProjectPersistance::Persistance::QueryUserById(int UserId)
 {
@@ -1035,7 +1457,7 @@ User^ ProjectPersistance::Persistance::Login(String^ Username, String^ Password)
 
                 if (!DBNull::Value->Equals(reader["Gender"])) p->Gender = reader["Gender"]->ToString()[0];
                 if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
-                if (!DBNull::Value->Equals(reader["Photo"])) p->Foto = (array<Byte>^)reader["Photo"];
+                //if (!DBNull::Value->Equals(reader["Photo"])) p->Foto = (array<Byte>^)reader["Photo"];
                 user = p;
             }
 

@@ -19,6 +19,7 @@ namespace ProjectModel {
         property String^ Reserved;
         property String^ TimeReserv;
         property User^ User;
+        property char Status;
     };
 
 

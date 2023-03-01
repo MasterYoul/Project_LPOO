@@ -1028,6 +1028,100 @@ int ProjectPersistance::Persistance::DeleteClient_Info(int Client_InfoId)
     return result;
 }
 
+List<Client_Info^>^ ProjectPersistance::Persistance::QueryClient_InfoByNameOrLastName(String^ value)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    List<Client_Info^>^ activeClientsList = gcnew List<Client_Info^>();
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM CLIENT_INFO WHERE " +
+            "(Name LIKE '%" + value + "%' OR " +
+            "LastName LIKE '%" + value + "%') AND " +
+            "Status = 'A'", conn);
+        //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        while (reader->Read()) {
+            Client_Info^ p = gcnew Client_Info();
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->DocNumber = reader["DocNumber"]->ToString();
+            p->Name = reader["Name"]->ToString();
+            p->LastName = reader["LastName"]->ToString();
+            p->PhoneNumber = reader["PhoneNumber"]->ToString();
+            p->VisitQuantity = Convert::ToInt32(reader["VisitQuantity"]->ToString());
+            //p->Type = reader["Type"]->ToString()[0];
+            p->RucNumber = reader["RucNumber"]->ToString();
+            p->Rate = Convert::ToInt32(reader["Rate"]->ToString());
+            p->TxtOpin = reader["TxtOpin"]->ToString();
+            //p->Gender = reader["Gender"]->ToString()[0];
+
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Type"])) p->Type = reader["Type"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Gender"])) p->Gender = reader["Gender"]->ToString()[0];
+            activeClientsList->Add(p);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return activeClientsList;
+}
+
+Client_Info^ ProjectPersistance::Persistance::QueryClient_InfoByDocNumber(String^ docNumber)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    Client_Info^ clientInfos;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM CLIENT_INFO WHERE Id=" + docNumber +
+            " AND Status = 'A'", conn);
+        //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        if (reader->Read()) {
+            Client_Info^ p = gcnew Client_Info();
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->DocNumber = reader["DocNumber"]->ToString();
+            p->Name = reader["Name"]->ToString();
+            p->LastName = reader["LastName"]->ToString();
+            p->PhoneNumber = reader["PhoneNumber"]->ToString();
+            p->VisitQuantity = Convert::ToInt32(reader["VisitQuantity"]->ToString());
+            //p->Type = reader["Type"]->ToString()[0];
+            p->RucNumber = reader["RucNumber"]->ToString();
+            p->Rate = Convert::ToInt32(reader["Rate"]->ToString());
+            p->TxtOpin = reader["TxtOpin"]->ToString();
+            //p->Gender = reader["Gender"]->ToString()[0];
+
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Type"])) p->Type = reader["Type"]->ToString()[0];
+            if (!DBNull::Value->Equals(reader["Gender"])) p->Gender = reader["Gender"]->ToString()[0];
+            clientInfos = p;
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return clientInfos;
+}
+
 TableDetail^ ProjectPersistance::Persistance::QueryTableDetailtById(int TableDetailId)
 {
     SqlConnection^ conn;

@@ -59,7 +59,7 @@ namespace ProjectController {
 		static List<Client_Info^>^ QueryAllClient_Info();
 		static int UpdateClient_Info(Client_Info^ Client_Info);
 		static int DeleteClient_Info(int Client_InfoId);
-		static List<Client_Info^>^ QueryClient_InfoByNameOrLastName(String^ nameDesc);
+		static List<Client_Info^>^ QueryClient_InfoByNameOrLastName(String^ value);
 		//static List<Client_Info^>^ QueryClient_InfoByDni(String^ nameDesc);
 		static Client_Info^ QueryClient_InfoByDocNumber(String^ docNumber);
 

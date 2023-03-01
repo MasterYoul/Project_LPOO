@@ -790,6 +790,7 @@ BEGIN
 END
 GO
 CREATE PROCEDURE usp_UpdateClient_Info(
+	@Id INT,
 	@DocNumber VARCHAR (250),
 	@Name VARCHAR (250),
 	@LastName VARCHAR (250),
@@ -800,7 +801,6 @@ CREATE PROCEDURE usp_UpdateClient_Info(
 	@Rate INT,
 	@TxtOpin VARCHAR (500),
 	@Status CHAR(1),
-	@Id INT,
 	@Gender CHAR(1)
 	
 ) AS

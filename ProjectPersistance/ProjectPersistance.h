@@ -42,7 +42,8 @@ namespace ProjectPersistance {
 		static int AddClient_Info(Client_Info^);
 		static int UpdateClient_Info(Client_Info^);
 		static int DeleteClient_Info(int Client_InfoId);
-
+		static List<Client_Info^>^ QueryClient_InfoByNameOrLastName(String^ value);
+		static Client_Info^ QueryClient_InfoByDocNumber(String^ docNumber);
 
 		static User^ QueryUserById(int UserId);
 		static List <User^>^ QueryAllUser();

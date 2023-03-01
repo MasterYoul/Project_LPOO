@@ -433,6 +433,7 @@ int ProjectController::Controller::DeleteClient_Info(int Client_InfoId)
 
 List<Client_Info^>^ ProjectController::Controller::QueryClient_InfoByNameOrLastName(String^ value)
 {
+    /*
     Client_InfoList = (List<Client_Info^>^)Persistance::LoadData("Client_Info.txt");
     Client_InfoList = (List<Client_Info^>^)Persistance::LoadBinaryData("Client_Info.bin");
     Client_InfoList = (List<Client_Info^>^)Persistance::LoadXMLData("Client_Info.xml");
@@ -443,16 +444,20 @@ List<Client_Info^>^ ProjectController::Controller::QueryClient_InfoByNameOrLastN
             newProductList->Add(Client_InfoList[i]);
     }
     return newProductList;
+    */
+    return Persistance::QueryClient_InfoByNameOrLastName(value);
 }
 
 Client_Info^ ProjectController::Controller::QueryClient_InfoByDocNumber(String^ docNumber)
 {
+    /*
     Client_InfoList = (List<Client_Info^>^)Persistance::LoadBinaryData("Client_Info.bin");
     for (int i = 0; i < Client_InfoList->Count; i++)
         if (docNumber == Client_InfoList[i]->DocNumber) {
             return Client_InfoList[i];
         }
-    return nullptr;
+    return nullptr;*/
+    return Persistance::QueryClient_InfoByDocNumber(docNumber);
 }
 
 /*List<Client_Info^>^ ProjectController::Controller::QueryClient_InfoByDni(String^ nameDesc)

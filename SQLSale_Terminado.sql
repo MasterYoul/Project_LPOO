@@ -50,9 +50,7 @@ CREATE TABLE MEALS (
 	Photo IMAGE NULL,
 	TotalMeals DECIMAL(10,2) NULL,
 	)
-	GO
-INSERT INTO MEALS(Name,Description,Price,Stock,DateMeal,StockUsed,Status)
-VALUES('Arroz con pollo','arroz y pollo',15,0,'28-02-2003',0,'A')
+
 GO
 	CREATE TABLE USUARIO (
 	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -71,12 +69,105 @@ GO
 	Type VARCHAR(120) NOT NULL, 
 	State VARCHAR(120)  NULL,
 	Photo IMAGE NULL
-
 	)
+
+GO
+	CREATE TABLE TABLEDETAIL(
+	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    Floor INT NOT NULL,
+    TableCapacity INT NOT NULL,
+    Disponibility VARCHAR (250) NOT NULL,
+    Reserved VARCHAR (250) NULL,
+    TimeReserv VARCHAR (250) NULL,
+	Status CHAR(1) NULL,
+    )
+GO
+	CREATE TABLE CLIENT_INFO (
+	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	DocNumber VARCHAR (250) NOT NULL,
+	Name VARCHAR (250) NOT NULL,
+	LastName VARCHAR (250) NULL,
+	PhoneNumber VARCHAR (250) NULL,
+	VisitQuantity INT NOT NULL,
+	Type CHAR(1) NULL,
+	RucNumber VARCHAR (250) NULL,
+	Rate INT NULL,
+	TxtOpin VARCHAR (500) NULL,
+	Status CHAR(1) NULL,
+	
+	Gender CHAR(1) NULL,
+	)
+	GO
+CREATE TABLE SALE(
+	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Transaction_date DATE NOT NULL,
+	Status CHAR(1) NULL,
+	Total DECIMAL(10, 2) NOT NULL,
+	Fecha DATE NOT NULL,
+	Usuario_id INT NOT NULL,
+	Estado VARCHAR(250) NULL,
+	Table_id INT  NULL,
+	Client_id INT NOT NULL,
+	
+)
+
+		GO
+		ALTER TABLE SALE
+		ADD CONSTRAINT FK_SALE_USUARIO_ID FOREIGN KEY (Usuario_id)
+		REFERENCES USUARIO(Id)
+		ON DELETE CASCADE
+		GO
+		ALTER TABLE SALE
+		ADD CONSTRAINT FK_SALE_TABLE_ID FOREIGN KEY (Table_id)
+		REFERENCES TABLEDETAIL(Id)
+		ON DELETE NO ACTION
+		GO
+		ALTER TABLE SALE
+		ADD CONSTRAINT FK_SALE_CLIENT_ID FOREIGN KEY (Client_id)
+		REFERENCES CLIENT_INFO(Id)
+		ON DELETE NO ACTION
+
+
+GO
+	CREATE TABLE SALE_DETAIL (
+	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Sale_id INT NOT NULL,
+	Meals_id INT NOT NULL,
+	Quantity INT NULL,
+	Subtotal DECIMAL(10,2) NULL,
+	Unit_price DECIMAL(10,2) NULL,
+	Estado VARCHAR (200) NULL
+)
+
+
+		GO
+		ALTER TABLE SALE_DETAIL
+		ADD CONSTRAINT FK_SALE_DETAIL_SALE_ID FOREIGN KEY (Sale_id)
+		REFERENCES SALE(id)
+		ON DELETE CASCADE
+		GO
+		ALTER TABLE SALE_DETAIL
+		ADD CONSTRAINT FK_SALE_DETAIL_MEALS_ID FOREIGN KEY (Meals_id)
+		REFERENCES MEALS(id)
+
+
+
+
+
+
+
+GO
+INSERT INTO MEALS(Name,Description,Price,Stock,DateMeal,StockUsed,Status)
+VALUES('Arroz con pollo','arroz y pollo',15,0,'28-02-2003',0,'A')
+
+
+
 	GO
 INSERT INTO USUARIO(Name, DocNumber, Adress,Email, PhoneNumber,Status,LastName,Salary,Username,Password,Gender,Birthday, Type, State)
 VALUES ('Samid','78549545','cusco','capu.samid.villafuerte@gmail.com','78549545','A','Villafuerte',1111,'Samid','george','1','10/03/2002','Administrador','ACTIVO')
 
+
+--- USUARIO
 
 GO
 IF EXISTS ( SELECT * 
@@ -191,22 +282,7 @@ AS
 	AND PhoneNumber=	@PhoneNumber
 	AND LastName=	@LastName
 	AND Username=	@Username
-GO
 
-
-
-
-
-
-CREATE TABLE TABLEDETAIL(
-		Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-        Floor INT NOT NULL,
-        TableCapacity INT NOT NULL,
-        Disponibility VARCHAR (250) NOT NULL,
-        Reserved VARCHAR (250) NULL,
-        TimeReserv VARCHAR (250) NULL,
-		Status CHAR(1) NULL,
-        )
 		GO
 INSERT INTO TABLEDETAIL(Floor, TableCapacity, Disponibility,Reserved, TimeReserv,Status)
 VALUES ('2','6','No Disponible','Reservado','13:00','A')
@@ -217,63 +293,8 @@ VALUES ('2','6','No Disponible','Reservado','13:00','A')
 
 
 
-		GO
-CREATE TABLE SALE(
-	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	Transaction_date DATE NOT NULL,
-	Status CHAR(1) NULL,
-	Total DECIMAL(10, 2) NOT NULL,
-	Fecha DATE NOT NULL,
-	Usuario_id INT NOT NULL,
-	Estado VARCHAR(250) NULL,
-	Table_id INT  NULL,
-	Client_id INT NOT NULL,
-	
-)
-GO
-ALTER TABLE SALE
-ADD CONSTRAINT FK_SALE_USUARIO_ID FOREIGN KEY (Usuario_id)
-REFERENCES USUARIO(Id)
-ON DELETE CASCADE
-GO
-ALTER TABLE SALE
-ADD CONSTRAINT FK_SALE_TABLE_ID FOREIGN KEY (Table_id)
-REFERENCES TABLEDETAIL(Id)
-ON DELETE NO ACTION
-GO
-ALTER TABLE SALE
-ADD CONSTRAINT FK_SALE_CLIENT_ID FOREIGN KEY (Client_id)
-REFERENCES CLIENT_INFO(Id)
-ON DELETE NO ACTION
-
-
-GO
-
-
-
-CREATE TABLE SALE_DETAIL (
-	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	Sale_id INT NOT NULL,
-	Meals_id INT NOT NULL,
-	Quantity INT NULL,
-	Subtotal DECIMAL(10,2) NULL,
-	Unit_price DECIMAL(10,2) NULL,
-	Estado VARCHAR (200) NULL
-)
-
-
-GO
-ALTER TABLE SALE_DETAIL
-ADD CONSTRAINT FK_SALE_DETAIL_SALE_ID FOREIGN KEY (Sale_id)
-REFERENCES SALE(id)
-ON DELETE CASCADE
-GO
-ALTER TABLE SALE_DETAIL
-ADD CONSTRAINT FK_SALE_DETAIL_MEALS_ID FOREIGN KEY (Meals_id)
-REFERENCES MEALS(id)
-
-
-
+		
+--- VENTAS
 
 GO
 
@@ -308,6 +329,11 @@ GO
 --DECLARE @new_identity INT
 --EXEC dbo.usp_AddSale @transaction_date='2022-11-21', @status='A', @total=150, @customer_id=5, @salesman_id=1, @id=@new_identity OUTPUT
 --GO
+
+
+
+
+-- SALE DETAIL
 IF EXISTS ( SELECT * 
             FROM   sysobjects 
             WHERE  id = object_id(N'[dbo].[usp_AddSaleDetail]') 
@@ -338,37 +364,7 @@ AS
 GO
 
 
-
-
-
-
-
-
-
-
-GO
-INSERT INTO SALE(transaction_date, Fecha, status,Estado, total,usuario_id,table_id)
-VALUES ('20 de marzo de 2012','20032012','A','No Preparado','15','2','3')
-GO
-INSERT INTO SALE_DETAIL(sale_id, meals_id, quantity, subtotal, unit_price, estado)
-VALUES ('1','2','10','13.50','13.50','No Preparado')
-
-GO
-CREATE TABLE CLIENT_INFO (
-	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	DocNumber VARCHAR (250) NOT NULL,
-	Name VARCHAR (250) NOT NULL,
-	LastName VARCHAR (250) NULL,
-	PhoneNumber VARCHAR (250) NULL,
-	VisitQuantity INT NOT NULL,
-	Type CHAR(1) NULL,
-	RucNumber VARCHAR (250) NULL,
-	Rate INT NULL,
-	TxtOpin VARCHAR (500) NULL,
-	Status CHAR(1) NULL,
-	
-	Gender CHAR(1) NULL,
-	)
+GO 
 INSERT INTO CLIENT_INFO(DocNumber,Name,LastName,PhoneNumber,VisitQuantity,Type,RucNumber,Rate,TxtOpin,Status,Gender)
 VALUES('123','Joel','Espinoza','913768297','4','P','332','5','t','A','F')
 -- Last execute-----
@@ -637,152 +633,8 @@ CREATE PROCEDURE usp_QueryAllTableDetail AS
 --	END
 	
 
--- SALES Procedures --
-
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[usp_AddSale]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-
-BEGIN
-    DROP PROCEDURE [dbo].[usp_AddSale]
-END
-GO
-CREATE PROCEDURE dbo.usp_AddSale(
-	@transaction_date DATE,
-	@Fecha DATE, 
-	@status CHAR(1),
-	@Estado VARCHAR(250),
-	@total DECIMAL(10, 2),
-	@usuario_id INT,
-	@table_id INT ,
-	@id INT OUT
-)
-AS
-	BEGIN
-		INSERT INTO SALE(transaction_date, Fecha, status,Estado, total,usuario_id,table_id)
-		SELECT @transaction_date, @Fecha, @status, @Estado, @total, @usuario_id, @table_id
-		
-		SET @id=SCOPE_IDENTITY()
-	END
-GO
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[usp_QueryAllSale]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].[usp_QueryAllSale]
-END
-GO
-CREATE PROCEDURE dbo.usp_QueryAllSale
-AS
-	SELECT *
-	FROM SALE
---	INNER JOIN PREMISE P ON S.id = P.id
---	INNER JOIN EMPLOYEE E ON S.store_manager_id = E.id
---	INNER JOIN PERSON PE ON E.id = PE.id
---	INNER JOIN DISTRICT D ON P.district_id = D.id
-	ORDER BY id
-
-GO
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[usp_UpdateSale]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].[usp_UpdateSale]
-END
-GO
-CREATE PROCEDURE usp_UpdateSale(
-	@transaction_date DATE,
-	@Fecha DATE, 
-	@status CHAR(1),
-	@Estado VARCHAR(250),
-	@total DECIMAL(10, 2),
-	@usuario_id INT,
-	@table_id INT ,
-	@id INT OUT
-) AS
-	BEGIN
-		UPDATE SALE 
-		SET transaction_date=@transaction_date, Fecha=@Fecha, status=@status, Estado=@Estado, total=@total, usuario_id=@usuario_id, table_id=@table_id, id=@id
-		WHERE Id=@Id
-	END
 
 
-GO
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[usp_DeleteSale]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].[usp_DeleteSale]
-END
-GO
-CREATE PROCEDURE dbo.usp_DeleteSale(
-	@id INT
-) AS
-	BEGIN
-		UPDATE SALE
-		SET status = 'I'
-		WHERE id=@Id
-	END
-
-GO
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_QuerySaletById]]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].usp_QuerySaletById
-END
-GO
-CREATE PROCEDURE usp_QuerySaletById(
-	@id INT
-) AS
-	SELECT * FROM SALE
-	WHERE	id = @id
-
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_QueryLastSaleId]]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].usp_QueryLastSaleId
-END
-GO
-CREATE PROCEDURE usp_QueryLastSaleId
-    @lastTableId INT OUTPUT
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    SELECT @lastTableId = MAX(id)
-    FROM SALE;
-END
-
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_RegisterSale]]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].usp_RegisterSale
-END
-GO
-CREATE PROCEDURE RegisterSale   
-	@transaction_date DATE, 
-	@Fecha DATE,
-	@status CHAR(1) ,
-	@Estado VARCHAR(250) ,
-	@total DECIMAL(10, 2) ,
-	@usuario_id INT ,
-	@table_id INT,
-	@id INT out
-AS
-BEGIN
-    INSERT INTO SALE(transaction_date, Fecha, status,Estado,total,usuario_id,table_id)
-    VALUES (@transaction_date, @Fecha, @status,@Estado,@total,@usuario_id,@table_id)
-END
 
 
 -- Client Info Procedures --
@@ -918,3 +770,6 @@ CREATE PROCEDURE usp_QueryClient_InfoByDocNumber(
 ) AS
 	SELECT * FROM CLIENT_INFO
 	WHERE	DocNumber = @DocNumber
+
+
+	--- SUGERENCIAS

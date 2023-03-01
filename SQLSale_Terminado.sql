@@ -271,12 +271,12 @@ GO
 ALTER TABLE SALE_DETAIL
 ADD CONSTRAINT FK_SALE_DETAIL_MEALS_ID FOREIGN KEY (Meals_id)
 REFERENCES MEALS(id)
-GO
 
 
 
 
 GO
+
 IF EXISTS ( SELECT * 
             FROM   sysobjects 
             WHERE  id = object_id(N'[dbo].[usp_AddSale]') 
@@ -291,7 +291,7 @@ CREATE PROCEDURE dbo.usp_AddSale(
 	@Transaction_date DATE,
 	@Status char(1),
 	@Total DECIMAL(10,2),
-	@Fecha DATE ,
+	@Fecha DATE , -- no es necesario
 	@Client_id INT,
 	@Usuario_id INT,
 	@Estado VARCHAR(250),
@@ -326,7 +326,7 @@ CREATE PROCEDURE dbo.usp_AddSaleDetail(
 	@Subtotal DECIMAL(10,2),
 	@Unit_price DECIMAL(10,2),
 	@Estado VARCHAR (200),
-	@id INT OUT
+	@Id INT OUT
 )
 AS
 	BEGIN

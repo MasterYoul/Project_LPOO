@@ -38,14 +38,14 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ quantity2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SubTotal;
 	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button4;
 
 
 
 
 
 
-	private: System::Windows::Forms::Button^ BtnCleanSale;
+
+
 
 		   
 	public:
@@ -154,11 +154,9 @@ namespace ProyectView {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->BtnCleanSale = (gcnew System::Windows::Forms::Button());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->SEARCH_CLIENT = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvDetails))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -432,16 +430,6 @@ namespace ProyectView {
 			this->textBox2->Size = System::Drawing::Size(317, 22);
 			this->textBox2->TabIndex = 41;
 			// 
-			// BtnCleanSale
-			// 
-			this->BtnCleanSale->Location = System::Drawing::Point(285, 648);
-			this->BtnCleanSale->Name = L"BtnCleanSale";
-			this->BtnCleanSale->Size = System::Drawing::Size(162, 47);
-			this->BtnCleanSale->TabIndex = 51;
-			this->BtnCleanSale->Text = L"Limpiar Todo";
-			this->BtnCleanSale->UseVisualStyleBackColor = true;
-			this->BtnCleanSale->Click += gcnew System::EventHandler(this, &SaleForm::BtnCleanSale_Click);
-			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
@@ -471,26 +459,14 @@ namespace ProyectView {
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &SaleForm::button3_Click);
 			// 
-			// button4
-			// 
-			this->button4->Location = System::Drawing::Point(481, 648);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(112, 47);
-			this->button4->TabIndex = 56;
-			this->button4->Text = L"Actualizar";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &SaleForm::button4_Click);
-			// 
 			// SaleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1028, 767);
-			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->SEARCH_CLIENT);
 			this->Controls->Add(this->label11);
-			this->Controls->Add(this->BtnCleanSale);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label7);

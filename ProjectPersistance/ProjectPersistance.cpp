@@ -1712,7 +1712,7 @@ int ProjectPersistance::Persistance::RegisterSale(Sale^ sale)
         comm->Parameters["@Client_id"]->Value = sale->Client_Info->Id;
         comm->Parameters["@Usuario_id"]->Value = sale->User->Id;
         comm->Parameters["@Estado"]->Value = sale->Estado;
-        comm->Parameters["@Table_id"]->Value = 1;// sale->TableDetail->Id;
+        comm->Parameters["@Table_id"]->Value =  sale->TableDetail->Id;
 
         //Paso 3: Se ejecuta la sentencia
         comm->ExecuteNonQuery();

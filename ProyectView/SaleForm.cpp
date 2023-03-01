@@ -24,7 +24,7 @@ System::Void ProyectView::SaleForm::btnRegisterSale_Click(System::Object^ sender
 			//= Controller::QueryTableDetailOcupado(0);
 		}
 		if (label8->Text != "Sin mesa") {
-			tabledetail = Controller::QueryTableDetailOcupado(Convert::ToInt32(textBox2->Text));
+			tabledetail = Controller::QueryTableDetailtById(Convert::ToInt32(textBox2->Text));
 			//= Controller::QueryTableDetailOcupado(0);
 		}
 		if (label7->Text == "Sin mesero") {

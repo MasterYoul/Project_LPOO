@@ -165,7 +165,8 @@ GO
 	VenueScore VARCHAR(250) NOT NULL,
 	Comments VARCHAR(750) NOT NULL,
 	Client_id INT NOT NULL,
-	Estado VARCHAR (250) NULL
+	Estado VARCHAR (250) NULL,
+	Status CHAR(1) NULL
 )
 		GO
 		ALTER TABLE SUGGESTIONS
@@ -210,12 +211,13 @@ CREATE PROCEDURE dbo.usp_AddSUGGESTIONS(
 	@Comments VARCHAR(750),
 	@Client_id INT,
 	@Estado VARCHAR(250),
+	@Status CHAR(1) ,
 	@Id INT OUT
 )
 AS
 	BEGIN
-		INSERT INTO SUGGESTIONS(Fecha,ClientName, AttentionScore,FoodScore,VenueScore, Comments,Client_id,Estado)
-		SELECT @Fecha, @ClientName, @AttentionScore,@FoodScore, @VenueScore, @Comments,@Estado,@Client_id,@Estado
+		INSERT INTO SUGGESTIONS(Fecha,ClientName, AttentionScore,FoodScore,VenueScore, Comments,Client_id,Estado,Status)
+		SELECT @Fecha, @ClientName, @AttentionScore,@FoodScore, @VenueScore, @Comments,@Client_id,@Estado,@Status
 		SET @Id=SCOPE_IDENTITY()
 	END
 GO

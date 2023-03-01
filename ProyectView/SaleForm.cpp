@@ -37,11 +37,14 @@ System::Void ProyectView::SaleForm::btnRegisterSale_Click(System::Object^ sender
 			MessageBox::Show("Tiene que agregar un producto");
 			return;
 		}
+		int a = 1;
 		Sale^ sale = gcnew Sale();
 		sale->Id = Controller::QueryLastSaleId() + 1;
 		sale->Client_Info = client_Info;
 		sale->TxtDate = dateTimeSale->Text;
 		sale->User = user;
+		sale->Estado = "POR ATENDER";
+		sale->Status = 'A';
 		sale->TableDetail = tabledetail;
 		sale->Total = Double::Parse(txtTotal->Text);
 		sale->SaleDetails = gcnew List<SaleDetail^>();

@@ -9,7 +9,15 @@ DROP CONSTRAINT  FK_SALE_DETAIL_SALE_ID
 
 GO
 ALTER TABLE SALE_DETAIL
-DROP CONSTRAINT  FK_SALE_DETAIL_MEALS_ID
+	DROP CONSTRAINT  FK_SALE_DETAIL_MEALS_ID
+GO
+IF OBJECT_ID('dbo.SALE_DETAIL', 'U') IS NOT NULL
+	DROP TABLE dbo.SALE_DETAIL
+		
+GO
+IF OBJECT_ID('dbo.SALE', 'U') IS NOT NULL 
+	DROP TABLE dbo.SALE
+
 GO
 
 IF OBJECT_ID('dbo.USUARIO', 'U') IS NOT NULL DROP TABLE dbo.USUARIO
@@ -19,11 +27,6 @@ GO
 GO
 
 IF OBJECT_ID('dbo.MEALS', 'U') IS NOT NULL DROP TABLE dbo.MEALS
-GO
-IF OBJECT_ID('dbo.SALE_DETAIL', 'U') IS NOT NULL DROP TABLE dbo.SALE_DETAIL
-		
-GO
-IF OBJECT_ID('dbo.SALE', 'U') IS NOT NULL DROP TABLE dbo.SALE
 		
 GO
 	
@@ -41,7 +44,7 @@ CREATE TABLE MEALS (
 	Description VARCHAR (500) NOT NULL,
 	Price DECIMAL(10,2) NOT NULL,
 	Stock INT NOT NULL,
-	DateMeal VARCHAR(150) NOT NULL,
+	DateMeal DATE NOT NULL,
 	StockUsed INT NOT NULL,
 	Status CHAR(1) NULL,
 	Photo IMAGE NULL,
@@ -49,31 +52,152 @@ CREATE TABLE MEALS (
 	)
 	GO
 INSERT INTO MEALS(Name,Description,Price,Stock,DateMeal,StockUsed,Status)
-VALUES('Arroz con pollo','arroz y pollo',15,0,'t',0,'A')
-
-	GO
+VALUES('Arroz con pollo','arroz y pollo',15,0,'28-02-2003',0,'A')
+GO
 	CREATE TABLE USUARIO (
 	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	Name VARCHAR (250) NOT NULL,
 	DocNumber VARCHAR (250) NOT NULL UNIQUE,
 	Adress VARCHAR (500) NOT NULL,
-	Email VARCHAR(250) NOT NULL UNIQUE,
+	Email VARCHAR(250) NOT NULL ,
 	PhoneNumber VARCHAR(250) NOT NULL,
-	Status CHAR(1) NULL,
+	Status CHAR(1) NULL,  --D DISPONIBLE, N NO DISPONIBLE , I INACTIVO
 	LastName VARCHAR (250) NOT NULL,
 	Salary DECIMAL(10,2) NULL,
 	Username VARCHAR (250) NOT NULL,
 	Password VARCHAR (250) NOT NULL,
-	Gender CHAR(1) NOT NULL,
-	Birthday DATE NOT NULL,
-	Type VARCHAR(120) NOT NULL,
-	State VARCHAR(120) NOT NULL,
+	Gender CHAR(1)  NULL,
+	Birthday DATE  NULL,
+	Type VARCHAR(120) NOT NULL, 
+	State VARCHAR(120)  NULL,
+	Photo IMAGE NULL
 
 	)
 	GO
 INSERT INTO USUARIO(Name, DocNumber, Adress,Email, PhoneNumber,Status,LastName,Salary,Username,Password,Gender,Birthday, Type, State)
-VALUES ('Samid','78549545','cusco','capu.samid.villafuerte@gmail.com','78549545','A','Villafuerte',1111,'Samid','george','1','10/03/2002','Administrador','A')
+VALUES ('Samid','78549545','cusco','capu.samid.villafuerte@gmail.com','78549545','A','Villafuerte',1111,'Samid','george','1','10/03/2002','Administrador','ACTIVO')
+
+
 GO
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[usp_AddUsuario]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[usp_AddUsuario]
+END
+GO
+CREATE PROCEDURE usp_AddUsuario(
+	
+	@Name VARCHAR (250) , --1
+	@DocNumber VARCHAR (250) ,--2
+	@Adress VARCHAR (500) ,--3
+	@Email VARCHAR(250),--4
+	@PhoneNumber VARCHAR(250),
+	@Status CHAR(1) ,--5    D,N,I
+	@LastName VARCHAR (250) ,--6
+	@Salary DECIMAL(10,2),--7
+	@Username VARCHAR (250), --8
+	@Password VARCHAR (250),--9
+	@Gender CHAR(1) ,--10
+	@Birthday DATE ,--11
+	@Type VARCHAR(120) ,--12
+	@State VARCHAR(120),--13
+	@Photo IMAGE,--14
+	@Id INT out--15
+) AS
+	BEGIN
+		INSERT INTO USUARIO (name, DocNumber, Adress, Email,PhoneNumber, Status, LastName, Salary, Username, Password, Gender, Birthday, Type, State, Photo)
+		SELECT @name, @DocNumber, @Adress, @Email,@PhoneNumber, @Status, @LastName, @Salary, @Username, @Password, @Gender, @Birthday, @Type, @State,@Photo
+		SET @id = SCOPE_IDENTITY()
+	END
+GO
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[usp_UpdateUsuario]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[usp_UpdateUsuario]
+END
+GO
+CREATE PROCEDURE usp_UpdateUsuario(
+    @Id INT , --1
+	@Name VARCHAR (250) , --2
+	@DocNumber VARCHAR (250) ,--3
+	@Adress VARCHAR (500) ,--4
+	@Email VARCHAR(250),--5
+	@PhoneNumber VARCHAR(250),--6
+	@Status CHAR(1) ,--7
+	@LastName VARCHAR (250) ,--8
+	@Salary DECIMAL(10,2),--9
+	@Username VARCHAR (250), --10
+	@Password VARCHAR (250),--11
+	@Gender CHAR(1) ,--12
+	@Birthday DATE ,--13
+	@Type VARCHAR(120) ,--14
+	@State VARCHAR(120),--15
+	@Photo IMAGE--14
+	
+) AS
+	BEGIN
+		UPDATE USUARIO
+		SET name=@name, DocNumber=@DocNumber, Adress=@Adress, PhoneNumber=@PhoneNumber,Email=@Email, Status=@Status, LastName=@LastName, Salary=@Salary, Username=@Username,
+				 Password=@Password, Gender=@Gender, Birthday=@Birthday, Type=@Type, State=@State,Photo=@Photo
+		WHERE Id=@Id
+	END
+
+
+	GO
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[usp_ValidateUsuario]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[usp_ValidateUsuario]
+END
+GO
+CREATE PROCEDURE dbo.usp_ValidateUsuario (
+	@vusername VARCHAR(100),
+	@vpassword VARCHAR(100)
+)
+AS
+	SELECT *
+	FROM USUARIO WHERE Username = @Vusername
+	AND	 Password= @Vpassword 
+
+		GO
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[usp_ValidateUserRecover]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[usp_ValidateUserRecover]
+END
+GO
+CREATE PROCEDURE dbo.usp_ValidateUserRecover (
+	
+	@Name VARCHAR(250),
+	@DocNumber VARCHAR(250),
+	@PhoneNumber  VARCHAR(250),
+	@LastName VARCHAR(250),
+	@Username VARCHAR(250)
+
+
+)
+AS
+	SELECT *
+	FROM USUARIO WHERE Username = @Username
+	AND DocNumber=	@DocNumber
+	AND PhoneNumber=	@PhoneNumber
+	AND LastName=	@LastName
+	AND Username=	@Username
+GO
+
+
+
+
+
+
 CREATE TABLE TABLEDETAIL(
 		Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
         Floor INT NOT NULL,
@@ -87,56 +211,147 @@ CREATE TABLE TABLEDETAIL(
 INSERT INTO TABLEDETAIL(Floor, TableCapacity, Disponibility,Reserved, TimeReserv,Status)
 VALUES ('2','6','No Disponible','Reservado','13:00','A')
 
+
+
+
+
+
+
 		GO
 CREATE TABLE SALE(
-	id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	transaction_date DATE NOT NULL,
-	Fecha DATE NOT NULL,
+	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Transaction_date DATE NOT NULL,
 	Status CHAR(1) NULL,
+	Total DECIMAL(10, 2) NOT NULL,
+	Fecha DATE NOT NULL,
+	Usuario_id INT NOT NULL,
 	Estado VARCHAR(250) NULL,
-	total DECIMAL(10, 2) NOT NULL,
-	usuario_id INT NOT NULL,
-	table_id INT NULL
+	Table_id INT  NULL,
+	Client_id INT NOT NULL,
+	
 )
 GO
-INSERT INTO SALE(transaction_date, Fecha, status,Estado, total,usuario_id,table_id)
-VALUES ('20 de marzo de 2012','20032012','A','No Preparado','15','2','3')
-
-GO
 ALTER TABLE SALE
-ADD CONSTRAINT FK_SALE_USUARIO_ID FOREIGN KEY (usuario_id)
-REFERENCES USUARIO(id)
+ADD CONSTRAINT FK_SALE_USUARIO_ID FOREIGN KEY (Usuario_id)
+REFERENCES USUARIO(Id)
 ON DELETE CASCADE
 GO
 ALTER TABLE SALE
-ADD CONSTRAINT FK_SALE_TABLE_ID FOREIGN KEY (table_id)
-REFERENCES TABLEDETAIL(id)
+ADD CONSTRAINT FK_SALE_TABLE_ID FOREIGN KEY (Table_id)
+REFERENCES TABLEDETAIL(Id)
 ON DELETE NO ACTION
 GO
+ALTER TABLE SALE
+ADD CONSTRAINT FK_SALE_CLIENT_ID FOREIGN KEY (Client_id)
+REFERENCES CLIENT_INFO(Id)
+ON DELETE NO ACTION
+
+
+GO
+
+
 
 CREATE TABLE SALE_DETAIL (
-	id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	sale_id INT NOT NULL,
-	meals_id INT NOT NULL,
-	quantity INT NULL,
-	subtotal DECIMAL(10,2) NULL,
-	unit_price DECIMAL(10,2) NULL,
-	estado VARCHAR (200) NULL
+	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Sale_id INT NOT NULL,
+	Meals_id INT NOT NULL,
+	Quantity INT NULL,
+	Subtotal DECIMAL(10,2) NULL,
+	Unit_price DECIMAL(10,2) NULL,
+	Estado VARCHAR (200) NULL
 )
-GO
-INSERT INTO SALE_DETAIL(sale_id, meals_id, quantity, subtotal, unit_price, estado)
-VALUES ('1','2','10','13.50','13.50','No Preparado')
+
 
 GO
 ALTER TABLE SALE_DETAIL
-ADD CONSTRAINT FK_SALE_DETAIL_SALE_ID FOREIGN KEY (sale_id)
+ADD CONSTRAINT FK_SALE_DETAIL_SALE_ID FOREIGN KEY (Sale_id)
 REFERENCES SALE(id)
 ON DELETE CASCADE
 GO
 ALTER TABLE SALE_DETAIL
-ADD CONSTRAINT FK_SALE_DETAIL_MEALS_ID FOREIGN KEY (meals_id)
+ADD CONSTRAINT FK_SALE_DETAIL_MEALS_ID FOREIGN KEY (Meals_id)
 REFERENCES MEALS(id)
 GO
+
+
+
+
+GO
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[usp_AddSale]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[usp_AddSale]
+END
+GO
+CREATE PROCEDURE dbo.usp_AddSale(
+
+
+	@Transaction_date DATE,
+	@Status char(1),
+	@Total DECIMAL(10,2),
+	@Fecha DATE ,
+	@Client_id INT,
+	@Usuario_id INT,
+	@Estado VARCHAR(250),
+	@Table_id INT,
+	@Id INT OUT
+)
+AS
+	BEGIN
+		INSERT INTO SALE(Transaction_date,Status, Total,Fecha,Client_id, Usuario_id,Estado,Table_id)
+		SELECT @transaction_date, @status, @total,@Fecha, @Client_id, @Usuario_id,@Estado,@Table_id
+		SET @Id=SCOPE_IDENTITY()
+	END
+GO
+--DECLARE @new_identity INT
+--EXEC dbo.usp_AddSale @transaction_date='2022-11-21', @status='A', @total=150, @customer_id=5, @salesman_id=1, @id=@new_identity OUTPUT
+--GO
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[usp_AddSaleDetail]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[usp_AddSaleDetail]
+END
+GO
+CREATE PROCEDURE dbo.usp_AddSaleDetail(
+
+	
+
+	@Sale_id INT,
+	@Meals_id INT,
+	@Quantity INT,
+	@Subtotal DECIMAL(10,2),
+	@Unit_price DECIMAL(10,2),
+	@Estado VARCHAR (200),
+	@id INT OUT
+)
+AS
+	BEGIN
+		INSERT INTO SALE_DETAIL(Sale_id, Meals_id, Quantity, Subtotal, Unit_price,Estado)
+		SELECT @Sale_id, @Meals_id, @Quantity, @Subtotal, @Unit_price,@Estado
+		
+		SET @Id=SCOPE_IDENTITY()
+	END
+GO
+
+
+
+
+
+
+
+
+
+
+GO
+INSERT INTO SALE(transaction_date, Fecha, status,Estado, total,usuario_id,table_id)
+VALUES ('20 de marzo de 2012','20032012','A','No Preparado','15','2','3')
+GO
+INSERT INTO SALE_DETAIL(sale_id, meals_id, quantity, subtotal, unit_price, estado)
+VALUES ('1','2','10','13.50','13.50','No Preparado')
 
 GO
 CREATE TABLE CLIENT_INFO (
@@ -162,7 +377,7 @@ VALUES('123','Joel','Espinoza','913768297','4','P','332','5','t','A','F')
 GO
 IF EXISTS ( SELECT * 
             FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_AddMeals]]') 
+            WHERE  id = object_id(N'[dbo].[usp_AddMeals]') 
                    and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
 BEGIN
     DROP PROCEDURE [dbo].[usp_AddMeals]
@@ -174,7 +389,7 @@ CREATE PROCEDURE usp_AddMeals(
 	@price DECIMAL(10,2),
 	@stock INT,
 	@StockUsed INT,
-	@DateMeal VARCHAR(150),
+	@DateMeal DATE,
 	@status CHAR(1),
 	@TotalMeals DECIMAL(10,2),
 	@photo IMAGE,
@@ -188,7 +403,7 @@ CREATE PROCEDURE usp_AddMeals(
 GO
 IF EXISTS ( SELECT * 
             FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_UpdateMeals]]') 
+            WHERE  id = object_id(N'[dbo].[usp_UpdateMeals]') 
                    and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
 BEGIN
     DROP PROCEDURE [dbo].usp_UpdateMeals
@@ -200,7 +415,7 @@ CREATE PROCEDURE usp_UpdateMeals(
 	@price DECIMAL(10,2),
 	@stock INT,
 	@StockUsed INT,
-	@DateMeal VARCHAR(150),
+	@DateMeal DATE,
 	@status CHAR(1),
 	@TotalMeals DECIMAL(10,2),
 	@photo IMAGE,
@@ -211,160 +426,6 @@ CREATE PROCEDURE usp_UpdateMeals(
 		SET name=@name, description=@description, price=@price, stock=@stock, StockUsed=@StockUsed, DateMeal=@DateMeal, status=@status, TotalMeals=@TotalMeals, photo=@photo
 		WHERE id=@id
 	END
-GO
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_QueryMealsByNameOrDesc]]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].usp_QueryMealsByNameOrDesc
-END
-GO
-CREATE PROCEDURE usp_QueryMealsByNameOrDesc(
-	@value VARCHAR(500)
-) AS
-	SELECT * FROM MEALS
-	WHERE	name LIKE '%' + @value + '%' OR
-			description LIKE '%' + @value + '%'
-GO
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_QueryAllMeals]]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].usp_QueryAllMeals
-END
-GO
-CREATE PROCEDURE usp_QueryAllMeals AS
-	SELECT * FROM MEALS
-GO
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_QueryMealsById]]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].usp_QueryMealsById
-END
-GO
-CREATE PROCEDURE usp_QueryMealsById(
-	@id INT
-) AS
-	SELECT * FROM MEALS
-	WHERE	id = @id
-GO
---- EXECUTED--
---LAST EXECUTE--
---- PROCEDURES DE USUARIO ----
-GO
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[[usp_AddUsuario]]]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].[usp_AddUsuario]
-END
-GO
-CREATE PROCEDURE [usp_AddUsuario](
-	
-	@Name VARCHAR (250) ,
-	@DocNumber VARCHAR (250) ,
-	@Adress VARCHAR (500) ,
-	@Email VARCHAR(250),
-	@Status CHAR(1) ,
-	@LastName VARCHAR (250) ,
-	@Salary DECIMAL(10,2),
-	@Username VARCHAR (250), 
-	@Password VARCHAR (250),
-	@Gender CHAR(1) ,
-	@Birthday DATE ,
-	@Type VARCHAR(120) ,
-	@State VARCHAR(120),
-	@Id INT out
-) AS
-	BEGIN
-		INSERT INTO USUARIO (name, DocNumber, Adress, Email, Status, LastName, Salary, Username, Password, Gender, Birthday, Type, State )
-		SELECT @name, @DocNumber, @Adress, @Email, @Status, @LastName, @Salary, @Username, @Password, @Gender, @Birthday, @Type, @State
-		SET @id = SCOPE_IDENTITY()
-	END
-GO
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_UpdateUsuario]]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].usp_UpdateUsuario
-END
-GO
-CREATE PROCEDURE usp_UpdateUsuario(
-	@Name VARCHAR (250) ,
-	@DocNumber VARCHAR (250) ,
-	@Adress VARCHAR (500) ,
-	@Email VARCHAR(250),
-	@Status CHAR(1) ,
-	@LastName VARCHAR (250) ,
-	@Salary DECIMAL(10,2),
-	@Username VARCHAR (250), 
-	@Password VARCHAR (250),
-	@Gender CHAR(1) ,
-	@Birthday DATE ,
-	@Type VARCHAR(120) ,
-	@State VARCHAR(120),
-	@Id INT out
-) AS
-	BEGIN
-		UPDATE USUARIO
-		SET name=@name, DocNumber=@DocNumber, Adress=@Adress, Email=@Email, Status=@Status, LastName=@LastName, status=@status, Salary=@Salary, Username=@Username,
-				 Password=@Password, Gender=@Gender, Birthday=@Birthday, Type=@Type, State=@State
-		WHERE id=@id
-	END
-GO
-
-
---DUDAS EN ESTE QUERY: ---
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_QueryUsuarioByNameOrDocNumber]]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].usp_QueryUsuarioByNameOrDocNumber
-END
-GO
-CREATE PROCEDURE usp_QueryUsuarioByNameOrDocNumber(
-	@value VARCHAR(500)
-) AS
-	SELECT * FROM USUARIO
-	WHERE	name LIKE '%' + @value + '%' OR
-			DocNumber LIKE '%' + @value + '%'
-GO
----- 
-
-GO
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_QueryAllUsuario]]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].usp_QueryAllUsuario
-END
-GO
-CREATE PROCEDURE usp_QueryAllUsuario AS
-	SELECT * FROM USUARIO
-GO
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[dbo].[[usp_QueryUsuarioById]]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [dbo].usp_QueryUsuarioById
-END
-GO
-CREATE PROCEDURE usp_QueryUsuarioById(
-	@id INT
-) AS
-	SELECT * FROM USUARIO
-	WHERE	id = @id
-GO
-
 -- PROCEDURES DE TABLE DETAIL --
 GO
 IF EXISTS ( SELECT * 

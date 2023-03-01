@@ -1678,6 +1678,88 @@ User^ ProjectPersistance::Persistance::QueryUserRecover(String^ UserDNI, String^
     return user;
 }
 
+int ProjectPersistance::Persistance::RegisterSale(Sale^ sale)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int output_id;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("dbo.usp_AddSale", conn);
+        comm->CommandType = System::Data::CommandType::StoredProcedure;
+        comm->Parameters->Add("@Transaction_date", System::Data::SqlDbType::Date);
+        comm->Parameters->Add("@Status", System::Data::SqlDbType::Char, 1);
+        comm->Parameters->Add("@Fecha", System::Data::SqlDbType::Date);
+        comm->Parameters->Add("@Total", System::Data::SqlDbType::Decimal, 10);
+        comm->Parameters["@Total"]->Precision = 10;
+        comm->Parameters["@Total"]->Scale = 2;
+        comm->Parameters->Add("@Client_id", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@Usuario_id", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@Estado", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Table_id", System::Data::SqlDbType::Int);
+
+        SqlParameter^ outputIdParam = gcnew SqlParameter("@Id", System::Data::SqlDbType::Int);
+        outputIdParam->Direction = System::Data::ParameterDirection::Output;
+        comm->Parameters->Add(outputIdParam);
+        comm->Prepare();
+        comm->Parameters["@transaction_date"]->Value = sale->TxtDate;
+        comm->Parameters["@status"]->Value = Char::ToString(sale->Status);
+        comm->Parameters["@total"]->Value = sale->Total;
+        comm->Parameters["@Fecha"]->Value = sale->Fecha;
+        //comm->Parameters["@customer_id"]->Value = 4; // Hardcode de un código de cliente
+        comm->Parameters["@Client_id"]->Value = sale->Client_Info->Id;
+        comm->Parameters["@Usuario_id"]->Value = sale->User->Id;
+        comm->Parameters["@Estado"]->Value = sale->Estado;
+        comm->Parameters["@Table_id"]->Value = 1;// sale->TableDetail->Id;
+
+        //Paso 3: Se ejecuta la sentencia
+        comm->ExecuteNonQuery();
+        //Paso 4: Se procesan los resultados        
+        output_id = Convert::ToInt32(comm->Parameters["@Id"]->Value);
+
+
+        
+
+        for (int i = 0; i < sale->SaleDetails->Count; i++) {
+            comm = gcnew SqlCommand("dbo.usp_AddSaleDetail", conn);
+            comm->CommandType = System::Data::CommandType::StoredProcedure;
+            comm->Parameters->Add("@Sale_id", System::Data::SqlDbType::Int);
+            comm->Parameters->Add("@Meals_id", System::Data::SqlDbType::Int);
+            comm->Parameters->Add("@Quantity", System::Data::SqlDbType::Int);
+            comm->Parameters->Add("@Subtotal", System::Data::SqlDbType::Decimal, 10);
+            comm->Parameters["@Subtotal"]->Precision = 10;
+            comm->Parameters["@Subtotal"]->Scale = 2;
+            comm->Parameters->Add("@Unit_price", System::Data::SqlDbType::Decimal, 10);
+            comm->Parameters["@Unit_price"]->Precision = 10;
+            comm->Parameters["@Unit_price"]->Scale = 2;
+            comm->Parameters->Add("@Estado", System::Data::SqlDbType::VarChar, 250);
+            SqlParameter^ outputIdParam = gcnew SqlParameter("@id", System::Data::SqlDbType::Int);
+            outputIdParam->Direction = System::Data::ParameterDirection::Output;
+            comm->Parameters->Add(outputIdParam);
+            comm->Prepare();
+            comm->Parameters["@Sale_id"]->Value = output_id;
+            comm->Parameters["@Meals_id"]->Value = sale->SaleDetails[i]->Meals->Id;
+            comm->Parameters["@Quantity"]->Value = sale->SaleDetails[i]->Quantity;
+            comm->Parameters["@Subtotal"]->Value = sale->SaleDetails[i]->Subtotal;
+            comm->Parameters["@Unit_price"]->Value = sale->SaleDetails[i]->UnitPrice;
+            comm->Parameters["@Estado"]->Value = sale->SaleDetails[i]->Estado;
+
+            //Paso 3: Se ejecuta la sentencia
+            comm->ExecuteNonQuery();
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    return output_id;
+}
+
 
 
 

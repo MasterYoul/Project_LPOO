@@ -57,6 +57,8 @@ namespace ProjectPersistance {
 		static User^ QueryUserRecover(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber);
 
 
+		static int RegisterSale(Sale^);
+
 	};
 }
 

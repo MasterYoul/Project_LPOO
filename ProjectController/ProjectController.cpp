@@ -815,8 +815,14 @@ int ProjectController::Controller::QueryLastSaleId()
 
 Void ProjectController::Controller::RegisterSale(Sale^ sale)
 {
-    SaleList->Add(sale);
-    Persistance::PersistBinary("Sale.bin", SaleList);
+    /*SaleList->Add(sale);
+    Persistance::PersistBinary("Sale.bin", SaleList);*/
+    try {
+        Persistance::RegisterSale(sale);
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
 }
 
 

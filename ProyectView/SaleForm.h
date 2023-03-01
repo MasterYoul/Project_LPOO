@@ -622,7 +622,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		MessageBox::Show("Insertar el id de un mesero existente");
 	}
 	else {
-		User^ User = Controller::QueryUsertById(Int32::Parse(textBox3->Text));
+		User^ User = Controller::QueryUsertById(Convert::ToInt32(textBox3->Text));
 
 
 		if (User != nullptr) {

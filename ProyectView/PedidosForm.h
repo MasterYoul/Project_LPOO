@@ -51,6 +51,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsSaleDetail;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Estado;
 	private: System::Windows::Forms::Button^ btnReady;
+	private: System::Windows::Forms::Button^ button1;
 
 	private: System::ComponentModel::IContainer^ components;
 
@@ -89,6 +90,7 @@ namespace ProyectView {
 			this->MealsSaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Estado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnReady = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridPedidos))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -138,7 +140,7 @@ namespace ProyectView {
 			// 
 			// btnReady
 			// 
-			this->btnReady->Location = System::Drawing::Point(758, 638);
+			this->btnReady->Location = System::Drawing::Point(840, 243);
 			this->btnReady->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnReady->Name = L"btnReady";
 			this->btnReady->Size = System::Drawing::Size(154, 34);
@@ -147,11 +149,22 @@ namespace ProyectView {
 			this->btnReady->UseVisualStyleBackColor = true;
 			this->btnReady->Click += gcnew System::EventHandler(this, &PedidosForm::btnReady_Click);
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(289, 33);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(154, 34);
+			this->button1->TabIndex = 3;
+			this->button1->Text = L"Listo";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
 			// PedidosForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1433, 708);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->btnReady);
 			this->Controls->Add(this->dataGridPedidos);
 			this->Name = L"PedidosForm";

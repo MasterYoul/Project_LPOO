@@ -18,7 +18,9 @@ namespace ProjectModel {
         property String^ FoodScore;
         property String^ VenueScore;
         property String^ Comments;
+        property String^ Estado;
         property Client_Info^ Client_Info;
+        property char Status;
 
     };
 }

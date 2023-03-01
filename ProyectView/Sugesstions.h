@@ -22,6 +22,7 @@ namespace ProyectView {
 	{
 	private:
 		Client_Info^ client_Info;
+		Client_Info^ client;
 	public:
 		property char UseType;
 		property Form^ RefSaleForm;
@@ -341,6 +342,7 @@ private: System::Void buttonSave_Click(System::Object^ sender, System::EventArgs
 		MessageBox::Show("Le falta realizar un comentario.");
 		return;
 	}
+	client= Controller::QueryClient_InfoByDocNumber(textClient->Text);
 	
 	Suggestions^ suggestions = gcnew Suggestions();
 	suggestions->Date = dateTimeSale->Value.ToString("yyyy-MM-dd");
@@ -349,6 +351,12 @@ private: System::Void buttonSave_Click(System::Object^ sender, System::EventArgs
 	suggestions->FoodScore = comboBoxFood->Text;
 	suggestions->VenueScore = comboBoxLocal->Text;
 	suggestions->Comments = textBoxComments ->Text;
+	suggestions->Client_Info = client;
+	suggestions->Estado = "SIN OBSERVAR";
+	suggestions->Status = 'A';
+
+
+
 
 	
 	//Completar el Registro

@@ -1,0 +1,44 @@
+JOEL:
+
+1-- IMPLEMENTACION DE GRAFICO
+2-- IMPLEMENTACION DE FILTROS DE TABLE DETAIL Y CLIENT
+3-- Implementacion de filtros de ventas
+
+LEONARDO:
+
+1-- IMPLEMENTACION DE FILTROS DE USER Y MEALS
+2-- Hilos
+
+
+SAMID:
+
+1-- IMPLEMENTAR EL CHECKBOX
+2-- Implemntar suggestions
+3-- Elimiar plato sale
+
+GABRIELA:
+1-- Video explicando sobre el uso del programa
+2-- Avance con el ppt
+3-- promocion del proyecto por tik tok 
+4-- Implementacion del trello
+
+
+EXPOSICIÓN:
+1-- Introduccion al proyecto                   leonardo 
+2-- Funcionamiento visual 1/2                  Joel
+2-- Funcionamiento visual 2/2		       Samid
+3-- Como hemos trabajado                       GABRIELA
+
+hoy         			mañana  		 pasado mañana
+
+yo 6 pm              	yo 7 - 9 pm                  yo 8 -10 am
+leonardo  6- 9 pm 	leonaro 9 - 12 pm            leonardo 10- 12 pm
+joel 9 - while(1)	Joel 12 pm-while(1)          Joel 12- 2 pm
+void gabriela ()        void gabriela ()             void gabriela ()
+lo que falte ----------
+
+
+
+
+
+

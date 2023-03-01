@@ -58,6 +58,7 @@ namespace ProjectPersistance {
 
 
 		static int RegisterSale(Sale^);
+		static int RegisterSuggestions(Suggestions^ suggestions);
 
 	};
 }

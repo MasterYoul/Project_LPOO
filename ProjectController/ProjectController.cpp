@@ -792,7 +792,12 @@ User^ ProjectController::Controller::ChangePassword(String^ UserDNI, String^ Use
 
 Void ProjectController::Controller::RegisterSuggestions(Suggestions^ suggestions)
 {
-    SuggestionsList->Add(suggestions);
+    try {
+        Persistance::RegisterSuggestions(suggestions);
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
 }
 
 

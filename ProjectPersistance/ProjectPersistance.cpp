@@ -1712,7 +1712,7 @@ int ProjectPersistance::Persistance::RegisterSale(Sale^ sale)
         comm->Parameters["@Client_id"]->Value = sale->Client_Info->Id;
         comm->Parameters["@Usuario_id"]->Value = sale->User->Id;
         comm->Parameters["@Estado"]->Value = sale->Estado;
-        comm->Parameters["@Table_id"]->Value =  sale->TableDetail->Id;
+        comm->Parameters["@Table_id"]->Value = sale->TableDetail->Id;
 
         //Paso 3: Se ejecuta la sentencia
         comm->ExecuteNonQuery();
@@ -1720,7 +1720,7 @@ int ProjectPersistance::Persistance::RegisterSale(Sale^ sale)
         output_id = Convert::ToInt32(comm->Parameters["@Id"]->Value);
 
 
-        
+
 
         for (int i = 0; i < sale->SaleDetails->Count; i++) {
             comm = gcnew SqlCommand("dbo.usp_AddSaleDetail", conn);
@@ -1749,6 +1749,57 @@ int ProjectPersistance::Persistance::RegisterSale(Sale^ sale)
             //Paso 3: Se ejecuta la sentencia
             comm->ExecuteNonQuery();
         }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    return output_id;
+}
+
+int ProjectPersistance::Persistance::RegisterSuggestions(Suggestions^ suggestions)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int output_id;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("dbo.usp_AddSUGGESTIONS", conn);
+        comm->CommandType = System::Data::CommandType::StoredProcedure;
+        comm->Parameters->Add("@Fecha", System::Data::SqlDbType::Date);
+        comm->Parameters->Add("@ClientName", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@AttentionScore", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@FoodScore", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@VenueScore", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Comments", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Client_id", System::Data::SqlDbType::Int);
+        comm->Parameters->Add("@Estado", System::Data::SqlDbType::VarChar, 250);
+        comm->Parameters->Add("@Status", System::Data::SqlDbType::Char, 1);
+        SqlParameter^ outputIdParam = gcnew SqlParameter("@Id", System::Data::SqlDbType::Int);
+        outputIdParam->Direction = System::Data::ParameterDirection::Output;
+        comm->Parameters->Add(outputIdParam);
+        comm->Prepare();
+        comm->Parameters["@Fecha"]->Value = suggestions->Date;
+        comm->Parameters["@ClientName"]->Value = suggestions->ClientName;
+        comm->Parameters["@AttentionScore"]->Value = suggestions->AttentionScore;
+        comm->Parameters["@FoodScore"]->Value = suggestions->FoodScore;
+        comm->Parameters["@VenueScore"]->Value = suggestions->VenueScore;
+        comm->Parameters["@Comments"]->Value = suggestions->Comments;
+        comm->Parameters["@Status"]->Value = Char::ToString(suggestions->Status);
+        comm->Parameters["@Client_id"]->Value = suggestions->Client_Info->Id;
+        comm->Parameters["@Estado"]->Value = suggestions->Estado;
+      
+
+        //Paso 3: Se ejecuta la sentencia
+        comm->ExecuteNonQuery();
+        //Paso 4: Se procesan los resultados        
+        output_id = Convert::ToInt32(comm->Parameters["@Id"]->Value);
+
     }
     catch (Exception^ ex) {
         throw ex;

@@ -19,6 +19,10 @@ IF OBJECT_ID('dbo.SALE', 'U') IS NOT NULL
 	DROP TABLE dbo.SALE
 
 GO
+IF OBJECT_ID('dbo.SUGGESTIONS', 'U') IS NOT NULL 
+	DROP TABLE dbo.SUGGESTIONS
+
+GO
 
 IF OBJECT_ID('dbo.USUARIO', 'U') IS NOT NULL DROP TABLE dbo.USUARIO
 	
@@ -62,7 +66,7 @@ GO
 	Status CHAR(1) NULL,  --D DISPONIBLE, N NO DISPONIBLE , I INACTIVO
 	LastName VARCHAR (250) NOT NULL,
 	Salary DECIMAL(10,2) NULL,
-	Username VARCHAR (250) NOT NULL,
+	Username VARCHAR (250) NOT NULL UNIQUE,
 	Password VARCHAR (250) NOT NULL,
 	Gender CHAR(1)  NULL,
 	Birthday DATE  NULL,
@@ -149,6 +153,25 @@ GO
 		ALTER TABLE SALE_DETAIL
 		ADD CONSTRAINT FK_SALE_DETAIL_MEALS_ID FOREIGN KEY (Meals_id)
 		REFERENCES MEALS(id)
+		ON DELETE NO ACTION
+
+GO
+	CREATE TABLE SUGGESTIONS (
+	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Fecha DATE NOT NULL,
+	ClientName VARCHAR(250) NOT NULL,
+	AttentionScore VARCHAR(250) NOT NULL,
+	FoodScore VARCHAR(250) NOT NULL,
+	VenueScore VARCHAR(250) NOT NULL,
+	Comments VARCHAR(750) NOT NULL,
+	Client_id INT NOT NULL,
+	Estado VARCHAR (250) NULL
+)
+		GO
+		ALTER TABLE SUGGESTIONS
+		ADD CONSTRAINT FK_SUGGESTIONS_CLIENT_ID FOREIGN KEY (Client_id)
+		REFERENCES CLIENT_INFO(Id)
+		ON DELETE NO ACTION
 
 
 
@@ -165,7 +188,37 @@ VALUES('Arroz con pollo','arroz y pollo',15,0,'28-02-2003',0,'A')
 	GO
 INSERT INTO USUARIO(Name, DocNumber, Adress,Email, PhoneNumber,Status,LastName,Salary,Username,Password,Gender,Birthday, Type, State)
 VALUES ('Samid','78549545','cusco','capu.samid.villafuerte@gmail.com','78549545','A','Villafuerte',1111,'Samid','george','1','10/03/2002','Administrador','ACTIVO')
+--PROCEDURES DE SUGGESTIONS ---
+GO
 
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[usp_AddSUGGESTIONS]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[usp_AddSUGGESTIONS]
+END
+GO
+CREATE PROCEDURE dbo.usp_AddSUGGESTIONS(
+
+
+	@Fecha DATE,
+	@ClientName VARCHAR(250),
+	@AttentionScore VARCHAR(250),
+	@FoodScore VARCHAR(250),
+	@VenueScore VARCHAR(250),
+	@Comments VARCHAR(750),
+	@Client_id INT,
+	@Estado VARCHAR(250),
+	@Id INT OUT
+)
+AS
+	BEGIN
+		INSERT INTO SUGGESTIONS(Fecha,ClientName, AttentionScore,FoodScore,VenueScore, Comments,Client_id,Estado)
+		SELECT @Fecha, @ClientName, @AttentionScore,@FoodScore, @VenueScore, @Comments,@Estado,@Client_id,@Estado
+		SET @Id=SCOPE_IDENTITY()
+	END
+GO
 
 --- USUARIO
 

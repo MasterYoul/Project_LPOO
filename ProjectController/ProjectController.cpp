@@ -173,7 +173,7 @@ List<TableDetail^>^ ProjectController::Controller::QueryAllTableLibre() {
 
 List<Meals^>^ ProjectController::Controller::QueryMealsByNameOrDescription(String^ value)
 {
-    MealsList = (List<Meals^>^)Persistance::LoadData("Meals.txt");
+    /*MealsList = (List<Meals^>^)Persistance::LoadData("Meals.txt");
     MealsList = (List<Meals^>^)Persistance::LoadXMLData("Meals.xml");
     MealsList = (List<Meals^>^)Persistance::LoadBinaryData("Meals.bin");
     List<Meals^>^ newProductList = gcnew List<Meals^>();
@@ -181,7 +181,9 @@ List<Meals^>^ ProjectController::Controller::QueryMealsByNameOrDescription(Strin
         if (MealsList[i]->Name->Contains(value) || MealsList[i]->Description->Contains(value))
             newProductList->Add(MealsList[i]);
     }
-    return newProductList;
+    return newProductList;*/
+    return Persistance::QueryMealsByNameOrDescription(value);
+
 }
 /*User^ ProjectController::Controller::QuerychangeEstado(int id) {
     UserList = (List<User^>^)Persistance::LoadBinaryData("User.bin");
@@ -259,7 +261,7 @@ Meals^ ProjectController::Controller::QueryMealstById(int MealsId)
        // if (MealsList[i]->Id == MealsId)
            // return MealsList[i];
     //return nullptr;
-    return Persistance::QueryProductById(MealsId);
+    return Persistance::QueryMealsById(MealsId);
 }
 
 List<Meals^>^ ProjectController::Controller::QueryAllMeals()

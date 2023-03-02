@@ -24,7 +24,7 @@ namespace ProjectPersistance {
 		static SqlConnection^ GetConnection();
 
 		static List<Meals^>^ QueryAllActiveMeals();
-		static Meals^ QueryProductById(int MealsId);
+		static Meals^ QueryMealsById(int MealsId);
 		static int AddMeals(Meals^);
 		static int UpdateMeals(Meals^);
 		static int DeleteMeals(int MealsId);

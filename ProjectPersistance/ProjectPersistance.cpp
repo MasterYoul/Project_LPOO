@@ -426,8 +426,8 @@ List<Meals^>^ ProjectPersistance::Persistance::QueryAllActiveMeals()
             if (!DBNull::Value->Equals(reader["TotalMeals"]))p->TotalMeals = Convert::ToDouble(reader["TotalMeals"]->ToString());
             
             //DateTime^ sdate = safe_cast<DateTime^>(reader["DateMeal"]);
-           // p->DateMeal = sdate->ToString("dd-MM-yyyy", CultureInfo::InvariantCulture);
-            //p->DateMeal = reader["DateMeal"]->ToString();
+            //p->DateMeal = sdate->ToString("dd-mm-yyyy", CultureInfo::InvariantCulture);
+            p->DateMeal = reader["DateMeal"]->ToString();
 
             p->StockUsed = Convert::ToInt32(reader["StockUsed"]->ToString());
             if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
@@ -447,7 +447,7 @@ List<Meals^>^ ProjectPersistance::Persistance::QueryAllActiveMeals()
     
 }
 
-Meals^ ProjectPersistance::Persistance::QueryProductById(int MealsId)
+Meals^ ProjectPersistance::Persistance::QueryMealsById(int MealsId)
 {
     SqlConnection^ conn;
     SqlCommand^ comm;
@@ -657,8 +657,10 @@ List<Meals^>^ ProjectPersistance::Persistance::QueryMealsByNameOrDescription(Str
             p->Price = Convert::ToDouble(reader["price"]->ToString());
             if (!DBNull::Value->Equals(reader["TotalMeals"]))p->TotalMeals = Convert::ToDouble(reader["TotalMeals"]->ToString());
 
-            DateTime^ sdate = safe_cast<DateTime^>(reader["DateMeal"]);
-            p->DateMeal = sdate->ToString("dd-MM-yyyy", CultureInfo::InvariantCulture);
+            //DateTime^ sdate = safe_cast<DateTime^>(reader["DateMeal"]);
+            //p->DateMeal = sdate->ToString("dd-MM-yyyy", CultureInfo::InvariantCulture);
+            p->DateMeal = reader["DateMeal"]->ToString();
+
             p->StockUsed = Convert::ToInt32(reader["StockUsed"]->ToString());
             
             p->Stock = Convert::ToInt32(reader["stock"]->ToString());

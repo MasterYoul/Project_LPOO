@@ -139,7 +139,7 @@ namespace ProyectView {
 			this->comboBox1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"EMPRESA", L"PERSONA", L"TODOS" });
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"EMPRESA", L"PERSONA", L"TODOS", L"" });
 			this->comboBox1->Location = System::Drawing::Point(762, 457);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(250, 35);
@@ -164,6 +164,7 @@ namespace ProyectView {
 			this->button3->TabIndex = 41;
 			this->button3->Text = L"CANCELAR";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &SearchClientInfoForm::button3_Click);
 			// 
 			// button2
 			// 
@@ -173,6 +174,7 @@ namespace ProyectView {
 			this->button2->TabIndex = 40;
 			this->button2->Text = L"LIMPIAR";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &SearchClientInfoForm::button2_Click);
 			// 
 			// textBox2
 			// 
@@ -336,33 +338,80 @@ namespace ProyectView {
 		}
 #pragma endregion
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-		Client_Info^ p;
-		
-		if (textBox1->Text->Trim() != "" && textBox4->Text->Trim() == "" && textBox3->Text->Trim() == "") {// busqueda por id
-			p = Controller::QueryClient_InfotById(Convert::ToInt32(textBox1->Text->Trim()));
-		}
-		else if (textBox1->Text->Trim() == "" && textBox4->Text->Trim() != "" && textBox3->Text->Trim() == "") {// busqueda por dni
-			p = Controller::QueryClient_InfoByDocNumber(textBox4->Text);
-		}
-		else if (textBox1->Text->Trim() == "" && textBox4->Text->Trim() != "" && textBox3->Text->Trim() != "") {// busqueda por ruc
-
-		}
-		else {
-			MessageBox::Show("Solo llenar un campo");
-
-		}
-		
-		//Se borran los datos del grid.
 		dataGridView1->Rows->Clear();
-		dataGridView1->Rows->Add(gcnew array<String^> {
-			"" + p->Id,
-				p->DocNumber,
-				p->RucNumber,
-				Convert::ToString(p->Type),
-				Convert::ToString(p->VisitQuantity)
-		});
-	}
+		try
+		{
+			if (textBox1->Text->Trim() == "" && textBox4->Text->Trim() == "" && textBox3->Text->Trim() == "") {// vacio
+				MessageBox::Show("Se necesita un ID, DNI O RUC");
+				return;
 
+			}
+			if (textBox1->Text->Trim() != "" && textBox4->Text->Trim() == "" && textBox3->Text->Trim() == "") {// busqueda por id
+				
+				Client_Info^ p = Controller::QueryClient_InfotById(Convert::ToInt32(textBox1->Text->Trim()));
+				if (p == nullptr) {
+					MessageBox::Show("El ID del cliente no existe.");
+				}
+				//Se borran los datos del grid.
+				dataGridView1->Rows->Clear();
+				dataGridView1->Rows->Add(gcnew array<String^> {
+					"" + p->Id,
+						p->DocNumber,
+						p->RucNumber,
+						Convert::ToString(p->Type),
+						Convert::ToString(p->VisitQuantity),
+				});
+
+			}
+			/*
+			if (textBox1->Text->Trim() == "" && textBox4->Text->Trim() != "" && textBox3->Text->Trim() == "") {// busqueda por dni
+				List<Client_Info^>^ ClientList = Controller::QueryClient_InfoByDocNumber(textBox4->Text->Trim());
+				if (ClientList->Count == 0) {
+					MessageBox::Show("El DNI del cliente no existe");
+				}
+				//Se borran los datos del grid.
+				dataGridView1->Rows->Clear();
+				for (int i = 0; i < ClientList->Count; i++){
+					dataGridView1->Rows->Add(gcnew array<String^> {
+						"" + ClientList[i]->Id,
+							ClientList[i]->DocNumber,
+							ClientList[i]->RucNumber,
+							Convert::ToString(ClientList[i]->Type),
+							Convert::ToString(ClientList[i]->VisitQuantity),
+				
+				});
+
+			}
+			if (textBox1->Text->Trim() == "" && textBox4->Text->Trim() == "" && textBox3->Text->Trim() != "") {// busqueda por ruc
+				Client_Info^ p = Controller::QueryClient_InfoByDocNumber((textBox3->Text->Trim()));
+				if (p == nullptr) {
+					MessageBox::Show("El RUC del cliente no existe");
+				}
+				//Se borran los datos del grid.
+				dataGridView1->Rows->Clear();
+				dataGridView1->Rows->Add(gcnew array<String^> {
+					"" + p->Id,
+						p->DocNumber,
+						p->RucNumber,
+						Convert::ToString(p->Type),
+						Convert::ToString(p->VisitQuantity),
+				});
+			}
+			
+		}
+		catch (Exception^ ex)
+		{
+			throw ex;
+		}
+		finally {
+
+			textBox1->Clear();
+			textBox4->Clear();
+			textBox3->Clear();
+		}*/
+		
+	}
+	
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	List<Client_Info^>^ clientList;
 	if (comboBox1->Text->Equals("PERSONA")) {
@@ -408,5 +457,19 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		   }
 	   }
 private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+
+
+
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	textBox1->Clear();
+	textBox4->Clear();
+	textBox3->Clear();
+	textBox2->Clear();
+	comboBox1->Text = "";
+	dataGridView1->Rows->Clear();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	Application::Exit();
+}
 };
 }

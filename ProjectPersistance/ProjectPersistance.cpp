@@ -1078,7 +1078,7 @@ List<Client_Info^>^ ProjectPersistance::Persistance::QueryClient_InfoByNameOrLas
     return activeClientsList;
 }
 
-Client_Info^ ProjectPersistance::Persistance::QueryClient_InfoByDocNumber(String^ docNumber)
+Client_Info^ ProjectPersistance::Persistance::QueryClient_InfoByDocNumber(String^ DocNumber)
 {
     SqlConnection^ conn;
     SqlCommand^ comm;
@@ -1088,7 +1088,7 @@ Client_Info^ ProjectPersistance::Persistance::QueryClient_InfoByDocNumber(String
         //Paso 1: Se obtiene la conexión
         conn = GetConnection();
         //Paso 2: Se prepara la sentencia
-        comm = gcnew SqlCommand("SELECT * FROM CLIENT_INFO WHERE Id=" + docNumber +
+        comm = gcnew SqlCommand("SELECT * FROM CLIENT_INFO WHERE DOCNUMBER=" + DocNumber + 
             " AND Status = 'A'", conn);
         //Paso 3: Se ejecuta la sentencia
         reader = comm->ExecuteReader();

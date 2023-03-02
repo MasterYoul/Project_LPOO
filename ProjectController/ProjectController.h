@@ -61,7 +61,7 @@ namespace ProjectController {
 		static int DeleteClient_Info(int Client_InfoId);
 		static List<Client_Info^>^ QueryClient_InfoByNameOrLastName(String^ value);
 		//static List<Client_Info^>^ QueryClient_InfoByDni(String^ nameDesc);
-		static Client_Info^ QueryClient_InfoByDocNumber(String^ docNumber);
+		static Client_Info^ QueryClient_InfoByDocNumber(String^ DocNumber);
 
 		static int AddSale(Sale^ Sale);
 		static Sale^ QuerySaletById(int SaleId);
@@ -120,6 +120,6 @@ namespace ProjectController {
 		static int QueryLastSaleId();
 		static Void RegisterSale(Sale^ sale);
 
-		static List<Sale^>^ QueryAllTotalSaleList(String^ date);
+		//static List<Sale^>^ QueryAllTotalSaleList(String^ date);
 	};
 }

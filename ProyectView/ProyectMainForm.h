@@ -4,7 +4,8 @@
 #include "LoginForm.h";
 #include "Client_InfoForm.h";
 #include "SaleForm.h";
-#include "MealsGraphicsForm.h"
+#include "MealsGraphicsForm.h";
+#include "MostMealsGraphics.h";
 #include "TableForm.h";
 #include "PedidosForm.h";
 #include "SearchTableDetailForm.h":
@@ -87,7 +88,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::ToolStripMenuItem^ sugerenciasToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ modificarSugerenciasToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ filtrarSugerenciasToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ sugerenciasToolStripMenuItem1;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ platosToolStripMenuItem1;
 	private: System::Windows::Forms::ToolStripMenuItem^ miInformaciónToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ chatToolStripMenuItem;
@@ -136,7 +137,6 @@ namespace ProyectView {
 			this->filtrarSugerenciasToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reportesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->reporteToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->sugerenciasToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->platosToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ayudaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->chatToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -320,7 +320,7 @@ namespace ProyectView {
 					this->filtrarVentasToolStripMenuItem
 			});
 			this->realizarVentasToolStripMenuItem->Name = L"realizarVentasToolStripMenuItem";
-			this->realizarVentasToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->realizarVentasToolStripMenuItem->Size = System::Drawing::Size(171, 26);
 			this->realizarVentasToolStripMenuItem->Text = L"Ventas";
 			this->realizarVentasToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::realizarVentasToolStripMenuItem_Click);
 			// 
@@ -345,7 +345,7 @@ namespace ProyectView {
 					this->filtrarPedidosToolStripMenuItem
 			});
 			this->verPedidosToolStripMenuItem->Name = L"verPedidosToolStripMenuItem";
-			this->verPedidosToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->verPedidosToolStripMenuItem->Size = System::Drawing::Size(171, 26);
 			this->verPedidosToolStripMenuItem->Text = L"Pedidos";
 			this->verPedidosToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::verPedidosToolStripMenuItem_Click);
 			// 
@@ -369,7 +369,7 @@ namespace ProyectView {
 					this->filtrarSugerenciasToolStripMenuItem
 			});
 			this->sugerenciasToolStripMenuItem->Name = L"sugerenciasToolStripMenuItem";
-			this->sugerenciasToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->sugerenciasToolStripMenuItem->Size = System::Drawing::Size(171, 26);
 			this->sugerenciasToolStripMenuItem->Text = L"Sugerencias";
 			// 
 			// modificarSugerenciasToolStripMenuItem
@@ -388,9 +388,9 @@ namespace ProyectView {
 			// 
 			// reportesToolStripMenuItem
 			// 
-			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+			this->reportesToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
 				this->reporteToolStripMenuItem,
-					this->sugerenciasToolStripMenuItem1, this->platosToolStripMenuItem1
+					this->platosToolStripMenuItem1
 			});
 			this->reportesToolStripMenuItem->Name = L"reportesToolStripMenuItem";
 			this->reportesToolStripMenuItem->Size = System::Drawing::Size(82, 24);
@@ -403,17 +403,12 @@ namespace ProyectView {
 			this->reporteToolStripMenuItem->Text = L"Ventas";
 			this->reporteToolStripMenuItem->Click += gcnew System::EventHandler(this, &ProyectMainForm::reporteToolStripMenuItem_Click);
 			// 
-			// sugerenciasToolStripMenuItem1
-			// 
-			this->sugerenciasToolStripMenuItem1->Name = L"sugerenciasToolStripMenuItem1";
-			this->sugerenciasToolStripMenuItem1->Size = System::Drawing::Size(224, 26);
-			this->sugerenciasToolStripMenuItem1->Text = L"Sugerencias";
-			// 
 			// platosToolStripMenuItem1
 			// 
 			this->platosToolStripMenuItem1->Name = L"platosToolStripMenuItem1";
 			this->platosToolStripMenuItem1->Size = System::Drawing::Size(224, 26);
 			this->platosToolStripMenuItem1->Text = L"Platos";
+			this->platosToolStripMenuItem1->Click += gcnew System::EventHandler(this, &ProyectMainForm::platosToolStripMenuItem1_Click);
 			// 
 			// ayudaToolStripMenuItem
 			// 
@@ -597,6 +592,11 @@ private: System::Void modificarSugerenciasToolStripMenuItem_Click(System::Object
 	ModifySuggestionsForm^ suggestionsForm = gcnew ModifySuggestionsForm();
 	suggestionsForm->MdiParent = this;
 	suggestionsForm->Show();
+}
+private: System::Void platosToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+	MostMealsGraphics^ graphicForm = gcnew MostMealsGraphics();
+	graphicForm->MdiParent = this;
+	graphicForm->Show();
 }
 };
 }

@@ -98,6 +98,9 @@
     <ClInclude Include="ModifySuggestionsForm.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="MostMealsGraphics.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProyectView.cpp">
@@ -179,6 +182,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="ModifySuggestionsForm.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="MostMealsGraphics.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

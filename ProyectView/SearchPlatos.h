@@ -300,7 +300,7 @@ namespace ProyectView {
 				return;
 			}
 			if (textBox2->Text->Trim() != "") {
-				List<Meals^>^ MealsList = Controller::QueryMealsByNameOrDescription(textBox2->Text->Trim());
+				List<Meals^>^ MealsList = Controller::QueryMealsByNameOrDescription(textBox2->Text->Trim()); //Se busca por Nombre
 				if (MealsList->Count == 0) {
 					MessageBox::Show("El NOMBRE del plato no existe");
 				}
@@ -315,7 +315,7 @@ namespace ProyectView {
 				}
 			}
 			if (textBox3->Text->Trim() != "") {
-				List<Meals^>^ MealsList = Controller::QueryMealsByNameOrDescription(textBox3->Text->Trim());
+				List<Meals^>^ MealsList = Controller::QueryMealsByNameOrDescription(textBox3->Text->Trim());//Se busca por Descripcion
 				if (MealsList->Count==0) {
 					MessageBox::Show("La DESCRIPCIÓN del plato no existe");
 				}

@@ -450,7 +450,7 @@ List<Client_Info^>^ ProjectController::Controller::QueryClient_InfoByNameOrLastN
     return Persistance::QueryClient_InfoByNameOrLastName(value);
 }
 
-Client_Info^ ProjectController::Controller::QueryClient_InfoByDocNumber(String^ docNumber)
+Client_Info^ ProjectController::Controller::QueryClient_InfoByDocNumber(String^ DocNumber)
 {
     /*
     Client_InfoList = (List<Client_Info^>^)Persistance::LoadBinaryData("Client_Info.bin");
@@ -459,7 +459,7 @@ Client_Info^ ProjectController::Controller::QueryClient_InfoByDocNumber(String^ 
             return Client_InfoList[i];
         }
     return nullptr;*/
-    return Persistance::QueryClient_InfoByDocNumber(docNumber);
+    return Persistance::QueryClient_InfoByDocNumber(DocNumber);
 }
 
 /*List<Client_Info^>^ ProjectController::Controller::QueryClient_InfoByDni(String^ nameDesc)
@@ -832,6 +832,7 @@ Void ProjectController::Controller::RegisterSale(Sale^ sale)
     }
 }
 
+/*
 
 List<Sale^>^ ProjectController::Controller::QueryAllTotalSaleList(String^ date)
 {
@@ -846,7 +847,7 @@ List<Sale^>^ ProjectController::Controller::QueryAllTotalSaleList(String^ date)
     return totalList;
     //return List<Sale^>();
 }
-
+*/
 
 
 

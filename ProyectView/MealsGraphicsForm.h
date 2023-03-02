@@ -1,16 +1,21 @@
 #pragma once
+#include <string>
+#include <vector>
 
 namespace ProyectView {
 
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
-	using namespace System::Windows::Forms;
+	//using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace ProjectModel;
 	using namespace ProjectController;
 	using namespace System::Collections::Generic;
+	using namespace System::Windows::Forms::DataVisualization;
+	using namespace System::Windows::Forms::DataVisualization::Charting;
+	using namespace System::Globalization;
 
 	/// <summary>
 	/// Resumen de MealsGraphicsForm
@@ -38,10 +43,13 @@ namespace ProyectView {
 			}
 		}
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chartSales;
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chartCommonMeals;
-	private: System::Windows::Forms::DateTimePicker^ dateTimeReport;
+	private: System::Windows::Forms::DateTimePicker^ dateTimeReport1;
+
+
 
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::DateTimePicker^ dateTimeReport2;
+
 
 
 	protected:
@@ -63,60 +71,39 @@ namespace ProyectView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea3 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea4 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->chartSales = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			this->chartCommonMeals = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			this->dateTimeReport = (gcnew System::Windows::Forms::DateTimePicker());
+			this->dateTimeReport1 = (gcnew System::Windows::Forms::DateTimePicker());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->dateTimeReport2 = (gcnew System::Windows::Forms::DateTimePicker());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartSales))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartCommonMeals))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// chartSales
 			// 
-			chartArea3->Name = L"ChartArea1";
-			this->chartSales->ChartAreas->Add(chartArea3);
-			legend3->Name = L"Legend1";
-			this->chartSales->Legends->Add(legend3);
-			this->chartSales->Location = System::Drawing::Point(71, 108);
+			chartArea1->Name = L"ChartArea1";
+			this->chartSales->ChartAreas->Add(chartArea1);
+			legend1->Name = L"Legend1";
+			this->chartSales->Legends->Add(legend1);
+			this->chartSales->Location = System::Drawing::Point(71, 151);
 			this->chartSales->Margin = System::Windows::Forms::Padding(4);
 			this->chartSales->Name = L"chartSales";
-			series3->ChartArea = L"ChartArea1";
-			series3->Legend = L"Legend1";
-			series3->Name = L"Monto";
-			this->chartSales->Series->Add(series3);
-			this->chartSales->Size = System::Drawing::Size(461, 389);
+			series1->ChartArea = L"ChartArea1";
+			series1->Legend = L"Legend1";
+			series1->Name = L"Monto";
+			this->chartSales->Series->Add(series1);
+			this->chartSales->Size = System::Drawing::Size(580, 389);
 			this->chartSales->TabIndex = 0;
 			this->chartSales->Text = L"chart1";
 			// 
-			// chartCommonMeals
+			// dateTimeReport1
 			// 
-			chartArea4->Name = L"ChartArea1";
-			this->chartCommonMeals->ChartAreas->Add(chartArea4);
-			legend4->Name = L"Legend1";
-			this->chartCommonMeals->Legends->Add(legend4);
-			this->chartCommonMeals->Location = System::Drawing::Point(660, 108);
-			this->chartCommonMeals->Name = L"chartCommonMeals";
-			series4->ChartArea = L"ChartArea1";
-			series4->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Pie;
-			series4->Legend = L"Legend1";
-			series4->Name = L"Platos";
-			this->chartCommonMeals->Series->Add(series4);
-			this->chartCommonMeals->Size = System::Drawing::Size(433, 389);
-			this->chartCommonMeals->TabIndex = 1;
-			this->chartCommonMeals->Text = L"chart1";
-			// 
-			// dateTimeReport
-			// 
-			this->dateTimeReport->Location = System::Drawing::Point(71, 40);
-			this->dateTimeReport->Name = L"dateTimeReport";
-			this->dateTimeReport->Size = System::Drawing::Size(290, 22);
-			this->dateTimeReport->TabIndex = 2;
+			this->dateTimeReport1->Location = System::Drawing::Point(71, 40);
+			this->dateTimeReport1->Name = L"dateTimeReport1";
+			this->dateTimeReport1->Size = System::Drawing::Size(290, 22);
+			this->dateTimeReport1->TabIndex = 2;
 			// 
 			// button1
 			// 
@@ -128,105 +115,129 @@ namespace ProyectView {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MealsGraphicsForm::button1_Click);
 			// 
+			// dateTimeReport2
+			// 
+			this->dateTimeReport2->Location = System::Drawing::Point(71, 100);
+			this->dateTimeReport2->Name = L"dateTimeReport2";
+			this->dateTimeReport2->Size = System::Drawing::Size(290, 22);
+			this->dateTimeReport2->TabIndex = 4;
+			// 
 			// MealsGraphicsForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1181, 570);
+			this->ClientSize = System::Drawing::Size(779, 570);
+			this->Controls->Add(this->dateTimeReport2);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->dateTimeReport);
-			this->Controls->Add(this->chartCommonMeals);
+			this->Controls->Add(this->dateTimeReport1);
 			this->Controls->Add(this->chartSales);
 			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"MealsGraphicsForm";
 			this->Text = L"Reporte  en graficos";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartSales))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartCommonMeals))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
+		/*
+		List<Sale^>^ ventas = Controller::QueryAllSale();
+
+		DateTimePicker^ dtpInicio = gcnew DateTimePicker();
+		DateTimePicker^ dtpFin = gcnew DateTimePicker();
+
+		Chart^ grafico = gcnew Chart();
+		ChartArea^ area = gcnew ChartArea();
 	
-	void RefreshDGV() {
-		chartSales->Series["Monto"]->Points->Clear();
-		List<Sale^>^ salesList = Controller::QueryAllSale();
-		int b = 0;
-		for (int i = 0; i < salesList->Count; i++) {
-			//agarra el total, es una lista
 
-			int p = i;
-			int r = 0;
-			while (p >= 0) {
-				if (Convert::ToString(salesList[i]->Client_Info) == Convert::ToString(salesList[p]->Client_Info)) {
-					r++;
-				}
-				p = p - 1;
-			}
-			if (r < 2) {
-				chartSales->Series["Monto"]->Points->Add(salesList[i]->Total);
-				chartSales->Series["Monto"]->Points[b]->AxisLabel = Convert::ToString(salesList[i]->Client_Info);
-				double z = 0;
-				for (int j = 0; j < salesList->Count; j++) {
-					if (Convert::ToString(salesList[i]->Client_Info) == Convert::ToString(salesList[j]->Client_Info)) {
 
-						z = z + Convert::ToDouble(salesList[j]->Total);
+
+		void dtpInicio_ValueChanged(Object^ sender, EventArgs^ e) {
+			GenerarDatosGrafico(ventas, dtpInicio->Value, dtpFin->Value, grafico, area);
+		}
+
+
+		// código para el evento de cambio de fecha en el segundo DateTimePicker
+		void dtpFin_ValueChanged(Object^ sender, EventArgs^ e) {
+			GenerarDatosGrafico(ventas, dtpInicio->Value, dtpFin->Value, grafico, area);
+		}
+
+		void GenerarDatosGrafico(List<Sale^>^ ventas, DateTime fechaInicio, DateTime fechaFin, Chart^ grafico, ChartArea^ area) {
+			// crear diccionario para agrupar ventas por día
+			Dictionary<String^, double>^ ventasPorDia = gcnew Dictionary<String^, double>();
+			for each (Sale ^ venta in ventas) {
+				DateTime fechaVenta = DateTime::ParseExact(venta->Fecha, "yyyy-MM-dd", CultureInfo::InvariantCulture);
+				if (fechaVenta >= fechaInicio && fechaVenta <= fechaFin) {
+					String^ fechaKey = fechaVenta.ToString("yyyy-MM-dd");
+					if (ventasPorDia->ContainsKey(fechaKey)) {
+						ventasPorDia[fechaKey] += venta->Total;
+					}
+					else {
+						ventasPorDia->Add(fechaKey, venta->Total);
 					}
 				}
-				chartSales->Series["Monto"]->Points[b]->Label = Convert::ToString(z);
-				b++;
 			}
-			else {
 
-			}
-		}
+			// crear datos para el gráfico
+			Series^ serie = gcnew Series();
+			serie->ChartType = SeriesChartType::Column;
+			serie->XValueType = ChartValueType::DateTime;
+			serie->YValueType = ChartValueType::Double;
+			grafico->Series->Clear();
+			grafico->Series->Add(serie);
 
-
-		
-		DateTime dt = dateTimeReport->Value;
-		String^ BuscarPorFecha = dt.ToString("yyyy-MM-dd");
-
-		
-		//
-		//chartCommonMeals->Series["Platos"]->Points->Clear();
-
-		//List<Sale^>^ SumTotal= Controller::QueryAllTotalSaleList(BuscarPorFecha);
-		/*
-		int k = 0;
-		if (chartSales != nullptr) {
-			List<Sale^>^ SalesList = Controller::QueryAllSale();
-			/*
-			for (int i = 0; i < 1; i++) {
-				chartSales->Series["Monto"]->Points[k]->AxisLabel = Fec;
-				chartSales->Series["Monto"]->Points[k]->Label = Convert::ToString(SumTotal);
-			}
-			*/
-			/*for (int i = 1; i < SalesList->Count; i++) {
-
-				if (SalesList[i]->Fecha->Contains(BuscarPorFecha)) {
-					chartSales->Series["Monto"]->Points->Add(SalesList[i]->Total);
-					chartSales->Series["Monto"]->Points[k]->Color = Color::Blue;
-					chartSales->Series["Monto"]->Points[k]->AxisLabel = SalesList[i]->Client_Info->Name;
-					chartSales->Series["Monto"]->Points[k]->Label = Convert::ToString(SalesList[i]->Total);
-					k++;
+			DateTime fechaActual = fechaInicio;
+			while (fechaActual <= fechaFin) {
+				String^ fechaKey = fechaActual.ToString("yyyy-MM-dd");
+				double totalVenta = 0.0;
+				if (ventasPorDia->TryGetValue(fechaKey, totalVenta)) {
+					DataPoint^ punto = gcnew DataPoint(fechaActual.ToOADate(), totalVenta);
+					serie->Points->Add(punto);
 				}
+				fechaActual = fechaActual.AddDays(1);
 			}
 
-		}*/
-
-		chartCommonMeals->Series["Platos"]->Points->Clear();
-	
-		List<Meals^>^ MealList = Controller::QueryAllMeals();
-		for (int i = 0; i < MealList->Count; i++) {
-			chartCommonMeals->Series["Platos"]->Points->Add(MealList[i]->StockUsed);
-			chartCommonMeals->Series["Platos"]->Points[i]->LegendText = MealList[i]->Name;
-			chartCommonMeals->Series["Platos"]->Points[i]->Label = Convert::ToString(MealList[i]->StockUsed);
+			// ajustar configuración del gráfico
+			area->AxisX->Minimum = fechaInicio.ToOADate();
+			area->AxisX->Maximum = fechaFin.ToOADate();
+			area->AxisX->Interval = Math::Max(1.0, (fechaFin - fechaInicio).Days / 7.0);
+			area->AxisY->Minimum = 0;
 		}
-		
-	}
 
+
+		void Form1_Load(Object^ sender, EventArgs^ e) {
+			// crear y configurar los controles
+			this->dtpInicio = gcnew DateTimePicker();
+			dtpInicio->Value = DateTime::Today;
+			//dtpInicio->ValueChanged += gcnew EventHandler(this, &MostMealsGraphics::dtpInicio_ValueChanged);
+			this->Controls->Add(dtpInicio);
+
+			this->dtpFin = gcnew DateTimePicker();
+			dtpFin->Value = DateTime::Today.AddDays(7);
+			//dtpFin->ValueChanged += gcnew EventHandler(this, &MostMealsGraphics::dtpFin_ValueChanged);
+			this->Controls->Add(dtpFin);
+
+			grafico = gcnew Chart();
+			area = gcnew ChartArea();
+			grafico->ChartAreas->Add(area);
+			GenerarDatosGrafico(ventas, dtpInicio->Value, dtpFin->Value, grafico, area);
+			this->Controls->Add(grafico);
+
+			void GenerarDatosGrafico(List<Sale^> ^ ventas, DateTime fechaInicio, DateTime fechaFin, Chart ^ grafico, ChartArea ^ area);
+			
+		}
+	
+	void RefreshDGV() {
+
+		grafico->ChartAreas->Add(area);
+
+		// añadir control Chart al formulario
+		this->Controls->Add(grafico);
+
+	}
+	*/
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	RefreshDGV();
+	//RefreshDGV();
 }
 };
 }

@@ -149,6 +149,9 @@
     <ClInclude Include="ModifySuggestionsForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="MostMealsGraphics.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PedidosForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -212,6 +215,7 @@
     <ClCompile Include="MealsGraphicsForm.cpp" />
     <ClCompile Include="MealsSearchForm.cpp" />
     <ClCompile Include="ModifySuggestionsForm.cpp" />
+    <ClCompile Include="MostMealsGraphics.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -277,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModifySuggestionsForm.resx">
       <DependentUpon>ModifySuggestionsForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MostMealsGraphics.resx">
+      <DependentUpon>MostMealsGraphics.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PedidosForm.resx">
       <DependentUpon>PedidosForm.h</DependentUpon>

@@ -397,7 +397,7 @@ namespace ProyectView {
 						Convert::ToString(p->VisitQuantity),
 				});
 			}
-			
+		*/	
 		}
 		catch (Exception^ ex)
 		{
@@ -408,7 +408,7 @@ namespace ProyectView {
 			textBox1->Clear();
 			textBox4->Clear();
 			textBox3->Clear();
-		}*/
+		}
 		
 	}
 	

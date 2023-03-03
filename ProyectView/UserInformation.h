@@ -73,6 +73,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Label^ label16;
+	private: System::Windows::Forms::Button^ button2;
 
 	protected:
 
@@ -156,6 +157,7 @@ namespace ProyectView {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->gBoxGender->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -236,6 +238,7 @@ namespace ProyectView {
 			// 
 			this->UserId->Location = System::Drawing::Point(198, 257);
 			this->UserId->Name = L"UserId";
+			this->UserId->ReadOnly = true;
 			this->UserId->Size = System::Drawing::Size(289, 22);
 			this->UserId->TabIndex = 51;
 			// 
@@ -243,6 +246,7 @@ namespace ProyectView {
 			// 
 			this->UserDNI->Location = System::Drawing::Point(198, 295);
 			this->UserDNI->Name = L"UserDNI";
+			this->UserDNI->ReadOnly = true;
 			this->UserDNI->Size = System::Drawing::Size(289, 22);
 			this->UserDNI->TabIndex = 53;
 			// 
@@ -250,6 +254,7 @@ namespace ProyectView {
 			// 
 			this->UserName->Location = System::Drawing::Point(198, 332);
 			this->UserName->Name = L"UserName";
+			this->UserName->ReadOnly = true;
 			this->UserName->Size = System::Drawing::Size(289, 22);
 			this->UserName->TabIndex = 55;
 			// 
@@ -276,6 +281,7 @@ namespace ProyectView {
 			// 
 			// UserDateTimeBirthday
 			// 
+			this->UserDateTimeBirthday->Checked = false;
 			this->UserDateTimeBirthday->Location = System::Drawing::Point(198, 549);
 			this->UserDateTimeBirthday->Name = L"UserDateTimeBirthday";
 			this->UserDateTimeBirthday->Size = System::Drawing::Size(317, 22);
@@ -327,6 +333,7 @@ namespace ProyectView {
 			// 
 			this->UserSalary->Location = System::Drawing::Point(198, 208);
 			this->UserSalary->Name = L"UserSalary";
+			this->UserSalary->ReadOnly = true;
 			this->UserSalary->Size = System::Drawing::Size(291, 22);
 			this->UserSalary->TabIndex = 76;
 			// 
@@ -334,6 +341,7 @@ namespace ProyectView {
 			// 
 			this->UserLastName->Location = System::Drawing::Point(198, 168);
 			this->UserLastName->Name = L"UserLastName";
+			this->UserLastName->ReadOnly = true;
 			this->UserLastName->Size = System::Drawing::Size(291, 22);
 			this->UserLastName->TabIndex = 75;
 			// 
@@ -343,6 +351,7 @@ namespace ProyectView {
 			this->UserPassword->Name = L"UserPassword";
 			this->UserPassword->Size = System::Drawing::Size(291, 22);
 			this->UserPassword->TabIndex = 74;
+			this->UserPassword->UseSystemPasswordChar = true;
 			// 
 			// UserUsuario
 			// 
@@ -391,6 +400,7 @@ namespace ProyectView {
 			// 
 			this->textBox2->Location = System::Drawing::Point(717, 531);
 			this->textBox2->Name = L"textBox2";
+			this->textBox2->PasswordChar = '*';
 			this->textBox2->Size = System::Drawing::Size(289, 22);
 			this->textBox2->TabIndex = 80;
 			// 
@@ -398,6 +408,7 @@ namespace ProyectView {
 			// 
 			this->textBox3->Location = System::Drawing::Point(717, 491);
 			this->textBox3->Name = L"textBox3";
+			this->textBox3->PasswordChar = '*';
 			this->textBox3->Size = System::Drawing::Size(289, 22);
 			this->textBox3->TabIndex = 79;
 			// 
@@ -450,11 +461,22 @@ namespace ProyectView {
 			this->label16->Text = L"Sin usuario";
 			this->label16->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(517, 133);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(37, 23);
+			this->button2->TabIndex = 84;
+			this->button2->Text = L"o";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &UserInformation::button2_Click);
+			// 
 			// UserInformation
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1094, 783);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label16);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox1);
@@ -508,5 +530,22 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	}
 }
 private: System::Void buttonModifyUser_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (UserPassword->UseSystemPasswordChar)
+	{
+
+		UserPassword->UseSystemPasswordChar = false;
+		button2->Text = "0";
+
+
+	}
+	else
+	{
+
+		UserPassword->UseSystemPasswordChar = true;
+		button2->Text = "-";
+
+	}
+}
 };
 }

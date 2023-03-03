@@ -52,6 +52,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Button^ button2;
 
 
 
@@ -81,6 +82,7 @@ namespace ProyectView {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -154,6 +156,7 @@ namespace ProyectView {
 			this->txtPassword->Name = L"txtPassword";
 			this->txtPassword->Size = System::Drawing::Size(251, 20);
 			this->txtPassword->TabIndex = 6;
+			this->txtPassword->UseSystemPasswordChar = true;
 			this->txtPassword->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &LoginForm::txtPassword_KeyDown);
 			// 
 			// button1
@@ -202,6 +205,16 @@ namespace ProyectView {
 			this->label4->TabIndex = 10;
 			this->label4->Text = L"DEJE SUS SUGERENCIAS";
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(958, 169);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(37, 23);
+			this->button2->TabIndex = 11;
+			this->button2->Text = L"o";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &LoginForm::button2_Click);
+			// 
 			// LoginForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 13);
@@ -209,6 +222,7 @@ namespace ProyectView {
 			this->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
 			this->ClientSize = System::Drawing::Size(1007, 583);
 			this->ControlBox = false;
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->pictureBox1);
@@ -256,5 +270,22 @@ private: System::Void butRecover_Click(System::Object^ sender, System::EventArgs
 	recoverForm->RefSaleForm = this;
 	recoverForm->ShowDialog();
 }
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (txtPassword->UseSystemPasswordChar)
+		{
+			
+			txtPassword->UseSystemPasswordChar = false;
+			button2->Text = "0";
+			
+			
+		}
+		else
+		{
+			
+			txtPassword->UseSystemPasswordChar = true;
+			button2->Text = "-";
+			
+		}
+	}
 };
 }

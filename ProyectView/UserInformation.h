@@ -43,7 +43,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label12;
 	private: System::Windows::Forms::Label^ label13;
-	private: System::Windows::Forms::Label^ label14;
+
 	private: System::Windows::Forms::TextBox^ UserId;
 	private: System::Windows::Forms::TextBox^ UserDNI;
 	private: System::Windows::Forms::TextBox^ UserName;
@@ -55,7 +55,7 @@ namespace ProyectView {
 	private: System::Windows::Forms::RadioButton^ UserMale;
 	private: System::Windows::Forms::RadioButton^ UserFemale;
 	private: System::Windows::Forms::GroupBox^ gBoxGender;
-	private: System::Windows::Forms::TextBox^ textBox1;
+
 	private: System::Windows::Forms::TextBox^ UserSalary;
 	private: System::Windows::Forms::TextBox^ UserLastName;
 	private: System::Windows::Forms::TextBox^ UserPassword;
@@ -128,7 +128,6 @@ namespace ProyectView {
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->label13 = (gcnew System::Windows::Forms::Label());
-			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->UserId = (gcnew System::Windows::Forms::TextBox());
 			this->UserDNI = (gcnew System::Windows::Forms::TextBox());
 			this->UserName = (gcnew System::Windows::Forms::TextBox());
@@ -140,7 +139,6 @@ namespace ProyectView {
 			this->UserMale = (gcnew System::Windows::Forms::RadioButton());
 			this->UserFemale = (gcnew System::Windows::Forms::RadioButton());
 			this->gBoxGender = (gcnew System::Windows::Forms::GroupBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->UserSalary = (gcnew System::Windows::Forms::TextBox());
 			this->UserLastName = (gcnew System::Windows::Forms::TextBox());
 			this->UserPassword = (gcnew System::Windows::Forms::TextBox());
@@ -226,20 +224,11 @@ namespace ProyectView {
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(82, 582);
+			this->label13->Location = System::Drawing::Point(90, 554);
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(88, 16);
 			this->label13->TabIndex = 49;
 			this->label13->Text = L"Nacimiento(*)";
-			// 
-			// label14
-			// 
-			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(131, 531);
-			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(48, 16);
-			this->label14->TabIndex = 50;
-			this->label14->Text = L"Tipo(*)";
 			// 
 			// UserId
 			// 
@@ -285,7 +274,7 @@ namespace ProyectView {
 			// 
 			// UserDateTimeBirthday
 			// 
-			this->UserDateTimeBirthday->Location = System::Drawing::Point(197, 576);
+			this->UserDateTimeBirthday->Location = System::Drawing::Point(198, 549);
 			this->UserDateTimeBirthday->Name = L"UserDateTimeBirthday";
 			this->UserDateTimeBirthday->Size = System::Drawing::Size(317, 22);
 			this->UserDateTimeBirthday->TabIndex = 61;
@@ -298,6 +287,7 @@ namespace ProyectView {
 			this->buttonModifyUser->TabIndex = 65;
 			this->buttonModifyUser->Text = L"MODIFICAR";
 			this->buttonModifyUser->UseVisualStyleBackColor = true;
+			this->buttonModifyUser->Click += gcnew System::EventHandler(this, &UserInformation::buttonModifyUser_Click);
 			// 
 			// UserMale
 			// 
@@ -330,13 +320,6 @@ namespace ProyectView {
 			this->gBoxGender->Size = System::Drawing::Size(317, 48);
 			this->gBoxGender->TabIndex = 67;
 			this->gBoxGender->TabStop = false;
-			// 
-			// textBox1
-			// 
-			this->textBox1->Location = System::Drawing::Point(200, 528);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(289, 22);
-			this->textBox1->TabIndex = 68;
 			// 
 			// UserSalary
 			// 
@@ -404,14 +387,14 @@ namespace ProyectView {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(717, 576);
+			this->textBox2->Location = System::Drawing::Point(717, 531);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(289, 22);
 			this->textBox2->TabIndex = 80;
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(717, 536);
+			this->textBox3->Location = System::Drawing::Point(717, 491);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(289, 22);
 			this->textBox3->TabIndex = 79;
@@ -419,7 +402,7 @@ namespace ProyectView {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(560, 581);
+			this->label7->Location = System::Drawing::Point(560, 536);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(117, 16);
 			this->label7->TabIndex = 78;
@@ -428,7 +411,7 @@ namespace ProyectView {
 			// label15
 			// 
 			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(560, 539);
+			this->label15->Location = System::Drawing::Point(560, 494);
 			this->label15->Name = L"label15";
 			this->label15->Size = System::Drawing::Size(117, 16);
 			this->label15->TabIndex = 77;
@@ -436,20 +419,23 @@ namespace ProyectView {
 			// 
 			// pictureBox1
 			// 
+			this->pictureBox1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->pictureBox1->Location = System::Drawing::Point(671, 93);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(323, 207);
+			this->pictureBox1->Size = System::Drawing::Size(323, 240);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 81;
 			this->pictureBox1->TabStop = false;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(671, 332);
+			this->button1->Location = System::Drawing::Point(671, 352);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(323, 41);
 			this->button1->TabIndex = 82;
 			this->button1->Text = L"CAMBIAR FOTO";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &UserInformation::button1_Click);
 			// 
 			// label16
 			// 
@@ -482,7 +468,6 @@ namespace ProyectView {
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
-			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->gBoxGender);
 			this->Controls->Add(this->buttonModifyUser);
 			this->Controls->Add(this->UserDateTimeBirthday);
@@ -492,7 +477,6 @@ namespace ProyectView {
 			this->Controls->Add(this->UserName);
 			this->Controls->Add(this->UserDNI);
 			this->Controls->Add(this->UserId);
-			this->Controls->Add(this->label14);
 			this->Controls->Add(this->label13);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->label6);
@@ -503,6 +487,7 @@ namespace ProyectView {
 			this->Controls->Add(this->label1);
 			this->Name = L"UserInformation";
 			this->Text = L"UserInformation";
+			this->Load += gcnew System::EventHandler(this, &UserInformation::UserInformation_Load);
 			this->gBoxGender->ResumeLayout(false);
 			this->gBoxGender->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -511,5 +496,15 @@ namespace ProyectView {
 
 		}
 #pragma endregion
-	};
+	private: System::Void UserInformation_Load(System::Object^ sender, System::EventArgs^ e);
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	OpenFileDialog^ opnfd = gcnew OpenFileDialog();
+	opnfd->Filter = "Image Files (*.jpg;*.jpeg;)|*.jpg;*.jpeg;";
+	if (opnfd->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+	{
+		pictureBox1->Image = gcnew Bitmap(opnfd->FileName);
+	}
+}
+private: System::Void buttonModifyUser_Click(System::Object^ sender, System::EventArgs^ e);
+};
 }

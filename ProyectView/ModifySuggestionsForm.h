@@ -59,6 +59,8 @@ namespace ProyectView {
 	private: System::Windows::Forms::TextBox^ ptestado;
 	private: System::Windows::Forms::Label^ label16;
 	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::Label^ label8;
 
 	private:
 		/// <summary>
@@ -89,11 +91,13 @@ namespace ProyectView {
 			this->ptestado = (gcnew System::Windows::Forms::TextBox());
 			this->label16 = (gcnew System::Windows::Forms::Label());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(12, 67);
+			this->button1->Location = System::Drawing::Point(12, 40);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(168, 54);
 			this->button1->TabIndex = 1;
@@ -241,11 +245,35 @@ namespace ProyectView {
 			this->button4->Text = L"ELIMINAR";
 			this->button4->UseVisualStyleBackColor = true;
 			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label7->Location = System::Drawing::Point(12, 153);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(142, 25);
+			this->label7->TabIndex = 86;
+			this->label7->Text = L"Id sugerencia";
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label8->Location = System::Drawing::Point(12, 203);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(36, 25);
+			this->label8->TabIndex = 87;
+			this->label8->Text = L"Id ";
+			// 
 			// ModifySuggestionsForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1037, 491);
+			this->ClientSize = System::Drawing::Size(975, 491);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->label7);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->label16);
 			this->Controls->Add(this->ptestado);
@@ -285,6 +313,7 @@ namespace ProyectView {
 			   ptatencion->Text = Convert::ToString(cust->AttentionScore);
 			   ptlocal->Text = Convert::ToString(cust->VenueScore);
 			   ptestado->Text = cust->Estado;
+			   label8->Text = Convert::ToString(cust->Id);
 			   
 		   }
 

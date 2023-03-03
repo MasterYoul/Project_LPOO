@@ -820,8 +820,8 @@ List<Sale^>^ ProjectController::Controller::QueryAllSale()
 {
     //SaleList = (List<Sale^>^)Persistance::LoadData("Sale.txt");
     //SaleList = (List<Sale^>^)Persistance::LoadXMLData("Sale.xml");
-    SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
-    return SaleList;
+    //SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");
+    return Persistance::QueryAllSale();
 }
 
 List<SaleDetail^>^ ProjectController::Controller::QueryAllSaleDetailsNp()

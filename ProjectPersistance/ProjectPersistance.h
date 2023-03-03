@@ -56,6 +56,7 @@ namespace ProjectPersistance {
 		static User^ ChangePassword(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber, String^ newpassword);
 		static User^ QueryUserRecover(String^ UserDNI, String^ UserUsuario, String^ UserName, String^ UserLastName, String^ UserNumber);
 
+		static List<Sale^>^ QueryAllSale();
 
 		static int RegisterSale(Sale^);
 		static int RegisterSuggestions(Suggestions^ suggestions);

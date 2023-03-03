@@ -1760,6 +1760,50 @@ User^ ProjectPersistance::Persistance::QueryUserRecover(String^ UserDNI, String^
     return user;
 }
 
+List<Sale^>^ ProjectPersistance::Persistance::QueryAllSale()
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    List<Sale^>^ list = gcnew List<Sale^>();
+    try {
+        /* 1er paso: Se obtiene la conexión */
+        conn = GetConnection();
+
+        /* 2do paso: Se prepara la sentencia */
+        comm = gcnew SqlCommand("dbo.usp_QueryAllSale", conn);
+        comm->CommandType = System::Data::CommandType::StoredProcedure;
+        comm->Prepare();
+
+        /* 3er paso: Se ejecuta la sentencia */
+        reader = comm->ExecuteReader();
+
+        /* 4to paso: Se procesan los resultados */
+        while (reader->Read()) {
+            Sale^ s = gcnew Sale();
+            s->Id = Int32::Parse(reader["id"]->ToString());
+            s->Total = Double::Parse(reader["total"]->ToString());
+            DateTime^ TxtDate = safe_cast<DateTime^>(reader["transaction_date"]);
+            s->TxtDate = TxtDate->ToString("dd/MM/yyyy", CultureInfo::InvariantCulture);
+            s->Status = reader["id"]->ToString()[0];
+            s->Fecha = reader["Fecha"]->ToString();
+            s->Client_Info = QueryClient_InfotById(Int32::Parse(reader["Client_id"]->ToString()));
+            s->TableDetail = QueryTableDetailtById(Int32::Parse(reader["Table_id"]->ToString()));
+            s->User = QueryUserById(Int32::Parse(reader["Usuario_id"]->ToString()));
+            list->Add(s);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return list;
+}
+
 int ProjectPersistance::Persistance::RegisterSale(Sale^ sale)
 {
     SqlConnection^ conn;

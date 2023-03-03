@@ -472,9 +472,14 @@ private: System::Void ProyectMainForm_Load(System::Object^ sender, System::Event
 	   void MyRun(){ 
 		   
 		   while (true) {
-			   myThread->Sleep(1000);
-			   Invoke(gcnew MyDelegate(this, &ProyectMainForm::UpdateTitle),
-				   DateTime::Now.ToString("dd/MM/yyyy hh:mm:ss"));
+			   try {
+				   myThread->Sleep(1000);
+				   Invoke(gcnew MyDelegate(this, &ProyectMainForm::UpdateTitle),
+					   DateTime::Now.ToString("dd/MM/yyyy hh:mm:ss"));
+			   }
+			   catch (Exception^ ex) {
+				   return;
+			   }
 		   }
 	   }
 	   void UpdateTitle(String^ new_title) {

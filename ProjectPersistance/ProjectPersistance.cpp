@@ -1284,6 +1284,72 @@ Suggestions^ ProjectPersistance::Persistance::QuerySuggestionsById(int Suggestio
     }
     return suggestions;
 }
+Sale^ ProjectPersistance::Persistance::QueryAllSaleById(int SaleId)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    Sale^ sale;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM SALE WHERE id=" + SaleId, conn);
+        //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        if (reader->Read()) {
+            Sale^ p = gcnew Sale();
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->TxtDate = reader["Transaction_date"]->ToString();
+            p->Total = Convert::ToDouble(reader["Total"]->ToString());
+            p->Fecha = reader["Fecha"]->ToString();
+            p->Client_Info = QueryClient_InfotById(Convert::ToInt32(reader["Client_id"]->ToString()));
+            p->User = QueryUserById(Convert::ToInt32(reader["Usuario_id"]->ToString()));
+            p->TableDetail = QueryTableDetailtById(Convert::ToInt32(reader["Table_id"]->ToString()));
+            p->Estado = reader["Estado"]->ToString();
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            sale = p;
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return sale;
+}
+int ProjectPersistance::Persistance::SuggestionsChangeEstado(String^ estado, int Id)
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int result;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        //Paso 2: Se prepara la sentencia
+
+        comm = gcnew SqlCommand("UPDATE SUGGESTIONS "
+            + "SET Estado ='" + estado + "'WHERE Id = " + Id, conn);
+
+        //Paso 3: Se ejecuta la sentencia
+        result = comm->ExecuteNonQuery();
+
+        //Paso 4: Se procesan los resultados (No aplica)    
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    return result;
+}
 User^ ProjectPersistance::Persistance::QueryUserById(int UserId)
 {
     SqlConnection^ conn;
@@ -2000,5 +2066,10 @@ int ProjectPersistance::Persistance::SaledetailChangeEstado(int Id) {
     }
     return result;
 }
+
+
+
+
+
 
 

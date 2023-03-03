@@ -65,6 +65,10 @@ namespace ProjectPersistance {
 		static int SaledetailChangeEstado(int Id);
 		static SaleDetail^ QueryAllSaleDetailById(int SaleDetailId);
 		static Suggestions^ QuerySuggestionsById(int SuggestionsId);
+
+		static Sale^ QueryAllSaleById(int SaleId);
+
+		static int SuggestionsChangeEstado(String^ estado, int Id);
 	};
 	
 }

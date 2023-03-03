@@ -59,6 +59,9 @@ namespace ProjectPersistance {
 
 		static int RegisterSale(Sale^);
 		static int RegisterSuggestions(Suggestions^ suggestions);
+		static List<SaleDetail^>^ QueryAllSaleDetailsNp();
+
+		static int SaledetailChangeEstado(int Id);
 
 	};
 }

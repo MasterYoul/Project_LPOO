@@ -38,7 +38,15 @@ namespace ProyectView {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Button^ btnPedidos;
+	protected:
 	private: System::Windows::Forms::DataGridView^ dataGridPedidos;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ IdSaleDetail;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ QuantitySaleDetail;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsSaleDetail;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Estado;
+	private: System::Windows::Forms::DataGridViewCheckBoxColumn^ checkBoxColumn;
+
 	protected:
 
 
@@ -46,12 +54,20 @@ namespace ProyectView {
 
 
 
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ IdSaleDetail;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ QuantitySaleDetail;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MealsSaleDetail;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Estado;
-	private: System::Windows::Forms::Button^ btnReady;
-	private: System::Windows::Forms::Button^ button1;
+
+	protected:
+
+
+
+
+
+
+
+
+
+
+
+
 
 	private: System::ComponentModel::IContainer^ components;
 
@@ -84,31 +100,42 @@ namespace ProyectView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->btnPedidos = (gcnew System::Windows::Forms::Button());
 			this->dataGridPedidos = (gcnew System::Windows::Forms::DataGridView());
 			this->IdSaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->QuantitySaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->MealsSaleDetail = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Estado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->btnReady = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->checkBoxColumn = (gcnew System::Windows::Forms::DataGridViewCheckBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridPedidos))->BeginInit();
 			this->SuspendLayout();
+			// 
+			// btnPedidos
+			// 
+			this->btnPedidos->Location = System::Drawing::Point(351, 22);
+			this->btnPedidos->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnPedidos->Name = L"btnPedidos";
+			this->btnPedidos->Size = System::Drawing::Size(154, 34);
+			this->btnPedidos->TabIndex = 4;
+			this->btnPedidos->Text = L"Pedidos";
+			this->btnPedidos->UseVisualStyleBackColor = true;
+			this->btnPedidos->Click += gcnew System::EventHandler(this, &PedidosForm::btnPedidos_Click);
 			// 
 			// dataGridPedidos
 			// 
 			this->dataGridPedidos->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridPedidos->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+			this->dataGridPedidos->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->IdSaleDetail,
-					this->QuantitySaleDetail, this->MealsSaleDetail, this->Estado
+					this->QuantitySaleDetail, this->MealsSaleDetail, this->Estado, this->checkBoxColumn
 			});
-			this->dataGridPedidos->Location = System::Drawing::Point(12, 90);
+			this->dataGridPedidos->Location = System::Drawing::Point(40, 81);
 			this->dataGridPedidos->Name = L"dataGridPedidos";
 			this->dataGridPedidos->RowHeadersWidth = 51;
 			this->dataGridPedidos->RowTemplate->Height = 24;
-			this->dataGridPedidos->Size = System::Drawing::Size(689, 543);
-			this->dataGridPedidos->TabIndex = 0;
-			this->dataGridPedidos->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PedidosForm::dataGridPedidos_CellClick);
+			this->dataGridPedidos->Size = System::Drawing::Size(906, 543);
+			this->dataGridPedidos->TabIndex = 3;
 			this->dataGridPedidos->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PedidosForm::dataGridPedidos_CellContentClick);
+			this->dataGridPedidos->CellValueChanged += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PedidosForm::dataGridPedidos_CellValueChanged);
 			// 
 			// IdSaleDetail
 			// 
@@ -138,39 +165,22 @@ namespace ProyectView {
 			this->Estado->Name = L"Estado";
 			this->Estado->Width = 125;
 			// 
-			// btnReady
+			// checkBoxColumn
 			// 
-			this->btnReady->Location = System::Drawing::Point(840, 243);
-			this->btnReady->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->btnReady->Name = L"btnReady";
-			this->btnReady->Size = System::Drawing::Size(154, 34);
-			this->btnReady->TabIndex = 2;
-			this->btnReady->Text = L"Listo";
-			this->btnReady->UseVisualStyleBackColor = true;
-			this->btnReady->Click += gcnew System::EventHandler(this, &PedidosForm::btnReady_Click);
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(289, 33);
-			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(154, 34);
-			this->button1->TabIndex = 3;
-			this->button1->Text = L"Listo";
-			this->button1->UseVisualStyleBackColor = true;
+			this->checkBoxColumn->HeaderText = L"CheckBox";
+			this->checkBoxColumn->MinimumWidth = 6;
+			this->checkBoxColumn->Name = L"checkBoxColumn";
+			this->checkBoxColumn->Width = 125;
 			// 
 			// PedidosForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1433, 708);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->btnReady);
+			this->ClientSize = System::Drawing::Size(1167, 708);
+			this->Controls->Add(this->btnPedidos);
 			this->Controls->Add(this->dataGridPedidos);
 			this->Name = L"PedidosForm";
 			this->Text = L"Lista de pedidos";
-			this->Load += gcnew System::EventHandler(this, &PedidosForm::PedidosForm_Load);
-			this->Shown += gcnew System::EventHandler(this, &PedidosForm::PedidosForm_Shown);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridPedidos))->EndInit();
 			this->ResumeLayout(false);
 
@@ -178,74 +188,43 @@ namespace ProyectView {
 #pragma endregion
 		
 	
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	/*
-	MessageBox::Show("¿Seguro que quiere Actualizar?");
-	MessageBoxButtons botones = MessageBoxButtons::OKCancel;
-	
-	if ( botones == DialogResult.OK) {
-
-	}*/
-
-
-	//Búsqueda de productos por el nombre o descripción ingresado por el usuario
-	List<SaleDetail^>^ saledetaillist = Controller::QueryAllSaleDetail();
-	List<SaleDetail^>^ saledetaillis=Controller::ChangeQueryAllSaleDetail();
-	//Se borran los datos del grid.
-	//dataGridPedidos->Rows->Clear();
-	for (int i = 0; i < saledetaillist->Count; i++) {
-		dataGridPedidos->Rows->Add(gcnew array<String^> {
-			"" + saledetaillist[i]->Id,
-				Convert::ToString(saledetaillist[i]->Quantity),
-				saledetaillist[i]->Meals->Name,
-				saledetaillist[i]->Estado
-		});
+	private: System::Void btnPedidos_Click(System::Object^ sender, System::EventArgs^ e) {
+		RefreshdatadataGridMeals();
 	}
-}
-private: System::Void btnReady_Click(System::Object^ sender, System::EventArgs^ e) {
-	try {
-		int selectedRowIndex = dataGridPedidos->SelectedCells[0]->RowIndex;
-		int SaleDetailId = Convert::ToInt32(dataGridPedidos->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
-		
-		if (MessageBox::Show(
-			"Ya está listo este pedido?",
-			"Confirmacion", MessageBoxButtons::YesNo,
-			MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
-		{
-			List<SaleDetail^>^ saledetaillist = Controller::QueryAllSaleDetail();
-			for (int i = 0; i < saledetaillist->Count; i++) {
-				if (saledetaillist[i]->Id == SaleDetailId) {
-					saledetaillist[i]->Estado->Equals("preparado");
-				}
-				
-				}
-			}
-			
-		}
-	catch (Exception^ ex) {
-		throw ex;
-	}
-	finally {
-		btnReady->Enabled = false;
-		
-	}
-
-}
+		   Void RefreshdatadataGridMeals() {
+			   List <SaleDetail^>^ SaleDetailList = Controller::QueryAllSaleDetailsNp();
+			   dataGridPedidos->Rows->Clear();
+			   if (SaleDetailList != nullptr)
+				   for (int i = 0; i < SaleDetailList->Count; i++) {
+					   dataGridPedidos->Rows->Add(gcnew array<String^> {
+						   "" + SaleDetailList[i]->Id,
+							   "" + SaleDetailList[i]->Quantity,
+							   SaleDetailList[i]->Meals->Name,
+							   SaleDetailList[i]->Estado,
+					   });
+				   }
+		   }
 private: System::Void dataGridPedidos_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	
+	if (dataGridPedidos->Columns[e->ColumnIndex]->Name == "checkBoxColumn" && e->RowIndex >= 0) {
+		DataGridViewCheckBoxCell^ cell = dynamic_cast<DataGridViewCheckBoxCell^>(dataGridPedidos->Rows[e->RowIndex]->Cells[e->ColumnIndex]);
+		bool isChecked = Convert::ToBoolean(cell->Value);
+		// hacer algo con isChecked
+		if (isChecked) {
+			Controller::SaledetailChangeEstado(Int32::Parse(dataGridPedidos->Rows[e->RowIndex]->Cells[0]->Value->ToString()));
+		}
+	}
 }
-
-private: System::Void PedidosForm_Shown(System::Object^ sender, System::EventArgs^ e) {
-	btnReady->Enabled = false;
-}
-private: System::Void dataGridPedidos_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-	btnReady->Enabled = true;
-	int selectedRowIndex = dataGridPedidos->SelectedCells[0]->RowIndex;
-	int SaleDetailId = Convert::ToInt32(dataGridPedidos->Rows[selectedRowIndex]->Cells[0]->Value->ToString());
-	List<SaleDetail^>^ SaleDetailList = Controller::QuerySingleSaleDetail(SaleDetailId);
-}
-private: System::Void PedidosForm_Load(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void dataGridPedidos_CellValueChanged(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	if (dataGridPedidos->Columns[e->ColumnIndex]->Name == "checkBoxColumn") {
+		DataGridViewCheckBoxCell^ checkBoxCell = dynamic_cast<DataGridViewCheckBoxCell^>(dataGridPedidos->Rows[e->RowIndex]->Cells[e->ColumnIndex]);
+		if (checkBoxCell->Value != nullptr && (bool)checkBoxCell->Value) {
+			Controller::SaledetailChangeEstado(Int32::Parse(dataGridPedidos->Rows[e->RowIndex]->Cells[0]->Value->ToString()));
+		}
+		else {
+			Console::WriteLine("CheckBox is unchecked");
+		}
+	}
 }
 };
 }

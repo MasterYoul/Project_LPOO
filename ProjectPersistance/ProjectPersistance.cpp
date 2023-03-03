@@ -1556,11 +1556,7 @@ User^ ProjectPersistance::Persistance::Login(String^ Username, String^ Password)
                 //if (!DBNull::Value->Equals(reader["Photo"])) p->Foto = (array<Byte>^)reader["Photo"];
                 user = p;
             }
-
-
         }
-
-
     }
     catch (Exception^ ex) {
         throw ex;
@@ -1813,7 +1809,68 @@ int ProjectPersistance::Persistance::RegisterSuggestions(Suggestions^ suggestion
     return output_id;
 }
 
+List<SaleDetail^>^ ProjectPersistance::Persistance::QueryAllSaleDetailsNp()
+{
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    List<SaleDetail^>^ SaleDetailList = gcnew List<SaleDetail^>();
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM SALE_DETAIL WHERE " + " Estado LIKE '%no preparado%'", conn);
+        //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        while (reader->Read()) {
+            SaleDetail^ p = gcnew SaleDetail();
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->Meals =QueryMealsById( Convert::ToInt32(reader["Meals_id"]->ToString()));
+            p->Quantity = Convert::ToInt32( reader["Quantity"]->ToString());
+            p->Estado = reader["Estado"]->ToString();
+            
+            SaleDetailList->Add(p);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return SaleDetailList;
+}
 
 
+int ProjectPersistance::Persistance::SaledetailChangeEstado(int Id) {
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    int result;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("UPDATE SALE_DETAIL "
+            + "SET Estado = 'preparado' "
+            + "WHERE id = " + Id, conn);
+
+        //Paso 3: Se ejecuta la sentencia
+        result = comm->ExecuteNonQuery();
+
+        //Paso 4: Se procesan los resultados (No aplica)    
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (conn != nullptr) conn->Close();
+    }
+    return result;
+}
 
 

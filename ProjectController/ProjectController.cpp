@@ -813,6 +813,15 @@ List<Sale^>^ ProjectController::Controller::QueryAllSale()
     return SaleList;
 }
 
+List<SaleDetail^>^ ProjectController::Controller::QueryAllSaleDetailsNp()
+{
+    return Persistance::QueryAllSaleDetailsNp();
+}
+int ProjectController::Controller::SaledetailChangeEstado(int ID) {
+    return Persistance::SaledetailChangeEstado(ID);
+}
+
+
 int ProjectController::Controller::QueryLastSaleId()
 {
     SaleList = (List<Sale^>^)Persistance::LoadBinaryData("Sale.bin");

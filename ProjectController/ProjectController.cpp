@@ -641,6 +641,10 @@ SaleDetail^ ProjectController::Controller::QueryAllSaleDetailById(int SaleDetail
     return Persistance::QueryAllSaleDetailById (SaleDetailId);
 }
 
+Suggestions^ ProjectController::Controller::QuerySuggestionsById(int suggestionsId) {
+    return Persistance::QuerySuggestionsById(suggestionsId);
+}
+
 User^ ProjectController::Controller::QueryUsertById(int UserId)
 {
    /* UserList = (List<User^>^)Persistance::LoadData("User.txt");

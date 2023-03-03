@@ -19,6 +19,9 @@ namespace ProyectView {
 	/// </summary>
 	public ref class SearchModifySuggestionForm : public System::Windows::Forms::Form
 	{
+	public:
+		property char Type;
+		property Form^ modifysugesstionForm;
 	private:
 		Client_Info^ client_Info;
 	public:
@@ -28,6 +31,7 @@ namespace ProyectView {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			Type = 'M';
 		}
 
 	protected:
@@ -53,11 +57,11 @@ namespace ProyectView {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Label^ label1;
@@ -65,9 +69,17 @@ namespace ProyectView {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::TextBox^ textBox5;
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::TextBox^ textBox6;
-	private: System::Windows::Forms::Label^ label9;
+
+
 	private: System::Windows::Forms::Label^ lblClientData;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ a;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
+	private: System::Windows::Forms::Button^ button5;
 
 	protected:
 
@@ -98,9 +110,11 @@ namespace ProyectView {
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->a = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -108,9 +122,8 @@ namespace ProyectView {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->lblClientData = (gcnew System::Windows::Forms::Label());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -183,7 +196,7 @@ namespace ProyectView {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(34, 373);
+			this->textBox2->Location = System::Drawing::Point(33, 444);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(216, 22);
 			this->textBox2->TabIndex = 55;
@@ -193,7 +206,7 @@ namespace ProyectView {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(31, 341);
+			this->label2->Location = System::Drawing::Point(30, 412);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(161, 20);
 			this->label2->TabIndex = 54;
@@ -212,9 +225,9 @@ namespace ProyectView {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
 				this->Column1,
-					this->Column2, this->Column3, this->Column4, this->Column5
+					this->Column2, this->a, this->Column3, this->Column4, this->Column5, this->Column6
 			});
 			this->dataGridView1->Location = System::Drawing::Point(423, 64);
 			this->dataGridView1->Name = L"dataGridView1";
@@ -232,31 +245,45 @@ namespace ProyectView {
 			// 
 			// Column2
 			// 
-			this->Column2->HeaderText = L"DNI:";
+			this->Column2->HeaderText = L"Cliente";
 			this->Column2->MinimumWidth = 6;
 			this->Column2->Name = L"Column2";
 			this->Column2->Width = 125;
 			// 
+			// a
+			// 
+			this->a->HeaderText = L"Pt. Atencion";
+			this->a->MinimumWidth = 6;
+			this->a->Name = L"a";
+			this->a->Width = 125;
+			// 
 			// Column3
 			// 
-			this->Column3->HeaderText = L"RUC:";
+			this->Column3->HeaderText = L"Pt. Comida";
 			this->Column3->MinimumWidth = 6;
 			this->Column3->Name = L"Column3";
 			this->Column3->Width = 125;
 			// 
 			// Column4
 			// 
-			this->Column4->HeaderText = L"TIPO";
+			this->Column4->HeaderText = L"Pt. Local";
 			this->Column4->MinimumWidth = 6;
 			this->Column4->Name = L"Column4";
 			this->Column4->Width = 125;
 			// 
 			// Column5
 			// 
-			this->Column5->HeaderText = L"VISITAS";
+			this->Column5->HeaderText = L"Comentario";
 			this->Column5->MinimumWidth = 6;
 			this->Column5->Name = L"Column5";
-			this->Column5->Width = 75;
+			this->Column5->Width = 125;
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Estado";
+			this->Column6->MinimumWidth = 6;
+			this->Column6->Name = L"Column6";
+			this->Column6->Width = 125;
 			// 
 			// label7
 			// 
@@ -271,7 +298,7 @@ namespace ProyectView {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(35, 286);
+			this->textBox1->Location = System::Drawing::Point(33, 269);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(216, 22);
 			this->textBox1->TabIndex = 68;
@@ -281,7 +308,7 @@ namespace ProyectView {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(32, 244);
+			this->label1->Location = System::Drawing::Point(32, 232);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(31, 20);
 			this->label1->TabIndex = 67;
@@ -289,7 +316,7 @@ namespace ProyectView {
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(35, 458);
+			this->textBox3->Location = System::Drawing::Point(34, 529);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(216, 22);
 			this->textBox3->TabIndex = 70;
@@ -299,7 +326,7 @@ namespace ProyectView {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(32, 426);
+			this->label3->Location = System::Drawing::Point(31, 497);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(152, 20);
 			this->label3->TabIndex = 69;
@@ -307,7 +334,7 @@ namespace ProyectView {
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(35, 529);
+			this->textBox5->Location = System::Drawing::Point(34, 600);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(216, 22);
 			this->textBox5->TabIndex = 72;
@@ -317,29 +344,11 @@ namespace ProyectView {
 			this->label8->AutoSize = true;
 			this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label8->Location = System::Drawing::Point(32, 497);
+			this->label8->Location = System::Drawing::Point(31, 568);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(137, 20);
 			this->label8->TabIndex = 71;
 			this->label8->Text = L"Puntaje del local:";
-			// 
-			// textBox6
-			// 
-			this->textBox6->Location = System::Drawing::Point(34, 605);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(216, 22);
-			this->textBox6->TabIndex = 74;
-			// 
-			// label9
-			// 
-			this->label9->AutoSize = true;
-			this->label9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label9->Location = System::Drawing::Point(31, 573);
-			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(104, 20);
-			this->label9->TabIndex = 73;
-			this->label9->Text = L"Descripción:";
 			// 
 			// lblClientData
 			// 
@@ -350,14 +359,23 @@ namespace ProyectView {
 			this->lblClientData->Text = L"Sin cliente";
 			this->lblClientData->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(33, 320);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(100, 43);
+			this->button5->TabIndex = 76;
+			this->button5->Text = L"BUSCAR";
+			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &SearchModifySuggestionForm::button5_Click);
+			// 
 			// SearchModifySuggestionForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1433, 729);
+			this->Controls->Add(this->button5);
 			this->Controls->Add(this->lblClientData);
-			this->Controls->Add(this->textBox6);
-			this->Controls->Add(this->label9);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->textBox3);
@@ -385,6 +403,8 @@ namespace ProyectView {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
 	}
 
 
@@ -401,6 +421,23 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 	client_infoform->sugesstionForm = this;
 
 	client_infoform->ShowDialog();
+}
+
+
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	//Búsqueda de mesa por el código ingresado por el usuario
+	Suggestions^ p = Controller::QuerySuggestionsById(Convert::ToInt32(textBox1->Text->Trim()));
+	//Se borran los datos del grid.
+	dataGridView1->Rows->Clear();
+	dataGridView1->Rows->Add(gcnew array<String^> {
+		"" + p->Id,
+			p->ClientName,
+			Convert::ToString(p->AttentionScore),
+			Convert::ToString(p->FoodScore),
+			Convert::ToString(p->VenueScore),
+			p->Comments,
+			p->Estado
+	});
 }
 };
 	

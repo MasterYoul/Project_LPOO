@@ -89,6 +89,8 @@ namespace ProjectController {
 		static int DeleteTableDetail(int TableDetailId);
 		static SaleDetail^ QueryAllSaleDetailById(int SaleDetailId);
 
+		static Suggestions^ QuerySuggestionsById(int suggestionsId);
+
 		static int AddUser(User^ User);
 		static User^ QueryUserbyDni(String^ Dni);
 		static User^ QueryUsertById(int UserId);

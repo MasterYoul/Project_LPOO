@@ -1,4 +1,5 @@
 #pragma once
+#include"SearchModifySuggestionForm.h"
 
 namespace ProyectView {
 
@@ -82,6 +83,7 @@ namespace ProyectView {
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"+ SUGERENCIA";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ModifySuggestionsForm::button1_Click);
 			// 
 			// textBox1
 			// 
@@ -139,5 +141,12 @@ namespace ProyectView {
 
 		}
 #pragma endregion
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		SearchModifySuggestionForm^ searchModifySuggestionForm = gcnew SearchModifySuggestionForm();
+		searchModifySuggestionForm->Type = 'S';
+		searchModifySuggestionForm->modifysugesstionForm = this;
+
+		searchModifySuggestionForm->ShowDialog();
+	}
+};
 }

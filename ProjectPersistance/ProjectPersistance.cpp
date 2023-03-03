@@ -1241,6 +1241,49 @@ SaleDetail^ ProjectPersistance::Persistance::QueryAllSaleDetailById(int SaleDeta
     }
     return saleDetail;
 }
+Suggestions^ ProjectPersistance::Persistance::QuerySuggestionsById(int SuggestionsId) {
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    Suggestions^ suggestions;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM SUGGESTIONS WHERE id=" + SuggestionsId /* +
+            " AND status = 'A'"*/, conn);
+            //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        if (reader->Read()) {
+            Suggestions^ p = gcnew Suggestions();
+
+          
+
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->ClientName = reader["ClientName"]->ToString();
+            p->AttentionScore = reader["AttentionScore"]->ToString();
+            p->FoodScore = reader["FoodScore"]->ToString();
+            p->VenueScore = reader["VenueScore"]->ToString();
+            p->Comments = reader["Comments"]->ToString();
+            p->Client_Info = QueryClient_InfotById(Convert::ToInt32(reader["Client_id"]->ToString()));
+            p->Estado = reader["Estado"]->ToString();
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+
+
+            suggestions = p;
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return suggestions;
+}
 User^ ProjectPersistance::Persistance::QueryUserById(int UserId)
 {
     SqlConnection^ conn;

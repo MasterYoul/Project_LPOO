@@ -8,6 +8,10 @@ namespace ProyectView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace ProjectModel;
+	using namespace ProjectController;
+	using namespace System::Collections::Generic;
+
 
 	/// <summary>
 	/// Resumen de SearchVentasForm
@@ -142,7 +146,7 @@ namespace ProyectView {
 			// 
 			this->dateTimePicker1->Location = System::Drawing::Point(67, 314);
 			this->dateTimePicker1->Name = L"dateTimePicker1";
-			this->dateTimePicker1->Size = System::Drawing::Size(200, 22);
+			this->dateTimePicker1->Size = System::Drawing::Size(272, 22);
 			this->dateTimePicker1->TabIndex = 100;
 			// 
 			// label6
@@ -358,6 +362,33 @@ namespace ProyectView {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		List <Sale^>^ SaleList = gcnew List<Sale^>();
+		List <Sale^>^ returnedDetalle = gcnew List<Sale^>();
+		SaleList = ProjectController::Controller::QueryAllSale();
+		int j = 0;
+		dateTimePicker1->Text = DateTime::Now.ToString("dd/MM/yyyy");
+		for (int i = 0; i < SaleList->Count; i++)
+		{
+			if (SaleList[i]->TxtDate->Equals("dateTimePicker1")) {
+				returnedDetalle->Add(SaleList[i]);
+				
+			}
+			i++;
+		}
+
+		
+		dataGridView1->Rows->Clear();
+		if (returnedDetalle != nullptr)
+			for (int i = 0; i < returnedDetalle->Count; i++) {
+				dataGridView1->Rows->Add(gcnew array<String^> {
+					"" + returnedDetalle[i]->Id,
+						returnedDetalle[i]->TxtDate,
+						returnedDetalle[i]->Client_Info->Name,
+						returnedDetalle[i]->User->Name,
+						returnedDetalle[i]->Fecha,
+						"" + returnedDetalle[i]->Total
+				});
+			}
 	}
 };
 }

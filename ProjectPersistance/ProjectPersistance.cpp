@@ -1846,17 +1846,17 @@ List<Sale^>^ ProjectPersistance::Persistance::QueryAllSale()
 
         /* 4to paso: Se procesan los resultados */
         while (reader->Read()) {
-            Sale^ s = gcnew Sale();
-            s->Id = Int32::Parse(reader["id"]->ToString());
-            s->Total = Double::Parse(reader["total"]->ToString());
-            DateTime^ TxtDate = safe_cast<DateTime^>(reader["transaction_date"]);
-            s->TxtDate = TxtDate->ToString("dd/MM/yyyy", CultureInfo::InvariantCulture);
-            s->Status = reader["id"]->ToString()[0];
-            s->Fecha = reader["Fecha"]->ToString();
-            s->Client_Info = QueryClient_InfotById(Int32::Parse(reader["Client_id"]->ToString()));
-            s->TableDetail = QueryTableDetailtById(Int32::Parse(reader["Table_id"]->ToString()));
-            s->User = QueryUserById(Int32::Parse(reader["Usuario_id"]->ToString()));
-            list->Add(s);
+            Sale^ p = gcnew Sale();
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->TxtDate = reader["Transaction_date"]->ToString();
+            p->Total = Convert::ToDouble(reader["Total"]->ToString());
+            p->Fecha = reader["Fecha"]->ToString();
+            p->Client_Info = QueryClient_InfotById(Convert::ToInt32(reader["Client_id"]->ToString()));
+            p->User = QueryUserById(Convert::ToInt32(reader["Usuario_id"]->ToString()));
+            p->TableDetail = QueryTableDetailtById(Convert::ToInt32(reader["Table_id"]->ToString()));
+            p->Estado = reader["Estado"]->ToString();
+            if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
+            list->Add(p);
         }
     }
     catch (Exception^ ex) {

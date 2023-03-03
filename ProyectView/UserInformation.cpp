@@ -40,10 +40,9 @@ System::Void ProyectView::UserInformation::buttonModifyUser_Click(System::Object
 		User^ user = gcnew User();
 
 
-
 		user->Id = Convert::ToInt32(ProyectMainForm::user->Id);
 		user->Username = UserUsuario->Text;
-		user->Password = UserPassword->Text;
+		
 		user->Name = ProyectMainForm::user->Name;
 		user->LastName = ProyectMainForm::user->LastName;
 		user->Salary = Convert::ToDouble(ProyectMainForm::user->Salary);
@@ -56,6 +55,19 @@ System::Void ProyectView::UserInformation::buttonModifyUser_Click(System::Object
 		user->DocNumber = ProyectMainForm::user->DocNumber;
 		user->State = ProyectMainForm::user->State;
 		user->Status = ProyectMainForm::user->Status;
+
+		if (textBox3->Text->Trim() != "" || textBox2->Text->Trim() !="" ) {
+			if (textBox3->Text!= textBox2->Text) {
+				MessageBox::Show("Las nuevas contraseñas deben ser iguales");
+			}
+			else {
+				user->Password = textBox3->Text;
+			}
+
+		}
+		else {
+			user->Password = UserPassword->Text;
+		}
 
 
 

@@ -1553,7 +1553,7 @@ User^ ProjectPersistance::Persistance::Login(String^ Username, String^ Password)
 
                 if (!DBNull::Value->Equals(reader["Gender"])) p->Gender = reader["Gender"]->ToString()[0];
                 if (!DBNull::Value->Equals(reader["Status"])) p->Status = reader["Status"]->ToString()[0];
-                //if (!DBNull::Value->Equals(reader["Photo"])) p->Foto = (array<Byte>^)reader["Photo"];
+                if (!DBNull::Value->Equals(reader["Photo"])) p->Foto = (array<Byte>^)reader["Photo"];
                 user = p;
             }
         }

@@ -235,6 +235,7 @@ namespace ProyectView {
 			this->dataGridView1->RowTemplate->Height = 24;
 			this->dataGridView1->Size = System::Drawing::Size(998, 638);
 			this->dataGridView1->TabIndex = 50;
+			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SearchModifySuggestionForm::dataGridView1_CellClick);
 			// 
 			// Column1
 			// 
@@ -439,6 +440,7 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 			p->Estado
 	});
 }
+private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 };
 	
 }

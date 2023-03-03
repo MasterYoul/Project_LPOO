@@ -36,6 +36,8 @@ namespace ProyectView {
 	/// </summary>
 	public ref class ProyectMainForm : public System::Windows::Forms::Form
 	{
+	private: 
+		Thread^ myThread;
 	public:
 		static User^ user;
 		ProyectMainForm(void)
@@ -459,7 +461,26 @@ private: System::Void platosToolStripMenuItem_Click(System::Object^ sender, Syst
 private: System::Void ProyectMainForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	LoginForm^ loginForm = gcnew LoginForm();
 	loginForm->ShowDialog();
+
+	myThread = gcnew Thread(gcnew ThreadStart(this, &ProyectMainForm::MyRun));
+	myThread->IsBackground = true;
+	myThread->Start();
+
 }
+	   
+	   delegate void MyDelegate(String^);
+	   void MyRun(){ 
+		   
+		   while (true) {
+			   myThread->Sleep(1000);
+			   Invoke(gcnew MyDelegate(this, &ProyectMainForm::UpdateTitle),
+				   DateTime::Now.ToString("dd/MM/yyyy hh:mm:ss"));
+		   }
+	   }
+	   void UpdateTitle(String^ new_title) {
+		   this->Text = new_title;
+	   }
+
 private: System::Void empleadosToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	
 

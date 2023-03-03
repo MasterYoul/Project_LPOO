@@ -8,7 +8,9 @@ namespace ProyectView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	using namespace ProjectModel;
+	using namespace ProjectController;
+	using namespace System::Collections::Generic;
 	/// <summary>
 	/// Resumen de UserInformation
 	/// </summary>

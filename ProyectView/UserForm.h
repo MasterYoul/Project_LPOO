@@ -11,12 +11,14 @@ namespace ProyectView {
 	using namespace ProjectModel;
 	using namespace ProjectController;
 	using namespace System::Collections::Generic;
+	using namespace Threading;
 
 	/// <summary>
 	/// Resumen de UserForm
 	/// </summary>
 	public ref class UserForm : public System::Windows::Forms::Form
 	{
+		Thread^ myThread;
 	public:
 		UserForm(void)
 		{
@@ -24,6 +26,24 @@ namespace ProyectView {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			myThread = gcnew Thread(gcnew ThreadStart(this, &UserForm::MyRun));
+			myThread->IsBackground = true;
+			myThread->Start();
+		}
+		delegate void MyDelegate();
+
+		void MyRun() {
+
+			while (true) {
+				try {
+					myThread->Sleep(10 * 1000);
+					Invoke(gcnew MyDelegate(this, &UserForm::RefreshdataGridViewUser));
+				}
+				catch (Exception^ ex) {
+					MessageBox::Show(ex->Message);
+					return;
+				}
+			}
 		}
 
 	protected:

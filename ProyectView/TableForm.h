@@ -18,6 +18,8 @@ namespace ProyectView {
 	/// </summary>
 	public ref class TableForm : public System::Windows::Forms::Form
 	{
+	private: 
+		Thread^ myThread;
 	public:
 		TableForm(void)
 		{
@@ -25,8 +27,25 @@ namespace ProyectView {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			myThread = gcnew Thread(gcnew ThreadStart(this, &TableForm::MyRun));
+			myThread->IsBackground = true;
+			myThread->Start();
 		}
+		delegate void MyDelegate();
 
+		void MyRun() {
+
+			while (true) {
+				try {
+					myThread->Sleep(10 * 1000);
+					Invoke(gcnew MyDelegate(this, &TableForm::RefreshdatadataGridTable));
+				}
+				catch (Exception^ ex) {
+					MessageBox::Show(ex->Message);
+					return;
+				}
+			}
+		}
 	protected:
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.

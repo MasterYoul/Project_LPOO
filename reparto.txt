@@ -12,9 +12,9 @@ LEONARDO:
 
 SAMID:
 
-1-- IMPLEMENTAR EL CHECKBOX
-2-- Implemntar suggestions
-3-- Elimiar plato sale
+1-- IMPLEMENTAR EL CHECKBOX // casi acabado y filtros
+2-- Implemntar suggestions // falta filtros
+3-- Elimiar plato sale // funciona
 
 GABRIELA:
 1-- Video explicando sobre el uso del programa

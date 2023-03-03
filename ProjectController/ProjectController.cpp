@@ -598,6 +598,8 @@ int ProjectController::Controller::DeleteTableDetail(int TableDetailId)
     return Persistance::DeleteTableDetail(TableDetailId);
 }
 
+
+
 List<TableDetail^>^ ProjectController::Controller::QueryTableDetailByFloorOrCapacity(int value)
 {
     TableDetailList = (List<TableDetail^>^)Persistance::LoadData("TableDetail.txt");
@@ -632,6 +634,11 @@ User^ ProjectController::Controller::QueryUserbyDni(String^ Dni)
             return UserList[i];
     return nullptr;*/
     return Persistance::QueryUserbyDni(Dni);
+}
+
+SaleDetail^ ProjectController::Controller::QueryAllSaleDetailById(int SaleDetailId)
+{
+    return Persistance::QueryAllSaleDetailById (SaleDetailId);
 }
 
 User^ ProjectController::Controller::QueryUsertById(int UserId)

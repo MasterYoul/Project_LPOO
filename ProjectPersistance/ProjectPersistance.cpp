@@ -801,6 +801,7 @@ int ProjectPersistance::Persistance::DeleteTableDetail(int TableDetailId)
     return result;
 }
 
+
 List<Client_Info^>^ ProjectPersistance::Persistance::QueryAllClient_Info()
 {
     SqlConnection^ conn;
@@ -1200,6 +1201,46 @@ List<TableDetail^>^ ProjectPersistance::Persistance::QueryAllTableDetail()
     return activeTablesList;
 }
 
+
+SaleDetail^ ProjectPersistance::Persistance::QueryAllSaleDetailById(int SaleDetailId) {
+    SqlConnection^ conn;
+    SqlCommand^ comm;
+    SqlDataReader^ reader;
+    SaleDetail^ saleDetail;
+    try {
+        //Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+        //Paso 2: Se prepara la sentencia
+        comm = gcnew SqlCommand("SELECT * FROM SALE_DETAIL WHERE id=" + SaleDetailId /* +
+            " AND status = 'A'"*/, conn);
+            //Paso 3: Se ejecuta la sentencia
+        reader = comm->ExecuteReader();
+        //Paso 4: Se procesan los resultados        
+        if (reader->Read()) {
+            SaleDetail^ p = gcnew SaleDetail  ();
+
+
+           
+            p->Id = Convert::ToInt32(reader["Id"]->ToString());
+            p->Meals = QueryMealsById(Convert::ToInt32(reader["Meals_id"]->ToString()));
+            p->Quantity = Convert::ToInt32(reader["Quantity"]->ToString());
+            p->Estado = reader["Estado"]->ToString();
+
+
+
+            saleDetail = p;
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Se cierran los objetos de conexión. Nunca se olviden del paso 5.
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return saleDetail;
+}
 User^ ProjectPersistance::Persistance::QueryUserById(int UserId)
 {
     SqlConnection^ conn;

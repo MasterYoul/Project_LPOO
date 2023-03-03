@@ -8,6 +8,9 @@ namespace ProyectView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace ProjectController;
+	using namespace ProjectModel;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de FiltrarPedidosForm
@@ -180,6 +183,7 @@ namespace ProyectView {
 			this->button4->TabIndex = 115;
 			this->button4->Text = L"BUSCAR";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &FiltrarPedidosForm::button4_Click);
 			// 
 			// label4
 			// 
@@ -310,5 +314,17 @@ namespace ProyectView {
 
 		}
 #pragma endregion
-	};
+	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+		//Búsqueda de mesa por el código ingresado por el usuario
+		SaleDetail^ p = Controller::QueryAllSaleDetailById(Convert::ToInt32(textBox1->Text->Trim()));
+		//Se borran los datos del grid.
+		dataGridPedidos->Rows->Clear();
+		dataGridPedidos->Rows->Add(gcnew array<String^> {
+			"" + p->Id,
+				Convert::ToString(p->Quantity),
+				p->Meals->Name,
+				p->Estado
+		});
+	}
+};
 }

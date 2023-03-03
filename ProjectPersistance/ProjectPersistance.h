@@ -62,7 +62,8 @@ namespace ProjectPersistance {
 		static List<SaleDetail^>^ QueryAllSaleDetailsNp();
 
 		static int SaledetailChangeEstado(int Id);
-
+		static SaleDetail^ QueryAllSaleDetailById(int SaleDetailId);
 	};
+	
 }
 

@@ -18,9 +18,12 @@ namespace ProyectView {
 	/// </summary>
 	public ref class Client_InfoForm : public System::Windows::Forms::Form
 	{
+	private:
+		Thread^ myThread;
 	public:
 		property char UseType;
 		property Form^ RefSaleForm;
+
 
 	public:
 		Client_InfoForm(void)
@@ -29,7 +32,24 @@ namespace ProyectView {
 			//
 			//TODO: agregar código de constructor aquí
 			//
-			UseType = 'M';
+			myThread = gcnew Thread(gcnew ThreadStart(this, &Client_InfoForm::MyRun));
+			myThread->IsBackground = true;
+			myThread->Start();
+		}
+		delegate void MyDelegate();
+
+		void MyRun() {
+
+			while (true) {
+				try {
+					myThread->Sleep(10 * 1000);
+					Invoke(gcnew MyDelegate(this, &Client_InfoForm::RefreshdataGridViewClient));
+				}
+				catch (Exception^ ex) {
+					MessageBox::Show(ex->Message);
+					return;
+				}
+			}
 		}
 
 	protected:

@@ -101,6 +101,9 @@
     <ClInclude Include="MostMealsGraphics.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="FiltrarPedidosForm.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProyectView.cpp">
@@ -185,6 +188,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="MostMealsGraphics.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="FiltrarPedidosForm.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

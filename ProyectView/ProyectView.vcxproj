@@ -134,6 +134,9 @@
     <ClInclude Include="Client_InfoForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="FiltrarPedidosForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -210,6 +213,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="ChatForm.cpp" />
     <ClCompile Include="Client_InfoForm.cpp" />
+    <ClCompile Include="FiltrarPedidosForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="MealsForm.cpp" />
     <ClCompile Include="MealsGraphicsForm.cpp" />
@@ -266,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Client_InfoForm.resx">
       <DependentUpon>Client_InfoForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FiltrarPedidosForm.resx">
+      <DependentUpon>FiltrarPedidosForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>

@@ -852,6 +852,11 @@ Void ProjectController::Controller::RegisterSale(Sale^ sale)
     }
 }
 
+int ProjectController::Controller::ChangeSuggestion(String^ Estado, int Id)
+{
+    return Persistance::SuggestionsChangeEstado(Estado, Id);
+}
+
 /*
 
 List<Sale^>^ ProjectController::Controller::QueryAllTotalSaleList(String^ date)

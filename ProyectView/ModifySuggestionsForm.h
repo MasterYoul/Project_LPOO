@@ -121,6 +121,7 @@ namespace ProyectView {
 			this->button2->TabIndex = 3;
 			this->button2->Text = L"RESUELTO";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ModifySuggestionsForm::button2_Click);
 			// 
 			// button3
 			// 
@@ -130,6 +131,7 @@ namespace ProyectView {
 			this->button3->TabIndex = 4;
 			this->button3->Text = L"PONER EN OBSERVACIÓN";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &ModifySuggestionsForm::button3_Click);
 			// 
 			// label1
 			// 
@@ -317,5 +319,25 @@ namespace ProyectView {
 			   
 		   }
 
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ Estado = "RESUELTO";
+	Controller:: ChangeSuggestion( Estado, Convert::ToInt32(label8->Text));
+	REFRESH();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ Estado = "OBSERVACION";
+	Controller::ChangeSuggestion(Estado, Convert::ToInt32(label8->Text));
+	REFRESH();
+}
+	   void REFRESH() {
+		   textBox1->Text = "";
+		   label16->Text = "";
+			 
+		   ptplato->Text = "";
+		   ptatencion->Text = "";
+		   ptlocal->Text = "";
+		   ptestado->Text = "";
+		   label8->Text = "";
+	   }
 };
 }

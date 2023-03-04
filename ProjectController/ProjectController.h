@@ -124,6 +124,7 @@ namespace ProjectController {
 		static int SaledetailChangeEstado(int ID);
 		static int QueryLastSaleId();
 		static Void RegisterSale(Sale^ sale);
+		static int   ChangeSuggestion(String^Estado, int Id);
 
 		//static List<Sale^>^ QueryAllTotalSaleList(String^ date);
 	};

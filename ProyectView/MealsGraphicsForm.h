@@ -43,11 +43,11 @@ namespace ProyectView {
 			}
 		}
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chartSales;
-	private: System::Windows::Forms::DateTimePicker^ dateTimeReport1;
 
 
 
-	private: System::Windows::Forms::Button^ button1;
+
+
 
 
 
@@ -75,8 +75,6 @@ namespace ProyectView {
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->chartSales = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			this->dateTimeReport1 = (gcnew System::Windows::Forms::DateTimePicker());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartSales))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -86,7 +84,7 @@ namespace ProyectView {
 			this->chartSales->ChartAreas->Add(chartArea1);
 			legend1->Name = L"Legend1";
 			this->chartSales->Legends->Add(legend1);
-			this->chartSales->Location = System::Drawing::Point(71, 151);
+			this->chartSales->Location = System::Drawing::Point(82, 134);
 			this->chartSales->Margin = System::Windows::Forms::Padding(4);
 			this->chartSales->Name = L"chartSales";
 			series1->ChartArea = L"ChartArea1";
@@ -97,34 +95,16 @@ namespace ProyectView {
 			this->chartSales->TabIndex = 0;
 			this->chartSales->Text = L"chart1";
 			// 
-			// dateTimeReport1
-			// 
-			this->dateTimeReport1->Location = System::Drawing::Point(71, 40);
-			this->dateTimeReport1->Name = L"dateTimeReport1";
-			this->dateTimeReport1->Size = System::Drawing::Size(290, 22);
-			this->dateTimeReport1->TabIndex = 2;
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(413, 40);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(129, 32);
-			this->button1->TabIndex = 3;
-			this->button1->Text = L"Buscar por fecha";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MealsGraphicsForm::button1_Click);
-			// 
 			// MealsGraphicsForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(779, 570);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->dateTimeReport1);
 			this->Controls->Add(this->chartSales);
 			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"MealsGraphicsForm";
 			this->Text = L"Reporte  en graficos";
+			this->Load += gcnew System::EventHandler(this, &MealsGraphicsForm::MealsGraphicsForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartSales))->EndInit();
 			this->ResumeLayout(false);
 
@@ -134,26 +114,26 @@ namespace ProyectView {
 	
 	void RefreshDGV() {
 
-		DateTime dt = dateTimeReport1->Value;
-		String^ BuscarPorFecha = dt.ToString("yyyy-MM-dd");
+		//DateTime dt = dateTimeReport1->Value;
+		//String^ BuscarPorFecha = dt.ToString("yyyy-MM-dd");
 
 
 		chartSales->Series["Monto"]->Points->Clear();
 
 
-		int k = 0;
+		//int k = 0;
 		if (chartSales != nullptr) {
 			List<Sale^>^ SalesList = Controller::QueryAllSale();
 
 			for (int i = 0; i < SalesList->Count; i++) {
 
-				if (SalesList[i]->Fecha->Contains(BuscarPorFecha)) {
+				//if (SalesList[i]->Fecha->Contains(BuscarPorFecha)) {
 					chartSales->Series["Monto"]->Points->Add(SalesList[i]->Total);
-					chartSales->Series["Monto"]->Points[k]->Color = Color::Blue;
-					chartSales->Series["Monto"]->Points[k]->AxisLabel = SalesList[i]->Client_Info->Name;
-					chartSales->Series["Monto"]->Points[k]->Label = Convert::ToString(SalesList[i]->Total);
-					k++;
-				}
+					chartSales->Series["Monto"]->Points[i]->Color = Color::Blue;
+					chartSales->Series["Monto"]->Points[i]->AxisLabel = SalesList[i]->Client_Info->Name;
+					chartSales->Series["Monto"]->Points[i]->Label = Convert::ToString(SalesList[i]->Total);
+					//k++;
+				//}
 			}
 
 		}
@@ -162,6 +142,9 @@ namespace ProyectView {
 	
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+}
+private: System::Void MealsGraphicsForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	RefreshDGV();
 }
 };

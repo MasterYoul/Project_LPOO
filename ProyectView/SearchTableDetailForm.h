@@ -212,6 +212,7 @@ namespace ProyectView {
 			this->button2->TabIndex = 10;
 			this->button2->Text = L"LIMPIAR";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &SearchTableDetailForm::button2_Click_1);
 			// 
 			// button3
 			// 
@@ -310,6 +311,8 @@ namespace ProyectView {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		/*
+
 		List<TableDetail^>^ mealsList;
 
 		if (comboBox1->Text->Equals("LIBRES")) {
@@ -325,7 +328,7 @@ namespace ProyectView {
 			else { // buscando todos los libres
 				mealsList = Controller::QueryAllTableLibre();
 			}
-			
+
 		}
 
 
@@ -362,9 +365,85 @@ namespace ProyectView {
 
 				 mealsList = Controller::QueryAllTableDetail();
 			}
-		
+
 		}
-		RefreshdataGridViewClient(mealsList);
+		//RefreshdataGridViewClient(mealsList);
+		*/
+
+
+		try {
+
+			if ((comboBox1->Text->Trim() == "") && (textBox3->Text->Trim() == "") && ((textBox2->Text->Trim() == ""))) {
+				MessageBox::Show("Elija un TIPO, PISO o CAPACIDAD");
+				return;
+			}
+
+			if (comboBox1->Text->Trim() != "") {
+				List<TableDetail^>^ tableList = Controller::QueryAllTableDetail();
+				for (int i = 0; i < tableList->Count; i++) {
+					if (tableList[i]->Disponibility == comboBox1->Text->Trim()) {
+						dataGridView1->Rows->Clear();
+						dataGridView1->Rows->Add(gcnew array<String^> {
+							"" + tableList[i]->Id,
+								"" + tableList[i]->Floor,
+								"" + tableList[i]->TableCapacity,
+								tableList[i]->Disponibility,
+								tableList[i]->Reserved
+						});
+
+					}
+				}
+
+			}
+
+
+
+
+			if (textBox2->Text->Trim() != "") {
+				List<TableDetail^>^ tableList = Controller::QueryAllTableDetail();
+				for (int i = 0; i < tableList->Count; i++) {
+					if (Convert::ToString(tableList[i]->Floor) == textBox2->Text->Trim()) {
+						dataGridView1->Rows->Clear();
+						dataGridView1->Rows->Add(gcnew array<String^> {
+							"" + tableList[i]->Id,
+								"" + tableList[i]->Floor,
+								"" + tableList[i]->TableCapacity,
+								tableList[i]->Disponibility,
+								tableList[i]->Reserved
+						});
+
+					}
+				}
+
+			}
+
+			if (textBox3->Text->Trim() != "") {
+				List<TableDetail^>^ tableList = Controller::QueryAllTableDetail();
+				for (int i = 0; i < tableList->Count; i++) {
+					if (Convert::ToString(tableList[i]->TableCapacity) == textBox3->Text->Trim()) {
+						dataGridView1->Rows->Clear();
+						dataGridView1->Rows->Add(gcnew array<String^> {
+							"" + tableList[i]->Id,
+								"" + tableList[i]->Floor,
+								"" + tableList[i]->TableCapacity,
+								tableList[i]->Disponibility,
+								tableList[i]->Reserved
+						});
+
+					}
+				}
+
+			}
+
+
+		}
+		catch (Exception^ ex) {
+
+		}
+		finally {
+			void CleanControls();
+		}
+
 
 	}
 
@@ -387,23 +466,53 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 
 
 
-
-
-
-
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	//Búsqueda de mesa por el código ingresado por el usuario
-	TableDetail^ p = Controller::QueryTableDetailtById(Convert::ToInt32(textBox1->Text->Trim()));
-	//Se borran los datos del grid.
-	dataGridView1->Rows->Clear();
-	dataGridView1->Rows->Add(gcnew array<String^> {
-		"" + p->Id,
-			Convert::ToString(p->Floor),
-			Convert::ToString(p->TableCapacity),
-			p->Disponibility,
-			p->Reserved
-	});
 
+	//Se borran los datos del grid.
+	try
+	{
+		if ((textBox1->Text->Trim() == "")) {
+			MessageBox::Show("Escriba un ID");
+			return;
+		}
+		else {
+			TableDetail^ p = Controller::QueryTableDetailtById(Convert::ToInt32(textBox1->Text->Trim()));
+			dataGridView1->Rows->Clear();
+			dataGridView1->Rows->Add(gcnew array<String^> {
+				"" + p->Id,
+					Convert::ToString(p->Floor),
+					Convert::ToString(p->TableCapacity),
+					p->Disponibility,
+					p->Reserved});
+		}
+	}
+	catch (Exception^ ex)
+	{
+
+	}
+	finally {
+		void CleanControls();
+	}
+
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	
+
+}
+
+	   void CleanControls() {
+
+		   textBox1->Clear();
+		   textBox2->Clear();
+		   textBox3->Clear();
+		   comboBox1->ResetText();
+
+	   }
+private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	CleanControls();
+	dataGridView1->Rows->Clear();
 }
 };
 }

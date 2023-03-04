@@ -68,8 +68,12 @@ namespace ProyectView {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+
+
+
+
+
 
 
 
@@ -101,15 +105,14 @@ namespace ProyectView {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -225,9 +228,9 @@ namespace ProyectView {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->Column1,
-					this->Column2, this->Column3, this->Column4, this->Column5
+					this->Column2, this->Column3, this->Column5
 			});
 			this->dataGridView1->Location = System::Drawing::Point(12, 79);
 			this->dataGridView1->Name = L"dataGridView1";
@@ -236,41 +239,6 @@ namespace ProyectView {
 			this->dataGridView1->Size = System::Drawing::Size(700, 571);
 			this->dataGridView1->TabIndex = 32;
 			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SearchClientInfoForm::dataGridView1_CellClick);
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Id";
-			this->Column1->MinimumWidth = 6;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 50;
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"DNI:";
-			this->Column2->MinimumWidth = 6;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 125;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"RUC:";
-			this->Column3->MinimumWidth = 6;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 125;
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"TIPO";
-			this->Column4->MinimumWidth = 6;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 125;
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"VISITAS";
-			this->Column5->MinimumWidth = 6;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 75;
 			// 
 			// textBox4
 			// 
@@ -308,6 +276,34 @@ namespace ProyectView {
 			this->label3->TabIndex = 48;
 			this->label3->Text = L"RUC:";
 			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Id";
+			this->Column1->MinimumWidth = 6;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 50;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"DNI:";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 125;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"RUC:";
+			this->Column3->MinimumWidth = 6;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 125;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"VISITAS";
+			this->Column5->MinimumWidth = 6;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 75;
+			// 
 			// SearchClientInfoForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -337,8 +333,19 @@ namespace ProyectView {
 
 		}
 #pragma endregion
+		void CleanControls() {
+
+			textBox1->Clear();
+			textBox2->Clear();
+			textBox3->Clear();
+			textBox4->Clear();
+			comboBox1->ResetText();
+
+		}
+
+
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-		dataGridView1->Rows->Clear();
+
 		try
 		{
 			if (textBox1->Text->Trim() == "" && textBox4->Text->Trim() == "" && textBox3->Text->Trim() == "") {// vacio
@@ -347,7 +354,7 @@ namespace ProyectView {
 
 			}
 			if (textBox1->Text->Trim() != "" && textBox4->Text->Trim() == "" && textBox3->Text->Trim() == "") {// busqueda por id
-				
+
 				Client_Info^ p = Controller::QueryClient_InfotById(Convert::ToInt32(textBox1->Text->Trim()));
 				if (p == nullptr) {
 					MessageBox::Show("El ID del cliente no existe.");
@@ -358,10 +365,44 @@ namespace ProyectView {
 					"" + p->Id,
 						p->DocNumber,
 						p->RucNumber,
-						Convert::ToString(p->Type),
+						Convert::ToString(1, p->Type),
 						Convert::ToString(p->VisitQuantity),
 				});
 
+			}
+			if (textBox4->Text->Trim() != "") {
+				List<Client_Info^>^ clientlists = Controller::QueryAllClient_Info();
+				for (int i = 0; i < clientlists->Count; i++) {
+					if (clientlists[i]->DocNumber == textBox4->Text->Trim()) {
+						dataGridView1->Rows->Clear();
+						dataGridView1->Rows->Add(gcnew array<String^> {
+							"" + clientlists[i]->Id,
+								clientlists[i]->DocNumber,
+								clientlists[i]->RucNumber,
+								Convert::ToString(clientlists[i]->Type),
+								"" + clientlists[i]->VisitQuantity
+						});
+
+					}
+
+				}
+			}
+			if (textBox3->Text->Trim() != "") {
+				List<Client_Info^>^ clientlists = Controller::QueryAllClient_Info();
+				for (int i = 0; i < clientlists->Count; i++) {
+					if (clientlists[i]->RucNumber == textBox3->Text->Trim()) {
+						dataGridView1->Rows->Clear();
+						dataGridView1->Rows->Add(gcnew array<String^> {
+							"" + clientlists[i]->Id,
+								clientlists[i]->DocNumber,
+								clientlists[i]->RucNumber,
+								Convert::ToString(clientlists[i]->Type),
+								"" + clientlists[i]->VisitQuantity
+						});
+
+					}
+
+				}
 			}
 			/*
 			if (textBox1->Text->Trim() == "" && textBox4->Text->Trim() != "" && textBox3->Text->Trim() == "") {// busqueda por dni
@@ -378,7 +419,7 @@ namespace ProyectView {
 							ClientList[i]->RucNumber,
 							Convert::ToString(ClientList[i]->Type),
 							Convert::ToString(ClientList[i]->VisitQuantity),
-				
+
 				});
 
 			}
@@ -396,8 +437,8 @@ namespace ProyectView {
 						Convert::ToString(p->Type),
 						Convert::ToString(p->VisitQuantity),
 				});
-			}
-		*/	
+			}*/
+
 		}
 		catch (Exception^ ex)
 		{
@@ -409,40 +450,67 @@ namespace ProyectView {
 			textBox4->Clear();
 			textBox3->Clear();
 		}
-		
+		void CleanControls();
+
 	}
-	
+
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	List<Client_Info^>^ clientList;
-	if (comboBox1->Text->Equals("PERSONA")) {
-		if (textBox2->Text->Trim() != "") { // busqueda por cantidad de visitas
+
+	try
+	{
+		if ((comboBox1->Text->Trim() == "") && (textBox2->Text->Trim() == "")) {
+			MessageBox::Show("Elija un TIPO o cantidad de visitas");
+			return;
+		}
+		if (comboBox1->Text->Trim() != "") {
+			List<Client_Info^>^ clientlists = Controller::QueryAllClient_Info();
+			for (int i = 0; i < clientlists->Count; i++) {
+				if (Convert::ToString(clientlists[i]->Type) == comboBox1->Text->Trim()) {
+					dataGridView1->Rows->Clear();
+					dataGridView1->Rows->Add(gcnew array<String^> {
+						"" + clientlists[i]->Id,
+							clientlists[i]->DocNumber,
+							clientlists[i]->RucNumber,
+							Convert::ToString(clientlists[i]->Type),
+							"" + clientlists[i]->VisitQuantity
+					});
+
+				}
+
+			}
 
 		}
-		else {
+
+		if (textBox2->Text->Trim() != "") {
+			List<Client_Info^>^ clientlists = Controller::QueryAllClient_Info();
+			for (int i = 0; i < clientlists->Count; i++) {
+				if (Convert::ToString(clientlists[i]->VisitQuantity) == textBox2->Text->Trim()) {
+					dataGridView1->Rows->Clear();
+					dataGridView1->Rows->Add(gcnew array<String^> {
+						"" + clientlists[i]->Id,
+							clientlists[i]->DocNumber,
+							clientlists[i]->RucNumber,
+							//Convert::ToString(clientlists[i]->Type->ToString(1)),
+							"" + clientlists[i]->VisitQuantity
+					});
+
+				}
+
+			}
 
 		}
+
 	}
-	else if(comboBox1->Text->Equals("EMPRESA")) {
-		if (textBox2->Text->Trim() != "") {// busqueda por cantidad de visitas
-
-		}
-		else {
-
-		}
-
+	catch (Exception^ ex)
+	{
+		throw ex;
 	}
-	else {
-		if (textBox2->Text->Trim() != "") {// busqueda por cantidad de visitas
+	finally {
 
-		}
-		else {
-			clientList = Controller::QueryAllClient_Info();
-
-		}
+		void CleanControls();
 	}
 
-	
-	RefreshdataGridViewClient(clientList);
+
 }
 	   Void RefreshdataGridViewClient(List<Client_Info^>^ clientList) {
 		   dataGridView1->Rows->Clear();
@@ -471,5 +539,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
 }
+
+
 };
 }
